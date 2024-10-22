@@ -24,9 +24,6 @@ importers:
         specifier: '4'
         version: 4.4.5(vue@3.5.12(typescript@5.6.3))
     devDependencies:
-      '@types/mockjs':
-        specifier: ^1.0.10
-        version: 1.0.10
       '@types/node':
         specifier: ^22.7.8
         version: 22.7.8
@@ -42,9 +39,6 @@ importers:
       axios:
         specifier: ^1.7.7
         version: 1.7.7
-      mockjs:
-        specifier: ^1.1.0
-        version: 1.1.0
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -384,9 +378,6 @@ packages:
 
   '@types/lodash@4.17.12':
     resolution: {integrity: sha512-sviUmCE8AYdaF/KIHLDJBQgeYzPBI0vf/17NaYehBJfYD1j6/L95Slh07NlyK2iNyBNaEkb3En2jRt+a8y3xZQ==}
-
-  '@types/mockjs@1.0.10':
-    resolution: {integrity: sha512-SXgrhajHG7boLv6oU93CcmdDm0HYRiceuz6b+7z+/2lCJPTWDv0V5YiwFHT2ejE4bQqgSXQiVPQYPWv7LGsK1g==}
 
   '@types/node@22.7.8':
     resolution: {integrity: sha512-a922jJy31vqR5sk+kAdIENJjHblqcZ4RmERviFsER4WJcEONqxKcjNOlk0q7OUfrF5sddT+vng070cdfMlrPLg==}
@@ -771,10 +762,6 @@ packages:
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
-
-  mockjs@1.1.0:
-    resolution: {integrity: sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==}
-    hasBin: true
 
   muggle-string@0.4.1:
     resolution: {integrity: sha512-VNTrAak/KhO2i8dqqnqnAHOa3cYBwXEZe9h+D5h/1ZqFSTEFHdM65lR7RoIqq3tBBYavsOXV84NoHXZ0AkPyqQ==}
@@ -1307,8 +1294,6 @@ snapshots:
 
   '@types/lodash@4.17.12': {}
 
-  '@types/mockjs@1.0.10': {}
-
   '@types/node@22.7.8':
     dependencies:
       undici-types: 6.19.8
@@ -1734,10 +1719,6 @@ snapshots:
       brace-expansion: 2.0.1
 
   minipass@7.1.2: {}
-
-  mockjs@1.1.0:
-    dependencies:
-      commander: 4.1.1
 
   muggle-string@0.4.1: {}
 
