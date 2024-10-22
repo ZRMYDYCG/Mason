@@ -9,7 +9,7 @@
 </script>
 
 <template>
-    <div></div>
+    <div>Layout架子</div>
 </template>
 
 <style scoped>
