@@ -39,7 +39,9 @@ import LayoutTags from './components/layout-tags.vue'
       >
         <layout-nav />
       </div>
-      <div class="layout-main-tags h-8 leading-8 text-sm text-gray-600 relative">
+      <div
+        class="layout-main-tags h-8 leading-8 text-sm text-gray-600 relative"
+      >
         <layout-tags />
       </div>
       <div class="layout-main-content flex-1 overflow-hidden">
