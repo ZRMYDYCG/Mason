@@ -5,7 +5,7 @@ import { mock, Random } from 'mockjs'
 import type { IReq } from './interface/index'
 import type { MockMethod } from 'vite-plugin-mock'
 import { setToken, checkToken, responseData } from './middleware/index'
-import { login } from './response/user'
+import { login, getUser } from './response/user'
 
 export default [
     {
@@ -19,7 +19,14 @@ export default [
         }
     },
     {
-        url: '/api/user/getInfo',
+        url: '/api/user/getUser',
+        method: 'get',
+        timeout: 2000,
+        response: (req: IReq) => {
+            const username = checkToken(req)
+            if(!username) return responseData(401, '身份认证失败')
+            return responseData(200, '', getUser(username))
+        }
     },
     {
         url: '/api/user/getRoute',
