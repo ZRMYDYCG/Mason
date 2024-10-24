@@ -9,7 +9,8 @@
 import { PROJECT } from '@/config'
 import LayoutMenu from './components/layout-menu.vue'
 import LayoutNav from './components/layout-nav.vue'
-// import layoutTags from './components/layout-tags.vue'
+import LayoutContent from './components/layout-content.vue'
+import LayoutTags from './components/layout-tags.vue'
 </script>
 
 <template>
@@ -38,8 +39,12 @@ import LayoutNav from './components/layout-nav.vue'
       >
         <layout-nav />
       </div>
-      <div class="layout-main-tags">Tags</div>
-      <div class="layout-main-content">Content</div>
+      <div class="layout-main-tags h-8 leading-8 text-sm text-gray-600 relative">
+        <layout-tags />
+      </div>
+      <div class="layout-main-content flex-1 overflow-hidden">
+        <layout-content></layout-content>
+      </div>
     </div>
   </div>
 </template>
