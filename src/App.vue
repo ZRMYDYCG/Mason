@@ -5,13 +5,10 @@
  * @LastEditTime: 2024-10
  * @Description: App.vue
 -->
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <router-view></router-view>
+  <router-view></router-view>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

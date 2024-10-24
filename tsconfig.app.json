@@ -17,9 +17,9 @@
     /* 路径别名 */
     "baseUrl": "src",
     "paths": {
-        "@/*": ["*"]
+      "@/*": ["*"]
     },
-    
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
