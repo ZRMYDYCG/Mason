@@ -34,8 +34,8 @@ export default [
     method: 'get',
     timeout: 2000,
     response: (req: IReq) => {
-      // const username = checkToken(req)
-      if (true) {
+      const username = checkToken(req)
+      if (username) {
         return responseData(200, '', getRoute('admin'))
       }
     },
