@@ -5,7 +5,7 @@ import { mock, Random } from 'mockjs'
 import type { IReq } from './interface/index'
 import type { MockMethod } from 'vite-plugin-mock'
 import { setToken, checkToken, responseData } from './middleware/index'
-import { login, getUser } from './response/user'
+import { login, getUser, getRoute } from './response/user'
 
 export default [
   {
@@ -33,5 +33,11 @@ export default [
     url: '/api/user/getRoute',
     method: 'get',
     timeout: 2000,
+    response: (req: IReq) => {
+      // const username = checkToken(req)
+      if (true) {
+        return responseData(200, '', getRoute('admin'))
+      }
+    },
   },
 ] as MockMethod[]

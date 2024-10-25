@@ -24,7 +24,7 @@ const errorHandler = (error: { message: string }) => {
 // request interceptor
 request.interceptors.request.use(config => {
   // 请求头携带token
-  config.headers['token'] = localStorage.getItem('token') || ''
+  config.headers['assets-token'] = localStorage.getItem('token') || ''
   loading = ElLoading.service({
     lock: true,
     text: 'Loading',

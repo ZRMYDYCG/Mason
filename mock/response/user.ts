@@ -1,3 +1,10 @@
+/*
+ * @Author: ZRMYDYCG
+ * @Date: 2024-10
+ * @LastEditors: ZRMYDYCG
+ * @LastEditTime: 2024-10
+ * @Description:
+ */
 import type { IMenubarList } from '../../src/config/interface'
 import { user, user_role, role_route, route } from '../data/user'
 
