@@ -7,19 +7,14 @@
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { login, getRoute } from '@/api/modules/user'
+import { useUserStore } from '@/store/index'
 
 const username = ref('')
 const password = ref('')
+const userStore = useUserStore()
 
 const handleLogin = () => {
-  login({ username: username.value, password: password.value }).then(res => {
-    localStorage.setItem('token', res.data.data)
-
-      getRoute().then(res => {
-        console.log(res)
-      })
-  })
+  userStore.loginAction({ username: username.value, password: password.value })
 }
 </script>
 
