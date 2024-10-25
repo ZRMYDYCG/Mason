@@ -1,3 +1,10 @@
+/*
+ * @Author: ZRMYDYCG
+ * @Date: 2024-10
+ * @LastEditors: ZRMYDYCG
+ * @LastEditTime: 2024-10
+ * @Description:
+ */
 /**
  * @description 动态路由名称映射表
  * */
@@ -6,12 +13,14 @@ interface IObject<T> {
 }
 import type { IMenubarList } from '@/config/interface'
 import { listToTree } from '@/utils/tool'
+import { useUserStore } from '@/store/index'
 
+// https://pinia.vuejs.org/zh/core-concepts/outside-component-usage.html 在组件外错误使用pinia实例的示例
+// const userStore = useUserStore()
 const modules = import.meta.glob('../../views/**/*.vue')
 const components: IObject<() => Promise<typeof import('*.vue')>> = {
   Layout: () => import('@/Layout/index.vue'),
 }
-
 Object.keys(modules).forEach(key => {
   const nameMatch = key.match(/^\.\.\/views\/(.+)\.vue/)
   if (!nameMatch) return
@@ -21,7 +30,6 @@ Object.keys(modules).forEach(key => {
   ;[name] = name.split('/').splice(-1)
   components[name] = modules[key] as () => Promise<typeof import('*.vue')>
 })
-
 const asyncRouter: IMenubarList[] = [
   {
     path: '/:pathMatch(.*)*',
@@ -39,5 +47,24 @@ const asyncRouter: IMenubarList[] = [
 ]
 
 export const generatorDynamicRouter = (data: IMenubarList[]): void => {
+  const userStore = useUserStore()
   const routerList: IMenubarList[] = listToTree(data, 0)
+  asyncRouter.forEach(v => routerList.push(v))
+  const f = (data: IMenubarList[], pData: IMenubarList | null) => {
+    for (let i = 0, len = data.length; i < len; i++) {
+      const v: IMenubarList = data[i]
+      if (typeof v.component === 'string') v.component = components[v.component]
+      if (!v.meta.permission || (pData && v.meta.permission.length === 0)) {
+        v.meta.permission =
+          pData && pData.meta && pData.meta.permission
+            ? pData.meta.permission
+            : []
+      }
+      if (v.children && v.children.length > 0) {
+        f(v.children, v)
+      }
+    }
+  }
+  f(routerList, null)
+  userStore.setRoutes(routerList)
 }
