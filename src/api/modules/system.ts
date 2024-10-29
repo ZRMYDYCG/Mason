@@ -1,3 +1,10 @@
+/*
+ * @Author: ZRMYDYCG
+ * @Date: 2024-10
+ * @LastEditors: ZRMYDYCG
+ * @LastEditTime: 2024-10
+ * @Description:
+ */
 import http from '@/api'
 import { Department, Menu, ResultTable, Role, User } from '@/api/interface/system'
 export const getUserList = (data: object) => {

@@ -1,3 +1,10 @@
+<!--
+ * @Author: ZRMYDYCG
+ * @Date: 2024-10
+ * @LastEditors: ZRMYDYCG
+ * @LastEditTime: 2024-10
+ * @Description:
+-->
 <template>
   <el-switch v-model="globalStore.isDark" inline-prompt @change="switchDark">
     <template #active-action>

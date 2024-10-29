@@ -42,7 +42,7 @@ koa-admin-server 通用后台管理系统 ym-admin的服务端
 Node + Koa + Typescript + Mysql
 
 #### 5.2 项目地址
-github地址：[项目地址](https://github.com/Yuimng/koa-admin-server) 
+
 
 #### 5.3 接口返回规范
 

@@ -17,7 +17,9 @@
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item>
-          <span><i class="iconfont icon-user"></i>个人信息</span>
+          <span @click="router.push('/userinfo/1')"
+            ><i class="iconfont icon-user"></i>个人信息</span
+          >
         </el-dropdown-item>
         <el-dropdown-item>
           <span><i class="iconfont icon-xiugai"></i>修改密码</span>

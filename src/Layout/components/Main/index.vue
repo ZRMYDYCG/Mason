@@ -1,3 +1,10 @@
+<!--
+ * @Author: ZRMYDYCG
+ * @Date: 2024-10
+ * @LastEditors: ZRMYDYCG
+ * @LastEditTime: 2024-10
+ * @Description:
+-->
 <template>
   <Tabs />
   <el-main>
@@ -17,7 +24,7 @@
 <script setup lang="ts">
 import { VNode, computed, h, onBeforeUnmount, ref } from 'vue'
 import { RouteLocationNormalizedLoaded } from 'vue-router'
-import Tabs from '@/layout/components/Tabs/index.vue'
+import Tabs from '@/Layout/components/Tabs/index.vue'
 import { useKeepAliveStore } from '@/store/modules/keepAlive'
 import { useDebounceFn } from '@vueuse/core'
 import { useGlobalStore } from '@/store/modules/global'
