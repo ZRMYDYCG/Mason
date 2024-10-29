@@ -13,13 +13,13 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login/index.vue')
+    component: () => import('@/views/Login/index.vue')
   },
   {
     path: '/layout',
     redirect: HOME_URL, // 重定向主页
     name: 'layout',
-    component: () => import('@/layout/index.vue'),
+    component: () => import('@/Layout/index.vue'),
     children: [
       // -----非全屏页面动态引入-----
     ]
@@ -103,7 +103,7 @@ router.beforeEach(async (to, from, next) => {
  * */
 export const resetRouter = () => {
   const authStore = useAuthStore()
-  authStore.flatMenuListGet.forEach((route) => {
+  authStore.flatMenuListGet.forEach((route: any) => {
     const { name } = route
     if (name && router.hasRoute(name)) router.removeRoute(name)
   })
