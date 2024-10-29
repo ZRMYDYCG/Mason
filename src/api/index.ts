@@ -1,43 +1,72 @@
-import axios from 'axios'
-import { ElLoading, ElNotification } from 'element-plus'
+/*
+ * @Author: ZRMYDYCG
+ * @Date: 2024-10
+ * @LastEditors: ZRMYDYCG
+ * @LastEditTime: 2024-10
+ * @Description:
+ */
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  InternalAxiosRequestConfig,
+  AxiosResponse
+} from 'axios'
+import { ResultData } from './interface'
+import { useUserStore } from '@/store/modules/user'
 
-let loading: { close(): void }
-
-// 创建 axios 实例
-const request = axios.create({
-  baseURL: '',
-  timeout: 60000,
-})
-
-// 异常拦截处理器
-const errorHandler = (error: { message: string }) => {
-  loading.close()
-  console.log(`err${error}`)
-  ElNotification({
-    title: '请求失败',
-    message: error.message,
-    type: 'error',
-  })
-  return Promise.reject(error)
+const config = {
+  // 默认地址请求地址，可在 .env.** 文件中修改
+  baseURL: import.meta.env.VITE_API_URL as string,
+  // 设置超时时间
+  timeout: 30000
 }
 
-// request interceptor
-request.interceptors.request.use(config => {
-  // 请求头携带token
-  config.headers['assets-token'] = localStorage.getItem('token') || ''
-  loading = ElLoading.service({
-    lock: true,
-    text: 'Loading',
-    spinner: 'el-icon-loading',
-    background: 'rgba(0, 0, 0, 0.4)',
-  })
-  return config
-}, errorHandler)
+class Http {
+  private static axiosInstance: AxiosInstance
+  constructor(config: AxiosRequestConfig) {
+    Http.axiosInstance = axios.create(config)
+    this.interceptorsRequest()
+    this.interceptorsResponse()
+  }
 
-// response interceptor
-request.interceptors.response.use(response => {
-  loading.close()
-  return response
-}, errorHandler)
+  //请求拦截器
+  private interceptorsRequest() {
+    Http.axiosInstance.interceptors.request.use(
+      (config: InternalAxiosRequestConfig) => {
+        // 为请求头对象，添加 Token 验证的 Authorization 字段
+        const userStore = useUserStore()
+        config.headers.Authorization = userStore.token
+        return config
+      },
+      (error: string) => {
+        return Promise.reject(error)
+      }
+    )
+  }
+  //响应拦截器
+  private interceptorsResponse() {
+    Http.axiosInstance.interceptors.response.use(
+      async (response: AxiosResponse) => {
+        const { data } = response
+        return data
+      },
+      (error: string) => {
+        return Promise.reject(error)
+      }
+    )
+  }
+  get<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
+    return Http.axiosInstance.get(url, { params, ..._object })
+  }
+  post<T>(url: string, params?: object | string, _object = {}): Promise<ResultData<T>> {
+    return Http.axiosInstance.post(url, params, _object)
+  }
+  put<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
+    return Http.axiosInstance.put(url, params, _object)
+  }
+  delete<T>(url: string, params?: any, _object = {}): Promise<ResultData<T>> {
+    return Http.axiosInstance.delete(url, { params, ..._object })
+  }
+}
 
-export default request
+export default new Http(config)

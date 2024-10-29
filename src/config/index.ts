@@ -1,11 +1,17 @@
-export enum PROJECT {
-  name = '后台管理系统',
-  version = '1.0.0',
-  description = 'YQ-Admin-ElementPlus',
-  author = 'YQ-Admin-ElementPlus',
-  port = 9527,
-  apiPrefix = '/api',
-  apiUrl = 'http://localhost:9527/api',
-  apiTimeout = 10000,
-  tokenKey = 'token',
-}
+/*
+ * @Author: ZRMYDYCG
+ * @Date: 2024-10
+ * @LastEditors: ZRMYDYCG
+ * @LastEditTime: 2024-10
+ * @Description:
+ */
+// 全局默认配置项
+
+// 首页地址（默认）
+export const HOME_URL: string = '/dashboard'
+
+// 登录页地址（默认）
+export const LOGIN_URL: string = '/login'
+
+// 默认主题颜色
+export const DEFAULT_PRIMARY: string = '#2254F4'

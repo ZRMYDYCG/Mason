@@ -1,23 +1,25 @@
-/*
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
- */
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import './tailwind.css'
+
 import App from './App.vue'
-import router from './router/index'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-const pinia = createPinia()
+// reset style sheet
+import '@/styles/reset.scss'
+// CSS common style sheet
+import '@/styles/common.scss'
+// iconfont
+import '@/styles/iconfont.scss'
+// el-message el-message-box css
+import 'element-plus/es/components/message-box/style/css'
+import 'element-plus/es/components/message/style/css'
+// el-tree css
+import 'element-plus/es/components/tree/style/css'
+// element dark css
+import 'element-plus/theme-chalk/dark/css-vars.css'
+// custom element dark css
+import '@/styles/element-dark.scss'
 
-const app = createApp(App)
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
-}
-app.use(pinia)
-app.use(router)
-app.mount('#app')
+import router from '@/router'
+
+import pinia from '@/store'
+
+createApp(App).use(router).use(pinia).mount('#app')

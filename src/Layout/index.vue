@@ -3,52 +3,65 @@
  * @Date: 2024-10
  * @LastEditors: ZRMYDYCG
  * @LastEditTime: 2024-10
- * @Description: Layout
+ * @Description:
 -->
-<script setup lang="ts">
-import { PROJECT } from '@/config'
-import LayoutMenu from './components/layout-menu.vue'
-import LayoutNav from './components/layout-nav.vue'
-import LayoutContent from './components/layout-content.vue'
-import LayoutTags from './components/layout-tags.vue'
-</script>
-
 <template>
-  <div class="layout flex h-screen">
-    <div
-      class="layout-sidebar flex flex-col h-screen transition-width duration-200 shadow"
-      :class="{ 'w-64': true }"
-    >
-      <div class="layout-logo flex h-12 items-center justify-center">
-        <img
-          class="layout-sidebar-logo-img w-8 h-8"
-          src="/src/assets/logo.svg"
-          alt=""
-        />
-        <span>{{ PROJECT.name }}</span>
+  <el-container class="layout">
+    <el-aside>
+      <div class="aside" :style="{ width: isCollapse ? '65px' : '210px' }">
+        <div class="logo">
+          <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
+          <span v-show="!isCollapse" class="logo-text">YQ-Admin</span>
+        </div>
+        <el-scrollbar>
+          <el-menu
+            :router="false"
+            :default-active="activeMenu"
+            :collapse="isCollapse"
+            :unique-opened="true"
+            :collapse-transition="false"
+          >
+            <SubMenu :menu-list="menuList" />
+          </el-menu>
+        </el-scrollbar>
       </div>
-      <div class="layout-sidebar-menubar flex flex-1 overflow-hidden">
-        <layout-menu />
-      </div>
-    </div>
-    <div
-      class="layout-main flex flex-1 flex-col overflow-x-hidden overflow-y-auto"
-    >
-      <div
-        class="layout-main-navbar flex justify-between items-center h-12 shadow-sm overflow-hidden relative z-10"
-      >
-        <layout-nav />
-      </div>
-      <div
-        class="layout-main-tags h-8 leading-8 text-sm text-gray-600 relative"
-      >
-        <layout-tags />
-      </div>
-      <div class="layout-main-content flex-1 overflow-hidden">
-        <layout-content></layout-content>
-      </div>
-    </div>
-  </div>
+    </el-aside>
+    <el-container>
+      <el-header>
+        <ToolBarLeft />
+        <ToolBarRight />
+      </el-header>
+      <Main />
+    </el-container>
+  </el-container>
+  <ThemeDrawer />
 </template>
 
-<style scoped></style>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useAuthStore } from '@/store/modules/auth'
+import { useGlobalStore } from '@/store/modules/global'
+import SubMenu from './components/Menu/SubMenu.vue'
+import ToolBarLeft from './components/Header/ToolBarLeft.vue'
+import ToolBarRight from './components/Header/ToolBarRight.vue'
+import Main from './components/Main/index.vue'
+import ThemeDrawer from './components/ThemeDrawer/index.vue'
+
+const route = useRoute()
+const authStore = useAuthStore()
+const globalStore = useGlobalStore()
+
+const menuList = computed(() => authStore.showMenuListGet)
+
+const isCollapse = computed(() => globalStore.isCollapse)
+
+// const activeMenu = computed(
+//   () => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string
+// )
+const activeMenu = computed(() => route.path)
+</script>
+
+<style scoped lang="scss">
+@import './index';
+</style>

@@ -3,25 +3,47 @@
  * @Date: 2024-10
  * @LastEditors: ZRMYDYCG
  * @LastEditTime: 2024-10
- * @Description: 
+ * @Description:
 -->
+<template>
+  <div class="login-container flx-center">
+    <div class="login-box">
+      <SwitchDark class="switch-dark" />
+      <div class="login-left">
+        <img class="login-left-img" src="@/assets/images/login-left.svg" alt="login" />
+      </div>
+      <div class="login-form">
+        <div class="login-logo">
+          <img class="login-icon" src="@/assets/images/logo.svg" alt="logo" />
+          <h2 class="logo-text">YM-Admin</h2>
+        </div>
+        <LoginForm ref="loginRef"></LoginForm>
+        <div class="login-btns">
+          <el-button class="login-btn" size="large" @click="handleResetClick"> 重置 </el-button>
+          <el-button type="primary" size="large" class="login-btn" @click="handleSubmitClick">
+            立即登录
+          </el-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useUserStore } from '@/store/index'
+import SwitchDark from '@/components/SwitchDark/index.vue'
+import LoginForm from './components/LoginForm.vue'
+const loginRef = ref<InstanceType<typeof LoginForm>>()
 
-const username = ref('')
-const password = ref('')
-const userStore = useUserStore()
+const handleSubmitClick = () => {
+  loginRef.value?.loginAction()
+}
 
-const handleLogin = () => {
-  userStore.loginAction({ username: username.value, password: password.value })
+const handleResetClick = () => {
+  loginRef.value?.resetAction()
 }
 </script>
 
-<template>
-  <el-input v-model="username"></el-input>
-  <el-input v-model="password"></el-input>
-  <el-button @click="handleLogin">Login</el-button>
-</template>
-
-<style scoped></style>
+<style scoped lang="scss">
+@import './index';
+</style>

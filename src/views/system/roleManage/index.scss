@@ -1,0 +1,40 @@
+.search-container {
+  padding-bottom: 0;
+}
+
+.search-form .el-input {
+  --el-input-width: 220px;
+}
+
+.search-form .el-select {
+  --el-select-width: 220px;
+}
+
+.search-form .el-form-item {
+  margin-right: 24px;
+}
+
+.btn-icon {
+  font-size: 14px;
+}
+
+.role-manage {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.table-container {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		height: 100%;
+
+		.table-content {
+			flex: 1;
+		}
+
+		.table-pagination {
+			justify-content: right;
+		}
+	}
+}
