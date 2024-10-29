@@ -11,7 +11,7 @@
       <div class="aside" :style="{ width: isCollapse ? '65px' : '210px' }">
         <div class="logo">
           <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
-          <span v-show="!isCollapse" class="logo-text">后台集成方案</span>
+          <span v-show="!isCollapse" class="logo-text">软件实验室</span>
         </div>
         <el-scrollbar>
           <el-menu

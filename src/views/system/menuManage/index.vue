@@ -64,7 +64,7 @@
             <el-tag type="danger" v-else>否</el-tag>
           </template>
         </el-table-column>
-        <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
+        <el-table-column fixed="right" prop="operation" label="操作" align="center">
           <template #default="{ row }">
             <el-button link type="primary" size="small" @click="handleEdit(row)">
               <i class="btn-icon mr4 iconfont icon-xiugai"></i> <span>编辑</span>
