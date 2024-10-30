@@ -1,3 +1,8 @@
+/*Tailwind CSS Reset*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* custom card */
 .card {
   box-sizing: border-box;
