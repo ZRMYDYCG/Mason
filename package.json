@@ -3,19 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "author": {
-    "name": "Yuimng",
-    "email": "944307891@qq.com",
-    "url": "https://github.com/Yuimng"
-  },
   "license": "MIT",
-  "homepage": "https://github.com/Yuimng/vue3-admin-client",
+  "homepage": "https://github.com/Software-Dev-Lab/YQ-Admin-ElementPlus",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yuimng/vue3-admin-client.git"
+    "url": "https://github.com/Software-Dev-Lab/YQ-Admin-ElementPlus"
   },
   "bugs": {
-    "url": "https://github.com/Yuimng/vue3-admin-client/issues"
+    "url": "https://github.com/Software-Dev-Lab/YQ-Admin-ElementPlus/issues"
   },
   "scripts": {
     "dev": "vite",
@@ -37,6 +32,7 @@
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "screenfull": "^6.0.2",
+    "socket.io-client": "^4.8.1",
     "vue": "^3.4.21",
     "vue-router": "4"
   },

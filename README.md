@@ -35,25 +35,6 @@ Vue3 + TypeScript + Vite + Vue-router + Pinia + Axios + Element-Plus + Sass
 - **prettier工具**：代码格式化
 - **eslint工具**：代码格式化
 
-### 5. 后端
-koa-admin-server 通用后台管理系统 ym-admin的服务端
-
-#### 5.1 技术栈
-Node + Koa + Typescript + Mysql
-
-#### 5.2 项目地址
-
-
-#### 5.3 接口返回规范
-
-```json
-{
-    "code": 200,
-    "data": null,
-    "msg": ""
-}
-```
-
-### 6. 部署
+### 5. 部署
 
 vite工具打包前端项目，在云服务器上安装和使用nginx进行接口请求代理完成部署，后端采用pm2启动服务。

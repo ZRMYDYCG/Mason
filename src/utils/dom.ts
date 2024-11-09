@@ -1,4 +1,4 @@
-import type { CssStyleObject } from '@/types/index'
+import type { CssStyleObject } from '@/typings/index'
 
 /**
  * 检查元素是否包含特定的类名
