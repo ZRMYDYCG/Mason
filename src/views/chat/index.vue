@@ -14,9 +14,10 @@
       <div ref="headerRef" class="flex pt-5 px-2">
         <el-input v-model="message" placeholder="输入消息..."></el-input>
         <el-button type="primary" @click="sendMessage">发送</el-button>
+        <el-button type="primary" @click="sendNotice">发布公告</el-button>
       </div>
       <el-scrollbar class="h-100%">
-        <div v-for="(msg, index) in messages" :key="index" class="flex border-b py-2 px-1 gap-3">
+        <div v-for="(msg, index) in 1" :key="index" class="flex border-b py-2 px-1 gap-3">
           <div class="bg-gray-100 w-[60px] h-[60px] rounded-full"></div>
           <div class="flex flex-col justify-center">
             <div>一勺</div>
@@ -30,34 +31,33 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import socket from 'socket.io-client'
 
 const io = socket('ws://127.0.0.1:3000')
-const message = ref('') // 用于绑定输入框的消息
-const messages = ref<string[]>([]) // 用于存储接收到的消息
+const message = ref('')
 
-onMounted(() => {
-  io.on('getMsg', (data: string) => {
-    console.log('接收到的消息：', data)
-    messages.value.push(data) // 将接收到的消息添加到 messages 数组
-  })
-
-  // 发送初始化消息
-  setTimeout(() => {
-    io.emit('send', '你好，我是客户端发的消息！')
-  }, 3000)
-})
-
-// 发送消息的函数
 const sendMessage = () => {
   if (message.value.trim()) {
-    io.emit('send', message.value) // 发送用户输入的消息
-    message.value = '' // 清空输入框
+    // 私聊
+    io.emit('signal', {
+      sendId: 1,
+      type: 0,
+      content: message.value,
+      recipientId: 2,
+      avatar: '/user1'
+    })
+    message.value = ''
   }
 }
+
+const sendNotice = () => {
+  io.emit('notice', '发布了一则公告')
+}
+
+io.on('getMessage', (data) => {
+  console.log(data)
+})
 </script>
 
-<style lang="scss" scoped>
-/* 这里可以添加你的样式 */
-</style>
+<style lang="scss" scoped></style>
