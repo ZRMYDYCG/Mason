@@ -22,7 +22,7 @@
     "lint:stylelint": "stylelint  \"**/*.{css,scss,vue}\" --fix"
   },
   "dependencies": {
-    "@vueuse/core": "^10.9.0",
+    "@vueuse/core": "^10.11.0",
     "axios": "^1.6.8",
     "echarts": "^5.5.0",
     "echarts-liquidfill": "^3.1.0",
