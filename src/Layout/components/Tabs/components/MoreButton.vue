@@ -1,24 +1,34 @@
 <template>
   <el-dropdown trigger="click" class="more-btn">
-    <div class="down-box flx-center">
-      <i class="iconfont icon-down"></i>
+    <div class="down-box w-[50px] h-[40px] flx-center">
+      <iconpark-icon name="drop-down-list"></iconpark-icon>
     </div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item @click="closeCurrentTab">
-          <span class="flx-center"><i class="iconfont icon-minus-circle"></i>关闭当前</span>
+          <span class="flex items-center justify-center">
+            <iconpark-icon name="close-current" class="mr-2"></iconpark-icon>关闭当前</span
+          >
         </el-dropdown-item>
         <el-dropdown-item @click="tabsStore.closeTabsOnSide(route.fullPath, 'left')">
-          <span class="flx-center"><i class="iconfont icon-d-arrow-left"></i>关闭左侧</span>
+          <span class="flex items-center justify-center"
+            ><iconpark-icon name="circle-double-left" class="mr-2"></iconpark-icon>关闭左侧</span
+          >
         </el-dropdown-item>
         <el-dropdown-item @click="tabsStore.closeTabsOnSide(route.fullPath, 'right')">
-          <span class="flx-center"><i class="iconfont icon-d-arrow-right"></i>关闭右侧</span>
+          <span class="flex items-center justify-center"
+            ><iconpark-icon name="circle-double-right" class="mr-2"></iconpark-icon>关闭右侧</span
+          >
         </el-dropdown-item>
         <el-dropdown-item @click="tabsStore.closeMultipleTab(route.fullPath)">
-          <span class="flx-center"><i class="iconfont icon-close-circle"></i>关闭其他</span>
+          <span class="flex items-center justify-center"
+            ><iconpark-icon name="close-other" class="mr-2"></iconpark-icon>关闭其他</span
+          >
         </el-dropdown-item>
         <el-dropdown-item @click="closeAllTab">
-          <span class="flx-center"><i class="iconfont icon-fold-closed"></i>关闭全部</span>
+          <span class="flex items-center justify-center"
+            ><iconpark-icon name="close-all" class="mr-2"></iconpark-icon>关闭全部</span
+          >
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -47,9 +57,6 @@ const closeAllTab = () => {
 
 <style scoped lang="scss">
 .down-box {
-  width: 50px;
-  height: 40px;
-  cursor: pointer;
   border-left: 1px solid var(--el-border-color-light);
 }
 </style>

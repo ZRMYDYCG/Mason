@@ -58,9 +58,6 @@ const menuList = computed(() => authStore.showMenuListGet)
 
 const isCollapse = computed(() => globalStore.isCollapse)
 
-// const activeMenu = computed(
-//   () => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string
-// )
 const activeMenu = computed(() => route.path)
 </script>
 

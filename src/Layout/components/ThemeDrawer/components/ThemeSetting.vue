@@ -1,16 +1,9 @@
-<!--
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
--->
 <template>
-  <div
-    class="theme-setting fixed top-[500px] right-0 w-[40px] h-[40px] flex justify-center items-center rounded-s-lg shadow"
-  >
-    <i class="icon-yifu toolbar-icon icon iconfont" @click="openDrawer"></i>
-  </div>
+  <iconpark-icon
+    @click="openDrawer"
+    class="cursor-pointer fixed top-[500px] right-0 w-[40px] h-[40px] flex justify-center items-center rounded-s-lg shadow-md border border-r-0 border-gray-200 rounded-s-md z-[50] hover:bg-gray-100"
+    name="page-config"
+  ></iconpark-icon>
 </template>
 
 <script setup lang="ts">
@@ -21,8 +14,7 @@ const openDrawer = () => {
 </script>
 
 <style lang="scss" scoped>
-.toolbar-icon:hover {
+.icon:hover {
   color: var(--el-color-primary);
-  cursor: pointer;
 }
 </style>

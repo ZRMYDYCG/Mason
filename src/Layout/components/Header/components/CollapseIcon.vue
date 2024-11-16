@@ -1,14 +1,10 @@
-<!--
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
--->
 <template>
-  <div class="collapse-icon" @click="changeCollapse">
-    <i class="toolbar-icon icon iconfont" :class="isCollapse ? 'icon-zhankai' : 'icon-shouqi'"></i>
-  </div>
+  <iconpark-icon
+    :name="isCollapse ? 'menu-unfold' : 'menu-fold'"
+    size="28"
+    @click="changeCollapse"
+    class="cursor-pointer mr-3 cursor-pointer"
+  ></iconpark-icon>
 </template>
 
 <script setup lang="ts">
@@ -22,10 +18,3 @@ const changeCollapse = () => {
   globalStore.setCollapseState(!isCollapse.value)
 }
 </script>
-
-<style scoped lang="scss">
-.collapse-icon {
-  margin-right: 20px;
-  cursor: pointer;
-}
-</style>

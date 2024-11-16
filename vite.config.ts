@@ -35,7 +35,13 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }
     },
     plugins: [
-      vue(),
+      vue({
+        template: {
+          compilerOptions: {
+            isCustomElement: (tag) => tag === 'iconpark-icon'
+          }
+        }
+      }),
       AutoImport({
         resolvers: [ElementPlusResolver()],
         dts: 'src/typings/auto-imports.d.ts' // 指定类型声明文件的路径

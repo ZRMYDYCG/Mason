@@ -1,43 +1,32 @@
-<!--
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
--->
 <template>
-  <div class="fullscreen">
-    <i
-      :class="isFullscreen ? 'icon-suoxiao' : 'icon-fangda'"
-      class="toolbar-icon icon iconfont"
-      @click="handleFullScreen"
-    ></i>
-  </div>
+  <iconpark-icon
+    class="icon cursor-pointer"
+    :name="isFullscreen ? 'off-screen' : 'full-screen'"
+    @click="handleFullScreen"
+  ></iconpark-icon>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import screenfull from 'screenfull'
+import screenFull from 'screenfull'
 
-const isFullscreen = ref(screenfull.isFullscreen)
+const isFullscreen = ref(screenFull.isFullscreen)
 
 onMounted(() => {
-  screenfull.on('change', () => {
-    if (screenfull.isFullscreen) isFullscreen.value = true
-    else isFullscreen.value = false
+  screenFull.on('change', () => {
+    isFullscreen.value = screenFull.isFullscreen
   })
 })
 
 const handleFullScreen = () => {
-  if (!screenfull.isEnabled) ElMessage.warning('当前您的浏览器不支持全屏 ❌')
-  screenfull.toggle()
+  if (!screenFull.isEnabled) ElMessage.warning('当前您的浏览器不支持全屏')
+  screenFull.toggle()
 }
 </script>
 
 <style scoped lang="scss">
-.toolbar-icon:hover {
+.icon:hover {
   color: var(--el-color-primary);
-  cursor: pointer;
 }
 </style>
