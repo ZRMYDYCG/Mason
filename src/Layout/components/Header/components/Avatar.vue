@@ -9,20 +9,14 @@
   <el-dropdown trigger="click">
     <span class="avatar">
       <img
-        :src="
-          avatar ? avatar : 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
-        "
+        :src="avatar ? avatar : 'https://pic.imgdb.cn/item/67385379d29ded1a8c811e00.png'"
+        alt="avatar"
       />
     </span>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item>
-          <span @click="router.push('/userinfo/1')"
-            ><i class="iconfont icon-user"></i>个人信息</span
-          >
-        </el-dropdown-item>
-        <el-dropdown-item>
-          <span><i class="iconfont icon-xiugai"></i>修改密码</span>
+          <span @click="router.push('/user')"><i class="iconfont icon-user"></i>个人中心</span>
         </el-dropdown-item>
         <el-dropdown-item divided @click="logout">
           <span><i class="iconfont icon-tuichu"></i>退出登录</span>
@@ -47,7 +41,7 @@ const logout = () => {
     confirmButtonText: '确认',
     cancelButtonText: '取消',
     type: 'warning'
-  }).then(() => {
+  } as any).then(() => {
     userStore.setTokenWithExpires('', 0)
     router.replace(LOGIN_URL)
     ElMessage.success('退出登录成功！')

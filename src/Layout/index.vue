@@ -34,6 +34,7 @@
       <Main />
     </el-container>
   </el-container>
+  <ThemeSetting></ThemeSetting>
   <ThemeDrawer />
 </template>
 
@@ -47,6 +48,7 @@ import ToolBarLeft from './components/Header/ToolBarLeft.vue'
 import ToolBarRight from './components/Header/ToolBarRight.vue'
 import Main from './components/Main/index.vue'
 import ThemeDrawer from './components/ThemeDrawer/index.vue'
+import ThemeSetting from './components/ThemeDrawer/components/ThemeSetting.vue'
 
 const route = useRoute()
 const authStore = useAuthStore()
