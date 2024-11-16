@@ -7,3 +7,7 @@
 ## 前言
 
 项目定位: 基于 `Vue3.x`、`Vite`、`TypeScript`、`Element-Plus`、`koa2`、`MySql`, 开发一套前后端组件库, 以及一些集成方案。
+
+项目图标地址
+
+https://iconpark.oceanengine.com/projects/36257/detail
