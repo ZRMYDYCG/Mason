@@ -22,7 +22,7 @@ const tableData = [
 <template>
   <el-row :gutter="10" class="h-full">
     <el-col :lg="8" :xs="24" class="h-full">
-      <div class="bg-amber-200 h-full">
+      <div class="h-full">
         <el-card
           shadow="never"
           :body-style="
@@ -56,6 +56,32 @@ const tableData = [
               </template>
             </div>
           </div>
+        </el-card>
+
+        <el-card
+          class="mt-4"
+          shadow="never"
+          :body-style="{ padding: '0', paddingBottom: '10px' } as any"
+        >
+          <template #header>
+            <div class="font-bold">已发布的公告信息</div>
+          </template>
+          <div>
+            <template v-for="item in 2" :key="item">
+              <div class="flex items-center justify-between gap-2 mb-2 border-b p-2">
+                <div class="flex items-center gap-2">
+                  <img
+                    class="w-8 h-8 rounded-full"
+                    src="https://pic.imgdb.cn/item/67385379d29ded1a8c811e00.png"
+                    alt="avatar"
+                  />
+                  <span class="text-sm">这是第{{ item }}则公告信息</span>
+                </div>
+                <el-tag>正常</el-tag>
+              </div>
+            </template>
+          </div>
+          <el-pagination background layout="prev, pager, next" :total="10" class="ml-2" />
         </el-card>
       </div>
     </el-col>
