@@ -114,7 +114,7 @@ const userInfoData = [
               ></el-avatar>
               <el-button type="primary" class="w-[80px]">选择图片</el-button>
             </div>
-            <el-divider content-position="left">基本信息</el-divider>
+            <el-divider content-position="left">个人基本信息</el-divider>
             <el-form label-position="top">
               <el-row :gutter="10">
                 <el-col :span="12">
@@ -147,7 +147,56 @@ const userInfoData = [
                 </el-col>
               </el-row>
             </el-form>
-            <el-divider content-position="left">角色信息</el-divider>
+            <el-divider content-position="left">公司角色信息</el-divider>
+            <el-form label-position="top">
+              <el-row :gutter="10">
+                <el-col :span="12">
+                  <el-form-item label="所属角色">
+                    <el-select placeholder="请选择角色">
+                      <el-option label="超级管理员" value="1"></el-option>
+                      <el-option label="普通管理员" value="2"></el-option>
+                      <el-option label="普通用户" value="3"></el-option>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item label="所属岗位">
+                    <el-select placeholder="请选择岗位">
+                      <el-option label="前端开发工程师" value="1"></el-option>
+                      <el-option label="后端开发工程师" value="2"></el-option>
+                      <el-option label="测试工程师" value="3"></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item label="所属组织">
+                    <el-select placeholder="请选择组织">
+                      <el-option label="软件实验室" value="1"></el-option>
+                      <el-option label="网络安全实验室" value="2"></el-option>
+                      <el-option label="软件开发中心" value="3"></el-option>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item label="所属城市">
+                    <el-select placeholder="请选择城市">
+                      <el-option label="北京" value="1"></el-option>
+                      <el-option label="上海" value="2"></el-option>
+                      <el-option label="广州" value="3"></el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="24">
+                  <el-form-item label="详细地址">
+                    <el-input
+                      placeholder="请输入详细地址"
+                      type="textarea"
+                      show-word-limit
+                      maxlength="200"
+                      resize="none"
+                    ></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-form>
           </el-tab-pane>
           <el-tab-pane label="安全设置">安全设置</el-tab-pane>
           <el-tab-pane label="修改密码">修改密码</el-tab-pane>
