@@ -107,6 +107,13 @@ const userInfoData = [
         <el-tabs tab-position="left">
           <el-tab-pane label="基本设置">
             <el-divider content-position="left">设置头像</el-divider>
+            <div class="flex flex-col items-center gap-4">
+              <el-avatar
+                :size="100"
+                src="https://pic.imgdb.cn/item/67385379d29ded1a8c811e00.png"
+              ></el-avatar>
+              <el-button type="primary" class="w-[80px]">选择图片</el-button>
+            </div>
             <el-divider content-position="left">基本信息</el-divider>
             <el-form label-position="top">
               <el-row :gutter="10">

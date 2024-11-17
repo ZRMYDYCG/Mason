@@ -12,6 +12,7 @@ declare module 'vue' {
     500: typeof import('./../components/ErrorMessage/500.vue')['default']
     ECharts: typeof import('./../components/ECharts/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
