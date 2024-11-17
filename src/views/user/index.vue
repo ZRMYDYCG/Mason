@@ -196,14 +196,17 @@ watchEffect(() => {
             <div class="flex items-center justify-between border-b py-4">
               <div>
                 <div>实名认证</div>
-                <div class="text-gray-500 text-sm">认证信息: 一勺</div>
+                <div class="text-gray-500 text-sm pt-1">认证信息: 一勺</div>
               </div>
-              <div>已认证</div>
+              <div class="flex">
+                <iconpark-icon name="protect" :color="1 ? 'green' : 'red'"></iconpark-icon>
+                <div class="text-sm pl-1">{{ 1 ? '已' : '未' }}认证</div>
+              </div>
             </div>
             <div class="flex items-center justify-between border-b py-4">
               <div>
                 <div>账户密码</div>
-                <div class="text-gray-500 text-sm">
+                <div class="text-gray-500 text-sm pt-1">
                   已设置，密码6-18位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和小写字母。
                 </div>
               </div>
@@ -212,7 +215,7 @@ watchEffect(() => {
             <div class="flex items-center justify-between border-b py-4">
               <div>
                 <div>密保手机</div>
-                <div class="text-gray-500 text-sm">
+                <div class="text-gray-500 text-sm pt-1">
                   已绑定手机: {{ formatPhoneNumber('13800138625') }}
                 </div>
               </div>
@@ -221,7 +224,7 @@ watchEffect(() => {
             <div class="flex items-center justify-between border-b py-4">
               <div>
                 <div>安全邮箱</div>
-                <div class="text-gray-500 text-sm">已绑定邮箱: 547471919@qq.com</div>
+                <div class="text-gray-500 text-sm pt-1">已绑定邮箱: 547471919@qq.com</div>
               </div>
               <el-button type="text">编辑</el-button>
             </div>
