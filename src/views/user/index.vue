@@ -20,7 +20,7 @@ const tableData = [
 </script>
 
 <template>
-  <el-row :gutter="5" class="h-full">
+  <el-row :gutter="10" class="h-full">
     <el-col :lg="8" :xs="24">
       <el-card
         shadow="never"
@@ -58,7 +58,7 @@ const tableData = [
       </el-card>
 
       <el-card
-        class="mt-4"
+        class="my-4"
         shadow="never"
         :body-style="{ padding: '0', paddingBottom: '10px' } as any"
       >
@@ -74,7 +74,9 @@ const tableData = [
                   src="https://pic.imgdb.cn/item/67385379d29ded1a8c811e00.png"
                   alt="avatar"
                 />
-                <span class="text-sm">这是第{{ item }}则公告信息</span>
+                <span class="text-sm cursor-pointer hover:underline hover:text-gray-600">
+                  这是第{{ item }}则公告信息</span
+                >
               </div>
               <el-tag>正常</el-tag>
             </div>

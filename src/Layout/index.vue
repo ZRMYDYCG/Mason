@@ -32,6 +32,9 @@
         <ToolBarRight />
       </el-header>
       <Main />
+      <el-footer class="flex justify-center items-center text-sm text-gray-500">
+        @2024 YQ-Admin-ElementPlus
+      </el-footer>
     </el-container>
   </el-container>
   <ThemeSetting></ThemeSetting>
