@@ -1,26 +1,19 @@
 <script setup lang="ts">
-const userInfoData = [
-  {
-    key: '所属角色',
-    icon: 'permissions',
-    value: '超级管理员'
-  },
-  {
-    key: '所属组织',
-    icon: 'organization',
-    value: '软件实验室'
-  },
-  {
-    key: '所属岗位',
-    icon: 'posts',
-    value: '前端开发工程师'
-  },
-  {
-    key: '详细地址',
-    icon: 'address',
-    value: '江苏省苏州市橡树街道'
+import { watchEffect, ref } from 'vue'
+import { useWindowSize } from '@vueuse/core'
+import { userInfoData } from '@/mock'
+
+const { width: windowWidth } = useWindowSize()
+
+const tabDirection = ref('left')
+
+watchEffect(() => {
+  if (windowWidth.value < 768) {
+    tabDirection.value = 'top'
+  } else {
+    tabDirection.value = 'left'
   }
-]
+})
 </script>
 
 <template>
@@ -104,7 +97,7 @@ const userInfoData = [
     </el-col>
     <el-col :lg="16" :xs="24">
       <el-card shadow="never">
-        <el-tabs tab-position="left">
+        <el-tabs :tab-position="tabDirection">
           <el-tab-pane label="基本设置">
             <el-divider content-position="left">设置头像</el-divider>
             <div class="flex flex-col items-center gap-4">

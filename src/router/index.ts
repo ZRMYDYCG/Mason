@@ -1,8 +1,10 @@
 import { HOME_URL, LOGIN_URL } from '@/config'
+import type { RouteRecordRaw } from 'vue-router'
+import { initDynamicRouter } from './dynamicRouter'
 import { useAuthStore } from '@/store/modules/auth'
 import { useUserStore } from '@/store/modules/user'
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { initDynamicRouter } from './dynamicRouter'
+import { createRouter, createWebHistory } from 'vue-router'
+
 import NProgress from '@/utils/nprogress'
 
 const routes: RouteRecordRaw[] = [
