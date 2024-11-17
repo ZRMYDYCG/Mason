@@ -105,7 +105,43 @@ const userInfoData = [
     <el-col :lg="16" :xs="24">
       <el-card shadow="never">
         <el-tabs tab-position="left">
-          <el-tab-pane label="基本设置">基本设置</el-tab-pane>
+          <el-tab-pane label="基本设置">
+            <el-divider content-position="left">设置头像</el-divider>
+            <el-divider content-position="left">基本信息</el-divider>
+            <el-form label-position="top">
+              <el-row :gutter="10">
+                <el-col :span="12">
+                  <el-form-item label="用户名">
+                    <el-input placeholder="请输入用户名"></el-input>
+                  </el-form-item>
+                  <el-form-item label="昵称">
+                    <el-input placeholder="请输入用户名"></el-input>
+                  </el-form-item>
+                  <el-form-item label="性别">
+                    <el-radio-group>
+                      <el-radio label="男"></el-radio>
+                      <el-radio label="女"></el-radio>
+                    </el-radio-group>
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item label="手机号码">
+                    <el-input placeholder="请输入用户名"></el-input>
+                  </el-form-item>
+                  <el-form-item label="电子邮箱">
+                    <el-input placeholder="请输入用户名"></el-input>
+                  </el-form-item>
+                  <el-form-item label="状态">
+                    <el-radio-group>
+                      <el-radio label="正常"></el-radio>
+                      <el-radio label="禁用"></el-radio>
+                    </el-radio-group>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-form>
+            <el-divider content-position="left">角色信息</el-divider>
+          </el-tab-pane>
           <el-tab-pane label="安全设置">安全设置</el-tab-pane>
           <el-tab-pane label="修改密码">修改密码</el-tab-pane>
         </el-tabs>
