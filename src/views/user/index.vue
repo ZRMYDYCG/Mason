@@ -2,6 +2,7 @@
 import { watchEffect, ref } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { userInfoData } from '@/mock'
+import { formatPhoneNumber } from '@/utils/index.ts'
 
 const { width: windowWidth } = useWindowSize()
 
@@ -191,7 +192,41 @@ watchEffect(() => {
               </el-row>
             </el-form>
           </el-tab-pane>
-          <el-tab-pane label="安全设置">安全设置</el-tab-pane>
+          <el-tab-pane label="安全设置">
+            <div class="flex items-center justify-between border-b py-4">
+              <div>
+                <div>实名认证</div>
+                <div class="text-gray-500 text-sm">认证信息: 一勺</div>
+              </div>
+              <div>已认证</div>
+            </div>
+            <div class="flex items-center justify-between border-b py-4">
+              <div>
+                <div>账户密码</div>
+                <div class="text-gray-500 text-sm">
+                  已设置，密码6-18位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和小写字母。
+                </div>
+              </div>
+              <el-button type="text">编辑</el-button>
+            </div>
+            <div class="flex items-center justify-between border-b py-4">
+              <div>
+                <div>密保手机</div>
+                <div class="text-gray-500 text-sm">
+                  已绑定手机: {{ formatPhoneNumber('13800138625') }}
+                </div>
+              </div>
+              <el-button type="text">编辑</el-button>
+            </div>
+            <div class="flex items-center justify-between border-b py-4">
+              <div>
+                <div>安全邮箱</div>
+                <div class="text-gray-500 text-sm">已绑定邮箱: 547471919@qq.com</div>
+              </div>
+              <el-button type="text">编辑</el-button>
+            </div>
+          </el-tab-pane>
+
           <el-tab-pane label="修改密码">修改密码</el-tab-pane>
         </el-tabs>
       </el-card>
