@@ -103,3 +103,17 @@ export function findNodeById(tree: Department[], id: number): Department | undef
   }
   return undefined
 }
+
+/**
+ * @description 手机号码将 xxxxxxxxxx 格式化为 xxx****xxx
+ * @param phoneNumber - 需要格式化的手机号码
+ * @returns 格式化后的手机号码
+ */
+export function formatPhoneNumber(phoneNumber: string): string {
+  // 确保手机号码长度为10位
+  if (phoneNumber.length !== 11) {
+    throw new Error('手机号码必须为11位')
+  }
+
+  return phoneNumber.replace(/(.{3})(.*)(.{3})/, '$1****$3')
+}
