@@ -22,4 +22,4 @@ https://iconpark.oceanengine.com/projects/36257/detail
 
 `项目版本迭代`
 
-[迭代文档](./VWESION.md)
+[迭代文档](./VERSION.md)
