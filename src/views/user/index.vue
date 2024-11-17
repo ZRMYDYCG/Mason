@@ -1,20 +1,24 @@
 <script setup lang="ts">
-const tableData = [
+const userInfoData = [
   {
-    key: 'Tom',
-    answer: 'No. 189, Grove St, Los Angeles'
+    key: '所属角色',
+    icon: 'permissions',
+    value: '超级管理员'
   },
   {
-    key: 'Tom',
-    answer: 'No. 189, Grove St, Los Angeles'
+    key: '所属组织',
+    icon: 'organization',
+    value: '软件实验室'
   },
   {
-    key: 'Tom',
-    answer: 'No. 189, Grove St, Los Angeles'
+    key: '所属岗位',
+    icon: 'posts',
+    value: '前端开发工程师'
   },
   {
-    key: 'Tom',
-    answer: 'No. 189, Grove St, Los Angeles'
+    key: '详细地址',
+    icon: 'address',
+    value: '江苏省苏州市橡树街道'
   }
 ]
 </script>
@@ -42,9 +46,22 @@ const tableData = [
         </div>
 
         <div class="w-full mt-4">
-          <el-table :data="tableData" border :show-header="false" width="100%">
-            <el-table-column prop="key" width="100px" />
-            <el-table-column prop="answer" />
+          <el-table :data="userInfoData" border :show-header="false" width="100%">
+            <el-table-column prop="key" width="100px" class-name="bg-gray-100">
+              <template #default="scope">
+                <div class="flex items-center gap-2">
+                  <iconpark-icon :name="scope.row.icon" size="16px"></iconpark-icon>
+                  <span class="text-nowrap">{{ scope.row.key }}</span>
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column>
+              <template #default="scope">
+                <span class="px-3 py-1 bg-gray-100 rounded-md text-gray-600 text-nowrap">
+                  {{ scope.row.value }}
+                </span>
+              </template>
+            </el-table-column>
           </el-table>
 
           <el-divider content-position="left">个人标签</el-divider>
@@ -85,8 +102,14 @@ const tableData = [
         <el-pagination background layout="prev, pager, next" :total="10" class="ml-2" />
       </el-card>
     </el-col>
-    <el-col :lg="16" :xs="24" class="h-full">
-      <el-card shadow="never" class="h-full"></el-card>
+    <el-col :lg="16" :xs="24">
+      <el-card shadow="never">
+        <el-tabs tab-position="left">
+          <el-tab-pane label="基本设置">基本设置</el-tab-pane>
+          <el-tab-pane label="安全设置">安全设置</el-tab-pane>
+          <el-tab-pane label="修改密码">修改密码</el-tab-pane>
+        </el-tabs>
+      </el-card>
     </el-col>
   </el-row>
 </template>
