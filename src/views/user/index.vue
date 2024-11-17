@@ -191,6 +191,10 @@ watchEffect(() => {
                 </el-col>
               </el-row>
             </el-form>
+
+            <el-form class="flex justify-center">
+              <el-button type="primary">提交修改</el-button>
+            </el-form>
           </el-tab-pane>
           <el-tab-pane label="安全设置">
             <div class="flex items-center justify-between border-b py-4">
@@ -229,8 +233,22 @@ watchEffect(() => {
               <el-button type="text">编辑</el-button>
             </div>
           </el-tab-pane>
-
-          <el-tab-pane label="修改密码">修改密码</el-tab-pane>
+          <el-tab-pane label="修改密码">
+            <el-form label-position="top">
+              <el-form-item label="原密码">
+                <el-input type="password" placeholder="请输入原密码"></el-input>
+              </el-form-item>
+              <el-form-item label="新密码">
+                <el-input type="password" placeholder="请输入新密码"></el-input>
+              </el-form-item>
+              <el-form-item label="确认密码">
+                <el-input type="password" placeholder="请输入确认密码"></el-input>
+              </el-form-item>
+              <el-form class="flex justify-center">
+                <el-button type="primary">提交修改</el-button>
+              </el-form>
+            </el-form>
+          </el-tab-pane>
         </el-tabs>
       </el-card>
     </el-col>
