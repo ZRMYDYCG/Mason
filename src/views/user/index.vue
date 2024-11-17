@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { watchEffect, ref } from 'vue'
-import { useWindowSize } from '@vueuse/core'
 import { userInfoData } from '@/mock'
+import { useWindowSize } from '@vueuse/core'
 import { formatPhoneNumber } from '@/utils/index.ts'
+import VerifyPasswordStrength from './components/verify-password-strength.vue'
 
 const { width: windowWidth } = useWindowSize()
 
 const tabDirection = ref('left')
+const oldPassword = ref('')
 
 watchEffect(() => {
   if (windowWidth.value < 768) {
@@ -41,7 +43,7 @@ watchEffect(() => {
 
         <div class="w-full mt-4">
           <el-table :data="userInfoData" border :show-header="false" width="100%">
-            <el-table-column prop="key" width="100px" class-name="bg-gray-100">
+            <el-table-column prop="key" width="100px">
               <template #default="scope">
                 <div class="flex items-center gap-2">
                   <iconpark-icon :name="scope.row.icon" size="16px"></iconpark-icon>
@@ -51,7 +53,7 @@ watchEffect(() => {
             </el-table-column>
             <el-table-column>
               <template #default="scope">
-                <span class="px-3 py-1 bg-gray-100 rounded-md text-gray-600 text-nowrap">
+                <span class="px-3 text-sm text-gray-600 text-nowrap">
                   {{ scope.row.value }}
                 </span>
               </template>
@@ -236,7 +238,11 @@ watchEffect(() => {
           <el-tab-pane label="修改密码">
             <el-form label-position="top">
               <el-form-item label="原密码">
-                <el-input type="password" placeholder="请输入原密码"></el-input>
+                <el-input
+                  type="password"
+                  placeholder="请输入原密码"
+                  v-model="oldPassword"
+                ></el-input>
               </el-form-item>
               <el-form-item label="新密码">
                 <el-input type="password" placeholder="请输入新密码"></el-input>
@@ -244,7 +250,8 @@ watchEffect(() => {
               <el-form-item label="确认密码">
                 <el-input type="password" placeholder="请输入确认密码"></el-input>
               </el-form-item>
-              <el-form class="flex justify-center">
+              <verify-password-strength :password="oldPassword" />
+              <el-form class="flex justify-center mt-4">
                 <el-button type="primary">提交修改</el-button>
               </el-form>
             </el-form>
