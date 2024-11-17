@@ -17,6 +17,7 @@
           ></component>
         </keep-alive>
       </transition>
+      <el-backtop target=".el-main" :right="10" :bottom="10" />
     </router-view>
   </el-main>
 </template>
