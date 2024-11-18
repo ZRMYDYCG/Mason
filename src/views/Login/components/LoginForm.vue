@@ -78,11 +78,11 @@ const loginAction = () => {
         if (flag) {
           // 动态加载路由
           await initDynamicRouter()
-          userStore.getUserInfo(res.data.id)
+          await userStore.getUserInfo(res.data.id)
           // 清空 tabs
-          tabsStore.setTabs([])
+          await tabsStore.setTabs([])
           // 跳转主页
-          router.push(HOME_URL)
+          await router.push(HOME_URL)
           ElMessage.success(res.msg)
         }
       } else {
