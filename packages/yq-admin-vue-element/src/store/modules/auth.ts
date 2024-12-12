@@ -28,6 +28,7 @@ export const useAuthStore = defineStore({
     // 递归处理后的所有面包屑导航列表
     breadcrumbListGet: (state) => getAllBreadcrumbList(state.authMenuList)
   },
+
   actions: {
     async getAuthMenuList() {
       try {
