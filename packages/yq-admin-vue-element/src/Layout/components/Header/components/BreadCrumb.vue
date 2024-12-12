@@ -1,9 +1,16 @@
+<!--
+ * @Author: ZRMYDYCG
+ * @Date: 2024-11
+ * @LastEditors: ZRMYDYCG
+ * @LastEditTime: 2024-11
+ * @Description:
+-->
 <template>
   <el-breadcrumb separator="/">
     <template v-for="item in breadcrumbList" :key="item.path">
-      <el-breadcrumb-item :to="{ path: item.path } as any" @click="onBreadcrumbClick(item.path)">{{
-        item.meta.title
-      }}</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: item.path } as any" @click="onBreadcrumbClick(item.path)">
+        {{ item.meta.title }}
+      </el-breadcrumb-item>
     </template>
   </el-breadcrumb>
 </template>

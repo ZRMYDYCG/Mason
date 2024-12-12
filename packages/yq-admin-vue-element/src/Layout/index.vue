@@ -65,5 +65,58 @@ const activeMenu = computed(() => route.path)
 </script>
 
 <style scoped lang="scss">
-@import './index';
+.el-container {
+  width: 100%;
+  height: 100%;
+
+  :deep(.el-aside) {
+    width: auto;
+    border-right: 1px solid var(--el-border-color-light);
+
+    .aside {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: width 0.3s ease;
+
+      .el-scrollbar {
+        height: calc(100% - 55px);
+
+        .el-menu {
+          width: 100%;
+          overflow-x: hidden;
+          border-right: none;
+        }
+      }
+
+      .logo {
+        display: flex;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 55px;
+
+        .logo-img {
+          position: relative;
+          left: -20000px; /* 移动到窗口外很远的地方，也可以用transform: translateY(-20000px); */
+          width: 28px;
+          height: 28px;
+          margin-right: 6px;
+          filter: drop-shadow(var(--el-color-primary) 20000px 0);
+        }
+      }
+    }
+  }
+
+  .el-header {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 55px;
+    padding: 0 15px;
+    border-bottom: 1px solid var(--el-border-color-light);
+  }
+}
 </style>

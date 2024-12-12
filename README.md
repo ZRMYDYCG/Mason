@@ -6,15 +6,9 @@
 
 `前言`
 
-> 小时候, 很想有一个铠甲勇士腰带, 很遗憾没有实现
-
 `项目定位`
 
 基于 `Vue3.x`、`Vite`、`TypeScript`、`Element-Plus`、`TailwindCSS`、`koa2`、`MySql`, 开发一套前后端组件库, 以及一些集成方案
-
-`项目图标地址`
-
-https://iconpark.oceanengine.com/projects/36257/detail
 
 `项目配置使用文档`
 

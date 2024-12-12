@@ -53,7 +53,7 @@ function calculatePasswordStrength(password: string): number {
 watch(
   () => props.password,
   (newVal) => {
-    passwordStrength.value = calculatePasswordStrength(newVal)
+    passwordStrength.value = calculatePasswordStrength(newVal as string)
     emits('update:passwordStrength', passwordStrength.value)
   }
 )

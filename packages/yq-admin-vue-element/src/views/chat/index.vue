@@ -1,10 +1,3 @@
-<!--
- * @Author: ZRMYDYCG
- * @Date: 2024-11
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-11
- * @Description:
--->
 <template>
   <div class="flex w-full h-full bg-orange-50">
     <div class="w-[90px] flex justify-center bg-amber-900 py-4">
