@@ -1,10 +1,3 @@
-/*
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
- */
 import { Context, Next } from 'koa'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'

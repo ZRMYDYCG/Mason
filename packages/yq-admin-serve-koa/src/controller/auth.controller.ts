@@ -1,10 +1,3 @@
-/*
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
- */
 import type { Context } from 'koa'
 import jwt from 'jsonwebtoken'
 import { PRIVATE_KEY } from '../config'

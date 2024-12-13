@@ -1,10 +1,3 @@
-<!--
- * @Author: ZRMYDYCG
- * @Date: 2024-11
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-11
- * @Description:
--->
 <template>
   <el-dropdown trigger="click">
     <span class="avatar">

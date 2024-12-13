@@ -1,10 +1,3 @@
-/*
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-11
- * @Description:
- */
 import menuModel from './menu.model'
 import roleModel from './role.model'
 import userModel from './user.model'
