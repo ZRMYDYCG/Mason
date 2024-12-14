@@ -1,10 +1,3 @@
-<!--
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
--->
 <template>
   <el-container class="layout">
     <el-aside>
@@ -32,12 +25,20 @@
         <ToolBarRight />
       </el-header>
       <Main />
-      <el-footer class="flex justify-center items-center text-sm text-gray-500">
-        @2024 YQ-Admin-ElementPlus
+      <el-footer class="flex justify-center items-center text-sm text-gray-500 gap-2">
+        <div class="flex flex-col gap-1 justify-center text-center">
+          <div class="flex items-center gap-2">
+            <span>YQ-Admin-ElementPlus</span>
+            <img class="w-6 h-6" src="@/assets/images/github.svg" alt="github" />
+            <span>Vue3.0 ElementPlus TypeScript</span>
+          </div>
+          <div>
+            <span>Copyright © 2024-2025 软件实验室</span>
+          </div>
+        </div>
       </el-footer>
     </el-container>
   </el-container>
-  <ThemeSetting></ThemeSetting>
   <ThemeDrawer />
 </template>
 

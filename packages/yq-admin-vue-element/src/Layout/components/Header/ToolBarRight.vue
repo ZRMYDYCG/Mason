@@ -1,12 +1,6 @@
-<!--
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
--->
 <template>
   <div class="tool-bar-rt">
+    <ThemeSetting></ThemeSetting>
     <FullScreen class="tb-item" />
     <div class="tb-item username">{{ username }}</div>
     <Avatar />
@@ -18,6 +12,7 @@ import { computed } from 'vue'
 import { useUserStore } from '@/store/modules/user'
 import FullScreen from './components/Fullscreen.vue'
 import Avatar from './components/Avatar.vue'
+import ThemeSetting from '@/Layout/components/ThemeDrawer/components/ThemeSetting.vue'
 
 const userStore = useUserStore()
 const username = computed(() => userStore.userInfo.username)

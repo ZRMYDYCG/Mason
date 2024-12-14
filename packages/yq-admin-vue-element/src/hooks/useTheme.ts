@@ -1,10 +1,3 @@
-/*
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
- */
 import { DEFAULT_PRIMARY } from '@/config'
 import { useGlobalStore } from '@/store/modules/global'
 import { getDarkColor, getLightColor } from '@/utils/color'

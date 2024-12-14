@@ -1,11 +1,6 @@
-/*
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
- */
-// 全局默认配置项
+/**
+ * 全局默认配置项
+ * */
 
 // 首页地址（默认）
 export const HOME_URL: string = '/dashboard'
