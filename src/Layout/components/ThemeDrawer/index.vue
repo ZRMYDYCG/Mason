@@ -7,7 +7,7 @@
     </div>
     <div class="theme-item">
       <span>暗黑模式</span>
-      <SwitchDark />
+      <SwitchTheme />
     </div>
   </el-drawer>
 </template>
@@ -19,7 +19,7 @@ import { useGlobalStore } from '@/store/modules/global'
 import { storeToRefs } from 'pinia'
 import { useTheme } from '@/hooks/useTheme'
 import mittBus from '@/utils/mittBus'
-import SwitchDark from '@/components/SwitchTheme/index.vue'
+import SwitchTheme from './components/switch-theme.vue'
 
 const globalStore = useGlobalStore()
 const { primary } = storeToRefs(globalStore)

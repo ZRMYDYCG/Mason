@@ -47,6 +47,9 @@ importers:
       vue-router:
         specifier: '4'
         version: 4.3.3(vue@3.4.29(typescript@5.4.5))
+      vue3-count-to:
+        specifier: ^1.1.2
+        version: 1.1.2(vue@3.4.29(typescript@5.4.5))
     devDependencies:
       '@release-it/conventional-changelog':
         specifier: ^10.0.0
@@ -1247,6 +1250,9 @@ packages:
     resolution: {integrity: sha512-RK/fUnc2btot0oEVtrj3p2doImDSs7iiz/bftFCDzels0Qs1mxLghp+DFHMaOC0qiCI6sWzlTDyBFSYuot6pRA==}
     engines: {node: '>=18'}
     hasBin: true
+
+  core-js@3.41.0:
+    resolution: {integrity: sha512-SJ4/EHwS36QMJd6h/Rg+GyR4A5xE0FSI3eZ+iBVpfqf1x0eTSg1smWLHrA+2jQThZSh97fmSgFSU8B61nxosxA==}
 
   cosmiconfig@9.0.0:
     resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
@@ -3034,6 +3040,9 @@ packages:
   vscode-uri@3.0.8:
     resolution: {integrity: sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==}
 
+  vue-count-to@1.0.13:
+    resolution: {integrity: sha512-6R4OVBVNtQTlcbXu6SJ8ENR35M2/CdWt3Jmv57jOUM+1ojiFmjVGvZPH8DfHpMDSA+ITs+EW5V6qthADxeyYOQ==}
+
   vue-demi@0.14.8:
     resolution: {integrity: sha512-Uuqnk9YE9SsWeReYqK2alDI5YzciATE0r2SkA6iMAtuXvNTMNACJLJEXNXaEy94ECuBe4Sk6RzRU80kjdbIo1Q==}
     engines: {node: '>=12'}
@@ -3064,6 +3073,11 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '*'
+
+  vue3-count-to@1.1.2:
+    resolution: {integrity: sha512-C5AvlcGfyM4XvFqPDkni94rqGd5K/+RB+B4xv/1NQx3RrdC+GvXPFzeXW5hWL/jh8ehWLm4LITyK0eMKf4iJbg==}
+    peerDependencies:
+      vue: '>= 3 < 4'
 
   vue@3.4.29:
     resolution: {integrity: sha512-8QUYfRcYzNlYuzKPfge1UWC6nF9ym0lx7mpGVPJYNhddxEf3DD0+kU07NTL0sXuiT2HuJuKr/iEO8WvXvT0RSQ==}
@@ -4249,6 +4263,8 @@ snapshots:
       conventional-commits-filter: 5.0.0
       conventional-commits-parser: 6.1.0
       meow: 13.2.0
+
+  core-js@3.41.0: {}
 
   cosmiconfig@9.0.0(typescript@5.4.5):
     dependencies:
@@ -6101,6 +6117,8 @@ snapshots:
 
   vscode-uri@3.0.8: {}
 
+  vue-count-to@1.0.13: {}
+
   vue-demi@0.14.8(vue@3.4.29(typescript@5.4.5)):
     dependencies:
       vue: 3.4.29(typescript@5.4.5)
@@ -6134,6 +6152,12 @@ snapshots:
       '@vue/language-core': 2.0.21(typescript@5.4.5)
       semver: 7.6.2
       typescript: 5.4.5
+
+  vue3-count-to@1.1.2(vue@3.4.29(typescript@5.4.5)):
+    dependencies:
+      core-js: 3.41.0
+      vue: 3.4.29(typescript@5.4.5)
+      vue-count-to: 1.0.13
 
   vue@3.4.29(typescript@5.4.5):
     dependencies:

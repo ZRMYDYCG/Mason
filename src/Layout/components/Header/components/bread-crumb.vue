@@ -22,7 +22,7 @@ const route = useRoute()
 const breadcrumbList = computed(() => {
   let breadcrumbData = authStore.breadcrumbListGet[route.matched[route.matched.length - 1].path]
   if (breadcrumbData[0].path !== HOME_URL) {
-    breadcrumbData = [{ path: HOME_URL, meta: { title: '首页' } }, ...breadcrumbData]
+    breadcrumbData = [...breadcrumbData]
   }
   return breadcrumbData
 })

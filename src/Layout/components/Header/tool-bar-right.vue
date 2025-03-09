@@ -12,7 +12,7 @@ import { computed } from 'vue'
 import { useUserStore } from '@/store/modules/user'
 import FullScreen from './components/fullscreen.vue'
 import Avatar from './components/avatar.vue'
-import ThemeSetting from '@/Layout/components/ThemeDrawer/components/ThemeSetting.vue'
+import ThemeSetting from './components/theme-setting.vue'
 
 const userStore = useUserStore()
 const username = computed(() => userStore.userInfo.username)

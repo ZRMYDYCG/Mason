@@ -56,6 +56,7 @@ declare module 'vue' {
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SvgRender: typeof import('./../components/SvgRender/index.vue')['default']
     SwitchDark: typeof import('./../components/SwitchDark/index.vue')['default']
     SwitchTheme: typeof import('./../components/SwitchTheme/index.vue')['default']
   }
