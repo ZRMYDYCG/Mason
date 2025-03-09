@@ -1,0 +1,50 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f7fafc;
+
+  .login-box {
+    width: 100%;
+    max-width: 480px;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+    .logo-title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+
+      .logo {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      .title {
+        margin-left: 0.75rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #4a5568;
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+
+      .reset-button,
+      .submit-button {
+        width: 48%;
+      }
+
+      .reset-button {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
