@@ -6,7 +6,7 @@
           <el-input v-model="searchForm.title" placeholder="输入菜单名称" clearable />
         </el-form-item>
         <el-form-item label="是否启用" prop="isEnable">
-          <el-select v-model="searchForm.isEnable">
+          <el-select v-model="searchForm.isEnable" placeholder="请选择">
             <el-option
               v-for="item in enableOptions"
               :key="item.value"
@@ -132,7 +132,7 @@ const handleDelete = async (id: number) => {
   if (res.code !== 200) {
     ElMessage.error(res.msg)
   } else {
-    onSearch()
+    await onSearch()
     ElMessage.success(res.msg)
   }
 }
@@ -146,4 +146,8 @@ const handleEdit = (row: Menu) => {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.el-select {
+  width: 100px;
+}
+</style>

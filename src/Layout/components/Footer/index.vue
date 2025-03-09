@@ -37,8 +37,20 @@
       .logo {
         width: 24px;
         height: 24px;
+        /* 添加光晕效果 */
+        filter: drop-shadow(0 0 8px rgba(123, 231, 115, 0.93));
+        animation: glow 2s ease-in-out infinite alternate;
       }
     }
+  }
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 4px rgba(99, 241, 241, 0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 12px rgba(99, 241, 123, 0.6));
   }
 }
 </style>
