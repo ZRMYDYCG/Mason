@@ -23,6 +23,9 @@ importers:
       element-plus:
         specifier: ^2.7.1
         version: 2.7.5(vue@3.4.29(typescript@5.4.5))
+      lottie-web:
+        specifier: ^5.12.2
+        version: 5.12.2
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
@@ -2053,6 +2056,9 @@ packages:
   log-symbols@6.0.0:
     resolution: {integrity: sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==}
     engines: {node: '>=18'}
+
+  lottie-web@5.12.2:
+    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
@@ -5078,6 +5084,8 @@ snapshots:
     dependencies:
       chalk: 5.4.1
       is-unicode-supported: 1.3.0
+
+  lottie-web@5.12.2: {}
 
   lru-cache@10.4.3: {}
 
