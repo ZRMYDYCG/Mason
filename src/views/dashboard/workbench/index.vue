@@ -2,6 +2,15 @@
   <div class="workbench">
     <WorkbenchHeader></WorkbenchHeader>
     <StatisticsList></StatisticsList>
+
+    <el-row :gutter="10">
+      <el-col :span="12" :xs="24" style="margin-top: 10px">
+        <UserStatistics></UserStatistics>
+      </el-col>
+      <el-col :span="12" :xs="24" style="margin-top: 10px">
+        <TrafficStatistics></TrafficStatistics>
+      </el-col>
+    </el-row>
     <el-row :gutter="10">
       <el-col :span="12" :xs="24" style="margin-top: 10px">
         <el-card>卡片1</el-card>
@@ -24,6 +33,8 @@
 <script lang="ts" setup>
 import WorkbenchHeader from './components/workbench-header.vue'
 import StatisticsList from './components/statistics-list.vue'
+import UserStatistics from './components/user-statistics.vue'
+import TrafficStatistics from './components/traffic-statistics.vue'
 </script>
 
 <style lang="scss" scoped></style>
