@@ -54,13 +54,13 @@
 }
 
 .title {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
   font-weight: bold;
 }
 
 .description {
-  font-size: 0.875rem; /* 14px */
-  color: #6b7280; /* gray-600 */
+  font-size: 0.875rem;
+  color: #6b7280;
 }
 
 .logo-section {

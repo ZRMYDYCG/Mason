@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout">
     <el-aside>
-      <div class="aside" :style="{ width: isCollapse ? '65px' : '210px' }">
+      <div class="aside" :style="{ width: isCollapse ? '65px' : `${asideWidth}px` }">
         <div class="logo">
           <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
           <span v-show="!isCollapse" class="logo-text">Mason • 石匠</span>
@@ -16,6 +16,12 @@
           >
             <SubMenu :menu-list="menuList" />
           </el-menu>
+          <!-- 可拖动区域 -->
+          <div
+            class="absolute right-0 top-0 w-1 h-full cursor-ew-resize bg-transparent"
+            @mousedown="handleMouseDown"
+            v-if="!isCollapse"
+          ></div>
         </el-scrollbar>
       </div>
     </el-aside>
@@ -32,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/store/modules/auth'
 import { useGlobalStore } from '@/store/modules/global'
@@ -43,6 +49,11 @@ import Main from './components/Main/index.vue'
 import ThemeDrawer from './components/ThemeDrawer/index.vue'
 import Footer from './components/Footer/index.vue'
 
+const asideWidth = ref(210)
+let isDragging = false
+let startX = 0
+let startWidth = 0
+
 const route = useRoute()
 const authStore = useAuthStore()
 const globalStore = useGlobalStore()
@@ -52,6 +63,27 @@ const menuList = computed(() => authStore.showMenuListGet)
 const isCollapse = computed(() => globalStore.isCollapse)
 
 const activeMenu = computed(() => route.path)
+
+const handleMouseDown = (e: MouseEvent) => {
+  isDragging = true
+  startX = e.clientX
+  startWidth = asideWidth.value
+  document.addEventListener('mousemove', handleMouseMove)
+  document.addEventListener('mouseup', handleMouseUp)
+}
+
+const handleMouseMove = (e: MouseEvent) => {
+  if (!isDragging) return
+  const deltaX = e.clientX - startX
+  const newWidth = startWidth + deltaX
+  asideWidth.value = Math.max(210, Math.min(newWidth, 400))
+}
+
+const handleMouseUp = () => {
+  isDragging = false
+  document.removeEventListener('mousemove', handleMouseMove)
+  document.removeEventListener('mouseup', handleMouseUp)
+}
 </script>
 
 <style scoped lang="scss">
@@ -71,6 +103,7 @@ const activeMenu = computed(() => route.path)
 
       .el-scrollbar {
         height: calc(100% - 55px);
+        position: relative;
 
         .el-menu {
           width: 100%;

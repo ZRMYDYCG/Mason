@@ -1,7 +1,8 @@
 import { unref, nextTick } from 'vue'
 import type { Ref } from 'vue'
 import type { EChartOption } from 'echarts'
-import { echarts } from '@/components/Echarts/index.ts'
+// import { echarts } from '@/components/Echarts/index.ts' //  按需导入
+import * as echarts from 'echarts' // 全部导入
 
 const defaultOptions = {
   grid: {
