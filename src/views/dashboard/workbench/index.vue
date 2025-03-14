@@ -12,9 +12,8 @@
     </el-row>
     <el-row :gutter="10">
       <el-col :span="12" :xs="24" style="margin-top: 10px">
-        <el-card>卡片1</el-card>
+        <ProjectDocs></ProjectDocs>
       </el-col>
-
       <el-col :span="12" :xs="24" style="margin-top: 10px">
         <ProjectDemand></ProjectDemand>
       </el-col>
@@ -28,6 +27,7 @@ import StatisticsList from './components/statistics-list.vue'
 import UserStatistics from './components/user-statistics.vue'
 import TrafficStatistics from './components/traffic-statistics.vue'
 import ProjectDemand from './components/project-demand.vue'
+import ProjectDocs from './components/project-docs.vue'
 </script>
 
 <style lang="scss" scoped></style>

@@ -59,8 +59,10 @@ onMounted(() => {
   <el-card>
     <template #header>
       <div class="flex justify-between items-center">
-        <span class="text-lg font-bold">项目动态</span>
-        <span class="text-sm text-gray-600 cursor-pointer">更多动态</span>
+        <el-text>项目动态</el-text>
+        <el-link type="success" href="https://github.com/ZRMYDYCG/Mason" target="_blank"
+          >更多动态</el-link
+        >
       </div>
     </template>
     <template #default>
