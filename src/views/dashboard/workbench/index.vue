@@ -16,14 +16,7 @@
       </el-col>
 
       <el-col :span="12" :xs="24" style="margin-top: 10px">
-        <el-card>
-          <template #header>
-            <div class="flex justify-between items-center">
-              <span class="text-lg font-bold">项目动态</span>
-              <span class="text-sm text-gray-600 cursor-pointer">更多动态</span>
-            </div>
-          </template>
-        </el-card>
+        <ProjectDemand></ProjectDemand>
       </el-col>
     </el-row>
   </div>
@@ -34,6 +27,7 @@ import WorkbenchHeader from './components/workbench-header.vue'
 import StatisticsList from './components/statistics-list.vue'
 import UserStatistics from './components/user-statistics.vue'
 import TrafficStatistics from './components/traffic-statistics.vue'
+import ProjectDemand from './components/project-demand.vue'
 </script>
 
 <style lang="scss" scoped></style>
