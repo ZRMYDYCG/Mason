@@ -1,10 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+import PickerContainer from './components/picker-container.vue'
+const visible = ref(false)
+</script>
 
 <template>
-  <div class="icon-picker"></div>
+  <div>
+    <picker-container title="选择图标" v-model:visible="visible">
+      <span>选择图标</span>
+    </picker-container>
+  </div>
 </template>
 
-<style scoped lang="scss">
-.icon-picker {
-}
-</style>
+<style scoped></style>
