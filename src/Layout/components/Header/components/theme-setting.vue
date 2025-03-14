@@ -1,8 +1,8 @@
 <template>
   <iconpark-icon
     @click="openDrawer"
-    class="cursor-pointer w-[40px] h-[40px]"
-    name="page-config"
+    class="cursor-pointer mr-2"
+    name="document-folder"
   ></iconpark-icon>
 </template>
 
@@ -13,8 +13,4 @@ const openDrawer = () => {
 }
 </script>
 
-<style lang="scss" scoped>
-.icon:hover {
-  color: var(--el-color-primary);
-}
-</style>
+<style lang="scss" scoped></style>

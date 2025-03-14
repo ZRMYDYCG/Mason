@@ -25,8 +25,4 @@ const handleFullScreen = () => {
 }
 </script>
 
-<style scoped lang="scss">
-.icon:hover {
-  color: var(--el-color-primary);
-}
-</style>
+<style scoped lang="scss"></style>

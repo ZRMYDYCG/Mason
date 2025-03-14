@@ -2,7 +2,7 @@
   <el-dropdown trigger="click">
     <span class="avatar">
       <img
-        :src="avatar ? avatar : 'https://pic.imgdb.cn/item/67385379d29ded1a8c811e00.png'"
+        :src="avatar ? avatar : 'https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg'"
         alt="avatar"
       />
     </span>

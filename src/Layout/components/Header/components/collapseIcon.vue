@@ -1,9 +1,9 @@
 <template>
   <iconpark-icon
-    :name="isCollapse ? 'menu-unfold' : 'menu-fold'"
-    size="28"
+    :name="isCollapse ? 'indent-right' : 'indent-left'"
+    size="20"
     @click="changeCollapse"
-    class="cursor-pointer mr-3 cursor-pointer"
+    class="cursor-pointer mr-3"
   ></iconpark-icon>
 </template>
 

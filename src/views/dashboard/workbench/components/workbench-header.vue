@@ -8,7 +8,7 @@
           <div class="avatar">
             <img
               class="avatar-image"
-              src="https://pic.imgdb.cn/item/67385379d29ded1a8c811e00.png"
+              src="https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpg"
               alt="logo"
             />
           </div>
