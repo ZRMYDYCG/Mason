@@ -31,7 +31,7 @@ const dragStart = (e: DragEvent, item: ComponentItem) => {
   border-right: 1px solid #ccc;
   .select-container__wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); // 设置两列，每列宽度相等
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
 
@@ -48,6 +48,14 @@ const dragStart = (e: DragEvent, item: ComponentItem) => {
       color: black;
       cursor: move;
     }
+  }
+}
+
+.dark .select-container-item {
+  background-color: #303133;
+  &:hover {
+    background-color: #303133;
+    color: white;
   }
 }
 </style>
