@@ -69,6 +69,8 @@ onMounted(() => {
       align-items: center;
       justify-content: space-between;
       padding: 0 16px;
+      border-bottom: 1px solid #ccc;
+      border-right: 1px solid #ccc;
       .form-generator-select__header-title {
         display: flex;
         align-items: center;
@@ -82,12 +84,13 @@ onMounted(() => {
       .form-generator-select__left {
         width: 300px;
         height: 100%;
-        background-color: rebeccapurple;
+        //background-color: rebeccapurple;
       }
       .form-generator-select__main {
         flex: 1;
         height: 100%;
         //background-color: yellow;
+        border-right: 1px solid #ccc;
       }
     }
   }
