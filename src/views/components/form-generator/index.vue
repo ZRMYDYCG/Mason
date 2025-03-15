@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import SvgRender from '@/components/SvgRender/index.vue'
-import FormGeneratorSettings from './components/layout-components/form-generator-settings.vue'
-import SelectContainer from './components/layout-components/select-container.vue'
-import PreviewMain from './components/layout-components/preview-main.vue'
-import HeaderActions from './components/layout-components/header-actions.vue'
+import FormGeneratorSettings from './components/layout/form-generator-settings.vue'
+import SelectContainer from './components/layout/select-container.vue'
+import PreviewMain from './components/layout/preview-main.vue'
+import HeaderActions from './components/layout/header-actions.vue'
 </script>
 
 <template>
@@ -46,7 +46,7 @@ import HeaderActions from './components/layout-components/header-actions.vue'
     .form-generator-select__header {
       height: 50px;
       width: 100%;
-      background-color: pink;
+      //background-color: pink;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -69,13 +69,13 @@ import HeaderActions from './components/layout-components/header-actions.vue'
       .form-generator-select__main {
         flex: 1;
         height: 100%;
-        background-color: yellow;
+        //background-color: yellow;
       }
     }
   }
   .form-generator-settings {
     width: 280px;
-    background-color: blue;
+    //background-color: blue;
   }
 }
 </style>

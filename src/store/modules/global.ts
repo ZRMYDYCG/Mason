@@ -1,10 +1,3 @@
-/*
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
- */
 import { defineStore } from 'pinia'
 import { GlobalState } from '@/store/interface'
 import piniaPersistConfig from '@/store/helper/persist'
