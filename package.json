@@ -22,12 +22,13 @@
     "release": "release-it"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/core": "^10.11.0",
     "axios": "^1.6.8",
     "dayjs": "^1.11.13",
     "echarts": "^5.5.0",
     "echarts-liquidfill": "^3.1.0",
-    "element-plus": "^2.7.1",
+    "element-plus": "^2.7.5",
     "lottie-web": "^5.12.2",
     "mitt": "^3.0.1",
     "nprogress": "^0.2.0",

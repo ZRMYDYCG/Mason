@@ -21,7 +21,7 @@ const isLoading = ref(true)
 
 setTimeout(() => {
   isLoading.value = false
-}, 4000)
+}, 40)
 </script>
 
 <style lang="scss" scoped>

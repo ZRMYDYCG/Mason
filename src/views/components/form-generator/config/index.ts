@@ -163,7 +163,7 @@ export const components: ComponentItem[] = [
       allowHalf: false,
       voidColor: '#C6D1DE',
       disabledVoidColor: '#EFF2F7',
-      disabledVoidIcon: 'StarFilled',
+      disabledVoidIcon: '',
       showText: true,
       showScore: true,
       textColor: ''
@@ -174,7 +174,7 @@ export const components: ComponentItem[] = [
       allowHalf: false,
       voidColor: '#C6D1DE',
       disabledVoidColor: '#EFF2F7',
-      disabledVoidIcon: 'StarFilled',
+      disabledVoidIcon: '',
       showText: true,
       showScore: true,
       textColor: ''
