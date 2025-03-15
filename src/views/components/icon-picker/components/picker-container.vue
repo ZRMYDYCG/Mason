@@ -197,7 +197,21 @@ const iconList = [
   { name: '', class: 'icon-icon-test3', unicode: '' },
   { name: '', class: 'icon-icon-test2', unicode: '' },
   { name: '', class: 'icon-icon-test1', unicode: '' },
-  { name: '', class: 'icon-icon-test', unicode: '' }
+  { name: '', class: 'icon-icon-test', unicode: '' },
+  { name: '', class: 'icon-a-huabuquseqi2' },
+  { name: '', class: 'icon-jishuqi' },
+  { name: '', class: 'icon-fuxuankuangduoge' },
+  { name: '', class: 'icon-riqixuanzeqi' },
+  { name: '', class: 'icon-shijianxuanzeqi1' },
+  { name: '', class: 'icon-slider' },
+  { name: '', class: 'icon-shurukuang' },
+  { name: '', class: 'icon-danxuankuang' },
+  { name: '', class: 'icon-shijianxuanzeqi' },
+  { name: '', class: 'icon-ananniu' },
+  { name: '', class: 'icon-xialakuang' },
+  { name: '', class: 'icon-pingfen' },
+  { name: '', class: 'icon-kaiguan' },
+  { name: '', class: 'icon-jilianxuanze' }
 ]
 
 const props = defineProps<{

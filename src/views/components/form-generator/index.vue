@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import SvgRender from '@/components/SvgRender/index.vue'
-import FormGeneratorSettings from './components/form-generator-settings.vue'
-import SelectContainer from './components/select-container.vue'
-import PreviewMain from './components/preview-main.vue'
+import FormGeneratorSettings from './components/layout-components/form-generator-settings.vue'
+import SelectContainer from './components/layout-components/select-container.vue'
+import PreviewMain from './components/layout-components/preview-main.vue'
+import HeaderActions from './components/layout-components/header-actions.vue'
 </script>
 
 <template>
@@ -14,24 +15,7 @@ import PreviewMain from './components/preview-main.vue'
           <h1>Form Generator</h1>
         </div>
         <div class="form-generator-select__header-actions">
-          <el-space>
-            <div class="form-generator-select__header-actions-item">
-              <i class="iconfont icon-bofang" />
-              <span>运行</span>
-            </div>
-            <div class="form-generator-select__header-actions-item">
-              <i class="iconfont icon-download" />
-              <span>导出vue文件</span>
-            </div>
-            <div class="form-generator-select__header-actions-item">
-              <i class="iconfont icon-daima" />
-              <span>复制代码</span>
-            </div>
-            <div class="form-generator-select__header-actions-item">
-              <i class="iconfont icon-shanchu" />
-              <span>清空</span>
-            </div>
-          </el-space>
+          <HeaderActions />
         </div>
       </div>
       <div class="form-generator-select__body">
@@ -55,6 +39,7 @@ import PreviewMain from './components/preview-main.vue'
   width: 100%;
   display: flex;
   overflow: hidden;
+  border: 1px solid #ccc;
   .form-generator-select {
     height: 100%;
     flex: 1;
@@ -70,13 +55,6 @@ import PreviewMain from './components/preview-main.vue'
         display: flex;
         align-items: center;
         gap: 10px;
-      }
-      .form-generator-select__header-actions {
-        .form-generator-select__header-actions-item {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
       }
     }
     .form-generator-select__body {
