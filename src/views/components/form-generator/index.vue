@@ -1,9 +1,27 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import { useGeneratorStore } from '@/store/modules/formGenerator.ts'
 import SvgRender from '@/components/SvgRender/index.vue'
 import FormGeneratorSettings from './components/layout/form-generator-settings.vue'
 import SelectContainer from './components/layout/select-container.vue'
 import PreviewMain from './components/layout/preview-main.vue'
 import HeaderActions from './components/layout/header-actions.vue'
+
+const generatorStore = useGeneratorStore()
+
+onMounted(() => {
+  const attrs = {
+    formName: 'elForm',
+    model: 'model',
+    rules: 'rules',
+    size: 'default',
+    labelPosition: 'left',
+    labelWidth: 90,
+    disabled: false
+  }
+  generatorStore.setFormAttrs(attrs)
+  localStorage.setItem('formAttrs', JSON.stringify(attrs))
+})
 </script>
 
 <template>
