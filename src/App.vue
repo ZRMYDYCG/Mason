@@ -1,9 +1,9 @@
 <template>
-  <el-config-provider :locale="zhCn">
-    <div v-if="isLoading" class="loading">
-      <Lottie :animation-data="loadingJson" />
-    </div>
-    <router-view v-if="!isLoading" />
+  <div v-if="isLoading" class="loading">
+    <Lottie :animation-data="loadingJson" />
+  </div>
+  <el-config-provider v-if="!isLoading" :locale="zhCn">
+    <router-view />
   </el-config-provider>
 </template>
 
@@ -27,7 +27,7 @@ setTimeout(() => {
 <style lang="scss" scoped>
 .loading {
   width: 50%;
-  height: 50%;
-  margin: 200px auto;
+  height: 100%;
+  margin: 0 auto;
 }
 </style>
