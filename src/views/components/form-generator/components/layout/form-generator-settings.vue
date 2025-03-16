@@ -17,6 +17,7 @@ import SliderAttrs from '../attrs/components-attrs/slider.vue'
 import SwitchAttrs from '../attrs/components-attrs/switch.vue'
 import TimePickerAttrs from '../attrs/components-attrs/time-picker.vue'
 import TimeSelectAttrs from '../attrs/components-attrs/time-select.vue'
+import SelectAttrs from '../attrs/components-attrs/select.vue'
 
 const generatorStore = useGeneratorStore()
 
@@ -41,6 +42,7 @@ const currentComponent: ComputedRef<ComponentItem> = computed(() => generatorSto
           <switch-attrs v-if="currentComponent.type === 'switch'" />
           <time-picker-attrs v-if="currentComponent.type === 'time-picker'" />
           <time-select-attrs v-if="currentComponent.type === 'time-select'" />
+          <select-attrs v-if="currentComponent.type === 'select'" />
         </div>
         <div v-else>
           <el-empty description="当前还未选择组件" />
