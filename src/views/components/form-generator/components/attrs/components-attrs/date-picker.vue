@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useGeneratorStore } from '@/store/modules/formGenerator.ts'
 import { computed, ComputedRef, watch } from 'vue'
-import cloneDeep from 'lodash/cloneDeep'
 
 const generatorStore = useGeneratorStore()
 
