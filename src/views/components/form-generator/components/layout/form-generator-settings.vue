@@ -7,6 +7,7 @@ import FormAttrs from '../attrs/form-attrs/index.vue'
 import ButtonAttrs from '../attrs/components-attrs/button.vue'
 import CascaderAttrs from '../attrs/components-attrs/cascader.vue'
 import CheckboxAttrs from '../attrs/components-attrs/checkbox.vue'
+import ColorPicker from '../attrs/components-attrs/color-picker.vue'
 
 const generatorStore = useGeneratorStore()
 
@@ -21,6 +22,7 @@ const currentComponent: ComputedRef<ComponentItem> = computed(() => generatorSto
           <button-attrs v-if="currentComponent.type === 'button'" />
           <cascader-attrs v-if="currentComponent.type === 'cascader'" />
           <checkbox-attrs v-if="currentComponent.type === 'checkbox-group'" />
+          <color-picker v-if="currentComponent.type === 'color-picker'" />
         </div>
         <div v-else>
           <el-empty description="当前还未选择组件" />
