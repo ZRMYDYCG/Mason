@@ -12,6 +12,7 @@ import DatePickerAttrs from '../attrs/components-attrs/date-picker.vue'
 import InputAttrs from '../attrs/components-attrs/input.vue'
 import InputNumberAttrs from '../attrs/components-attrs/input-number.vue'
 import RadioAttrs from '../attrs/components-attrs/radio.vue'
+import RateAttrs from '../attrs/components-attrs/rate.vue'
 
 const generatorStore = useGeneratorStore()
 
@@ -31,6 +32,7 @@ const currentComponent: ComputedRef<ComponentItem> = computed(() => generatorSto
           <input-attrs v-if="currentComponent.type === 'input'" />
           <input-number-attrs v-if="currentComponent.type === 'input-number'" />
           <radio-attrs v-if="currentComponent.type === 'radio-group'" />
+          <rate-attrs v-if="currentComponent.type === 'rate'" />
         </div>
         <div v-else>
           <el-empty description="当前还未选择组件" />
