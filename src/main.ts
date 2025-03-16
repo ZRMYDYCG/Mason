@@ -19,6 +19,8 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/element-dark.scss'
 // tailwindcss
 import './tailwind.css'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 import router from '@/router'
 
@@ -26,4 +28,4 @@ import pinia from '@/store'
 
 const app = createApp(App)
 
-app.use(router).use(pinia).mount('#app')
+app.use(router).use(pinia).use(ElementPlus).mount('#app')

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { ComputedRef } from 'vue'
 import { useGeneratorStore } from '@/store/modules/formGenerator.ts'
 import { ComponentItem } from '@/views/components/form-generator/types'
@@ -10,6 +10,7 @@ const generatorStore = useGeneratorStore()
 const componentList: ComputedRef<any[]> = computed(() => generatorStore.componentList)
 const activeIndex = computed(() => generatorStore.activeIndex)
 const formAttrs = computed(() => generatorStore.formAttrs)
+const currentComponent = computed(() => generatorStore.currentComponent)
 
 const rules = ref<RuleItem>({})
 const model = ref<any>({})
@@ -45,6 +46,21 @@ const clickItem = (item: ComponentItem, index: number) => {
   localStorage.setItem('activeIndex', String(index))
   generatorStore.setActiveIndex(index)
 }
+
+watch(
+  () => currentComponent.value,
+  (val) => {
+    localStorage.setItem('currentComponent', JSON.stringify(val))
+    generatorStore.setCurrentComponent(val)
+
+    if (componentList.value && componentList.value.length) {
+      componentList.value[activeIndex.value] = val
+      localStorage.setItem('componentList', JSON.stringify(componentList.value))
+      generatorStore.setComponentList(componentList.value)
+    }
+  },
+  { deep: true }
+)
 </script>
 
 <template>
@@ -128,6 +144,14 @@ const clickItem = (item: ComponentItem, index: number) => {
             ></el-time-picker>
             <el-time-picker v-else v-bind="{ ...item.attrs }"></el-time-picker>
           </template>
+          <!--          <template v-else-if="item.type === 'input'">-->
+          <!--            <el-input-->
+          <!--              placeholder="请输入内容"-->
+          <!--              v-if="item.type === 'input'"-->
+          <!--              v-bind="{ ...item.attrs }"-->
+          <!--              v-model="item.value"-->
+          <!--            ></el-input>-->
+          <!--          </template>-->
           <component
             v-else
             :is="`el-${item.type}`"
@@ -169,28 +193,14 @@ const clickItem = (item: ComponentItem, index: number) => {
               item.suffix
             }}</template>
           </component>
-          <!--          <div class="absolute top-[-35px] right-[10px] z-[999]" v-if="activeIndex === index">-->
-          <!--            <el-tooltip content="复制">-->
-          <!--              <el-button-->
-          <!--                @click.stop="copy(item)"-->
-          <!--                size="small"-->
-          <!--                circle-->
-          <!--                :icon="Edit"-->
-          <!--                plain-->
-          <!--                type="primary"-->
-          <!--              ></el-button>-->
-          <!--            </el-tooltip>-->
-          <!--            <el-tooltip content="删除">-->
-          <!--              <el-button-->
-          <!--                @click.stop="del(index)"-->
-          <!--                size="small"-->
-          <!--                circle-->
-          <!--                :icon="Delete"-->
-          <!--                plain-->
-          <!--                type="danger"-->
-          <!--              ></el-button>-->
-          <!--            </el-tooltip>-->
-          <!--          </div>-->
+          <div class="absolute top-[-35px] right-[10px] z-[999]" v-if="activeIndex === index">
+            <el-tooltip content="复制">
+              <el-button size="small" circle plain type="primary"></el-button>
+            </el-tooltip>
+            <el-tooltip content="删除">
+              <el-button size="small" circle plain type="danger"></el-button>
+            </el-tooltip>
+          </div>
         </el-form-item>
       </template>
     </el-form>
