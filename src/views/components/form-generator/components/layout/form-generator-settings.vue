@@ -14,6 +14,9 @@ import InputNumberAttrs from '../attrs/components-attrs/input-number.vue'
 import RadioAttrs from '../attrs/components-attrs/radio.vue'
 import RateAttrs from '../attrs/components-attrs/rate.vue'
 import SliderAttrs from '../attrs/components-attrs/slider.vue'
+import SwitchAttrs from '../attrs/components-attrs/switch.vue'
+import TimePickerAttrs from '../attrs/components-attrs/time-picker.vue'
+import TimeSelectAttrs from '../attrs/components-attrs/time-select.vue'
 
 const generatorStore = useGeneratorStore()
 
@@ -35,6 +38,9 @@ const currentComponent: ComputedRef<ComponentItem> = computed(() => generatorSto
           <radio-attrs v-if="currentComponent.type === 'radio-group'" />
           <rate-attrs v-if="currentComponent.type === 'rate'" />
           <slider-attrs v-if="currentComponent.type === 'slider'" />
+          <switch-attrs v-if="currentComponent.type === 'switch'" />
+          <time-picker-attrs v-if="currentComponent.type === 'time-picker'" />
+          <time-select-attrs v-if="currentComponent.type === 'time-select'" />
         </div>
         <div v-else>
           <el-empty description="当前还未选择组件" />
