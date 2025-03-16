@@ -70,4 +70,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SvgRender: typeof import('./../components/SvgRender/index.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+  }
 }
