@@ -9,6 +9,7 @@ import CascaderAttrs from '../attrs/components-attrs/cascader.vue'
 import CheckboxAttrs from '../attrs/components-attrs/checkbox.vue'
 import ColorPickerAttrs from '../attrs/components-attrs/color-picker.vue'
 import DatePickerAttrs from '../attrs/components-attrs/date-picker.vue'
+import InputAttrs from '../attrs/components-attrs/input.vue'
 
 const generatorStore = useGeneratorStore()
 
@@ -25,6 +26,7 @@ const currentComponent: ComputedRef<ComponentItem> = computed(() => generatorSto
           <checkbox-attrs v-if="currentComponent.type === 'checkbox-group'" />
           <color-picker-attrs v-if="currentComponent.type === 'color-picker'" />
           <date-picker-attrs v-if="currentComponent.type === 'date-picker'" />
+          <input-attrs v-if="currentComponent.type === 'input'" />
         </div>
         <div v-else>
           <el-empty description="当前还未选择组件" />
