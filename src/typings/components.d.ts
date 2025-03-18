@@ -65,9 +65,12 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
+    FullLoading: typeof import('./../components/Loading/full-loading.vue')['default']
     Lottie: typeof import('./../components/Lottie/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchFormFilter: typeof import('./../components/SearchFormFilter/index.vue')['default']
+    SearchFormFilterItem: typeof import('./../components/SearchFormFilter/components/search-form-filter-item.vue')['default']
     SvgRender: typeof import('./../components/SvgRender/index.vue')['default']
   }
   export interface ComponentCustomProperties {
