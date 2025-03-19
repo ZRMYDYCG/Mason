@@ -72,6 +72,7 @@ declare module 'vue' {
     SearchFormFilter: typeof import('./../components/SearchFormFilter/index.vue')['default']
     SearchFormFilterItem: typeof import('./../components/SearchFormFilter/components/search-form-filter-item.vue')['default']
     SvgRender: typeof import('./../components/SvgRender/index.vue')['default']
+    Table: typeof import('./../components/Table/index.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

@@ -25,11 +25,17 @@ const isFoldFormFilter = ref(true)
 const searchFormFilterRef = ref(null)
 
 const handleSearch = () => {
-  props?.searchHandle()
+  if (props.loading) return
+  if (props.searchHandle) {
+    props?.searchHandle()
+  }
 }
 
 const handleReset = () => {
-  props?.resetHandle()
+  if (props.loading) return
+  if (props.resetHandle) {
+    props?.resetHandle()
+  }
 }
 
 defineExpose({
