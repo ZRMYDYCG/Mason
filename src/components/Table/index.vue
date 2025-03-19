@@ -1,3 +1,6 @@
+<!--
+  * 封装原则: 不破坏原ElTable组件,只封装逻辑和最小粒度的样式
+-->
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -33,7 +36,7 @@ interface TableProps {
   pagination?: Pagination
 }
 
-const props = withDefaults(defineProps<TableProps>(), {
+withDefaults(defineProps<TableProps>(), {
   tableColumnOptions: () => ({}),
   expand: false,
   columns: () => [],
@@ -75,17 +78,18 @@ const handleClickDelete = (column, $row) => {
 // 当前页码
 const currentPage = ref(1)
 // 页码变化
-const handleCurrentChange = (currentPage) => {
-  currentPage.value = currentPage
-  emits('pageChange', currentPage)
+const handleCurrentChange = (page) => {
+  console.log('currentPage', page)
+  currentPage.value = page
+  emits('pageChange', page)
 }
 // 每页条数
 const pageSize = ref(PAGE_SIZES[0])
 // 每页条数选项变化
-const handleSizeChange = (pageSize) => {
-  pageSize.value = pageSize
+const handleSizeChange = (size) => {
+  pageSize.value = size
   currentPage.value = 1
-  emits('sizeChange', pageSize)
+  emits('sizeChange', size)
 }
 
 defineExpose({
@@ -96,7 +100,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="mason-table" :class="{ 'mason-table-pagination': true }">
+  <div class="mason-table" :class="{ 'mason-table-pagination': pagination.isShow }">
     <el-table
       ref="elTableRef"
       v-bind="$attrs"
@@ -199,11 +203,38 @@ defineExpose({
                   <component
                     :is="
                       column.dataFormatConf?.formatFunction(
-                        $row[column.prop],
+                        {
+                          row: $row,
+                          value: $row[column.prop]
+                        },
                         ...(column.dataFormatConf.params ? column.dataFormatConf.params : [])
                       )
                     "
                   ></component>
+                </template>
+                <template v-else>
+                  {{
+                    column.dataFormatConf.formatFunction(
+                      {
+                        row: $row,
+                        value: $row[column.prop]
+                      },
+                      ...(column.dataFormatConf.params ? column.dataFormatConf.params : [])
+                    )
+                  }}
+                </template>
+              </template>
+              <template v-else>
+                <template v-if="column?.dataFormatConf?.renderType === 'html'">
+                  <component
+                    :is="
+                      column.dataFormatConf.formatFunction(
+                        $row[column.prop],
+                        ...(column.dataFormatConf.params ? column.dataFormatConf.params : [])
+                      )
+                    "
+                  >
+                  </component>
                 </template>
                 <template v-else>
                   {{

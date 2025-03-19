@@ -3,7 +3,7 @@ import { computed, useAttrs } from 'vue'
 import type { colProps } from 'element-plus'
 
 defineOptions({
-  name: 'SearchFormFilterItem'
+  name: 'MasonSearchFormFilterItem'
 })
 
 const attrs = useAttrs()

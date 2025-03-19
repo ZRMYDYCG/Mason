@@ -2,6 +2,10 @@
 import { ref } from 'vue'
 import SearchFormFilterItem from './components/search-form-filter-item.vue'
 
+defineOptions({
+  name: 'MasonSearchFormFilter'
+})
+
 interface IMasonSearchFormFilterProps {
   /*是否显示折叠展开按钮*/
   isShowFoldUnfoldBtn: boolean
@@ -71,6 +75,5 @@ defineExpose({
 <style scoped lang="scss">
 .search-form-filter {
   padding: 24px 12px 12px;
-  background: #fff;
 }
 </style>
