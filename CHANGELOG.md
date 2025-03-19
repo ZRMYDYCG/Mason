@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/ZRMYDYCG/Mason/compare/v1.0.2...v1.0.3) (2025-03-19)
+
+### ✨ Features | 新功能
+
+* ✨️列表搜索筛选过滤表单、列表搜索筛选过滤表单item ([9626ac3](https://github.com/ZRMYDYCG/Mason/commit/9626ac35580d63e0109006dbab94184eeb724ba7))
+* ✨️新增表格组件,支持高度自定义,支持分页 ([fa6aaa8](https://github.com/ZRMYDYCG/Mason/commit/fa6aaa894606aa8924f5575f4a17ac2be18ed25a))
+* ✨️新增配置型表格使用模板 ([0705e4f](https://github.com/ZRMYDYCG/Mason/commit/0705e4f535a3f1008c36584b41e4da8b061bf5f0))
+
 ## [1.0.2](https://github.com/ZRMYDYCG/Mason/compare/v1.0.1...v1.0.2) (2025-03-16)
 
 ### ✨ Features | 新功能
