@@ -1,2 +1,68 @@
 /* global css variable */
 $primary-color: var(--el-color-primary);
+
+$mason-grey-100: #ffffff !default;
+$mason-grey-200: #fafafa !default;
+$mason-grey-300: #f5f5f5 !default;
+$mason-grey-400: #e8e8e8 !default;
+$mason-grey-500: #d9d9d9 !default;
+$mason-grey-600: #bfbfbf !default;
+$mason-grey-700: #8c8c8c !default;
+$mason-grey-800: #595959 !default;
+$mason-grey-900: #262626 !default;
+$mason-grey-1000: #000000 !default;
+
+$mason-blue-100: #e6f7ff !default;
+$mason-blue-200: #bae7ff !default;
+$mason-blue-300: #91d5ff !default;
+$mason-blue-400: #69c0ff !default;
+$mason-blue-500: #40a9ff !default;
+$mason-blue-600: #1890ff !default;
+$mason-blue-700: #096dd9 !default;
+$mason-blue-800: #0050b3 !default;
+$mason-blue-900: #003a8c !default;
+$mason-blue-1000: #002766 !default;
+
+$mason-red-100: #fff1f0 !default;
+$mason-red-200: #ffccc7 !default;
+$mason-red-300: #ffa39e !default;
+$mason-red-400: #ff7875 !default;
+$mason-red-500: #ff4d4f !default;
+$mason-red-600: #f5222d !default;
+$mason-red-700: #cf1322 !default;
+$mason-red-800: #a8071a !default;
+$mason-red-900: #820014 !default;
+$mason-red-1000: #5c0011 !default;
+
+$mason-grey-100-rgb: rgb(255, 255, 255) !default;
+$mason-grey-200-rgb: rgb(250, 250, 250) !default;
+$mason-grey-300-rgb: rgb(245, 245, 245) !default;
+$mason-grey-400-rgb: rgb(232, 232, 232) !default;
+$mason-grey-500-rgb: rgb(217, 217, 217) !default;
+$mason-grey-600-rgb: rgb(191, 191, 191) !default;
+$mason-grey-700-rgb: rgb(140, 140, 140) !default;
+$mason-grey-800-rgb: rgb(89, 89, 89) !default;
+$mason-grey-900-rgb: rgb(38, 38, 38) !default;
+$mason-grey-1000-rgb: rgb(0, 0, 0) !default;
+
+$mason-blue-100-rgb: rgb(230, 247, 255) !default;
+$mason-blue-200-rgb: rgb(186, 231, 255) !default;
+$mason-blue-300-rgb: rgb(145, 213, 255) !default;
+$mason-blue-400-rgb: rgb(105, 192, 255) !default;
+$mason-blue-500-rgb: rgb(64, 169, 255) !default;
+$mason-blue-600-rgb: rgb(24, 144, 255) !default;
+$mason-blue-700-rgb: rgb(9, 109, 217) !default;
+$mason-blue-800-rgb: rgb(0, 80, 179) !default;
+$mason-blue-900-rgb: rgb(0, 58, 140) !default;
+$mason-blue-1000-rgb: rgb(0, 39, 102) !default;
+
+$mason-red-100-rgb: rgb(255, 241, 240) !default;
+$mason-red-200-rgb: rgb(255, 204, 199) !default;
+$mason-red-300-rgb: rgb(255, 163, 158) !default;
+$mason-red-400-rgb: rgb(255, 120, 117) !default;
+$mason-red-500-rgb: rgb(255, 77, 79) !default;
+$mason-red-600-rgb: rgb(245, 34, 45) !default;
+$mason-red-700-rgb: rgb(207, 19, 34) !default;
+$mason-red-800-rgb: rgb(168, 7, 26) !default;
+$mason-red-900-rgb: rgb(130, 0, 20) !default;
+$mason-red-1000-rgb: rgb(92, 0, 17) !default;

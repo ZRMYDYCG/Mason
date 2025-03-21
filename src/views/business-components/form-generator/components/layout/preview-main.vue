@@ -2,8 +2,8 @@
 import { computed, ref, watch } from 'vue'
 import type { ComputedRef } from 'vue'
 import { useGeneratorStore } from '@/store/modules/formGenerator.ts'
-import { ComponentItem } from '@/views/components/form-generator/types'
-import { RuleItem } from '@/views/components/form-generator/types/rule.ts'
+import { ComponentItem } from '../../types'
+import { RuleItem } from '../../types/rule.ts'
 
 const generatorStore = useGeneratorStore()
 

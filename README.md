@@ -15,3 +15,15 @@
 前端+Mock开发剩余组件模板：
 
 ....
+
+
+```html
+    <div class="theme-item">
+  <span>主题颜色</span>
+  <el-color-picker v-model="primary" :predefine="colorList" @change="changePrimary" />
+</div>
+<div class="theme-item">
+  <span>暗黑模式</span>
+  <SwitchTheme />
+</div>
+```

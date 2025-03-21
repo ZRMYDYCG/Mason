@@ -1,11 +1,43 @@
 <template>
   <el-container class="layout">
-    <el-aside>
+    <div class="dual-menu-left" v-if="menuType === MenuTypeEnum.DUAL_MENU">
+      <div class="logo">
+        <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
+      </div>
+      <el-scrollbar style="height: calc(100% - 25px)">
+        <ul>
+          <li v-for="menu in fatherMenuList" :key="menu?.path" @click="handleMenuJump(menu)">
+            <el-tooltip
+              effect="dark"
+              :content="menu?.meta.title"
+              placement="right"
+              :offset="25"
+              :hide-after="0"
+            >
+              <div
+                :class="[
+                  {
+                    'is-active': menu?.path === activeMenu
+                  }
+                ]"
+              >
+                <iconpark-icon :name="menu?.meta.icon" size="18"></iconpark-icon>
+                <div>{{ menu.meta.title }}</div>
+              </div>
+            </el-tooltip>
+          </li>
+        </ul>
+      </el-scrollbar>
+    </div>
+    <el-aside
+      v-if="
+        menuType === MenuTypeEnum.LEFT ||
+        menuType === MenuTypeEnum.DUAL_MENU ||
+        menuType === MenuTypeEnum.TOP_LEFT
+      "
+    >
       <div class="aside" :style="{ width: isCollapse ? '65px' : `${asideWidth}px` }">
-        <div class="logo">
-          <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
-          <span v-show="!isCollapse" class="logo-text">Mason • 石匠</span>
-        </div>
+        <Logo />
         <el-scrollbar>
           <el-menu
             :router="false"
@@ -27,7 +59,12 @@
     </el-aside>
     <el-container>
       <el-header>
-        <ToolBarLeft />
+        <div class="flex gap-2">
+          <Logo v-show="menuType === MenuTypeEnum.TOP || menuType === MenuTypeEnum.TOP_LEFT" />
+          <ToolBarLeft />
+          <MenuTop v-if="menuType === MenuTypeEnum.TOP" />
+          <MenuMixed v-if="menuType === MenuTypeEnum.TOP_LEFT" :list="fatherMenuList" />
+        </div>
         <ToolBarRight />
       </el-header>
       <Main />
@@ -39,15 +76,20 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { MenuTypeEnum } from '@/config'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/store/modules/auth'
 import { useGlobalStore } from '@/store/modules/global'
-import SubMenu from './components/Menu/sub-menu.vue'
+import SubMenu from './components/SubMenu/sub-menu.vue'
 import ToolBarLeft from './components/Header/tool-bar-left.vue'
 import ToolBarRight from './components/Header/tool-bar-right.vue'
+import MenuTop from './components/MenuTop/index.vue'
 import Main from './components/Main/index.vue'
 import ThemeDrawer from './components/ThemeDrawer/index.vue'
 import Footer from './components/Footer/index.vue'
+import { useSettingStore } from '@/store/modules/setting.ts'
+import Logo from './components/Logo/index.vue'
+import MenuMixed from './components/MenuMixed/index.vue'
 
 const asideWidth = ref(210)
 let isDragging = false
@@ -55,10 +97,25 @@ let startX = 0
 let startWidth = 0
 
 const route = useRoute()
+const router = useRouter()
 const authStore = useAuthStore()
 const globalStore = useGlobalStore()
+const settingStore = useSettingStore()
 
-const menuList = computed(() => authStore.showMenuListGet)
+const menuType = computed(() => settingStore.menuType)
+
+const fatherMenuList = computed(() => {
+  return authStore.showMenuListGet || []
+})
+
+const menuList = computed(() => {
+  if (menuType.value === MenuTypeEnum.DUAL_MENU || menuType.value === MenuTypeEnum.TOP_LEFT) {
+    const currentTopPath = `/${route.path.split('/')[1]}`
+    const currentMenu = authStore.showMenuListGet.find((menu) => menu.path === currentTopPath)
+    return currentMenu?.children.length > 0 ? currentMenu.children : [currentMenu]
+  }
+  return authStore.showMenuListGet || []
+})
 
 const isCollapse = computed(() => globalStore.isCollapse)
 
@@ -84,12 +141,34 @@ const handleMouseUp = () => {
   document.removeEventListener('mousemove', handleMouseMove)
   document.removeEventListener('mouseup', handleMouseUp)
 }
+
+const handleMenuJump = (menu: any) => {
+  if (menu.path === activeMenu.value) return
+  router.push(menu.path)
+}
 </script>
 
 <style scoped lang="scss">
 .el-container {
   width: 100%;
   height: 100%;
+  user-select: none;
+  scrollbar-width: none;
+
+  .dual-menu-left {
+    width: 80px;
+    height: 100%;
+    background-color: var(--el-border-color-light);
+    border-right: 1px solid #ccc !important;
+    .logo {
+      width: 40px;
+      height: 40px;
+      .logo-img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 
   :deep(.el-aside) {
     width: auto;
@@ -109,19 +188,6 @@ const handleMouseUp = () => {
           width: 100%;
           overflow-x: hidden;
           border-right: none;
-        }
-      }
-
-      .logo {
-        display: flex;
-        gap: 10px;
-        box-sizing: border-box;
-        align-items: center;
-        justify-content: center;
-        height: 55px;
-
-        .logo-img {
-          width: 30px;
         }
       }
     }
