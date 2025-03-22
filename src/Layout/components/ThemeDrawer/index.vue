@@ -253,7 +253,7 @@
           </div>
           <div class="item">
             <span>色弱模式</span>
-            <el-switch v-model="colorWeak" />
+            <el-switch @change="setColorWeak" v-model="colorWeak" />
           </div>
           <div class="item">
             <span>自动关闭设置中心</span>
@@ -315,6 +315,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
+import { storeToRefs } from 'pinia'
 import mittBus from '@/utils/mittBus'
 import { SettingThemeList, ThemeList, SystemMainColor } from '@/config'
 import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum } from '@/config'
@@ -350,7 +351,6 @@ const showCrumbs = ref(true)
 let showWorkTab = ref(true)
 const showLanguage = ref(true)
 const showNprogress = ref(true)
-const colorWeak = ref(false)
 const containerWidth = computed(() => store.containerWidth)
 const pageTransitionOps = [
   {
@@ -409,6 +409,8 @@ const containerWidthList = [
   }
 ]
 
+const { colorWeak } = storeToRefs(store)
+
 // 设置菜单布局
 const setMenuType = (type: MenuTypeEnum) => {
   if (type === MenuTypeEnum.LEFT || type === MenuTypeEnum.TOP_LEFT) store.setMenuOpen(true)
@@ -432,6 +434,17 @@ const setSystemThemeColor = (color) => {
 // 设置容器宽度
 const setContainerWidth = (item) => {
   store.setContainerWidth(item.value)
+}
+
+// 设置色弱模式
+const setColorWeak = () => {
+  let el = document.getElementsByTagName('html')[0]
+  if (colorWeak.value) {
+    console.log('color weak')
+    el.setAttribute('class', 'color-weak')
+  } else {
+    el.className = el.className.replace(/\bcolor-weak\b/g, '').trim()
+  }
 }
 
 watch(systemThemeMode, () => {

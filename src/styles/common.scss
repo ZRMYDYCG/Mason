@@ -120,3 +120,9 @@
     padding-left: #{$i}px !important;
   }
 }
+
+/* 色弱模式 */
+.color-weak {
+  filter: invert(80%);
+  -webkit-filter: invert(80%);
+}
