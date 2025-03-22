@@ -212,6 +212,7 @@
             :class="{ 'is-active': containerWidth === item.value }"
             v-for="item in containerWidthList"
             :key="item.value"
+            @click="setContainerWidth(item)"
           >
             <i class="iconfont" :class="item.icon"></i>
             <span>{{ item.label }}</span>
@@ -335,7 +336,6 @@ const systemThemeColor = computed(() => store.systemThemeColor)
 const boxBorderMode = computed(() => store.boxBorderMode)
 const pageTransition = computed(() => store.pageTransition)
 const customRadius = computed(() => store.customRadius)
-const menuType = computed(() => store.menuType)
 const isLeftMenu = computed(() => store.menuType === MenuTypeEnum.LEFT)
 const isTopMenu = computed(() => store.menuType === MenuTypeEnum.TOP)
 const isTopLeftMenu = computed(() => store.menuType === MenuTypeEnum.TOP_LEFT)
@@ -427,6 +427,11 @@ const setTheme = (item) => {
 // 设置项目主题颜色
 const setSystemThemeColor = (color) => {
   store.setElementTheme(color)
+}
+
+// 设置容器宽度
+const setContainerWidth = (item) => {
+  store.setContainerWidth(item.value)
 }
 
 watch(systemThemeMode, () => {

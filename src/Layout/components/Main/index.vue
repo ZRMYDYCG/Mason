@@ -2,14 +2,16 @@
   <Tabs />
   <el-main>
     <router-view v-slot="{ Component, route }">
-      <!--      <transition name="fade-transform" mode="out-in" appear>-->
-      <keep-alive :include="keepAliveNames">
-        <component
-          :is="createComponentWrapper(Component, route)!"
-          :key="route.fullPath"
-        ></component>
-      </keep-alive>
-      <!--      </transition>-->
+      <transition name="fade-transform" mode="out-in" appear>
+        <keep-alive :include="keepAliveNames">
+          <div :style="{ width: containerWidth, margin: '0 auto' }">
+            <component
+              :is="createComponentWrapper(Component, route)!"
+              :key="route.fullPath"
+            ></component>
+          </div>
+        </keep-alive>
+      </transition>
       <el-backtop target=".el-main" :right="10" :bottom="80" />
     </router-view>
   </el-main>
@@ -22,6 +24,7 @@ import Tabs from '@/Layout/components/Tabs/index.vue'
 import { useKeepAliveStore } from '@/store/modules/keepAlive'
 import { useDebounceFn } from '@vueuse/core'
 import { useGlobalStore } from '@/store/modules/global'
+import { useSettingStore } from '@/store/modules/setting.ts'
 
 const keepAliveStore = useKeepAliveStore()
 const keepAliveNames = computed(() => keepAliveStore.keepAliveNames)
@@ -43,8 +46,10 @@ function createComponentWrapper(component: VNode, route: RouteLocationNormalized
 }
 
 const globalStore = useGlobalStore()
+const settingStore = useSettingStore()
 const isCollapse = computed(() => globalStore.isCollapse)
 const breadcrumb = computed(() => globalStore.breadcrumb)
+const containerWidth = computed(() => settingStore.containerWidth)
 
 // 监听窗口大小变化，折叠侧边栏, 控制面包屑导航
 const screenWidth = ref(0)
