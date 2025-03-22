@@ -42,14 +42,14 @@
         menuType === MenuTypeEnum.TOP_LEFT
       "
     >
-      <div class="aside" :style="{ width: isCollapse ? '65px' : `${asideWidth}px` }">
+      <div class="aside" :style="{ width: isCollapse ? '65px' : `${menuOpenWidth}px` }">
         <Logo />
         <el-scrollbar>
           <el-menu
             :router="false"
             :default-active="activeMenu"
             :collapse="isCollapse"
-            :unique-opened="true"
+            :unique-opened="uniqueOpened"
             :collapse-transition="false"
           >
             <SubMenu :menu-list="menuList" />
@@ -82,7 +82,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 import { MenuTypeEnum } from '@/config'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/store/modules/auth'
@@ -99,7 +100,6 @@ import Logo from './components/Logo/index.vue'
 import MenuMixed from './components/MenuMixed/index.vue'
 import Watermark from '@/components/Watermark/index.vue'
 
-const asideWidth = ref(210)
 let isDragging = false
 let startX = 0
 let startWidth = 0
@@ -112,6 +112,8 @@ const settingStore = useSettingStore()
 
 const menuType = computed(() => settingStore.menuType)
 const watermarkVisible = computed(() => settingStore.watermarkVisible)
+const uniqueOpened = computed(() => settingStore.uniqueOpened)
+const { menuOpenWidth } = storeToRefs(settingStore)
 
 const fatherMenuList = computed(() => {
   return authStore.showMenuListGet || []
@@ -133,7 +135,7 @@ const activeMenu = computed(() => route.path)
 const handleMouseDown = (e: MouseEvent) => {
   isDragging = true
   startX = e.clientX
-  startWidth = asideWidth.value
+  startWidth = menuOpenWidth.value
   document.addEventListener('mousemove', handleMouseMove)
   document.addEventListener('mouseup', handleMouseUp)
 }
@@ -142,7 +144,7 @@ const handleMouseMove = (e: MouseEvent) => {
   if (!isDragging) return
   const deltaX = e.clientX - startX
   const newWidth = startWidth + deltaX
-  asideWidth.value = Math.max(210, Math.min(newWidth, 400))
+  menuOpenWidth.value = Math.max(210, Math.min(newWidth, 400))
 }
 
 const handleMouseUp = () => {

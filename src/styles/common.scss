@@ -53,11 +53,13 @@
   transition: all 0.2s;
 }
 
+
 .fade-transform-enter-from {
   opacity: 0;
   transition: all 0.2s;
   transform: translateX(-30px);
 }
+
 
 .fade-transform-leave-to {
   display: none; // 解决标签全部关闭时出现动画闪烁问题
@@ -65,6 +67,97 @@
   transition: all 0.2s;
   transform: translateX(30px);
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+// slide-right 动画
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translate3d(-30px, 0, 0);
+}
+
+.slide-right-enter-to {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translate3d(30px, 0, 0);
+}
+
+// slide-top 动画
+.slide-top-enter-active,
+.slide-top-leave-active {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.slide-top-enter-from {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.slide-top-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-top-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+// slide-bottom 动画
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.slide-bottom-enter-from {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.slide-bottom-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-bottom-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
 
 /* 滚动条 */
 ::-webkit-scrollbar {

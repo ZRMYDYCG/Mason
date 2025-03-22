@@ -2,7 +2,7 @@
   <div class="tool-bar-lf">
     <CollapseIcon v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT" />
     <BreadCrumb
-      v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT"
+      v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT && showCrumbs"
       v-show="globalStore.breadcrumb"
     />
   </div>
@@ -20,6 +20,8 @@ const globalStore = useGlobalStore()
 const settingStore = useSettingStore()
 
 const menuType = computed(() => settingStore.menuType)
+
+const showCrumbs = computed(() => settingStore.showCrumbs)
 </script>
 
 <style scoped lang="scss">

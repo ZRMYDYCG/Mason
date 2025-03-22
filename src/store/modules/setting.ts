@@ -22,7 +22,7 @@ export interface SettingState {
   showWorkTab: boolean // 是否显示多标签
   showLanguage: boolean // 是否显示多语言选择
   showNprogress: boolean // 是否显示顶部进度条
-  colorWeak: boolean // 是否显示顶部进度条
+  colorWeak: boolean // 是否开启色弱模式
   showSettingGuide: boolean // 是否显示设置引导
   pageTransition: string // 页面切换动画
   menuOpen: boolean // 菜单是否展开
@@ -52,7 +52,7 @@ export const useSettingStore = defineStore({
     showNprogress: true,
     colorWeak: false,
     showSettingGuide: true,
-    pageTransition: 'slide-right',
+    pageTransition: 'fade',
     menuOpen: true,
     refresh: false,
     watermarkVisible: false,
@@ -119,9 +119,6 @@ export const useSettingStore = defineStore({
     setMenuType(type: MenuTypeEnum) {
       this.menuType = type
     },
-    setMenuOpenWidth(width: number) {
-      this.menuOpenWidth = width
-    },
     setGlopTheme(theme: SystemThemeEnum, themeMode: SystemThemeEnum) {
       this.systemThemeType = theme
       this.systemThemeMode = themeMode
@@ -140,54 +137,6 @@ export const useSettingStore = defineStore({
     setContainerWidth(width: ContainerWidthEnum) {
       this.containerWidth = width
     },
-    // 设置菜单是否为手风琴模式
-    setUniqueOpened() {
-      this.uniqueOpened = !this.uniqueOpened
-    },
-    // 显示侧边栏折叠按钮
-    setButton() {
-      this.showMenuButton = !this.showMenuButton
-    },
-    // 是否自动关闭个性化设置
-    setAutoClose() {
-      this.autoClose = !this.autoClose
-    },
-    // 是否显示页面刷新按钮
-    setShowRefreshButton() {
-      this.showRefreshButton = !this.showRefreshButton
-    },
-    // 是否显示面包屑导航
-    setCrumbs() {
-      this.showCrumbs = !this.showCrumbs
-    },
-    // 是否显示多标签
-    setWorkTab(show: boolean) {
-      this.showWorkTab = show
-    },
-    // 是否显示多语言选择
-    setLanguage() {
-      this.showLanguage = !this.showLanguage
-    },
-    // 是否显示顶部进度条
-    setNprogress() {
-      this.showNprogress = !this.showNprogress
-    },
-    //  色弱模式
-    setColorWeak() {
-      this.colorWeak = !this.colorWeak
-    },
-    // 隐藏设置引导
-    hideSettingGuide() {
-      this.showSettingGuide = false
-    },
-    // 显示设置引导
-    openSettingGuide() {
-      this.showSettingGuide = true
-    },
-    // 设置页面切换动画
-    setPageTransition(transition: string) {
-      this.pageTransition = transition
-    },
     // 设置菜单是否展开
     setMenuOpen(open: boolean) {
       this.menuOpen = open
@@ -195,10 +144,6 @@ export const useSettingStore = defineStore({
     // 刷新当前页
     reload() {
       this.refresh = !this.refresh
-    },
-    // 设置水印是否显示
-    setWatermarkVisible() {
-      this.watermarkVisible = !this.watermarkVisible
     },
     // 设置自定义圆角
     setCustomRadius(radius: string) {

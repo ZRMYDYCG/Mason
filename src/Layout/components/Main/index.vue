@@ -1,8 +1,8 @@
 <template>
-  <Tabs />
+  <Tabs v-if="showWorkTab" />
   <el-main>
     <router-view v-slot="{ Component, route }">
-      <transition name="fade-transform" mode="out-in" appear>
+      <transition :name="pageTransition" mode="out-in" appear>
         <keep-alive :include="keepAliveNames">
           <div :style="{ width: containerWidth, margin: '0 auto' }">
             <component
@@ -50,6 +50,8 @@ const settingStore = useSettingStore()
 const isCollapse = computed(() => globalStore.isCollapse)
 const breadcrumb = computed(() => globalStore.breadcrumb)
 const containerWidth = computed(() => settingStore.containerWidth)
+const showWorkTab = computed(() => settingStore.showWorkTab)
+const pageTransition = computed(() => settingStore.pageTransition)
 
 // 监听窗口大小变化，折叠侧边栏, 控制面包屑导航
 const screenWidth = ref(0)

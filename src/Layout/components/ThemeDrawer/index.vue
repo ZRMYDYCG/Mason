@@ -256,18 +256,14 @@
             <el-switch @change="setColorWeak" v-model="colorWeak" />
           </div>
           <div class="item">
-            <span>自动关闭设置抽屉</span>
-            <el-switch v-model="autoClose" />
-          </div>
-          <div class="item">
             <span>全局水印</span>
-            <el-switch @change="setWatermark" v-model="watermarkVisible" />
+            <el-switch v-model="watermarkVisible" />
           </div>
           <div class="item" style="display: flex">
             <span>菜单宽度</span>
             <el-input-number
-              :min="180"
-              :max="320"
+              :min="210"
+              :max="400"
               size="default"
               :step="10"
               style="width: 120px"
@@ -335,21 +331,14 @@ const systemThemeMode = computed(() => store.systemThemeMode)
 const currentMenuTheme = computed(() => store.menuThemeType)
 const systemThemeColor = computed(() => store.systemThemeColor)
 const boxBorderMode = computed(() => store.boxBorderMode)
-const pageTransition = computed(() => store.pageTransition)
 const customRadius = computed(() => store.customRadius)
 const isLeftMenu = computed(() => store.menuType === MenuTypeEnum.LEFT)
 const isTopMenu = computed(() => store.menuType === MenuTypeEnum.TOP)
 const isTopLeftMenu = computed(() => store.menuType === MenuTypeEnum.TOP_LEFT)
 const isDualMenu = computed(() => store.menuType === MenuTypeEnum.DUAL_MENU)
-const menuOpenWidth = ref(store.menuOpenWidth)
-const uniqueOpened = ref(true)
 const showMenuButton = ref(true)
-const autoClose = ref(true)
 const showRefreshButton = ref(true)
-const showCrumbs = ref(true)
-let showWorkTab = ref(true)
 const showLanguage = ref(true)
-const showNprogress = ref(true)
 const containerWidth = computed(() => store.containerWidth)
 const pageTransitionOps = [
   {
@@ -359,6 +348,10 @@ const pageTransitionOps = [
   {
     value: 'fade',
     label: 'fade'
+  },
+  {
+    value: 'fade-transform',
+    label: 'fade-transform'
   },
   {
     value: 'slide-right',
@@ -408,7 +401,16 @@ const containerWidthList = [
   }
 ]
 
-const { colorWeak, watermarkVisible } = storeToRefs(store)
+const {
+  colorWeak,
+  watermarkVisible,
+  showWorkTab,
+  uniqueOpened,
+  showCrumbs,
+  menuOpenWidth,
+  showNprogress,
+  pageTransition
+} = storeToRefs(store)
 
 // 设置菜单布局
 const setMenuType = (type: MenuTypeEnum) => {
@@ -439,7 +441,6 @@ const setContainerWidth = (item) => {
 const setColorWeak = () => {
   let el = document.getElementsByTagName('html')[0]
   if (colorWeak.value) {
-    console.log('color weak')
     el.setAttribute('class', 'color-weak')
   } else {
     el.className = el.className.replace(/\bcolor-weak\b/g, '').trim()
