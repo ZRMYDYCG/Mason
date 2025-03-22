@@ -4,11 +4,8 @@
     <router-view v-slot="{ Component, route }">
       <transition :name="pageTransition" mode="out-in" appear>
         <keep-alive :include="keepAliveNames">
-          <div :style="{ width: containerWidth, margin: '0 auto' }">
-            <component
-              :is="createComponentWrapper(Component, route)!"
-              :key="route.fullPath"
-            ></component>
+          <div :style="{ width: containerWidth, margin: '0 auto' }" :key="route.fullPath">
+            <component :is="createComponentWrapper(Component, route)!"></component>
           </div>
         </keep-alive>
       </transition>
