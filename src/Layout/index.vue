@@ -78,6 +78,7 @@
     </el-container>
   </el-container>
   <ThemeDrawer />
+  <Watermark :visible="watermarkVisible" />
 </template>
 
 <script setup lang="ts">
@@ -96,6 +97,7 @@ import Footer from './components/Footer/index.vue'
 import { useSettingStore } from '@/store/modules/setting.ts'
 import Logo from './components/Logo/index.vue'
 import MenuMixed from './components/MenuMixed/index.vue'
+import Watermark from '@/components/Watermark/index.vue'
 
 const asideWidth = ref(210)
 let isDragging = false
@@ -109,6 +111,7 @@ const globalStore = useGlobalStore()
 const settingStore = useSettingStore()
 
 const menuType = computed(() => settingStore.menuType)
+const watermarkVisible = computed(() => settingStore.watermarkVisible)
 
 const fatherMenuList = computed(() => {
   return authStore.showMenuListGet || []

@@ -66,6 +66,7 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
+    ElWatermark: typeof import('element-plus/es')['ElWatermark']
     FullLoading: typeof import('./../components/Loading/full-loading.vue')['default']
     Lottie: typeof import('./../components/Lottie/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -74,6 +75,7 @@ declare module 'vue' {
     SearchFormFilterItem: typeof import('./../components/SearchFormFilter/components/search-form-filter-item.vue')['default']
     SvgRender: typeof import('./../components/SvgRender/index.vue')['default']
     Table: typeof import('./../components/Table/index.vue')['default']
+    Watermark: typeof import('./../components/Watermark/index.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

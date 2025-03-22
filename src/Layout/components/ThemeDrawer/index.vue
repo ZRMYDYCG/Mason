@@ -256,12 +256,12 @@
             <el-switch @change="setColorWeak" v-model="colorWeak" />
           </div>
           <div class="item">
-            <span>自动关闭设置中心</span>
+            <span>自动关闭设置抽屉</span>
             <el-switch v-model="autoClose" />
           </div>
           <div class="item">
             <span>全局水印</span>
-            <el-switch v-model="watermarkVisible" />
+            <el-switch @change="setWatermark" v-model="watermarkVisible" />
           </div>
           <div class="item" style="display: flex">
             <span>菜单宽度</span>
@@ -341,7 +341,6 @@ const isLeftMenu = computed(() => store.menuType === MenuTypeEnum.LEFT)
 const isTopMenu = computed(() => store.menuType === MenuTypeEnum.TOP)
 const isTopLeftMenu = computed(() => store.menuType === MenuTypeEnum.TOP_LEFT)
 const isDualMenu = computed(() => store.menuType === MenuTypeEnum.DUAL_MENU)
-const watermarkVisible = computed(() => store.watermarkVisible)
 const menuOpenWidth = ref(store.menuOpenWidth)
 const uniqueOpened = ref(true)
 const showMenuButton = ref(true)
@@ -409,7 +408,7 @@ const containerWidthList = [
   }
 ]
 
-const { colorWeak } = storeToRefs(store)
+const { colorWeak, watermarkVisible } = storeToRefs(store)
 
 // 设置菜单布局
 const setMenuType = (type: MenuTypeEnum) => {

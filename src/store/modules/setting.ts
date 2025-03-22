@@ -197,8 +197,8 @@ export const useSettingStore = defineStore({
       this.refresh = !this.refresh
     },
     // 设置水印是否显示
-    setWatermarkVisible(visible: boolean) {
-      this.watermarkVisible = visible
+    setWatermarkVisible() {
+      this.watermarkVisible = !this.watermarkVisible
     },
     // 设置自定义圆角
     setCustomRadius(radius: string) {
