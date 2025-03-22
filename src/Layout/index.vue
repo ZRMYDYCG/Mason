@@ -4,9 +4,14 @@
       <div class="logo">
         <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
       </div>
-      <el-scrollbar style="height: calc(100% - 25px)">
-        <ul>
-          <li v-for="menu in fatherMenuList" :key="menu?.path" @click="handleMenuJump(menu)">
+      <el-scrollbar style="height: calc(100% - 10px)">
+        <ul class="item-wrapper">
+          <li
+            class="item"
+            v-for="menu in fatherMenuList"
+            :key="menu?.path"
+            @click="handleMenuJump(menu)"
+          >
             <el-tooltip
               effect="dark"
               :content="menu?.meta.title"
@@ -17,8 +22,9 @@
               <div
                 :class="[
                   {
-                    'is-active': menu?.path === activeMenu
-                  }
+                    'is-active': menu?.path.replace('/', '') === activeMenu.split('/')[1]
+                  },
+                  'item-content'
                 ]"
               >
                 <iconpark-icon :name="menu?.meta.icon" size="18"></iconpark-icon>
@@ -149,6 +155,7 @@ const handleMenuJump = (menu: any) => {
 </script>
 
 <style scoped lang="scss">
+$primary-color: var(--el-color-primary);
 .el-container {
   width: 100%;
   height: 100%;
@@ -156,16 +163,48 @@ const handleMenuJump = (menu: any) => {
   scrollbar-width: none;
 
   .dual-menu-left {
-    width: 80px;
+    width: 100px;
     height: 100%;
-    background-color: var(--el-border-color-light);
-    border-right: 1px solid #ccc !important;
+    background-color: var(--el-bg-color-primary);
+    border-right: 1px solid var(--el-border-color-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     .logo {
       width: 40px;
       height: 40px;
+      margin: 10px 0;
       .logo-img {
         width: 100%;
         height: 100%;
+      }
+    }
+
+    .item-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      .item {
+        width: 100%;
+        cursor: pointer;
+
+        .item-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 3px;
+          text-wrap: nowrap;
+          border-radius: 5px;
+          font-size: 13px;
+          padding: 5px;
+
+          &.is-active {
+            background-color: $primary-color;
+          }
+        }
       }
     }
   }

@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-// import { useSettingStore } from '@/store/modules/setting'
 import { MenuListType } from '@/config'
 const route = useRoute()
 import { ref, onMounted } from 'vue'
-
-// const settingStore = useSettingStore()
-// const menuopenwidth = computed(() => settingStore.getMenuOpenWidth)
 
 defineProps({
   list: {
@@ -70,7 +66,7 @@ onMounted(() => {
 
 <template>
   <div class="mixed-top-menu">
-    <div class="scroll-btn left" @click="scroll('left')">&lt;</div>
+    <i @click="scroll('left')" class="iconfont icon-xiangzuo scroll-btn left" />
 
     <el-scrollbar
       ref="scrollbarRef"
@@ -86,14 +82,13 @@ onMounted(() => {
             @click="handleMenuJump(item)"
             v-if="!item.meta.isHide"
           >
-            <i class="iconfont-sys" v-html="item.meta.icon"></i>
+            <iconpark-icon :name="item.meta.icon" />
             <span>{{ item.meta.title }}</span>
           </div>
         </template>
       </div>
     </el-scrollbar>
-
-    <div class="scroll-btn right" @click="scroll('right')">&gt;</div>
+    <i class="iconfont icon-xiangyou scroll-btn right" @click="scroll('right')" />
   </div>
 </template>
 
@@ -134,6 +129,9 @@ onMounted(() => {
       line-height: 40px;
       cursor: pointer;
       border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
 
       i {
         margin-right: 5px;
