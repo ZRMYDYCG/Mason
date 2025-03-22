@@ -1,21 +1,18 @@
 import { DEFAULT_PRIMARY } from '@/config'
-import { useGlobalStore } from '@/store/modules/global'
 import { useSettingStore } from '@/store/modules/setting.ts'
 import { getDarkColor, getLightColor } from '@/utils/color'
 import { storeToRefs } from 'pinia'
 
 export const useTheme = () => {
-  const globalStore = useGlobalStore()
   const settingStore = useSettingStore()
-  const { primary } = storeToRefs(globalStore)
-  const { isDark } = storeToRefs(settingStore)
+  const { isDark, systemThemeColor } = storeToRefs(settingStore)
 
   // 切换暗黑模式 ==> 同时修改主题颜色、侧边栏、头部颜色
   const switchDark = () => {
     const html = document.documentElement as HTMLElement
     if (isDark.value) html.setAttribute('class', 'dark')
     else html.setAttribute('class', '')
-    changePrimary(primary.value)
+    changePrimary(systemThemeColor.value)
   }
 
   // 修改主题颜色
@@ -35,12 +32,12 @@ export const useTheme = () => {
       document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, primaryColor)
     }
 
-    globalStore.setPrimaryState(val)
+    settingStore.setElementTheme(val)
   }
 
   const initTheme = () => {
     switchDark()
-    changePrimary(primary.value)
+    changePrimary(systemThemeColor.value)
   }
 
   return {

@@ -189,6 +189,7 @@
               v-for="color in mainColor"
               :key="color"
               :style="{ background: `${color} !important` }"
+              @click="setSystemThemeColor(color)"
             >
               <i class="iconfont icon-dagou1" v-show="color == systemThemeColor"></i>
             </div>
@@ -323,9 +324,7 @@ const store = useSettingStore()
 
 const drawerVisible = ref(false)
 
-const { setGlopTheme } = useSettingStore()
-
-const { switchDark } = useTheme()
+const { switchDark, changePrimary } = useTheme()
 
 const menuThemeList = ThemeList
 const mainColor = SystemMainColor
@@ -422,15 +421,23 @@ const setMenuType = (type: MenuTypeEnum) => {
 
 // 设置（白天/黑夜/随系统）模式
 const setTheme = (item) => {
-  setGlopTheme(item.theme, item.theme)
+  store.setGlopTheme(item.theme, item.theme)
 }
 
-mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
+// 设置项目主题颜色
+const setSystemThemeColor = (color) => {
+  store.setElementTheme(color)
+}
 
-watch(systemThemeMode, (val) => {
-  console.log(val)
+watch(systemThemeMode, () => {
   switchDark()
 })
+
+watch(systemThemeColor, (val) => {
+  changePrimary(val)
+})
+
+mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 </script>
 
 <style scoped lang="scss">
