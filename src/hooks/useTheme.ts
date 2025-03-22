@@ -1,11 +1,14 @@
 import { DEFAULT_PRIMARY } from '@/config'
 import { useGlobalStore } from '@/store/modules/global'
+import { useSettingStore } from '@/store/modules/setting.ts'
 import { getDarkColor, getLightColor } from '@/utils/color'
 import { storeToRefs } from 'pinia'
 
 export const useTheme = () => {
   const globalStore = useGlobalStore()
-  const { isDark, primary } = storeToRefs(globalStore)
+  const settingStore = useSettingStore()
+  const { primary } = storeToRefs(globalStore)
+  const { isDark } = storeToRefs(settingStore)
 
   // 切换暗黑模式 ==> 同时修改主题颜色、侧边栏、头部颜色
   const switchDark = () => {

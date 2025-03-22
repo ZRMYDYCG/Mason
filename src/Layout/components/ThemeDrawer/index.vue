@@ -15,7 +15,12 @@
         <!-- 主题风格 -->
         <p class="title">主题风格</p>
         <div class="theme-wrap">
-          <div class="item" v-for="(item, index) in SettingThemeList" :key="item.theme">
+          <div
+            class="item"
+            v-for="(item, index) in SettingThemeList"
+            :key="item.theme"
+            @click="setTheme(item)"
+          >
             <div class="box" :class="{ 'is-active': item.theme === systemThemeMode }">
               <div :style="{ background: item.color[0] + '!important' }">
                 <div
@@ -307,13 +312,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { MenuTypeEnum, ContainerWidthEnum, SystemMainColor, MenuThemeEnum } from '@/config'
+import { ref, computed, watch } from 'vue'
 import mittBus from '@/utils/mittBus'
-import { SettingThemeList, ThemeList } from '@/config'
+import { SettingThemeList, ThemeList, SystemMainColor } from '@/config'
+import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum } from '@/config'
 import { useSettingStore } from '@/store/modules/setting.ts'
+import { useTheme } from '@/hooks/useTheme.ts'
 
 const store = useSettingStore()
+
+const drawerVisible = ref(false)
+
+const { setGlopTheme } = useSettingStore()
+
+const { switchDark } = useTheme()
 
 const menuThemeList = ThemeList
 const mainColor = SystemMainColor
@@ -363,7 +375,6 @@ const pageTransitionOps = [
     label: 'slide-bottom'
   }
 ]
-
 const customRadiusOps = [
   {
     value: '0',
@@ -386,7 +397,6 @@ const customRadiusOps = [
     label: '1'
   }
 ]
-
 const containerWidthList = [
   {
     value: ContainerWidthEnum.FULL,
@@ -400,9 +410,7 @@ const containerWidthList = [
   }
 ]
 
-const drawerVisible = ref(false)
-mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
-
+// 设置菜单布局
 const setMenuType = (type: MenuTypeEnum) => {
   if (type === MenuTypeEnum.LEFT || type === MenuTypeEnum.TOP_LEFT) store.setMenuOpen(true)
   store.setMenuType(type)
@@ -411,6 +419,18 @@ const setMenuType = (type: MenuTypeEnum) => {
     store.setMenuOpen(true)
   }
 }
+
+// 设置（白天/黑夜/随系统）模式
+const setTheme = (item) => {
+  setGlopTheme(item.theme, item.theme)
+}
+
+mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
+
+watch(systemThemeMode, (val) => {
+  console.log(val)
+  switchDark()
+})
 </script>
 
 <style scoped lang="scss">
