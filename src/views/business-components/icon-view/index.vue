@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
+import MasonSearchFormFilter from '@/components/SearchFormFilter/index.vue'
+import MasonSearchFormFilterItem from '@/components/SearchFormFilter/components/search-form-filter-item.vue'
 
 const iconList = [
   { name: '', class: 'icon-cloud', unicode: '' },
@@ -233,6 +235,24 @@ const copyIconClass = (iconClass: string) => {
 </script>
 
 <template>
+  <el-card style="margin-bottom: 20px">
+    <MasonSearchFormFilter
+      ref="masonSearchFormFilterRef"
+      :label-width="80"
+      :is-show-fold-unfold-btn="false"
+    >
+      <template #default>
+        <MasonSearchFormFilterItem>
+          <el-form-item label="标题:" prop="title">
+            <el-input clearable placeholder="请输入搜索关键词" />
+          </el-form-item>
+        </MasonSearchFormFilterItem>
+      </template> </MasonSearchFormFilter
+  ></el-card>
+  <el-row style="margin-bottom: 20px">
+    <el-button type="primary">新增图标</el-button>
+    <el-button type="info" plain>复制图标列表</el-button>
+  </el-row>
   <div
     class="icon-view bg-white p-[10px] rounded-[5px] grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[10px]"
   >
