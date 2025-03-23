@@ -35,7 +35,7 @@
         <el-table-column prop="meta.icon" label="菜单图标" align="center" width="100">
           <template #default="scope">
             <div style="display: flex; align-items: center; justify-content: center">
-              <iconpark-icon :name="scope.row.meta.icon" size="18" />
+              <i :class="['iconfont', scope.row.meta.icon]"></i>
             </div>
           </template>
         </el-table-column>

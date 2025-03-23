@@ -27,7 +27,7 @@
                   'item-content'
                 ]"
               >
-                <iconpark-icon :name="menu?.meta.icon" size="18"></iconpark-icon>
+                <i :class="['iconfont', menu?.meta.icon]"></i>
                 <div>{{ menu.meta.title }}</div>
               </div>
             </el-tooltip>
