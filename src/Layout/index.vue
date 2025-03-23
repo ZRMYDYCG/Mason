@@ -41,6 +41,7 @@
         menuType === MenuTypeEnum.DUAL_MENU ||
         menuType === MenuTypeEnum.TOP_LEFT
       "
+      :style="{ backgroundColor: menuTheme.background, color: menuTheme.textColor }"
     >
       <div class="aside" :style="{ width: isCollapse ? '65px' : `${menuOpenWidth}px` }">
         <Logo />
@@ -51,6 +52,9 @@
             :collapse="isCollapse"
             :unique-opened="uniqueOpened"
             :collapse-transition="false"
+            :background-color="menuTheme.background"
+            :active-text-color="menuTheme.textActiveColor"
+            :text-color="menuTheme.textColor"
           >
             <SubMenu :menu-list="menuList" />
           </el-menu>
@@ -66,7 +70,7 @@
     <el-container>
       <el-header>
         <div class="flex gap-2">
-          <Logo v-show="menuType === MenuTypeEnum.TOP || menuType === MenuTypeEnum.TOP_LEFT" />
+          <Logo v-show="settingStore.menuType === MenuTypeEnum.TOP" />
           <ToolBarLeft />
           <MenuTop v-if="menuType === MenuTypeEnum.TOP" />
           <MenuMixed v-if="menuType === MenuTypeEnum.TOP_LEFT" :list="fatherMenuList" />
@@ -82,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { MenuTypeEnum } from '@/config'
 import { useRoute, useRouter } from 'vue-router'
@@ -113,10 +117,15 @@ const settingStore = useSettingStore()
 const menuType = computed(() => settingStore.menuType)
 const watermarkVisible = computed(() => settingStore.watermarkVisible)
 const uniqueOpened = computed(() => settingStore.uniqueOpened)
+const menuTheme = computed(() => settingStore.getMenuTheme)
 const { menuOpenWidth } = storeToRefs(settingStore)
 
 const fatherMenuList = computed(() => {
   return authStore.showMenuListGet || []
+})
+
+watch(menuTheme, (val) => {
+  console.log(val)
 })
 
 const menuList = computed(() => {

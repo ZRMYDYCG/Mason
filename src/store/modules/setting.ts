@@ -87,7 +87,6 @@ export const useSettingStore = defineStore({
     // 初始化state
     initState() {
       let sys = getSysStorage()
-
       if (sys) {
         sys = JSON.parse(sys)
         const { setting } = sys.user

@@ -215,7 +215,8 @@ const iconList = [
   { name: '', class: 'icon-xiangshangjiantou' },
   { name: '', class: 'icon-gudingkuandu' },
   { name: '', class: 'icon-dengbigaodupumankegundong--xianxing' },
-  { name: '', class: 'icon-dagou1' }
+  { name: '', class: 'icon-dagou1' },
+  { name: '', class: 'icon-yueliang1' }
 ]
 
 const copyIconClass = (iconClass: string) => {

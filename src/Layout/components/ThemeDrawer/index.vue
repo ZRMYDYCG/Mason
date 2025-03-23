@@ -8,7 +8,7 @@
       modal-class="setting-modal"
     >
       <div class="drawer-con">
-        <div class="close-wrap">
+        <div class="close-wrap" @click="drawerVisible = false">
           <i class="iconfont icon-cha" />
         </div>
 
@@ -147,7 +147,12 @@
         <p class="title" style="margin-top: 20px">菜单风格</p>
         <div class="menu-theme-wrap">
           <div>
-            <div class="item" v-for="item in menuThemeList" :key="item.theme">
+            <div
+              class="item"
+              v-for="item in menuThemeList"
+              :key="item.theme"
+              @click="setMenuTheme(item)"
+            >
               <div
                 class="box"
                 :class="{ 'is-active': item.theme === currentMenuTheme }"
@@ -336,8 +341,6 @@ const isLeftMenu = computed(() => store.menuType === MenuTypeEnum.LEFT)
 const isTopMenu = computed(() => store.menuType === MenuTypeEnum.TOP)
 const isTopLeftMenu = computed(() => store.menuType === MenuTypeEnum.TOP_LEFT)
 const isDualMenu = computed(() => store.menuType === MenuTypeEnum.DUAL_MENU)
-const showMenuButton = ref(true)
-const showRefreshButton = ref(true)
 const showLanguage = ref(true)
 const containerWidth = computed(() => store.containerWidth)
 const pageTransitionOps = [
@@ -409,7 +412,9 @@ const {
   showCrumbs,
   menuOpenWidth,
   showNprogress,
-  pageTransition
+  pageTransition,
+  showRefreshButton,
+  showMenuButton
 } = storeToRefs(store)
 
 // 设置菜单布局
@@ -420,6 +425,14 @@ const setMenuType = (type: MenuTypeEnum) => {
     store.setMenuTheme(MenuThemeEnum.DESIGN)
     store.setMenuOpen(true)
   }
+}
+
+// 设置菜单主图
+const setMenuTheme = (item) => {
+  if (isDualMenu.value || isTopMenu.value || isDark.value) {
+    return
+  }
+  store.setMenuTheme(item.theme)
 }
 
 // 设置（白天/黑夜/随系统）模式

@@ -2,6 +2,7 @@
   <div class="tool-bar-rt">
     <ThemeSetting></ThemeSetting>
     <FullScreen class="tb-item" />
+    <ThemeSwitch class="tb-item" />
     <el-text class="name" type="info" size="small">{{ username }}</el-text>
     <Avatar />
   </div>
@@ -13,6 +14,7 @@ import { useUserStore } from '@/store/modules/user'
 import FullScreen from './components/fullscreen.vue'
 import Avatar from './components/avatar.vue'
 import ThemeSetting from './components/theme-setting.vue'
+import ThemeSwitch from './components/theme-switch.vue'
 
 const userStore = useUserStore()
 const username = computed(() => userStore.userInfo.username)
@@ -30,6 +32,7 @@ $mason-grey-300-rgb: rgb(245, 245, 245) !default;
     margin: 0 10px 0 8px;
   }
 }
+
 i {
   display: block;
   padding: 8px;

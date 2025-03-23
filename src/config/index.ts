@@ -184,7 +184,7 @@ export const ThemeList: MenuThemeType[] = [
   {
     theme: MenuThemeEnum.DESIGN,
     background: '#FFFFFF',
-    systemNameColor: 'var(--art-text-gray-800)',
+    systemNameColor: '#68758E',
     iconColor: '#6B6B6B',
     textColor: '#29343D',
     textActiveColor: '#3F8CFF',

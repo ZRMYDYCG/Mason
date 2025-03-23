@@ -3,11 +3,11 @@
   <el-main v-loading="refresh">
     <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
       <transition :name="pageTransition" mode="out-in" appear>
-        <keep-alive :include="keepAliveNames">
-          <div :style="{ width: containerWidth, margin: '0 auto' }" :key="route.fullPath">
+        <div :style="{ width: containerWidth, margin: '0 auto' }" :key="route.fullPath">
+          <keep-alive :include="keepAliveNames">
             <component :is="createComponentWrapper(Component, route)!"></component>
-          </div>
-        </keep-alive>
+          </keep-alive>
+        </div>
       </transition>
       <el-backtop target=".el-main" :right="10" :bottom="80" />
     </router-view>
