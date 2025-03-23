@@ -1,9 +1,5 @@
 <template>
-  <iconpark-icon
-    @click="openDrawer"
-    class="cursor-pointer mr-2"
-    name="document-folder"
-  ></iconpark-icon>
+  <i @click="openDrawer" class="iconfont icon-buju" />
 </template>
 
 <script setup lang="ts">

@@ -2,7 +2,7 @@
   <el-breadcrumb separator="/">
     <template v-for="item in breadcrumbList" :key="item.path">
       <el-breadcrumb-item :to="{ path: item.path } as any" @click="onBreadcrumbClick(item.path)">
-        {{ item.meta.title }}
+        <el-text> {{ item.meta.title }}</el-text>
       </el-breadcrumb-item>
     </template>
   </el-breadcrumb>

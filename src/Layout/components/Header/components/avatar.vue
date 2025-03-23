@@ -1,11 +1,9 @@
 <template>
   <el-dropdown trigger="click">
-    <span class="avatar">
-      <img
-        :src="avatar ? avatar : 'https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg'"
-        alt="avatar"
-      />
-    </span>
+    <el-avatar
+      src="https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg"
+      size="small"
+    ></el-avatar>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item>
@@ -24,10 +22,8 @@ import { LOGIN_URL } from '@/config'
 import router from '@/router'
 import { useUserStore } from '@/store/modules/user'
 import { ElMessageBox, ElMessage } from 'element-plus'
-import { computed } from 'vue'
 
 const userStore = useUserStore()
-const avatar = computed(() => userStore.userInfo.avatar)
 
 const logout = () => {
   ElMessageBox.confirm('您是否确认退出登录?', '温馨提醒', {

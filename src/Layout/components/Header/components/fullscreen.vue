@@ -1,9 +1,8 @@
 <template>
-  <iconpark-icon
-    class="icon cursor-pointer"
-    :name="isFullscreen ? 'off-screen' : 'full-screen'"
+  <i
     @click="handleFullScreen"
-  ></iconpark-icon>
+    :class="['iconfont', isFullscreen ? 'icon-quanping' : 'icon-suoxiao1']"
+  ></i>
 </template>
 
 <script setup lang="ts">

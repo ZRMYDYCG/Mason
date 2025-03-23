@@ -1,6 +1,7 @@
 <template>
   <div class="tool-bar-lf">
     <CollapseIcon v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT" />
+    <Flushed />
     <BreadCrumb
       v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT && showCrumbs"
       v-show="globalStore.breadcrumb"
@@ -15,6 +16,7 @@ import CollapseIcon from './components/collapseIcon.vue'
 import BreadCrumb from './components/bread-crumb.vue'
 import { useGlobalStore } from '@/store/modules/global'
 import { useSettingStore } from '@/store/modules/setting.ts'
+import Flushed from './components/flushed.vue'
 
 const globalStore = useGlobalStore()
 const settingStore = useSettingStore()
@@ -25,8 +27,22 @@ const showCrumbs = computed(() => settingStore.showCrumbs)
 </script>
 
 <style scoped lang="scss">
+$mason-grey-300-rgb: rgb(245, 245, 245) !default;
+
 .tool-bar-lf {
   display: flex;
   align-items: center;
+}
+i {
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    color: var(--mason-grey-700);
+    background-color: rgb($mason-grey-300-rgb, 0.5);
+    font-weight: bold;
+  }
 }
 </style>

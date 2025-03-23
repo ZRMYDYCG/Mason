@@ -1,10 +1,8 @@
 <template>
-  <iconpark-icon
-    :name="isCollapse ? 'indent-right' : 'indent-left'"
-    size="20"
+  <i
     @click="changeCollapse"
-    class="cursor-pointer mr-3"
-  ></iconpark-icon>
+    :class="['iconfont', isCollapse ? 'icon-toggle-right' : 'icon-toggle-left']"
+  ></i>
 </template>
 
 <script setup lang="ts">
