@@ -27,6 +27,7 @@ export interface SettingState {
   pageTransition: string // 页面切换动画
   menuOpen: boolean // 菜单是否展开
   refresh: boolean
+  isRouterAlive: boolean // 路由是否存活
   watermarkVisible: boolean // 水印是否显示
   customRadius: string // 自定义圆角
   containerWidth: ContainerWidthEnum // 容器宽度
@@ -55,6 +56,7 @@ export const useSettingStore = defineStore({
     pageTransition: 'fade',
     menuOpen: true,
     refresh: false,
+    isRouterAlive: true,
     watermarkVisible: false,
     customRadius: defaultCustomRadius,
     containerWidth: ContainerWidthEnum.FULL
