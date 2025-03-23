@@ -8,7 +8,7 @@
       <SubMenu :menu-list="subItem.children" />
     </el-sub-menu>
     <el-menu-item v-else :index="subItem.path" @click="handleClickMenu(subItem)">
-      <i :class="['iconfont', subItem.meta.icon]" class="mr-2"></i>
+      <i v-if="subItem.meta.icon" :class="['iconfont', subItem.meta.icon]" class="mr-2"></i>
       <template #title>
         <span class="sle">{{ subItem.meta.title }}</span>
       </template>
