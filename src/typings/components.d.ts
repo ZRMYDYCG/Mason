@@ -11,6 +11,7 @@ declare module 'vue' {
     403: typeof import('./../components/ErrorMessage/403.vue')['default']
     404: typeof import('./../components/ErrorMessage/404.vue')['default']
     500: typeof import('./../components/ErrorMessage/500.vue')['default']
+    Editor: typeof import('./../components/Editor/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']

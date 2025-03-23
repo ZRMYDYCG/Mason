@@ -261,7 +261,7 @@ export const List = [
     title: '通知',
     content: [
       {
-        avatar: 'https://example.com/avatar1.jpg',
+        avatar: 'https://pica.zhimg.com/v2-a56b64418526d7c0c8f4ce46c25b06fe_1440w.jpg',
         title: '活动一',
         desc: '这是活动一的描述。',
         time: '2023-10-01 10:00',
@@ -269,7 +269,7 @@ export const List = [
         tagType: 'success'
       },
       {
-        avatar: 'https://example.com/avatar2.jpg',
+        avatar: 'https://pic2.zhimg.com/v2-9b47dec7b5251759eeb5257cfbb6d3e7_r.jpg',
         title: '活动二',
         desc: '这是活动二的描述。',
         time: '2023-10-02 11:00',
@@ -284,7 +284,7 @@ export const List = [
         tagType: 'info'
       },
       {
-        avatar: 'https://example.com/avatar4.jpg',
+        avatar: 'https://pic1.zhimg.com/v2-9e716daacd3f1ed9987c6d2ae0e47e4a_1440w.jpg',
         title: '活动四',
         desc: '这是活动四的描述。',
         time: '2023-10-04 13:00',
@@ -302,7 +302,7 @@ export const List = [
     title: '关注',
     content: [
       {
-        avatar: 'https://example.com/avatar1.jpg',
+        avatar: 'https://pic2.zhimg.com/v2-2ee2b5efbffc1162c208c2685aabb4fb_r.jpg',
         title: '活动一',
         desc: '这是活动一的描述。',
         time: '2023-10-01 10:00',
@@ -310,7 +310,7 @@ export const List = [
         tagType: 'success'
       },
       {
-        avatar: 'https://example.com/avatar2.jpg',
+        avatar: 'https://pic4.zhimg.com/v2-2501a93fe6acebfc81f8c1c825df2367_r.jpg',
         title: '活动二',
         desc: '这是活动二的描述。',
         time: '2023-10-02 11:00',
@@ -325,7 +325,7 @@ export const List = [
         tagType: 'info'
       },
       {
-        avatar: 'https://example.com/avatar4.jpg',
+        avatar: 'https://pic1.zhimg.com/v2-83d4420602c69b2611103f50037b537a_1440w.jpg',
         title: '活动四',
         desc: '这是活动四的描述。',
         time: '2023-10-04 13:00',
@@ -343,7 +343,7 @@ export const List = [
     title: '代办',
     content: [
       {
-        avatar: 'https://example.com/avatar1.jpg',
+        avatar: 'https://pica.zhimg.com/v2-1218ebd63cbebccabf7a982446b30f6a_r.jpg',
         title: '活动一',
         desc: '这是活动一的描述。',
         time: '2023-10-01 10:00',
@@ -351,7 +351,7 @@ export const List = [
         tagType: 'success'
       },
       {
-        avatar: 'https://example.com/avatar2.jpg',
+        avatar: 'https://pic4.zhimg.com/v2-57c2595305c41b944e470db795d000a5_1440w.jpg',
         title: '活动二',
         desc: '这是活动二的描述。',
         time: '2023-10-02 11:00',
@@ -366,7 +366,7 @@ export const List = [
         tagType: 'info'
       },
       {
-        avatar: 'https://example.com/avatar4.jpg',
+        avatar: 'https://pic1.zhimg.com/v2-5f78f05e8753f2771da04f4068f64adc_1440w.jpg',
         title: '活动四',
         desc: '这是活动四的描述。',
         time: '2023-10-04 13:00',

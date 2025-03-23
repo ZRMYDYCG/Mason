@@ -45,7 +45,8 @@
     "vue-img-cutter": "^3.0.6",
     "vue-router": "4",
     "vue3-count-to": "^1.1.2",
-    "watermark-dom": "^2.3.0"
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "next"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.0",
