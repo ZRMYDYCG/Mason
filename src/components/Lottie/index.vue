@@ -35,17 +35,14 @@ const props = withDefaults(
   }
 )
 
-// 创建 lottie接收变量 和 获取dom
 const animation = ref<LottieEvent>()
 const dom = ref<Element>()
 
-// 创建事件返回初始化lottie对象
 const emits = defineEmits<{
   (e: 'getAnimation', value: LottieEvent): void
   (e: 'getDom', value: Element): void
 }>()
 
-// 初始化渲染 lottie动画，并返回 lottie对象
 onMounted(() => {
   animation.value = lottie.loadAnimation({
     container: dom.value as Element, // 绑定dom节点

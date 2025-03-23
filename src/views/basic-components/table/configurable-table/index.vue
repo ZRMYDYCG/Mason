@@ -1032,7 +1032,7 @@ onMounted(async () => {
 
 <template>
   <div class="configurable-table">
-    <el-card shadow="never" class="border-0">
+    <el-card style="margin-bottom: 20px">
       <MasonSearchFormFilter
         ref="masonSearchFormFilterRef"
         :model="searchFormFilter"
@@ -1084,6 +1084,8 @@ onMounted(async () => {
           </MasonSearchFormFilterItem>
         </template>
       </MasonSearchFormFilter>
+    </el-card>
+    <el-card shadow="never" class="border-0">
       <el-row class="mb-2">
         <el-col>
           <el-button type="primary">

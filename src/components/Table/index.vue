@@ -79,7 +79,6 @@ const handleClickDelete = (column, $row) => {
 const currentPage = ref(1)
 // 页码变化
 const handleCurrentChange = (page) => {
-  console.log('currentPage', page)
   currentPage.value = page
   emits('pageChange', page)
 }
@@ -101,14 +100,7 @@ defineExpose({
 
 <template>
   <div class="mason-table" :class="{ 'mason-table-pagination': pagination.isShow }">
-    <el-table
-      ref="elTableRef"
-      v-bind="$attrs"
-      :header-cell-syle="{
-        height: '50px',
-        background: '#fafafa'
-      }"
-    >
+    <el-table ref="elTableRef" v-bind="$attrs">
       <!--   S 表格展开行   -->
       <el-table-column v-if="expand" type="expand">
         <template #default="{ $row }">

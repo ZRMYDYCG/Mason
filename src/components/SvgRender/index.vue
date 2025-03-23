@@ -52,6 +52,7 @@ const dimensions = computed(() => {
     }"
     :class="props.class"
     aria-hidden="true"
+    alt="#"
   />
 </template>
 
