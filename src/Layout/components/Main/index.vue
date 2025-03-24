@@ -1,16 +1,16 @@
 <template>
   <Tabs v-if="showWorkTab" />
   <el-main v-loading="refresh">
-    <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
-      <transition :name="pageTransition" mode="out-in" appear>
-        <div :style="{ width: containerWidth, margin: '0 auto' }" :key="route.fullPath">
+    <div :style="{ width: containerWidth, margin: '0 auto' }">
+      <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
+        <transition :name="pageTransition" mode="out-in" appear>
           <keep-alive :include="keepAliveNames">
             <component :is="createComponentWrapper(Component, route)!"></component>
           </keep-alive>
-        </div>
-      </transition>
-      <el-backtop target=".el-main" :right="10" :bottom="80" />
-    </router-view>
+        </transition>
+        <el-backtop target=".el-main" :right="10" :bottom="80" />
+      </router-view>
+    </div>
   </el-main>
 </template>
 
@@ -73,6 +73,6 @@ onBeforeUnmount(() => {
   padding: 10px;
   /*消除横移动画出现x轴滚动条*/
   overflow-x: hidden;
-  background-color: var(--el-bg-color-page);
+  //background-color: var(--el-bg-color-page);
 }
 </style>

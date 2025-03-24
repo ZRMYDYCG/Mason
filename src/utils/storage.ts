@@ -1,28 +1,27 @@
-import { ElMessage } from 'element-plus'
 import router from '@/router'
+import { ElMessage } from 'element-plus'
 import { useSettingStore } from '@/store/modules/setting'
 
-// 初始化本地数据
+/**
+ * 初始化本地数据
+ * */
 export function initState() {
   if (validateStorageData() || isLocalStorageEmpty()) {
     const settingStore = useSettingStore()
-
     settingStore.initState()
   }
 }
 
-// 获取系统存储数据
+/**
+ * 获取系统存储数据
+ * */
 export function getSysStorage() {
-  const version = getSysVersion() || import.meta.env.VITE_VERSION
-  return localStorage.getItem(`sys-v${version}`) as any
+  return localStorage.getItem('mason-admin-local-schema') as any
 }
 
-// 获取系统版本
-export function getSysVersion() {
-  return localStorage.getItem('version')
-}
-
-// 验证本地存储数据的类型
+/**
+ * 验证本地存储数据的类型
+ * */
 function validate(obj: any, schema: any, path: string = ''): boolean {
   return Object.keys(schema).every((key) => {
     const fullPath = path ? `${path}.${key}` : key
@@ -37,12 +36,13 @@ function validate(obj: any, schema: any, path: string = ''): boolean {
       )
       return false
     }
-
     return true
   })
 }
 
-// 显示错误消息并处理登出逻辑
+/**
+ * 显示错误消息并处理登出逻辑
+ * */
 async function handleError() {
   ElMessage({
     type: 'error',
@@ -62,25 +62,13 @@ async function logOut() {
   }, 1000)
 }
 
-// 验证本地存储数据并处理异常
+/**
+ * 验证本地存储数据并处理异常
+ * */
 export function validateStorageData() {
   if (location.href.includes('/login')) return true
-
   const schema = {
     user: {
-      info: 'object',
-      isLogin: 'boolean',
-      language: 'string',
-      worktab: {
-        current: {
-          title: 'string',
-          path: 'string',
-          name: 'string',
-          params: 'object',
-          query: 'object'
-        },
-        opened: 'object'
-      },
       setting: {
         systemThemeType: 'string',
         systemThemeMode: 'string',
@@ -123,23 +111,27 @@ export function validateStorageData() {
   }
 }
 
-// 获取本地存储数据
+/**
+ * 获取本地存储数据
+ * */
 function getLocalStorageData() {
-  return JSON.parse(getSysStorage() || '{}')
+  return JSON.parse(localStorage.getItem('user') || '{}')
 }
 
-// 本地存储是否为空
+/**
+ * 本地存储是否为空
+ * */
 function isLocalStorageEmpty() {
   return Object.keys(getLocalStorageData()).length === 0
 }
 
-// 将数据保存到 localStorage 中（在即将离开页面(刷新或关闭)时执行）
-export function saveUserData() {
+/**
+ * 将数据保存到 localStorage 中（在即将离开页面(刷新或关闭)时执行）
+ * */
+export function saveUserData(dataToSave: any) {
   const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
   const eventType = isiOS ? 'pagehide' : 'beforeunload'
-
   window.addEventListener(eventType, () => {
-    if (getSysVersion() && getSysStorage()) {
-    }
+    localStorage.setItem('user', JSON.stringify(dataToSave))
   })
 }

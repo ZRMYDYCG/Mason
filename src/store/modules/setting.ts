@@ -113,8 +113,6 @@ export const useSettingStore = defineStore({
         this.watermarkVisible = setting.watermarkVisible
         this.customRadius = setting.customRadius || defaultCustomRadius
         this.setCustomRadius(this.customRadius)
-      } else {
-        this.setCustomRadius(this.customRadius)
       }
     },
     setMenuType(type: MenuTypeEnum) {
