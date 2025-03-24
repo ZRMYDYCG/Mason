@@ -1,6 +1,7 @@
 import router from '@/router'
 import { ElMessage } from 'element-plus'
 import { useSettingStore } from '@/store/modules/setting'
+import { useUserStore } from '@/store/modules/user.ts'
 
 /**
  * 初始化本地数据
@@ -94,16 +95,13 @@ export function validateStorageData() {
     const data = getLocalStorageData()
     // 模拟本地数据类型错误
     // data.user.language = 2024
-
     if (Object.keys(data).length === 0) {
       logOut()
       return false
     }
-
     if (!validate(data, schema)) {
       throw new Error('本地存储数据结构异常')
     }
-
     return true
   } catch {
     handleError()
@@ -115,7 +113,7 @@ export function validateStorageData() {
  * 获取本地存储数据
  * */
 function getLocalStorageData() {
-  return JSON.parse(localStorage.getItem('user') || '{}')
+  return JSON.parse(localStorage.getItem('mason-admin-local-schema') || '{}')
 }
 
 /**
@@ -128,10 +126,11 @@ function isLocalStorageEmpty() {
 /**
  * 将数据保存到 localStorage 中（在即将离开页面(刷新或关闭)时执行）
  * */
-export function saveUserData(dataToSave: any) {
+export function saveUserData() {
   const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
   const eventType = isiOS ? 'pagehide' : 'beforeunload'
+
   window.addEventListener(eventType, () => {
-    localStorage.setItem('user', JSON.stringify(dataToSave))
+    useUserStore().saveUserData()
   })
 }

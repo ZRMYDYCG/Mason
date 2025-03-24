@@ -24,13 +24,17 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@types/markdown-it": "^14.1.2",
     "@vueuse/core": "^10.11.0",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "next",
     "axios": "^1.6.8",
     "dayjs": "^1.11.13",
     "echarts": "^5.5.0",
     "echarts-liquidfill": "^3.1.0",
     "element-plus": "^2.7.5",
     "file-saver": "^2.0.5",
+    "highlight.js": "^11.11.1",
     "js-beautify": "^1.15.4",
     "lodash": "^4.17.21",
     "lottie-web": "^5.12.2",
@@ -44,9 +48,7 @@
     "vue": "^3.4.21",
     "vue-img-cutter": "^3.0.6",
     "vue-router": "4",
-    "vue3-count-to": "^1.1.2",
-    "@wangeditor/editor": "^5.1.23",
-    "@wangeditor/editor-for-vue": "next"
+    "vue3-count-to": "^1.1.2"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.0",

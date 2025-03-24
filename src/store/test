@@ -1,0 +1,72 @@
+import { defineStore } from 'pinia'
+import { UserState } from '@/store/interface'
+import piniaPersistConfig from '@/store/helper/persist'
+import { getUserInfoApi } from '@/api/modules/login'
+import { useSettingStore } from './setting.ts'
+import { useTabsStore } from './tabs.ts'
+
+export const useUserStore = defineStore({
+  id: 'user',
+  state: (): UserState => ({
+    token: '',
+    expires: 0,
+    userInfo: {
+      id: 0,
+      name: '',
+      username: null,
+      email: null,
+      phone: null,
+      avatar: null,
+      remark: null,
+      roleId: 0,
+      role: '',
+      roleName: '',
+      isSuper: 0
+    }
+  }),
+  getters: {
+    getUserInfo(): any {
+      return this.userInfo
+    },
+    getSettingState() {
+      return useSettingStore().$state
+    },
+    getTabsState() {
+      return useTabsStore().$state
+    }
+  },
+  actions: {
+    setTokenWithExpires(token: string, expires: number) {
+      this.token = token
+      this.expires = expires
+    },
+    async getUserInfo(userId: number) {
+      if (userId) {
+        const res = await getUserInfoApi(userId)
+        if (res.code === 200) {
+          this.userInfo = res.data
+        }
+      }
+    },
+    saveUserData() {
+      saveStoreStorage({
+        user: {
+          info: this.userInfo,
+          token: this.token,
+          worktab: this.getTabsState,
+          setting: this.getSettingState
+        }
+      })
+    }
+  }
+})
+
+// 数据持久化存储
+function saveStoreStorage<T>(newData: T) {
+  const schemaName = localStorage.getItem('mason-admin-local-schema') || ''
+  const storedData = JSON.parse(localStorage.getItem(schemaName) || '{}')
+
+  // 合并新数据与现有数据
+  const mergedData = { ...storedData, ...newData }
+  localStorage.setItem('mason-admin-local-schema', JSON.stringify(mergedData))
+}

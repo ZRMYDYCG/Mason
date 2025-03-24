@@ -24,12 +24,10 @@ export const useUserStore = defineStore({
   }),
   getters: {},
   actions: {
-    // Set Token
     setTokenWithExpires(token: string, expires: number) {
       this.token = token
       this.expires = expires
     },
-    // Set setUserInfo
     async getUserInfo(userId: number) {
       if (userId) {
         const res = await getUserInfoApi(userId)
@@ -37,7 +35,8 @@ export const useUserStore = defineStore({
           this.userInfo = res.data
         }
       }
-    }
+    },
+    saveUserData() {}
   },
   persist: piniaPersistConfig('ym-user')
 })

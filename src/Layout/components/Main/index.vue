@@ -5,7 +5,10 @@
       <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
         <transition :name="pageTransition" mode="out-in" appear>
           <keep-alive :include="keepAliveNames">
-            <component :is="createComponentWrapper(Component, route)!"></component>
+            <component
+              :is="createComponentWrapper(Component, route)!"
+              :key="route.fullPath"
+            ></component>
           </keep-alive>
         </transition>
         <el-backtop target=".el-main" :right="10" :bottom="80" />
