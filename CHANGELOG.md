@@ -1,5 +1,40 @@
 # Changelog
 
+## [1.0.4](https://github.com/ZRMYDYCG/Mason/compare/v1.0.3...v1.0.4) (2025-03-25)
+
+### ✨ Features | 新功能
+
+* ✨️调整白天黑夜模式逻辑 ([cc53d3d](https://github.com/ZRMYDYCG/Mason/commit/cc53d3dd6012fdc5af440073417c3dcaaf4ec6f7))
+* ✨️调整系统主题色设置逻辑 ([ca7325b](https://github.com/ZRMYDYCG/Mason/commit/ca7325b4dad40b0a11f3e3f54eac1763e27fea64))
+* ✨️调整Icon图标的显示 ([930aa36](https://github.com/ZRMYDYCG/Mason/commit/930aa36a9808cc90718cd6c56355b0fe15669b15))
+* ✨️更新基础配置 ([a30608f](https://github.com/ZRMYDYCG/Mason/commit/a30608fed9f6c4823c397f45855ff7daaae0eacf))
+* ✨️容器宽度铺满、定宽模式切换 ([e9f5a46](https://github.com/ZRMYDYCG/Mason/commit/e9f5a4654a178d27e18bfd43afed7b06c4c9df62))
+* ✨️图标预览新增配置 ([5e1794b](https://github.com/ZRMYDYCG/Mason/commit/5e1794bd26ec5e8d9a41182e8c7b7260e82017ef))
+* ✨️项目基础配置 ([e8c3f05](https://github.com/ZRMYDYCG/Mason/commit/e8c3f0543880136129c7082e0c93824a3d19cc40))
+* ✨️新增富文本编辑器 ([aa0d60d](https://github.com/ZRMYDYCG/Mason/commit/aa0d60d13f8917a4e7de698bf117753a7d9d88e3))
+* ✨️新增全局水印 ([9526b6b](https://github.com/ZRMYDYCG/Mason/commit/9526b6b203b675a225798e849444c6eeb7911e90))
+* ✨️新增色弱模式 ([338de93](https://github.com/ZRMYDYCG/Mason/commit/338de9353c738a083076cf0e8674970b41a21b9f))
+* ✨️新增通知公告 ([ec3671b](https://github.com/ZRMYDYCG/Mason/commit/ec3671b0f48dbca8e5ff58cbedc1b85f54fde050))
+* ✨️新增系统配置模板 ([034bc4b](https://github.com/ZRMYDYCG/Mason/commit/034bc4bfa89cc8b9a7c08a1f29038d5863b4d999))
+* ✨️页面局部重载 ([932d9a4](https://github.com/ZRMYDYCG/Mason/commit/932d9a41970b8cf6c71b82774021d8b0d01de01f))
+* ✨️优化菜单显示样式 ([dc3cbcb](https://github.com/ZRMYDYCG/Mason/commit/dc3cbcb12bd92adddb4e5b18c9a8c621b5508169))
+* ✨️支持进行多种布局模式：垂直、顶部、混合、双列 ([cb0d1ce](https://github.com/ZRMYDYCG/Mason/commit/cb0d1ce9fe655c2cb2bb94a51727df98193a7333))
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🪲️菜单图标没有判断导致元素占位 ([2b079e6](https://github.com/ZRMYDYCG/Mason/commit/2b079e68696c7295d4097c3f762fd04ecfadc2d3))
+* 🪲️修复 key 值绑定错误导致页面切换动画失效 ([0f8456d](https://github.com/ZRMYDYCG/Mason/commit/0f8456d9ebae2675dab77611a8a3989d7d1da11d))
+
+### 💄 Styles | 风格
+
+* 📚️优化header显示 ([6da8d2e](https://github.com/ZRMYDYCG/Mason/commit/6da8d2e15d2b57198bf4689597b13dc17d9534f1))
+
+### ⚡ Performance Improvements | 性能优化
+
+* ✨️初步添加aigc组件模板（待完善） ([fdba0bc](https://github.com/ZRMYDYCG/Mason/commit/fdba0bc0c9095b3946e161e8be8160dada958281))
+* ✨️完整主题配置 ([c30b1fb](https://github.com/ZRMYDYCG/Mason/commit/c30b1fb37dbba1589257699adba3fbb2d3a2228d))
+* ✨️优化主体样式 ([cb86298](https://github.com/ZRMYDYCG/Mason/commit/cb8629835e69f3052558589c41e61019ac9a9b92))
+
 ## [1.0.3](https://github.com/ZRMYDYCG/Mason/compare/v1.0.2...v1.0.3) (2025-03-19)
 
 ### ✨ Features | 新功能
