@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { MenuThemeType } from '@/config'
+import piniaPersistConfig from '@/store/helper/persist'
 import { ThemeList, ElementPlusTheme, DarkMenuStyles, SystemSetting } from '@/config'
 import { SystemThemeEnum, MenuThemeEnum, MenuTypeEnum, ContainerWidthEnum } from '@/config'
-import { getSysStorage } from '@/utils/storage'
 
 const { defaultMenuWidth, defaultCustomRadius } = SystemSetting
 
@@ -34,7 +34,7 @@ export interface SettingState {
 }
 
 export const useSettingStore = defineStore({
-  id: 'settingStore',
+  id: 'setting',
   state: (): SettingState => ({
     menuType: MenuTypeEnum.LEFT,
     menuOpenWidth: defaultMenuWidth,
@@ -84,37 +84,6 @@ export const useSettingStore = defineStore({
     }
   },
   actions: {
-    // 初始化state
-    initState() {
-      let sys = getSysStorage()
-      if (sys) {
-        sys = JSON.parse(sys)
-        const { setting } = sys.user
-        this.menuType = setting.menuType || MenuTypeEnum.LEFT
-        this.menuOpenWidth = Number(setting.menuOpenWidth) || defaultMenuWidth
-        this.systemThemeType = setting.systemThemeType || SystemThemeEnum.LIGHT
-        this.systemThemeMode = setting.systemThemeMode || SystemThemeEnum.LIGHT
-        this.menuThemeType = setting.menuThemeType || MenuThemeEnum.DESIGN
-        this.containerWidth = setting.containerWidth || ContainerWidthEnum.FULL
-        this.systemThemeColor = setting.systemThemeColor || ElementPlusTheme.primary
-        this.boxBorderMode = setting.boxBorderMode
-        this.uniqueOpened = setting.uniqueOpened
-        this.showMenuButton = setting.showMenuButton
-        this.showRefreshButton = setting.showRefreshButton
-        this.showCrumbs = setting.showCrumbs
-        this.autoClose = setting.autoClose
-        this.showWorkTab = setting.showWorkTab
-        this.showLanguage = setting.showLanguage
-        this.showNprogress = setting.showNprogress
-        this.colorWeak = setting.colorWeak
-        this.showSettingGuide = setting.showSettingGuide
-        this.pageTransition = setting.pageTransition
-        this.menuOpen = setting.menuOpen
-        this.watermarkVisible = setting.watermarkVisible
-        this.customRadius = setting.customRadius || defaultCustomRadius
-        this.setCustomRadius(this.customRadius)
-      }
-    },
     setMenuType(type: MenuTypeEnum) {
       this.menuType = type
     },
@@ -128,10 +97,6 @@ export const useSettingStore = defineStore({
     setElementTheme(theme: string) {
       this.systemThemeColor = theme
     },
-    // 设置盒子模式
-    setBorderMode() {
-      this.boxBorderMode = !this.boxBorderMode
-    },
     // 设置容器宽度
     setContainerWidth(width: ContainerWidthEnum) {
       this.containerWidth = width
@@ -139,15 +104,7 @@ export const useSettingStore = defineStore({
     // 设置菜单是否展开
     setMenuOpen(open: boolean) {
       this.menuOpen = open
-    },
-    // 刷新当前页
-    reload() {
-      this.refresh = !this.refresh
-    },
-    // 设置自定义圆角
-    setCustomRadius(radius: string) {
-      this.customRadius = radius
-      document.documentElement.style.setProperty('--custom-radius', `${radius}rem`)
     }
-  }
+  },
+  persist: piniaPersistConfig('setting')
 })

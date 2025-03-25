@@ -936,7 +936,11 @@ const columns = [
           'preview-src-list': [value],
           'preview-teleported': true,
           'hide-on-click-modal': true,
-          class: 'cover'
+          class: 'cover',
+          style: {
+            width: '30px',
+            height: '30px'
+          }
         })
       }
     },
@@ -956,7 +960,7 @@ const columns = [
     dataFormatConf: {
       withScopeRow: true,
       formatFunction: ({ value }) => {
-        return `开启${value}`
+        return `${value}`
       }
     }
   },

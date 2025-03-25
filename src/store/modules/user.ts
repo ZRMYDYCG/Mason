@@ -4,7 +4,7 @@ import piniaPersistConfig from '@/store/helper/persist'
 import { getUserInfoApi } from '@/api/modules/login'
 
 export const useUserStore = defineStore({
-  id: 'ym-user',
+  id: 'user',
   state: (): UserState => ({
     token: '',
     expires: 0,
@@ -35,8 +35,7 @@ export const useUserStore = defineStore({
           this.userInfo = res.data
         }
       }
-    },
-    saveUserData() {}
+    }
   },
-  persist: piniaPersistConfig('ym-user')
+  persist: piniaPersistConfig('user')
 })

@@ -9,7 +9,7 @@ import { getAllBreadcrumbList, getFlatMenuList, getShowMenuList } from '@/utils'
 import { ElMessage } from 'element-plus'
 
 export const useAuthStore = defineStore({
-  id: 'ym-auth',
+  id: 'auth',
   state: (): AuthState => ({
     // 按钮权限列表
     authButtonList: {},

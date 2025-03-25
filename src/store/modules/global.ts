@@ -4,7 +4,7 @@ import piniaPersistConfig from '@/store/helper/persist'
 import { DEFAULT_PRIMARY } from '@/config'
 
 export const useGlobalStore = defineStore({
-  id: 'ym-global',
+  id: 'global',
   state: (): GlobalState => ({
     isCollapse: false,
     isDark: false,
@@ -18,10 +18,7 @@ export const useGlobalStore = defineStore({
     },
     setBreadcrumbState(state: boolean) {
       this.breadcrumb = state
-    },
-    setPrimaryState(color: string) {
-      this.primary = color
     }
   },
-  persist: piniaPersistConfig('ym-global')
+  persist: piniaPersistConfig('global')
 })

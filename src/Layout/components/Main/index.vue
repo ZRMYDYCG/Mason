@@ -1,19 +1,19 @@
 <template>
   <Tabs v-if="showWorkTab" />
   <el-main v-loading="refresh">
-    <div :style="{ width: containerWidth, margin: '0 auto' }">
-      <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
-        <transition :name="pageTransition" mode="out-in" appear>
-          <keep-alive :include="keepAliveNames">
-            <component
-              :is="createComponentWrapper(Component, route)!"
-              :key="route.fullPath"
-            ></component>
-          </keep-alive>
-        </transition>
-        <el-backtop target=".el-main" :right="10" :bottom="80" />
-      </router-view>
-    </div>
+    <!--    <div :style="{ width: containerWidth, margin: '0 auto' }">-->
+    <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
+      <!--      <transition :name="pageTransition" mode="out-in" appear>-->
+      <keep-alive :include="keepAliveNames">
+        <component
+          :is="createComponentWrapper(Component, route)!"
+          :key="route.fullPath"
+        ></component>
+      </keep-alive>
+      <!--      </transition>-->
+      <el-backtop target=".el-main" :right="10" :bottom="80" />
+    </router-view>
+    <!--    </div>-->
   </el-main>
 </template>
 
@@ -25,6 +25,7 @@ import { useKeepAliveStore } from '@/store/modules/keepAlive'
 import { useDebounceFn } from '@vueuse/core'
 import { useGlobalStore } from '@/store/modules/global'
 import { useSettingStore } from '@/store/modules/setting.ts'
+import { useUserStore } from '@/store/modules/user.ts'
 
 const keepAliveStore = useKeepAliveStore()
 const keepAliveNames = computed(() => keepAliveStore.keepAliveNames)
@@ -68,6 +69,10 @@ window.addEventListener('resize', listeningWindow, false)
 onBeforeUnmount(() => {
   window.removeEventListener('resize', listeningWindow)
 })
+
+const testPiniaStorage = () => {
+  useUserStore().userInfo.username = '一个勺子'
+}
 </script>
 
 <style scoped lang="scss">
