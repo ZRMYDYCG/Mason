@@ -9,7 +9,6 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import viteCompression from 'vite-plugin-compression'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import inspect from 'vite-plugin-inspect'
-import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
@@ -54,7 +53,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
     css: {
       devSourcemap: !isProduction, // 开发环境下启用 sourcemap
       postcss: {
-        plugins: [autoprefixer()]
+        plugins: []
       },
       preprocessorOptions: {
         scss: {
