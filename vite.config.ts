@@ -18,14 +18,16 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     },
     server: {
       host: '0.0.0.0',
-      port: viteEnv.VITE_PORT as unknown as number,
-      proxy: {
-        '/api': {
-          target: viteEnv.VITE_PROXY,
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
-        }
-      }
+      port: viteEnv.VITE_PORT ? parseInt(viteEnv.VITE_PORT, 10) : 3000,
+      proxy: viteEnv.VITE_PROXY
+        ? {
+            '/api': {
+              target: viteEnv.VITE_PROXY,
+              changeOrigin: true,
+              rewrite: (path) => path.replace(/^\/api/, '')
+            }
+          }
+        : {}
     },
     plugins: [
       vue({
@@ -37,13 +39,13 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }),
       AutoImport({
         resolvers: [ElementPlusResolver()],
-        dts: 'src/typings/auto-imports.d.ts' // 指定类型声明文件的路径
+        dts: 'src/typings/auto-imports.d.ts'
       }),
       Components({
         resolvers: [ElementPlusResolver()],
-        dts: 'src/typings/components.d.ts' // 指定类型声明文件的路径
+        dts: 'src/typings/components.d.ts'
       }),
-      visualizer({ open: false })
+      visualizer({ open: true })
     ],
     esbuild: {
       pure: viteEnv.VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : []
@@ -52,16 +54,19 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       outDir: 'dist',
       minify: 'esbuild',
       sourcemap: false,
-      // 禁用 gzip 压缩大小报告，可略微减少打包时间
-      reportCompressedSize: true,
-      // 规定触发警告的 chunk 大小
-      chunkSizeWarningLimit: 2000,
+      reportCompressedSize: false, // 禁用 gzip 压缩大小报告以减少打包时间
+      chunkSizeWarningLimit: 1000, // 调整触发警告的 chunk 大小
       rollupOptions: {
         output: {
-          // Static resource classification and packaging
           chunkFileNames: 'assets/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
-          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+          manualChunks(id: string) {
+            if (id.includes('node_modules')) {
+              return id.toString().split('node_modules/')[1].split('/')[0].toString()
+            }
+            return 'src' // 将src目录下的代码打包成一个chunk
+          }
         }
       }
     }
