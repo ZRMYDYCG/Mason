@@ -9,6 +9,7 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import viteCompression from 'vite-plugin-compression'
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import inspect from 'vite-plugin-inspect'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
@@ -125,7 +126,8 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
       // CommonJS转换（兼容旧包）
       viteCommonjs(),
       // 检查插件中间状态
-      inspect()
+      inspect(),
+      tailwindcss()
     ],
     optimizeDeps: {
       include: ['vue', 'vue-router', 'pinia', 'element-plus', 'axios'],
