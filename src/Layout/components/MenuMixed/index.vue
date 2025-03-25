@@ -67,7 +67,6 @@ onMounted(() => {
 <template>
   <div class="mixed-top-menu">
     <i @click="scroll('left')" class="iconfont icon-xiangzuo scroll-btn left" />
-
     <el-scrollbar
       ref="scrollbarRef"
       wrap-class="scrollbar-wrapper"
@@ -82,7 +81,7 @@ onMounted(() => {
             @click="handleMenuJump(item)"
             v-if="!item.meta.isHide"
           >
-            <iconpark-icon :name="item.meta.icon" />
+            <i v-if="item.meta.icon" :class="['iconfont mr-2', item.meta.icon]" />
             <span>{{ item.meta.title }}</span>
           </div>
         </template>

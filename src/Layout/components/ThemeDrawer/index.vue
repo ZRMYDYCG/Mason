@@ -1,3 +1,179 @@
+<script setup lang="ts">
+import { ref, computed, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+import mittBus from '@/utils/mittBus'
+import { SettingThemeList, ThemeList, SystemMainColor } from '@/config'
+import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum } from '@/config'
+import { useSettingStore } from '@/store/modules/setting.ts'
+import { useTheme } from '@/hooks/useTheme.ts'
+import { ElMessage } from 'element-plus'
+
+const store = useSettingStore()
+
+const drawerVisible = ref(false)
+
+const { switchDark, changePrimary } = useTheme()
+
+const menuThemeList = ThemeList
+const mainColor = SystemMainColor
+const isDark = computed(() => store.isDark)
+const systemThemeMode = computed(() => store.systemThemeMode)
+const currentMenuTheme = computed(() => store.menuThemeType)
+const systemThemeColor = computed(() => store.systemThemeColor)
+const boxBorderMode = computed(() => store.boxBorderMode)
+const customRadius = computed(() => store.customRadius)
+const isLeftMenu = computed(() => store.menuType === MenuTypeEnum.LEFT)
+const isTopMenu = computed(() => store.menuType === MenuTypeEnum.TOP)
+const isTopLeftMenu = computed(() => store.menuType === MenuTypeEnum.TOP_LEFT)
+const isDualMenu = computed(() => store.menuType === MenuTypeEnum.DUAL_MENU)
+const showLanguage = ref(true)
+const containerWidth = computed(() => store.containerWidth)
+const pageTransitionOps = [
+  {
+    value: '',
+    label: '无动画'
+  },
+  {
+    value: 'fade',
+    label: 'fade'
+  },
+  {
+    value: 'fade-transform',
+    label: 'fade-transform'
+  },
+  {
+    value: 'slide-right',
+    label: 'slide-right'
+  },
+  {
+    value: 'slide-top',
+    label: 'slide-top'
+  },
+  {
+    value: 'slide-bottom',
+    label: 'slide-bottom'
+  }
+]
+const customRadiusOps = [
+  {
+    value: '0',
+    label: '0'
+  },
+  {
+    value: '0.25',
+    label: '0.25'
+  },
+  {
+    value: '0.5',
+    label: '0.5'
+  },
+  {
+    value: '0.75',
+    label: '0.75'
+  },
+  {
+    value: '1',
+    label: '1'
+  }
+]
+const containerWidthList = [
+  {
+    value: ContainerWidthEnum.FULL,
+    label: '铺满',
+    icon: 'icon-dengbigaodupumankegundong--xianxing'
+  },
+  {
+    value: ContainerWidthEnum.BOXED,
+    label: '定宽',
+    icon: 'icon-gudingkuandu'
+  }
+]
+
+const {
+  colorWeak,
+  watermarkVisible,
+  showWorkTab,
+  uniqueOpened,
+  showCrumbs,
+  menuOpenWidth,
+  showNprogress,
+  pageTransition,
+  showRefreshButton,
+  showMenuButton,
+  isFooter
+} = storeToRefs(store)
+
+// 设置菜单布局
+const setMenuType = (type: MenuTypeEnum) => {
+  if (type === MenuTypeEnum.LEFT || type === MenuTypeEnum.TOP_LEFT) store.setMenuOpen(true)
+  store.setMenuType(type)
+  if (type === MenuTypeEnum.DUAL_MENU) {
+    store.setMenuTheme(MenuThemeEnum.DESIGN)
+    store.setMenuOpen(true)
+  }
+}
+
+// 设置菜单主图
+const setMenuTheme = (item) => {
+  if (isDualMenu.value || isTopMenu.value || isDark.value) {
+    return
+  }
+  store.setMenuTheme(item.theme)
+}
+
+// 设置（白天/黑夜/随系统）模式
+const setTheme = (item) => {
+  store.setGlopTheme(item.theme, item.theme)
+}
+
+// 设置项目主题颜色
+const setSystemThemeColor = (color) => {
+  store.setElementTheme(color)
+}
+
+// 设置容器宽度
+const setContainerWidth = (item) => {
+  store.setContainerWidth(item.value)
+}
+
+// 设置色弱模式
+const setColorWeak = () => {
+  let el = document.getElementsByTagName('html')[0]
+  if (colorWeak.value) {
+    el.setAttribute('class', 'color-weak')
+  } else {
+    el.className = el.className.replace(/\bcolor-weak\b/g, '').trim()
+  }
+}
+
+// 复制配置
+const copyConfig = () => {
+  const config = localStorage.getItem('setting')
+  if (config) {
+    navigator.clipboard
+      .writeText(config)
+      .then(() => {
+        ElMessage.success('配置已复制到剪贴板')
+      })
+      .catch((err) => {
+        ElMessage.error('复制失败：' + err)
+      })
+  } else {
+    ElMessage.error('未找到配置')
+  }
+}
+
+watch(systemThemeMode, () => {
+  switchDark()
+})
+
+watch(systemThemeColor, (val) => {
+  changePrimary(val)
+})
+
+mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
+</script>
+
 <template>
   <div class="setting">
     <el-drawer
@@ -247,7 +423,6 @@
             <span>显示全局面包屑导航</span>
             <el-switch v-model="showCrumbs" />
           </div>
-
           <div class="item">
             <span>显示多语言选择</span>
             <el-switch v-model="showLanguage" />
@@ -263,6 +438,10 @@
           <div class="item">
             <span>全局水印</span>
             <el-switch v-model="watermarkVisible" />
+          </div>
+          <div class="item">
+            <span>是否展示页脚</span>
+            <el-switch v-model="isFooter" />
           </div>
           <div class="item" style="display: flex">
             <span>菜单宽度</span>
@@ -308,168 +487,15 @@
               />
             </el-select>
           </div>
+          <el-divider>开发者选项</el-divider>
+          <div class="w-full">
+            <el-button @click="copyConfig" style="width: 100%">复制配置</el-button>
+          </div>
         </div>
       </div>
     </el-drawer>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-import { storeToRefs } from 'pinia'
-import mittBus from '@/utils/mittBus'
-import { SettingThemeList, ThemeList, SystemMainColor } from '@/config'
-import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum } from '@/config'
-import { useSettingStore } from '@/store/modules/setting.ts'
-import { useTheme } from '@/hooks/useTheme.ts'
-
-const store = useSettingStore()
-
-const drawerVisible = ref(false)
-
-const { switchDark, changePrimary } = useTheme()
-
-const menuThemeList = ThemeList
-const mainColor = SystemMainColor
-const isDark = computed(() => store.isDark)
-const systemThemeMode = computed(() => store.systemThemeMode)
-const currentMenuTheme = computed(() => store.menuThemeType)
-const systemThemeColor = computed(() => store.systemThemeColor)
-const boxBorderMode = computed(() => store.boxBorderMode)
-const customRadius = computed(() => store.customRadius)
-const isLeftMenu = computed(() => store.menuType === MenuTypeEnum.LEFT)
-const isTopMenu = computed(() => store.menuType === MenuTypeEnum.TOP)
-const isTopLeftMenu = computed(() => store.menuType === MenuTypeEnum.TOP_LEFT)
-const isDualMenu = computed(() => store.menuType === MenuTypeEnum.DUAL_MENU)
-const showLanguage = ref(true)
-const containerWidth = computed(() => store.containerWidth)
-const pageTransitionOps = [
-  {
-    value: '',
-    label: '无动画'
-  },
-  {
-    value: 'fade',
-    label: 'fade'
-  },
-  {
-    value: 'fade-transform',
-    label: 'fade-transform'
-  },
-  {
-    value: 'slide-right',
-    label: 'slide-right'
-  },
-  {
-    value: 'slide-top',
-    label: 'slide-top'
-  },
-  {
-    value: 'slide-bottom',
-    label: 'slide-bottom'
-  }
-]
-const customRadiusOps = [
-  {
-    value: '0',
-    label: '0'
-  },
-  {
-    value: '0.25',
-    label: '0.25'
-  },
-  {
-    value: '0.5',
-    label: '0.5'
-  },
-  {
-    value: '0.75',
-    label: '0.75'
-  },
-  {
-    value: '1',
-    label: '1'
-  }
-]
-const containerWidthList = [
-  {
-    value: ContainerWidthEnum.FULL,
-    label: '铺满',
-    icon: 'icon-dengbigaodupumankegundong--xianxing'
-  },
-  {
-    value: ContainerWidthEnum.BOXED,
-    label: '定宽',
-    icon: 'icon-gudingkuandu'
-  }
-]
-
-const {
-  colorWeak,
-  watermarkVisible,
-  showWorkTab,
-  uniqueOpened,
-  showCrumbs,
-  menuOpenWidth,
-  showNprogress,
-  pageTransition,
-  showRefreshButton,
-  showMenuButton
-} = storeToRefs(store)
-
-// 设置菜单布局
-const setMenuType = (type: MenuTypeEnum) => {
-  if (type === MenuTypeEnum.LEFT || type === MenuTypeEnum.TOP_LEFT) store.setMenuOpen(true)
-  store.setMenuType(type)
-  if (type === MenuTypeEnum.DUAL_MENU) {
-    store.setMenuTheme(MenuThemeEnum.DESIGN)
-    store.setMenuOpen(true)
-  }
-}
-
-// 设置菜单主图
-const setMenuTheme = (item) => {
-  if (isDualMenu.value || isTopMenu.value || isDark.value) {
-    return
-  }
-  store.setMenuTheme(item.theme)
-}
-
-// 设置（白天/黑夜/随系统）模式
-const setTheme = (item) => {
-  store.setGlopTheme(item.theme, item.theme)
-}
-
-// 设置项目主题颜色
-const setSystemThemeColor = (color) => {
-  store.setElementTheme(color)
-}
-
-// 设置容器宽度
-const setContainerWidth = (item) => {
-  store.setContainerWidth(item.value)
-}
-
-// 设置色弱模式
-const setColorWeak = () => {
-  let el = document.getElementsByTagName('html')[0]
-  if (colorWeak.value) {
-    el.setAttribute('class', 'color-weak')
-  } else {
-    el.className = el.className.replace(/\bcolor-weak\b/g, '').trim()
-  }
-}
-
-watch(systemThemeMode, () => {
-  switchDark()
-})
-
-watch(systemThemeColor, (val) => {
-  changePrimary(val)
-})
-
-mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
-</script>
 
 <style scoped lang="scss">
 .drawer-con {
