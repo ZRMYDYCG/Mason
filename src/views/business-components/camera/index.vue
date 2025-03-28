@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="mb-3">
       <a href="https://open.ys7.com/cn/s/index">萤石官网</a>
     </div>
     <div id="video-container" ref="video" class="content video">视频</div>
