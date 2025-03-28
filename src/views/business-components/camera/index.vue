@@ -1,24 +1,19 @@
 <template>
-  <div>
-    <div class="mb-3">
-      <a href="https://open.ys7.com/cn/s/index">萤石官网</a>
+  <div class="camera-container">
+    <div class="camera-header">
+      <a href="https://open.ys7.com/cn/s/index" class="website-link">萤石官网</a>
     </div>
-    <div id="video-container" ref="video" class="content video">视频</div>
-    <div class="btn_box">
-      <el-button
-        style="margin-left: 10px"
-        round
-        icon="el-icon-top-left"
-        @click="directionControl(4)"
-      ></el-button>
-      <el-button round icon="el-icon-top" @click="directionControl(0)"></el-button>
-      <el-button round icon="el-icon-top-right" @click="directionControl(6)"></el-button>
-      <el-button icon="el-icon-back" @click="directionControl(2)"></el-button>
-      <el-button icon="el-icon-video-play" @click="stopTurn"></el-button>
-      <el-button icon="el-icon-right" @click="directionControl(3)"></el-button>
-      <el-button round icon="el-icon-bottom-left" @click="directionControl(5)"></el-button>
-      <el-button round icon="el-icon-bottom" @click="directionControl(1)"></el-button>
-      <el-button round icon="el-icon-bottom-right" @click="directionControl(7)"></el-button>
+    <div id="video-container" ref="video" class="video-player"></div>
+    <div class="control-buttons">
+      <el-button round @click="directionControl(4)"></el-button>
+      <el-button round @click="directionControl(0)"></el-button>
+      <el-button round @click="directionControl(6)"></el-button>
+      <el-button round @click="directionControl(2)"></el-button>
+      <el-button round @click="stopTurn"></el-button>
+      <el-button round @click="directionControl(3)"></el-button>
+      <el-button round @click="directionControl(5)"></el-button>
+      <el-button round @click="directionControl(1)"></el-button>
+      <el-button round @click="directionControl(7)"></el-button>
     </div>
   </div>
 </template>
@@ -94,17 +89,35 @@ const directionControl = (num) => {
 </script>
 
 <style scoped>
-.content {
-  background: #fff;
-  height: 368px;
-}
-.btn_box {
-  margin: 0px auto;
-  width: 190px;
-  height: 125px;
+.camera-container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.camera-header {
+  margin-bottom: 20px;
+}
+
+.website-link {
+  color: #409eff;
+  text-decoration: none;
+}
+
+.website-link:hover {
+  text-decoration: underline;
+}
+
+.video-player {
+  width: 375px;
+  height: 257px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.control-buttons {
+  margin-top: 20px;
 }
 </style>
