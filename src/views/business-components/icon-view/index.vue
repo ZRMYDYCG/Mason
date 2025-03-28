@@ -232,38 +232,87 @@ const copyIconClass = (iconClass: string) => {
       ElMessage.error('复制失败: ' + err)
     })
 }
+
+const searchIcon = (searchValue: string) => {
+  return iconList.filter((icon) => icon.class.includes(searchValue))
+}
+
+const iconSize = ref('30px')
+const iconColor = ref('#000000')
+const iconArrange = ref('grid')
+const searchValue = ref('')
+
+const filteredIcons = computed(() => {
+  return searchValue.value ? searchIcon(searchValue.value) : iconList
+})
+
+const changeArrange = (arrange: string) => {
+  iconArrange.value = arrange
+}
 </script>
 
 <template>
   <el-card style="margin-bottom: 20px">
     <MasonSearchFormFilter
       ref="masonSearchFormFilterRef"
-      :label-width="80"
+      :label-width="100"
       :is-show-fold-unfold-btn="false"
+      :is-show-search-btn="false"
     >
       <template #default>
         <MasonSearchFormFilterItem>
           <el-form-item label="标题:" prop="title">
-            <el-input clearable placeholder="请输入搜索关键词" />
+            <el-input v-model="searchValue" clearable placeholder="请输入搜索关键词" />
           </el-form-item>
         </MasonSearchFormFilterItem>
-      </template> </MasonSearchFormFilter
-  ></el-card>
+        <MasonSearchFormFilterItem>
+          <el-form-item label="图标大小:" prop="size">
+            <el-select v-model="iconSize" placeholder="请选择">
+              <el-option label="20px" value="20px" />
+              <el-option label="30px" value="30px" />
+              <el-option label="40px" value="40px" />
+            </el-select>
+          </el-form-item>
+        </MasonSearchFormFilterItem>
+        <MasonSearchFormFilterItem>
+          <el-form-item label="图标颜色:" prop="color">
+            <el-color-picker v-model="iconColor" />
+          </el-form-item>
+        </MasonSearchFormFilterItem>
+        <MasonSearchFormFilterItem>
+          <el-form-item label="排列方式:" prop="arrange">
+            <el-radio-group v-model="iconArrange" @change="changeArrange">
+              <el-radio label="grid">网格</el-radio>
+              <el-radio label="list">列表</el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </MasonSearchFormFilterItem>
+      </template>
+    </MasonSearchFormFilter>
+  </el-card>
   <el-row style="margin-bottom: 20px">
-    <el-button type="primary">新增图标</el-button>
-    <el-button type="info" plain>复制图标列表</el-button>
+    <el-button type="info" plain @click="copyIconClass('all')">复制所有图标</el-button>
   </el-row>
-  <div
-    class="icon-view bg-white p-[10px] rounded-[5px] grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[10px]"
-  >
-    <!--  图标列表  -->
-    <template v-for="item in iconList" :key="item">
-      <div class="icon-wrapper" @click="copyIconClass(item.class)">
-        <i :class="['iconfont', item.class]"></i>
-        <el-text truncated class="class">{{ item.class }}</el-text>
-      </div>
-    </template>
-  </div>
+  <el-card>
+    <div
+      class="icon-view p-[10px] rounded-[5px]"
+      :class="{
+        'grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[10px]': iconArrange === 'grid',
+        'flex flex-wrap': iconArrange === 'list'
+      }"
+    >
+      <!-- 图标列表 -->
+      <template v-for="item in filteredIcons" :key="item.class">
+        <div class="icon-wrapper" @click="copyIconClass(item.class)">
+          <i
+            :class="['iconfont', item.class]"
+            :style="{ fontSize: iconSize, color: iconColor }"
+          ></i>
+          <el-text truncated class="class">{{ item.class }}</el-text>
+        </div>
+      </template>
+    </div>
+  </el-card>
 </template>
 
 <style scoped lang="scss">
@@ -285,6 +334,17 @@ const copyIconClass = (iconClass: string) => {
     }
     .class {
       font-size: 12px;
+    }
+  }
+}
+
+.dark {
+  .icon-view {
+    .icon-wrapper {
+      background-color: transparent;
+      &:hover {
+        background-color: #303030;
+      }
     }
   }
 }
