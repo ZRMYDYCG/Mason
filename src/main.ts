@@ -6,8 +6,6 @@ import App from './App.vue'
 import '@/styles/reset.scss'
 // CSS common style sheet
 import '@/styles/common.scss'
-// CSS variable style sheet
-import '@/styles/var.scss'
 // iconfont
 import '@/styles/iconfont.scss'
 // el-message el-message-box css

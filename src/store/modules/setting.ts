@@ -31,6 +31,7 @@ export interface SettingState {
   watermarkVisible: boolean // 水印是否显示
   customRadius: string // 自定义圆角
   containerWidth: ContainerWidthEnum // 容器宽度
+  isFooter: boolean // 是否显示页脚
 }
 
 export const useSettingStore = defineStore({
@@ -57,9 +58,10 @@ export const useSettingStore = defineStore({
     menuOpen: true,
     refresh: false,
     isRouterAlive: true,
-    watermarkVisible: false,
+    watermarkVisible: true,
     customRadius: defaultCustomRadius,
-    containerWidth: ContainerWidthEnum.FULL
+    containerWidth: ContainerWidthEnum.FULL,
+    isFooter: true
   }),
   getters: {
     getMenuTheme(): MenuThemeType {

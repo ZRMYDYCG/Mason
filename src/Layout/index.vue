@@ -78,7 +78,7 @@
         <ToolBarRight />
       </el-header>
       <Main />
-      <Footer />
+      <Footer v-if="isFooter" />
     </el-container>
   </el-container>
   <ThemeDrawer />
@@ -118,6 +118,7 @@ const menuType = computed(() => settingStore.menuType)
 const watermarkVisible = computed(() => settingStore.watermarkVisible)
 const uniqueOpened = computed(() => settingStore.uniqueOpened)
 const menuTheme = computed(() => settingStore.getMenuTheme)
+const isFooter = computed(() => settingStore.isFooter)
 const { menuOpenWidth } = storeToRefs(settingStore)
 
 const fatherMenuList = computed(() => {
