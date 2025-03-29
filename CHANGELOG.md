@@ -1,5 +1,47 @@
 # Changelog
 
+## [1.0.5](https://github.com/ZRMYDYCG/Mason/compare/v1.0.4...v1.0.5) (2025-03-29)
+
+### ✨ Features | 新功能
+
+* ✨️初始化基础组件目录 ([17a7ac4](https://github.com/ZRMYDYCG/Mason/commit/17a7ac456cba744ee45dba4389cc8c21dc9a8ffe))
+* ✨️初始化三次封装el-table结构 ([2bfe371](https://github.com/ZRMYDYCG/Mason/commit/2bfe371a45d0aefd7a24b8a9680d4484aa0f890f))
+* ✨️初始化pro-form ([dc23f92](https://github.com/ZRMYDYCG/Mason/commit/dc23f921939fd6f13506e7dc0fadb93775a67151))
+* ✨️单例二次封装element-plus的message、messageBox、notification组件，统一调用方式，并解决弹窗重叠问题 ([c793e48](https://github.com/ZRMYDYCG/Mason/commit/c793e48e040dd8e79f67788d7abbb6b253ecafc5))
+* ✨️当前组件实例hooks，用以提供常用工具等 ([48bb28d](https://github.com/ZRMYDYCG/Mason/commit/48bb28dfa57c196e7fed44c9da03bcabbe630649))
+* ✨️接入萤石摄像头 ([f3bfa9c](https://github.com/ZRMYDYCG/Mason/commit/f3bfa9c25f04eccf6b730dd997b4fe0b32b7c30c))
+* ✨️新增动态表单解决方案 ([738adc8](https://github.com/ZRMYDYCG/Mason/commit/738adc84db7b05d572a13fc1799e64aa4bd296f3))
+* ✨️新增分步表单解决方案 ([02d419f](https://github.com/ZRMYDYCG/Mason/commit/02d419f7bfad97c99f8f276bf57ffba9c794dcf4))
+* ✨️新增分栏组件 ([693591c](https://github.com/ZRMYDYCG/Mason/commit/693591cdfc79737264c8d65313a6e0e2f880680d))
+* ✨️新增复制配置操作 ([0657f02](https://github.com/ZRMYDYCG/Mason/commit/0657f02263351f71fd43e721fa2f0866d8eb43c8))
+* ✨️新增列表组件 ([a32c704](https://github.com/ZRMYDYCG/Mason/commit/a32c704d50b287e005b25a1ef0a389581fc98347))
+* ✨️新增流程图 ([c01cc0d](https://github.com/ZRMYDYCG/Mason/commit/c01cc0d567f1f0c113b9e80e04ab944209671b57))
+* ✨️新增配置型表格 ([9a7faf2](https://github.com/ZRMYDYCG/Mason/commit/9a7faf261f0689d6cf935c428d1aefaa4fe9acfe))
+* ✨️新增左分类右列表 ([38058e0](https://github.com/ZRMYDYCG/Mason/commit/38058e0da701320fd81d64fd1b4a77aaee433cd1))
+* ✨️新增toast提示框使用示例 ([8872391](https://github.com/ZRMYDYCG/Mason/commit/887239179afc0d1b3907fe82ebf5a1b0bcf70bf7))
+* ✨️vite依赖升级 ([c6cb640](https://github.com/ZRMYDYCG/Mason/commit/c6cb64025cd0233d0ba21bfdcf8834c8e5bb4d48))
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🪲️([#3](https://github.com/ZRMYDYCG/Mason/issues/3))保留动画配置的resize ([4df14a8](https://github.com/ZRMYDYCG/Mason/commit/4df14a81bf01194e461ee58a39319ed809a4ee86))
+* 🪲️([#3](https://github.com/ZRMYDYCG/Mason/issues/3))监听容器本身尺寸变化，以触发图表自动调整 ([4b0e11c](https://github.com/ZRMYDYCG/Mason/commit/4b0e11c7165ca6a11b3b33bd6711e31aa5048714))
+
+### 📝 Documentation | 文档
+
+* 📖️更新项目描述 ([6a887c0](https://github.com/ZRMYDYCG/Mason/commit/6a887c0aaffef2150f3f8ae215c16d0d4f6a288b))
+
+### ⚡ Performance Improvements | 性能优化
+
+* 📜️优化流程图使用体验 ([0392c1c](https://github.com/ZRMYDYCG/Mason/commit/0392c1cc3ff3b7b1bde949d929c5a9600e80fc8f))
+* 📜️优化图标预览使用体验 ([535959a](https://github.com/ZRMYDYCG/Mason/commit/535959ab80752412a5970967a686b758e2588af1))
+* 📜️优化远程监控使用体验 ([bc4eb33](https://github.com/ZRMYDYCG/Mason/commit/bc4eb339524339066080b03349803835770e7b00))
+* 📜️优化main.js启动方式 ([7407558](https://github.com/ZRMYDYCG/Mason/commit/7407558e0dbb98e7db4d25ea323c08b758aafa21))
+
+### 👷‍ Build System | 构建
+
+* 🔨️优化打包构建流程 ([46a59d8](https://github.com/ZRMYDYCG/Mason/commit/46a59d8c054f0f4833774e13a3a1c41f0e5dc569))
+* 🔨️Vite配置与构建流程改进 ([f600433](https://github.com/ZRMYDYCG/Mason/commit/f600433fd0c6bd2f330de052bca71fa29048f178))
+
 ## [1.0.4](https://github.com/ZRMYDYCG/Mason/compare/v1.0.3...v1.0.4) (2025-03-25)
 
 ### ✨ Features | 新功能
