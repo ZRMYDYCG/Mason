@@ -21,6 +21,9 @@ import '@/styles/element-dark.scss'
 import './tailwind.css'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import PrintLogo from './print-logo.ts'
+
+PrintLogo()
 
 import router from '@/router'
 
