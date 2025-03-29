@@ -4,7 +4,7 @@ import { useECharts } from '@/hooks/useEcharts.ts'
 
 const chartRef = ref<HTMLDivElement | null>(null)
 
-const { setOptions, removeResize, echarts } = useECharts(chartRef as any)
+const { setOptions, removeResize, echarts, addResize } = useECharts(chartRef as any)
 
 const createChart = () => {
   setOptions({
@@ -12,7 +12,7 @@ const createChart = () => {
       left: '0',
       right: '4%',
       bottom: '0%',
-      top: '5px',
+      top: '30px',
       containLabel: true
     },
     yAxis: {
@@ -102,6 +102,9 @@ const list = [
 
 onMounted(() => {
   createChart()
+  setTimeout(() => {
+    addResize()
+  }, 300)
 })
 
 onUnmounted(() => {

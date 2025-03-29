@@ -1,13 +1,12 @@
 import { unref, nextTick } from 'vue'
 import type { Ref } from 'vue'
 import type { EChartOption } from 'echarts'
-// import { echarts } from '@/components/Echarts/index.ts' //  按需导入
 import * as echarts from 'echarts' // 全部导入
 
 const defaultOptions = {
   grid: {
     left: '0',
-    right: '4%',
+    right: '0%',
     bottom: '0%',
     top: '0',
     containLabel: true
@@ -64,8 +63,8 @@ export function useECharts(
 ) {
   let chartInstance: echarts.ECharts | null = null
   let resizeHandler: () => void
+  let resizeObserver: ResizeObserver | null = null
 
-  // 初始化echarts
   function initCharts() {
     const el = unref(elRef)
     if (!el) {
@@ -75,7 +74,6 @@ export function useECharts(
     addResize()
   }
 
-  // 配置
   function setOptions(options: EChartOption | any) {
     // 默认配置
     if (!options.grid) {
@@ -129,29 +127,35 @@ export function useECharts(
     })
   }
 
-  // 监听窗口大小变化
   function addResize() {
+    const el = unref(elRef)
+    if (!el) return
+
+    // 窗口resize监听
     resizeHandler = () => {
       resize()
     }
     window.addEventListener('resize', resizeHandler)
+
+    // 监听容器本身尺寸变化（更精准）
+    resizeObserver = new ResizeObserver(resizeHandler)
+    resizeObserver.observe(el)
   }
 
-  // 移除监听
   function removeResize() {
     if (resizeHandler) {
       window.removeEventListener('resize', resizeHandler)
     }
-  }
-
-  // 暴露 resize 方法
-  function resize() {
-    if (chartInstance) {
-      chartInstance.resize()
+    if (resizeObserver) {
+      resizeObserver.disconnect()
+      resizeObserver = null
     }
   }
 
-  // 初始化时创建图表
+  function resize() {
+    chartInstance?.resize()
+  }
+
   initCharts()
 
   return {
