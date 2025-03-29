@@ -12,7 +12,7 @@ const createChart = () => {
       left: '2.2%',
       right: '3%',
       bottom: '0%',
-      top: '5px',
+      top: '10px',
       containLabel: true
     },
     tooltip: {
