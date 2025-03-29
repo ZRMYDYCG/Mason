@@ -1,5 +1,4 @@
-<img style="margin: 0 auto; display: block;" src="public/favicon.svg" />
-<h1 align="center">Mason Admin</h1>
+<h1 align="center" style="font-size: 40px; font-weight: bold; background: linear-gradient(45deg, #ff1c68, #f3a8ff, #ffffff, #89ff94, #ff1c68, #f3a8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mason Admin</h1>
 <p align="center">
 <img src="https://img.shields.io/badge/Vue.js-3.x-green.svg?style=flat-square&logo=vue.js" />
 <img src="https://img.shields.io/badge/TypeScript-4.9+-3178C6.svg?style=flat-square&logo=typescript" />
@@ -72,6 +71,7 @@ RBAC 权限设计部分以及系统设置部分、日志管理、个人中心, �
 - useCurrentInstance: 获取当前实例, 统一调用方式
 - useClipboard: 复制到粘贴板
 - usePageTitle: 设置页面标题
+- ...
 
 ## 📚 组件清单
 
