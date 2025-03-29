@@ -4,7 +4,7 @@ import { useECharts } from '@/hooks/useEcharts.ts'
 
 const chartRef = ref<HTMLDivElement | null>(null)
 
-const { setOptions, removeResize, echarts } = useECharts(chartRef as any)
+const { setOptions, echarts } = useECharts(chartRef as any)
 
 const createChart = () => {
   setOptions({
@@ -87,10 +87,6 @@ const createChart = () => {
 
 onMounted(() => {
   createChart()
-})
-
-onUnmounted(() => {
-  removeResize()
 })
 </script>
 
