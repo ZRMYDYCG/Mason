@@ -83,6 +83,8 @@ declare module 'vue' {
     Lottie: typeof import('./../components/Lottie/index.vue')['default']
     Notification: typeof import('./../components/Notification/index.vue')['default']
     NotificationList: typeof import('./../components/Notification/notification-list.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     SearchFormFilter: typeof import('./../components/SearchFormFilter/index.vue')['default']
     SearchFormFilterItem: typeof import('./../components/SearchFormFilter/components/search-form-filter-item.vue')['default']
     StyleSetting: typeof import('./../components/CustomTable/style-setting.vue')['default']

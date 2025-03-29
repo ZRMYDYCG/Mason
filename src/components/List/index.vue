@@ -5,7 +5,7 @@
         v-for="(item, index) in list"
         :key="index"
         href="javascript:void(0)"
-        class="nt-list__item"
+        class="mason-list__item"
         :class="{
           'is-active': currentIndex === getObjectAttrValue(item, options.key)
         }"
