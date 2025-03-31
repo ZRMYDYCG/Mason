@@ -103,10 +103,7 @@ import { useSettingStore } from '@/store/modules/setting.ts'
 import Logo from './components/Logo/index.vue'
 import MenuMixed from './components/MenuMixed/index.vue'
 import Watermark from '@/components/Watermark/index.vue'
-
-let isDragging = false
-let startX = 0
-let startWidth = 0
+import useResizable from '@/hooks/useResizable.ts'
 
 const route = useRoute()
 const router = useRouter()
@@ -121,12 +118,20 @@ const menuTheme = computed(() => settingStore.getMenuTheme)
 const isFooter = computed(() => settingStore.isFooter)
 const { menuOpenWidth } = storeToRefs(settingStore)
 
+const options = {
+  minWidth: 200,
+  maxWidth: 400,
+  initialWidth: menuOpenWidth.value
+}
+
+const { width, handleMouseDown, isDragging } = useResizable(options)
+
 const fatherMenuList = computed(() => {
   return authStore.showMenuListGet || []
 })
 
-watch(menuTheme, (val) => {
-  console.log(val)
+watch(width, (val) => {
+  menuOpenWidth.value = val
 })
 
 const menuList = computed(() => {
@@ -142,27 +147,6 @@ const isCollapse = computed(() => globalStore.isCollapse)
 
 const activeMenu = computed(() => route.path)
 
-const handleMouseDown = (e: MouseEvent) => {
-  isDragging = true
-  startX = e.clientX
-  startWidth = menuOpenWidth.value
-  document.addEventListener('mousemove', handleMouseMove)
-  document.addEventListener('mouseup', handleMouseUp)
-}
-
-const handleMouseMove = (e: MouseEvent) => {
-  if (!isDragging) return
-  const deltaX = e.clientX - startX
-  const newWidth = startWidth + deltaX
-  menuOpenWidth.value = Math.max(210, Math.min(newWidth, 400))
-}
-
-const handleMouseUp = () => {
-  isDragging = false
-  document.removeEventListener('mousemove', handleMouseMove)
-  document.removeEventListener('mouseup', handleMouseUp)
-}
-
 const handleMenuJump = (menu: any) => {
   if (menu.path === activeMenu.value) return
   router.push(menu.path)
@@ -174,7 +158,7 @@ $primary-color: var(--el-color-primary);
 .el-container {
   width: 100%;
   height: 100%;
-  user-select: none;
+  //user-select: none;
   scrollbar-width: none;
 
   .dual-menu-left {
