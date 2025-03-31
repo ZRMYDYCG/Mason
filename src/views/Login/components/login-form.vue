@@ -27,6 +27,9 @@ import { useAuthStore } from '@/store/modules/auth'
 import { useUserStore } from '@/store/modules/user'
 import { useTabsStore } from '@/store/modules/tabs'
 import { initDynamicRouter } from '@/router/dynamicRouter'
+import { useNotify } from '@/components/Toast'
+
+const notify = useNotify()
 
 const router = useRouter()
 
@@ -76,7 +79,14 @@ const loginAction = () => {
           await tabsStore.setTabs([])
           // 跳转主页
           await router.push(HOME_URL)
-          ElMessage.success(res.msg)
+          notify.success(
+            `欢迎回来，${userStore.userInfo.username}`,
+            {
+              duration: 2500,
+              position: 'top-right'
+            } as any,
+            '登录成功 🎉'
+          )
         }
       } else {
         ElMessage.error(res.msg)
