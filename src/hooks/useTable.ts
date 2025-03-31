@@ -1,63 +1,105 @@
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 
-export const PAGE_SIZES = [10, 20, 30, 40, 50]
-export const TABLE_COLUMN_OPERATE = {
-  DETAIL: Symbol('detail'),
-  EDIT: Symbol('edit'),
-  DELETE: Symbol('delete')
+type Pagination = {
+  currentPage: number
+  pageSize: number
+  total: number
 }
 
-export default function useTable(
-  emit: any,
-  options?: {
-    pagination?: {
-      initialPageSize?: number
-      pageSizes?: number[]
-    }
-  }
+type SortParams = {
+  prop?: string
+  order?: 'ascending' | 'descending' | null
+}
+
+type FetchDataFn<T = any> = (params: Record<string, any>) => Promise<{
+  list: T[]
+  total: number
+}>
+
+export function useTable<T = any>(
+  fetchDataFn: FetchDataFn<T>,
+  initQueryParams: Record<string, any> = {}
 ) {
-  // 分页相关
-  const currentPage = ref(1)
-  const pageSize = ref(options?.pagination?.initialPageSize || PAGE_SIZES[0])
+  // 表格数据
+  const tableData = ref<any>([])
+  // 加载状态
+  const loading = ref(false)
+  // 分页参数
+  const pageParams = reactive<Pagination>({
+    currentPage: 1,
+    pageSize: 10,
+    total: 0
+  })
+  // 排序参数
+  const sortParams = ref<SortParams>({})
+  // 查询参数
+  const queryParams = ref<Record<string, any>>(initQueryParams)
 
-  // 分页事件处理
-  const handleSizeChange = (size: number) => {
-    pageSize.value = size
-    currentPage.value = 1
-    emit('sizeChange', size)
-  }
+  // 获取表格数据
+  const fetchData = async () => {
+    try {
+      loading.value = true
 
-  const handleCurrentChange = (page: number) => {
-    currentPage.value = page
-    emit('pageChange', page)
-  }
+      // 组合请求参数
+      const params = {
+        ...queryParams.value,
+        page: pageParams.currentPage,
+        pageSize: pageParams.pageSize,
+        ...(sortParams.value.prop
+          ? {
+              sortField: sortParams.value.prop,
+              sortOrder: sortParams.value.order
+            }
+          : {})
+      }
 
-  // 操作按钮通用处理
-  const createOperationHandler = (type: symbol) => (column: any, row: any) => {
-    const operation = column.operateList?.[type]
-    if (operation?.action) {
-      operation.action(row)
-    } else {
-      // 利用 Symbol 描述符生成事件名
-      emit(type.description?.toLowerCase(), { data: row })
+      const { list, total } = await fetchDataFn(params)
+
+      tableData.value = list
+      pageParams.total = total
+    } finally {
+      loading.value = false
     }
+  }
+
+  // 分页变化
+  const handlePageChange = async (newPage: number) => {
+    pageParams.currentPage = newPage
+    await fetchData()
+  }
+
+  // 每页数量变化
+  const handleSizeChange = async (newSize: number) => {
+    pageParams.pageSize = newSize
+    pageParams.currentPage = 1
+    await fetchData()
+  }
+
+  // 排序变化
+  const handleSortChange = async ({ prop, order }: { prop: any; order: any }) => {
+    sortParams.value = { prop, order }
+    await fetchData()
+  }
+
+  // 查询方法
+  const handleSearch = async (params?: Record<string, any>) => {
+    queryParams.value = { ...queryParams.value, ...params }
+    pageParams.currentPage = 1
+    await fetchData()
   }
 
   return {
-    // 分页相关
-    pagination: {
-      currentPage,
-      pageSize,
-      pageSizes: options?.pagination?.pageSizes || PAGE_SIZES,
-      handleSizeChange,
-      handleCurrentChange
-    },
+    // 状态
+    tableData,
+    loading,
+    pageParams,
+    queryParams,
 
-    // 操作处理
-    operations: {
-      handleDetail: createOperationHandler(TABLE_COLUMN_OPERATE.DETAIL),
-      handleEdit: createOperationHandler(TABLE_COLUMN_OPERATE.EDIT),
-      handleDelete: createOperationHandler(TABLE_COLUMN_OPERATE.DELETE)
-    }
+    // 方法
+    fetchData,
+    handlePageChange,
+    handleSizeChange,
+    handleSortChange,
+    handleSearch
   }
 }
