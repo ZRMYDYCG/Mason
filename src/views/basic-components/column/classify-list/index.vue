@@ -16,7 +16,7 @@
         ></MasonList>
 
         <template #footer>
-          <el-button type="primary" class="block w-40">新增</el-button>
+          <el-button v-ripple type="primary" class="block w-40">新增</el-button>
         </template>
       </MasonColumn>
     </div>
@@ -94,7 +94,7 @@
         @size-change="handleSizeChange"
       >
         <template #otherOperate="{ row }">
-          <el-button type="primary" text size="small" @click="handleShowDetail(row)"
+          <el-button v-ripple type="primary" text size="small" @click="handleShowDetail(row)"
             >详情
           </el-button>
         </template>

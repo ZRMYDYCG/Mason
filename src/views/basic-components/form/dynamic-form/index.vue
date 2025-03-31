@@ -6,7 +6,7 @@
       </template>
 
       <div class="mb-[12px]">
-        <el-button type="primary" @click="handleAddRecord">添加</el-button>
+        <el-button v-ripple type="primary" @click="handleAddRecord">添加</el-button>
       </div>
 
       <el-form ref="formRef" :model="formMdl">
