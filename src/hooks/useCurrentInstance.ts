@@ -1,7 +1,6 @@
 /*
  * @description: 当前组件实例hooks，用以提供常用工具等
  */
-
 import type { ComponentInternalInstance, ComponentPublicInstance } from 'vue'
 import { getCurrentInstance } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
