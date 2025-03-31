@@ -72,6 +72,7 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     ElWatermark: typeof import('element-plus/es')['ElWatermark']
     FullLoading: typeof import('./../components/Loading/full-loading.vue')['default']
     LineTree: typeof import('./../components/LineTree/index.vue')['default']

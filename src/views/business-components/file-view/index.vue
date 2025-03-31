@@ -11,13 +11,13 @@ const activeKey = ref('docs')
   <div>
     <el-card :bordered="false">
       <el-tabs v-model="activeKey">
-        <el-tab-pane key="docs" label="Docs文件预览">
+        <el-tab-pane name="docs" label="Docs文件预览">
           <VueOfficeDocx v-if="activeKey === 'docs'" />
         </el-tab-pane>
-        <el-tab-pane key="excel" label="Excel文件预览">
+        <el-tab-pane name="excel" label="Excel文件预览">
           <VueOfficeExcel v-if="activeKey === 'excel'" />
         </el-tab-pane>
-        <el-tab-pane key="pdf" label="Pdf文件预览">
+        <el-tab-pane name="pdf" label="Pdf文件预览">
           <VueOfficePdf v-if="activeKey === 'pdf'" />
         </el-tab-pane>
       </el-tabs>
