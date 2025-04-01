@@ -10,7 +10,10 @@
     <el-menu-item v-else :index="subItem.path" @click="handleClickMenu(subItem)">
       <i v-if="subItem.meta.icon" :class="['iconfont', subItem.meta.icon]" class="mr-2"></i>
       <template #title>
-        <span class="sle">{{ subItem.meta.title }}</span>
+        <div class="flex items-center gap-2">
+          <span class="sle mr-2">{{ subItem.meta.title }}</span>
+          <div v-if="subItem.meta.isLink" class="w-[10px] h-[10px] bg-red-500 rounded-full"></div>
+        </div>
       </template>
     </el-menu-item>
   </template>

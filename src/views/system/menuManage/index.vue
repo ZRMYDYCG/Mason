@@ -1,3 +1,61 @@
+<script lang="ts" setup>
+import MenuDialog from './components/menuDialog.vue'
+import { onMounted, ref, reactive, toRaw } from 'vue'
+import { ElMessage, FormInstance } from 'element-plus'
+import { deleteMenu, getMenuList } from '@/api/modules/system'
+import { Menu } from '@/api/interface/system'
+
+onMounted(() => {
+  onSearch()
+})
+
+const tableData = ref<Menu[]>([])
+
+const searchFormRef = ref<FormInstance>()
+const searchForm = reactive({
+  title: '',
+  isEnable: 2
+})
+
+const enableOptions = [
+  {
+    value: 2,
+    label: '全部'
+  },
+  {
+    value: 1,
+    label: '开启'
+  },
+  {
+    value: 0,
+    label: '关闭'
+  }
+]
+
+async function onSearch() {
+  const { data } = await getMenuList(toRaw(searchForm))
+  tableData.value = data
+}
+
+const handleDelete = async (id: number) => {
+  const res = await deleteMenu(id)
+  if (res.code !== 200) {
+    ElMessage.error(res.msg)
+  } else {
+    await onSearch()
+    ElMessage.success(res.msg)
+  }
+}
+
+const menuDialogRef = ref<InstanceType<typeof MenuDialog>>()
+const handleNew = () => {
+  menuDialogRef.value?.handleNew()
+}
+const handleEdit = (row: Menu) => {
+  menuDialogRef.value?.handleEdit(row)
+}
+</script>
+
 <template>
   <div class="menu-manage">
     <div class="card search-container mb10">
@@ -16,7 +74,7 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSearch">
+          <el-button type="primary" @click="onSearch" v-ripple>
             <i class="btn-icon mr4 iconfont icon-sousuo" /><span>搜索</span>
           </el-button>
         </el-form-item>
@@ -24,7 +82,7 @@
     </div>
     <div class="card table-container">
       <div class="table-btns mb18">
-        <el-button type="primary" class="table-button" @click="handleNew">
+        <el-button type="primary" class="table-button" @click="handleNew" v-ripple>
           <i class="btn-icon mr4 iconfont icon-quanjia" /><span>新增菜单</span>
         </el-button>
       </div>
@@ -88,63 +146,6 @@
     <MenuDialog ref="menuDialogRef" @refresh="onSearch" />
   </div>
 </template>
-<script lang="ts" setup>
-import MenuDialog from './components/menuDialog.vue'
-import { onMounted, ref, reactive, toRaw } from 'vue'
-import { ElMessage, FormInstance } from 'element-plus'
-import { deleteMenu, getMenuList } from '@/api/modules/system'
-import { Menu } from '@/api/interface/system'
-
-onMounted(() => {
-  onSearch()
-})
-
-const tableData = ref<Menu[]>([])
-
-const searchFormRef = ref<FormInstance>()
-const searchForm = reactive({
-  title: '',
-  isEnable: 2
-})
-
-const enableOptions = [
-  {
-    value: 2,
-    label: '全部'
-  },
-  {
-    value: 1,
-    label: '开启'
-  },
-  {
-    value: 0,
-    label: '关闭'
-  }
-]
-
-async function onSearch() {
-  const { data } = await getMenuList(toRaw(searchForm))
-  tableData.value = data
-}
-
-const handleDelete = async (id: number) => {
-  const res = await deleteMenu(id)
-  if (res.code !== 200) {
-    ElMessage.error(res.msg)
-  } else {
-    await onSearch()
-    ElMessage.success(res.msg)
-  }
-}
-
-const menuDialogRef = ref<InstanceType<typeof MenuDialog>>()
-const handleNew = () => {
-  menuDialogRef.value?.handleNew()
-}
-const handleEdit = (row: Menu) => {
-  menuDialogRef.value?.handleEdit(row)
-}
-</script>
 
 <style scoped lang="scss">
 .el-select {

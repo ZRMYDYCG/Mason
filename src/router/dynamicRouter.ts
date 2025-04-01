@@ -17,8 +17,12 @@ export const initDynamicRouter = async () => {
       if (item.component && typeof item.component == 'string') {
         item.component = modules['/src/views' + item.component + '.vue']
       }
-      // 添加路由
-      router.addRoute('layout', item as unknown as RouteRecordRaw)
+      // 如果 parentId 为 -1 则为全屏页面, 不处理为 Layout 的子路由
+      if (item.parentId === -1) {
+        router.addRoute('', item as unknown as RouteRecordRaw)
+      } else {
+        router.addRoute('layout', item as unknown as RouteRecordRaw)
+      }
     })
   } catch (error) {
     return Promise.reject(error)

@@ -3,9 +3,6 @@ import { AuthState } from '@/store/interface'
 import { getAuthMenuListApi } from '@/api/modules/login'
 import { getAllBreadcrumbList, getFlatMenuList, getShowMenuList } from '@/utils'
 
-// import { useUserStore } from '@/store/modules/user'
-// import router from '@/router'
-// import { LOGIN_URL } from '@/config'
 import { ElMessage } from 'element-plus'
 
 export const useAuthStore = defineStore({

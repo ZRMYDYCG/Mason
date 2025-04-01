@@ -1,3 +1,176 @@
+<script setup lang="ts">
+import { ref, reactive, computed, toRaw, onMounted } from 'vue'
+import { ElMessage, FormInstance } from 'element-plus'
+import { addMenu, editMenu } from '@/api/modules/system'
+import { Menu } from '@/api/interface/system'
+import { useAuthStore } from '@/store/modules/auth'
+import { MenuOption, getTreeMenuOptions } from '@/utils'
+const isEdit = ref(false)
+const dialogVisible = ref(false)
+
+const menuFormRef = ref<FormInstance>()
+const menuForm = reactive({
+  name: '',
+  title: '',
+  path: '',
+  parentId: 0,
+  sort: 1, // 默认普通用户
+  icon: '',
+  isEnable: 0,
+  isAffix: 0,
+  isKeepAlive: 0,
+  isLink: 0
+})
+
+const editMenuFormRef = ref<FormInstance>()
+const editMenuForm = reactive({
+  id: 0,
+  name: '',
+  title: '',
+  path: '',
+  parentId: 0,
+  sort: 1,
+  icon: '',
+  isEnable: 0,
+  isAffix: 0,
+  isKeepAlive: 0,
+  isLink: 0
+})
+
+const formRules = reactive({
+  title: [{ required: true, message: '请输入菜单名称', trigger: 'blur' }],
+  name: [
+    { required: true, message: '请输入菜单name', trigger: 'blur' },
+    {
+      pattern: /^[A-Za-z0-9-_]*$/,
+      message: '必须是字母或数字,特殊符号允许-和_',
+      trigger: 'blur'
+    }
+  ],
+  path: [{ required: true, message: '请输入菜单路径', trigger: 'blur' }]
+})
+
+const menuOptions = ref<MenuOption[]>([])
+
+onMounted(() => {
+  initMenus()
+})
+
+const initMenus = async () => {
+  const authStore = useAuthStore()
+  const menuData = computed(() => authStore.authMenuList)
+  const menuList: Menu[] = [
+    {
+      id: 0,
+      name: '',
+      path: '',
+      parentId: 0,
+      sort: 1,
+      meta: {
+        icon: '',
+        title: '主目录',
+        isLink: false,
+        isEnable: false,
+        isAffix: false,
+        isKeepAlive: false
+      },
+      component: '',
+      createdAt: ''
+    },
+    {
+      id: -1,
+      name: '',
+      path: '',
+      parentId: -1,
+      sort: 1,
+      meta: {
+        icon: '',
+        title: '全屏页面',
+        isLink: false,
+        isEnable: false,
+        isAffix: false,
+        isKeepAlive: false
+      },
+      component: '',
+      createdAt: ''
+    }
+  ]
+  menuList[0].children = menuData.value
+  menuOptions.value = getTreeMenuOptions(menuList)
+}
+
+const handleNew = () => {
+  isEdit.value = false
+  dialogVisible.value = true
+}
+
+const handleEdit = (row: Menu) => {
+  isEdit.value = true
+  editMenuForm.id = row.id
+  editMenuForm.name = row.name
+  editMenuForm.title = row.meta.title
+  editMenuForm.path = row.path
+  editMenuForm.parentId = row.parentId
+  editMenuForm.sort = row.sort
+  editMenuForm.icon = row.meta.icon
+  editMenuForm.isEnable = row.meta.isEnable ? 1 : 0 // 类型转换
+  editMenuForm.isAffix = row.meta.isAffix ? 1 : 0
+  editMenuForm.isKeepAlive = row.meta.isKeepAlive ? 1 : 0
+  editMenuForm.isLink = row.meta.isLink ? 1 : 0
+  dialogVisible.value = true
+}
+
+defineExpose({
+  handleNew,
+  handleEdit
+})
+
+const handleClose = () => {
+  menuFormRef.value?.resetFields()
+  editMenuFormRef.value?.resetFields()
+  dialogVisible.value = false
+}
+
+const handleCancel = () => {
+  dialogVisible.value = false
+}
+
+const emits = defineEmits(['refresh'])
+
+const handleConfirm = () => {
+  if (!isEdit.value) {
+    menuFormRef.value?.validate(async (valid) => {
+      if (valid) {
+        // 新增用户
+        const res = await addMenu(toRaw(menuForm))
+        if (res.code !== 200) {
+          ElMessage.error(res.msg)
+        } else {
+          menuFormRef.value?.resetFields()
+          dialogVisible.value = false
+          emits('refresh')
+          ElMessage.success(res.msg)
+        }
+      }
+    })
+  } else {
+    editMenuFormRef.value?.validate(async (valid) => {
+      if (valid) {
+        const res = await editMenu(toRaw(editMenuForm))
+        if (res.code !== 200) {
+          ElMessage.error(res.msg)
+        } else {
+          editMenuFormRef.value?.resetFields()
+          dialogVisible.value = false
+          emits('refresh')
+          ElMessage.success(res.msg)
+        }
+      }
+    })
+  }
+}
+</script>
+
 <template>
   <el-dialog
     v-model="dialogVisible"
@@ -195,161 +368,5 @@
     </template>
   </el-dialog>
 </template>
-
-<script setup lang="ts">
-import { ref, reactive, computed, toRaw, onMounted } from 'vue'
-import { ElMessage, FormInstance } from 'element-plus'
-import { addMenu, editMenu } from '@/api/modules/system'
-import { Menu } from '@/api/interface/system'
-import { useAuthStore } from '@/store/modules/auth'
-import { MenuOption, getTreeMenuOptions } from '@/utils'
-const isEdit = ref(false)
-const dialogVisible = ref(false)
-
-const menuFormRef = ref<FormInstance>()
-const menuForm = reactive({
-  name: '',
-  title: '',
-  path: '',
-  parentId: 0,
-  sort: 1, // 默认普通用户
-  icon: '',
-  isEnable: 0,
-  isAffix: 0,
-  isKeepAlive: 0,
-  isLink: 0
-})
-
-const editMenuFormRef = ref<FormInstance>()
-const editMenuForm = reactive({
-  id: 0,
-  name: '',
-  title: '',
-  path: '',
-  parentId: 0,
-  sort: 1,
-  icon: '',
-  isEnable: 0,
-  isAffix: 0,
-  isKeepAlive: 0,
-  isLink: 0
-})
-
-const formRules = reactive({
-  title: [{ required: true, message: '请输入菜单名称', trigger: 'blur' }],
-  name: [
-    { required: true, message: '请输入菜单name', trigger: 'blur' },
-    {
-      pattern: /^[A-Za-z0-9-_]*$/,
-      message: '必须是字母或数字,特殊符号允许-和_',
-      trigger: 'blur'
-    }
-  ],
-  path: [{ required: true, message: '请输入菜单路径', trigger: 'blur' }]
-})
-
-const menuOptions = ref<MenuOption[]>([])
-
-onMounted(() => {
-  initMenus()
-})
-
-const initMenus = async () => {
-  const authStore = useAuthStore()
-  const menuData = computed(() => authStore.authMenuList)
-  const menuList: Menu[] = [
-    {
-      id: 0,
-      name: '',
-      path: '',
-      parentId: 0,
-      sort: 1,
-      meta: {
-        icon: '',
-        title: '主目录',
-        isLink: false,
-        isEnable: false,
-        isAffix: false,
-        isKeepAlive: false
-      },
-      component: '',
-      createdAt: ''
-    }
-  ]
-  menuList[0].children = menuData.value
-  menuOptions.value = getTreeMenuOptions(menuList)
-}
-
-const handleNew = () => {
-  isEdit.value = false
-  dialogVisible.value = true
-}
-
-const handleEdit = (row: Menu) => {
-  isEdit.value = true
-  editMenuForm.id = row.id
-  editMenuForm.name = row.name
-  editMenuForm.title = row.meta.title
-  editMenuForm.path = row.path
-  editMenuForm.parentId = row.parentId
-  editMenuForm.sort = row.sort
-  editMenuForm.icon = row.meta.icon
-  editMenuForm.isEnable = row.meta.isEnable ? 1 : 0 // 类型转换
-  editMenuForm.isAffix = row.meta.isAffix ? 1 : 0
-  editMenuForm.isKeepAlive = row.meta.isKeepAlive ? 1 : 0
-  editMenuForm.isLink = row.meta.isLink ? 1 : 0
-  dialogVisible.value = true
-}
-
-defineExpose({
-  handleNew,
-  handleEdit
-})
-
-const handleClose = () => {
-  menuFormRef.value?.resetFields()
-  editMenuFormRef.value?.resetFields()
-  dialogVisible.value = false
-}
-
-const handleCancel = () => {
-  dialogVisible.value = false
-}
-
-const emits = defineEmits(['refresh'])
-
-const handleConfirm = () => {
-  if (!isEdit.value) {
-    menuFormRef.value?.validate(async (valid) => {
-      if (valid) {
-        // 新增用户
-        const res = await addMenu(toRaw(menuForm))
-        if (res.code !== 200) {
-          ElMessage.error(res.msg)
-        } else {
-          menuFormRef.value?.resetFields()
-          dialogVisible.value = false
-          emits('refresh')
-          ElMessage.success(res.msg)
-        }
-      }
-    })
-  } else {
-    editMenuFormRef.value?.validate(async (valid) => {
-      if (valid) {
-        const res = await editMenu(toRaw(editMenuForm))
-        if (res.code !== 200) {
-          ElMessage.error(res.msg)
-        } else {
-          editMenuFormRef.value?.resetFields()
-          dialogVisible.value = false
-          emits('refresh')
-          ElMessage.success(res.msg)
-        }
-      }
-    })
-  }
-}
-</script>
 
 <style scoped lang="scss"></style>

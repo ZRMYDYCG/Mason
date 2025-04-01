@@ -1,18 +1,3 @@
-<template>
-  <div class="menu-top">
-    <el-menu
-      :ellipsis="true"
-      mode="horizontal"
-      :default-active="activeMenu"
-      :popper-offset="16"
-      background-color="transparent"
-      :style="{ width: width + 'px' }"
-    >
-      <MenuTopSubMenu :menu-list="menuList" />
-    </el-menu>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { PropType } from 'vue'
@@ -42,6 +27,21 @@ const activeMenu = computed(() => {
   return route.path
 })
 </script>
+
+<template>
+  <div class="menu-top">
+    <el-menu
+      :ellipsis="true"
+      mode="horizontal"
+      :default-active="activeMenu"
+      :popper-offset="16"
+      background-color="transparent"
+      :style="{ width: width + 'px' }"
+    >
+      <MenuTopSubMenu :menu-list="menuList" />
+    </el-menu>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 :deep(.el-menu--horizontal > .el-sub-menu.is-active .el-sub-menu__title) {
