@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useECharts } from '@/hooks/useEcharts.ts'
 
 const chartRef = ref<HTMLDivElement | null>(null)
@@ -21,7 +21,20 @@ const createChart = () => {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+      data: [
+        '一月',
+        '二月',
+        '三月',
+        '四月',
+        '五月',
+        '六月',
+        '七月',
+        '八月',
+        '九月',
+        '十月',
+        '十一月',
+        '十二月'
+      ],
       axisLabel: {
         show: true,
         color: '#999',
@@ -58,11 +71,11 @@ const createChart = () => {
     },
     series: [
       {
-        name: '访客',
-        color: '#409eff',
+        name: '销售额',
+        color: '#ff6347',
         type: 'line',
         stack: '总量',
-        data: [50, 25, 40, 20, 70, 35, 65, 30, 35, 20, 40, 44],
+        data: [1000, 1500, 1200, 1800, 1400, 1600, 2100, 1900, 1700, 1300, 2000, 1850],
         smooth: true,
         symbol: 'none',
         lineStyle: {
@@ -72,11 +85,11 @@ const createChart = () => {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
-              color: '#409eff'
+              color: '#ff6347'
             },
             {
               offset: 1,
-              color: 'rgba(64, 158, 255, 0.2)'
+              color: 'rgba(255, 99, 71, 0.2)'
             }
           ])
         }
@@ -91,22 +104,22 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-card class="traffic-statistics">
-    <div class="traffic-statistics__title">
-      <div class="title">访问量</div>
+  <el-card class="sales-statistics">
+    <div class="sales-statistics__title">
+      <div class="title">销售额</div>
       <div class="subtitle">
         <span>今年增长</span>
-        <span class="increase">+12%</span>
+        <span class="increase">+15%</span>
       </div>
     </div>
-    <div class="traffic-statistics__chart" ref="chartRef" :style="{ height: '200px' }"></div>
+    <div class="sales-statistics__chart" ref="chartRef" :style="{ height: '200px' }"></div>
   </el-card>
 </template>
 
 <style lang="scss" scoped>
-.traffic-statistics {
+.sales-statistics {
   height: 370px;
-  .traffic-statistics__title {
+  .sales-statistics__title {
     .title {
       font-size: 28px;
     }
@@ -120,7 +133,7 @@ onMounted(() => {
       }
     }
   }
-  .traffic-statistics__chart {
+  .sales-statistics__chart {
     padding-top: 20px;
   }
 }

@@ -1,14 +1,25 @@
-<h1 align="center" style="font-size: 40px; font-weight: bold; background: linear-gradient(45deg, #ff1c68, #f3a8ff, #ffffff, #89ff94, #ff1c68, #f3a8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mason Admin</h1>
-<p align="center">
-<img src="https://img.shields.io/badge/Vue.js-3.x-green.svg?style=flat-square&logo=vue.js" />
-<img src="https://img.shields.io/badge/TypeScript-4.9+-3178C6.svg?style=flat-square&logo=typescript" />
-<img src="https://img.shields.io/badge/Sass-1.62-CC6699.svg?style=flat-square&logo=sass" />
-<img src="https://img.shields.io/badge/Tailwind_CSS-3.3-06B6D4.svg?style=flat-square&logo=tailwind-css" />
-<img src="https://img.shields.io/badge/Vite-4.1-646CFF.svg?style=flat-square&logo=vite&logoColor=white" />
-<img src="https://img.shields.io/badge/Vitest-1.0-FCC72B.svg?style=flat-square&logo=vitest" />
-</p>
+<h2 align="center" style="font-size: 40px; font-weight: bold; background: linear-gradient(45deg, #ff1c68, #f3a8ff, #ffffff, #89ff94, #ff1c68, #f3a8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mason Admin</h2>
+
+<div align="center">
+  <a href="https://github.com/ZRMYDYCG/Mason">
+    <img src="/public/favicon.svg" alt="Mason Admin" width="90" class="logo" />
+  </a>
+</div>
 
 <p align="center">🚀 基于Vue3、TypeScript、Element-Plus的中后台管理系统组件解决方案 | 开箱即用的设计体系</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Vue.js-3.4.21-green.svg?style=flat-square&logo=vue.js" />
+  <img src="https://img.shields.io/badge/TypeScript-5.4.5-3178C6.svg?style=flat-square&logo=typescript" />
+  <img src="https://img.shields.io/badge/Sass-1.75.0-CC6699.svg?style=flat-square&logo=sass" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.0.15-06B6D4.svg?style=flat-square&logo=tailwind-css" />
+  <img src="https://img.shields.io/badge/Vite-6.2.3-646CFF.svg?style=flat-square&logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vitest-3.0.9-FCC72B.svg?style=flat-square&logo=vitest" />
+</p>
+
+<img src="/public/bg.png" alt="bg" />
+
+<img src="/public/bg-dark.png" alt="bg-dark" />
 
 ## 🎇 设计
 

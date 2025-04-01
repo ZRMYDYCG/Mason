@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import VueOfficeDocx from './components/vue-office-docx.vue' // docs 预览
 import VueOfficeExcel from './components/vue-office-excel.vue' // Excel 预览
-import VueOfficePdf from './components/vue-office-pdf.vue' // Pdf 预览
+// import VueOfficePdf from './components/vue-office-pdf.vue' // Pdf 预览
 
 const activeKey = ref('docs')
 </script>
@@ -18,7 +18,7 @@ const activeKey = ref('docs')
           <VueOfficeExcel v-if="activeKey === 'excel'" />
         </el-tab-pane>
         <el-tab-pane name="pdf" label="Pdf文件预览">
-          <VueOfficePdf v-if="activeKey === 'pdf'" />
+          <!--          <VueOfficePdf v-if="activeKey === 'pdf'" />-->
         </el-tab-pane>
       </el-tabs>
     </el-card>

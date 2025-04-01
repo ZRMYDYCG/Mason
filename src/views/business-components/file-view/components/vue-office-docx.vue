@@ -38,30 +38,26 @@ const handleFileChange = (uploadFile) => {
 
 <template>
   <div v-loading="loading" class="container">
-    <el-space direction="vertical" size="large" class="w-full">
-      <el-upload accept=".doc,.docx" :limit="1" :auto-upload="false" :on-change="handleFileChange">
-        <el-button type="primary">点击上传</el-button>
-      </el-upload>
-
-      <div :style="{ height: 'calc(100vh - 350px)' }">
-        <VueOfficeDocx
-          :src="src"
-          class="h-screen"
-          @rendered="renderedHandler"
-          @error="errorHandler"
-        />
-      </div>
-    </el-space>
+    <el-upload accept=".doc,.docx" :limit="1" :auto-upload="false" :on-change="handleFileChange">
+      <el-button type="primary">点击上传</el-button>
+      <template #tip>
+        <div class="el-upload__tip">请上传.doc或.docx文件</div>
+      </template>
+    </el-upload>
+    <div :style="{ height: 'calc(100vh - 350px)' }">
+      <VueOfficeDocx
+        :src="src"
+        class="h-screen"
+        @rendered="renderedHandler"
+        @error="errorHandler"
+      />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .container {
   height: 100%;
-}
-
-.w-full {
-  width: 100%;
 }
 
 .h-screen {

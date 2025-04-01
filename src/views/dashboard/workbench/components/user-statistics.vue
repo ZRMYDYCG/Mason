@@ -40,7 +40,7 @@ const createChart = () => {
     },
     xAxis: {
       type: 'category',
-      data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月'],
       boundaryGap: [0, 0.01],
       splitLine: {
         show: false
@@ -68,11 +68,11 @@ const createChart = () => {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
-              color: '#00BFFF'
+              color: '#FF6347'
             },
             {
               offset: 1,
-              color: '#00BFFF'
+              color: '#FFD700'
             }
           ])
         }
@@ -83,19 +83,19 @@ const createChart = () => {
 
 const list = [
   {
-    name: '用户总数',
-    value: '32k'
+    name: '总销售额',
+    value: '320万'
   },
   {
-    name: '总访问量',
-    value: '128k'
+    name: '总订单数',
+    value: '12800'
   },
   {
-    name: '日访问量',
-    value: '10k'
+    name: '月销售额',
+    value: '100万'
   },
   {
-    name: '周同比',
+    name: '月同比增长',
     value: '10%'
   }
 ]
@@ -106,12 +106,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-card class="user-static">
+  <el-card class="sales-static">
     <div class="chart" ref="chartRef" :style="{ height: '200px' }"></div>
     <div class="overview">
-      <div class="title">用户概述</div>
+      <div class="title">销售概述</div>
       <div class="line">
-        <span>比上周</span>
+        <span>比上月</span>
         <span class="up">+23%</span>
       </div>
     </div>
@@ -127,7 +127,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.user-static {
+.sales-static {
   height: 370px;
   .overview {
     .title {
