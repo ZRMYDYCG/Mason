@@ -11,11 +11,15 @@ import 'element-plus/theme-chalk/el-message-box.css'
 import '@/styles/element-dark.scss'
 import './tailwind.css'
 import { setupGlobDirectives } from '@/directives'
+import { mockXHR } from '@/mock/index.ts'
 
 import ElementPlus from 'element-plus'
 import PrintLogo from './print-logo.ts'
 import router from '@/router'
 import pinia from '@/store'
+
+// mock 开关
+mockXHR(true)
 
 async function bootstrap() {
   const app = createApp(App)

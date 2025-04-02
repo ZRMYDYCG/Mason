@@ -12,6 +12,7 @@ import { ref } from 'vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { useTheme } from '@/hooks/useTheme'
 import FullLoading from '@/components/Loading/full-loading.vue'
+import axios from 'axios'
 
 const { initTheme } = useTheme()
 initTheme()
@@ -20,6 +21,9 @@ const isLoading = ref(true)
 
 setTimeout(() => {
   isLoading.value = false
+  axios.get('/bigscreen/leftBottom').then((res) => {
+    console.log(res)
+  })
 }, 2000)
 </script>
 
