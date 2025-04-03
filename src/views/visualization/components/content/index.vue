@@ -3,7 +3,7 @@ import ItemWrap from './components/item-wrap'
 import LeftTop from './components/left-top.vue'
 import LeftCenter from './components/left-center.vue'
 import LeftBottom from './components/left-bottom.vue'
-// import CenterMap from './center-map.vue'
+import CenterMap from './components/center-map.vue'
 // import CenterBottom from './center-bottom.vue'
 // import RightTop from './right-top.vue'
 // import RightCenter from './right-center.vue'
@@ -32,7 +32,7 @@ import LeftBottom from './components/left-bottom.vue'
       </ItemWrap>
     </div>
     <div class="contetn_center">
-      <!--      <CenterMap class="contetn_center_top" title="设备分布图" />-->
+      <CenterMap class="contetn_center_top" title="设备分布图" />
       <ItemWrap class="contetn_center-bottom" title="安装计划">
         <!--        <CenterBottom />-->
       </ItemWrap>

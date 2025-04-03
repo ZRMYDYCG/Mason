@@ -14,6 +14,20 @@ const config = {
   timeout: 30000
 }
 
+/**
+ * @description: 没有基地址 访问根目录下文件
+ */
+export const GETNOBASE = async (url: string, params?: any): Promise<any> => {
+  try {
+    const data = await axios.get(url, {
+      params: params
+    })
+    return data.data
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
 class Http {
   private static axiosInstance: AxiosInstance
   constructor(config: AxiosRequestConfig) {
