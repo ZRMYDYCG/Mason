@@ -35,10 +35,21 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
             '/api': {
               target: viteEnv.VITE_PROXY,
               changeOrigin: true,
-              rewrite: (path) => path.replace(/^\/api/, ''),
+              rewrite: (path) => {
+                console.log('path', path)
+                return path.replace(/^\/api/, '')
+              },
               ...(viteEnv.VITE_PROXY_COOKIE_PATH
                 ? { cookiePathRewrite: viteEnv.VITE_PROXY_COOKIE_PATH }
                 : {})
+            },
+            '/file': {
+              target: viteEnv.VITE_FILE_PROXY,
+              changeOrigin: true,
+              rewrite: (path) => {
+                console.log('走代理')
+                return path.replace(/^\/file/, '')
+              }
             }
           }
         : {},
