@@ -1,6 +1,6 @@
 <template>
   <Tabs v-if="showWorkTab" />
-  <el-main v-loading="refresh">
+  <el-main v-loading="refresh" :style="{ padding: routeInfo.path === '/mason-ai' ? '0' : '20px' }">
     <!--    <div :style="{ width: containerWidth, margin: '0 auto' }">-->
     <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
       <!--      <transition :name="pageTransition" mode="out-in" appear>-->
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { VNode, computed, h, onBeforeUnmount, ref } from 'vue'
-import { RouteLocationNormalizedLoaded } from 'vue-router'
+import { RouteLocationNormalizedLoaded, useRoute } from 'vue-router'
 import Tabs from '@/Layout/components/Tabs/index.vue'
 import { useKeepAliveStore } from '@/store/modules/keepAlive'
 import { useDebounceFn } from '@vueuse/core'
@@ -29,6 +29,8 @@ import { useUserStore } from '@/store/modules/user.ts'
 
 const keepAliveStore = useKeepAliveStore()
 const keepAliveNames = computed(() => keepAliveStore.keepAliveNames)
+
+const routeInfo = useRoute()
 
 // keepAlive缓存 将组件路径fullPath作为key 设置为Component 识别名称
 const wrapperMap = new Map()
