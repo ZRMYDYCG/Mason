@@ -2,7 +2,7 @@
 import ItemWrap from './components/item-wrap'
 import LeftTop from './components/left-top.vue'
 import LeftCenter from './components/left-center.vue'
-// import LeftBottom from './left-bottom.vue'
+import LeftBottom from './components/left-bottom.vue'
 // import CenterMap from './center-map.vue'
 // import CenterBottom from './center-bottom.vue'
 // import RightTop from './right-top.vue'
@@ -28,7 +28,7 @@ import LeftCenter from './components/left-center.vue'
         title="设备提醒"
         style="padding: 0 10px 16px 10px"
       >
-        <!--        <LeftBottom />-->
+        <LeftBottom />
       </ItemWrap>
     </div>
     <div class="contetn_center">
