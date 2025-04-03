@@ -1,5 +1,32 @@
 # Changelog
 
+## [1.0.6](https://github.com/ZRMYDYCG/Mason/compare/v1.0.5...v1.0.6) (2025-04-03)
+
+### ✨ Features | 新功能
+
+* ✨️初始化大屏控件 wrapper ([74eee18](https://github.com/ZRMYDYCG/Mason/commit/74eee186feda0382fd7af7a64f1600407a52a765))
+* ✨️基于 vue-carts按需引入 ([76b67ce](https://github.com/ZRMYDYCG/Mason/commit/76b67ce670303a2d4facfb197d323373d543934e))
+* ✨️数据大屏剩余模块 ([221a171](https://github.com/ZRMYDYCG/Mason/commit/221a1714ae42c108eedaae00dd44cbd4e840a5ce))
+* ✨️图床上传文件示例 ([e357569](https://github.com/ZRMYDYCG/Mason/commit/e357569ea5f86a14729b55ffc58504a9dd5eae55))
+* ✨️新增大屏可视化接口定义 ([53dc486](https://github.com/ZRMYDYCG/Mason/commit/53dc486d58da34adaf1eb5704d4efc90dccddb9c))
+* ✨️新增设备分布图 ([6346d13](https://github.com/ZRMYDYCG/Mason/commit/6346d131c1c9557318d259e509c0df71c908e555))
+* ✨️新增设备提醒 ([94385bd](https://github.com/ZRMYDYCG/Mason/commit/94385bdc3921f1f33f06e6e0bcd754c835873869))
+* ✨️新增水波纹指令,支持波纹样式效果自定义 ([14f0838](https://github.com/ZRMYDYCG/Mason/commit/14f083899260e46a3ddc23f94db5122176e7bdef))
+* ✨️新增文件上传预览功能 ([0fed9c4](https://github.com/ZRMYDYCG/Mason/commit/0fed9c4b4629ea1dea5ba7875e4a2a73d441345d))
+* ✨️新增doc文档上传在线预览 ([46f6564](https://github.com/ZRMYDYCG/Mason/commit/46f6564038cd818f445549de07f116227c933682))
+* ✨️新增useForm钩子，将某一el-form配套逻辑更加内聚 ([7e64368](https://github.com/ZRMYDYCG/Mason/commit/7e643687e06fdc5e3529a0ee591c40d966b02380))
+* ✨️新增useResizable钩子, 且拖动过程中不选中文字 ([f8d496d](https://github.com/ZRMYDYCG/Mason/commit/f8d496d7106c6d3fe0b23b980975ee574a1e137a))
+* ✨️新增useTable钩子 ([68b787a](https://github.com/ZRMYDYCG/Mason/commit/68b787af3a1b525c41843651c804dca79ac09f33))
+* ✨️新增UseTable钩子 ([8de8312](https://github.com/ZRMYDYCG/Mason/commit/8de8312286cfc157f5de9def70e85897a07ac372))
+* ✨️修改用户登录后的信息提示方式，优化用户体验。 ([51f088d](https://github.com/ZRMYDYCG/Mason/commit/51f088d1bbb0e30eb3d7fd93fa46736a07698394))
+* ✨️引入mock解决方案 ([9d8ef34](https://github.com/ZRMYDYCG/Mason/commit/9d8ef3485dc4f0a8034201ff3469c8e196a63618))
+* ✨️优化样式 ([d9efdc3](https://github.com/ZRMYDYCG/Mason/commit/d9efdc3b37d16f61356ea75baaea23390c709ed9))
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🪲️处理链接状态以及动态路由是根级别和全屏级别路由动态注册区分 ([6d93f43](https://github.com/ZRMYDYCG/Mason/commit/6d93f43b83c2210d48db62856ccfecda9137d950))
+* 🪲️移除钩子中未定义的方法 ([de7c740](https://github.com/ZRMYDYCG/Mason/commit/de7c740f16ba55448ccd13d48e8792f92edbafb3))
+
 ## [1.0.5](https://github.com/ZRMYDYCG/Mason/compare/v1.0.4...v1.0.5) (2025-03-29)
 
 ### ✨ Features | 新功能
