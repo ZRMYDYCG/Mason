@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { useViewStore } from '@/store/modules/view.ts'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 const isScaleRadio = ref(false)
 const leftBottomRadio = ref(true)
 const rightBottomRadio = ref(true)
 const viewStore = useViewStore()
 const { indexConfig } = storeToRefs(viewStore)
+
+const router = useRouter()
 
 const init = () => {
   viewStore.initSetting()
@@ -16,7 +19,11 @@ const init = () => {
   rightBottomRadio.value = indexConfig.value.rightBottomSwiper
 }
 init()
-const handleClose = () => {}
+
+const handleClose = () => {
+  router.push('/')
+  viewStore.setSettingShow(false)
+}
 
 const cancelClick = () => {
   viewStore.setSettingShow(false)
@@ -81,6 +88,12 @@ const indexRadioChange = (flag: boolean) => {
             <el-radio :label="true">是</el-radio>
             <el-radio :label="false">否</el-radio>
           </el-radio-group>
+        </div>
+      </div>
+      <div class="left_shu">退出数据大屏:</div>
+      <div class="setting_item">
+        <div class="setting_content">
+          <el-button type="primary" @click="handleClose">退出</el-button>
         </div>
       </div>
     </template>
