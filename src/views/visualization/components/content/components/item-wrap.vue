@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import BorderBox13 from './border-box'
 
-const props = withDefaults(
-  defineProps<{
-    // 标题
-    title: number | string
-  }>(),
-  {
-    title: ''
-  }
-)
+interface IItemWrapProps {
+  title?: number | string
+}
+
+const props = withDefaults(defineProps<IItemWrapProps>(), {
+  title: ''
+})
 </script>
 
 <template>

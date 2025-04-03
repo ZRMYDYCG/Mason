@@ -4,8 +4,8 @@ import { merge } from 'lodash-es'
 import { useElementSize } from '@vueuse/core'
 
 interface IBorderBoxProps {
-  color: [string, string]
-  backgroundColor: string
+  color?: [string, string]
+  backgroundColor?: string
 }
 
 const props = withDefaults(defineProps<IBorderBoxProps>(), {

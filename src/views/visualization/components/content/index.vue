@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ItemWrap from './components/item-wrap'
 import LeftTop from './components/left-top.vue'
-// import LeftCenter from './left-center.vue'
+import LeftCenter from './components/left-center.vue'
 // import LeftBottom from './left-bottom.vue'
 // import CenterMap from './center-map.vue'
 // import CenterBottom from './center-bottom.vue'
@@ -21,7 +21,7 @@ import LeftTop from './components/left-top.vue'
         <LeftTop />
       </ItemWrap>
       <ItemWrap class="contetn_left-center contetn_lr-item" title="用户总览">
-        <!--        <LeftCenter />-->
+        <LeftCenter />
       </ItemWrap>
       <ItemWrap
         class="contetn_left-bottom contetn_lr-item"

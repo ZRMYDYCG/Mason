@@ -67,6 +67,7 @@
     "vite-plugin-imagemin": "^0.6.1",
     "vue": "^3.4.21",
     "vue-demi": "^0.14.6",
+    "vue-echarts": "^7.0.3",
     "vue-img-cutter": "^3.0.6",
     "vue-router": "4",
     "vue-waterfall-plugin-next": "^2.6.5",

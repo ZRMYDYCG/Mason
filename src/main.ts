@@ -12,6 +12,7 @@ import '@/styles/element-dark.scss'
 import './tailwind.css'
 import { setupGlobDirectives } from '@/directives'
 import { mockXHR } from '@/mock/index.ts'
+import { registerEcharts } from '@/plugins/echarts.ts'
 
 import ElementPlus from 'element-plus'
 import PrintLogo from './print-logo.ts'
@@ -29,6 +30,8 @@ async function bootstrap() {
 
   // 注册全局指令
   setupGlobDirectives(app)
+  // vue-echarts 按需注册
+  registerEcharts(app)
 
   PrintLogo()
 
