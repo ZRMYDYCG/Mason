@@ -30,7 +30,7 @@ importers:
         specifier: ^2.0.10
         version: 2.0.10(vue-demi@0.14.10(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
       '@vueuse/core':
-        specifier: ^10.11.0
+        specifier: ^10.11.1
         version: 10.11.1(vue@3.5.13(typescript@5.8.2))
       '@wangeditor/editor':
         specifier: ^5.1.23

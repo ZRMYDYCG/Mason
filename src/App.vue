@@ -21,9 +21,6 @@ const isLoading = ref(true)
 
 setTimeout(() => {
   isLoading.value = false
-  axios.get('/bigscreen/leftBottom').then((res) => {
-    console.log(res)
-  })
 }, 2000)
 </script>
 
