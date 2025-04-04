@@ -21,6 +21,10 @@
 
 <img src="/public/bg-dark.png" alt="bg-dark" />
 
+![image](https://github.com/user-attachments/assets/374ad5e0-fac2-445e-834d-07c123b920a3)
+
+![image](https://github.com/user-attachments/assets/28b21c76-9e03-41a1-9cca-bdff668b41fe)
+
 ## 🎇 设计
 
 RBAC 权限设计部分以及系统设置部分、日志管理、个人中心, 进行前后端分离, 系统设置部分如下：
