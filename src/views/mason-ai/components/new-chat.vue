@@ -1,4 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ChatInput from './chat-input.vue'
+
+const inputText = ref('')
+const isLoading = ref(false)
+
+const handleSend = (value) => {
+  isLoading.value = true
+}
+
+const handleClear = () => {}
+</script>
 
 <template>
   <div class="new-chat">
@@ -12,6 +23,13 @@
       <div class="welcome-subtitle">
         我可以帮你写代码、读文件、写作各种创意内容，请把你的任务交给我吧~
       </div>
+      <ChatInput
+        v-model="inputText"
+        :loading="isLoading"
+        placeholder="请输入你的问题..."
+        @send="handleSend"
+        @clear="handleClear"
+      />
     </div>
     <div class="footer-notice">内容由 AI 生成，请仔细甄别</div>
   </div>
@@ -40,7 +58,7 @@
   justify-content: center;
   align-items: center;
   line-height: 24px;
-  transform: translateY(0);
+  transform: translateY(-100px);
 }
 
 .welcome-message {
@@ -57,6 +75,7 @@
   font-size: 14px;
   max-width: 480px;
   line-height: 1.5;
+  margin-bottom: 14px;
 }
 
 .footer-notice {
