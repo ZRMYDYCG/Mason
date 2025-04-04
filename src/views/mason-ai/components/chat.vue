@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import NewChat from './new-chat.vue'
+import DoingChat from './doing-chat.vue'
 </script>
 
 <template>
   <div class="chat">
-    <new-chat />
+    <new-chat v-if="false" />
+    <doing-chat />
   </div>
 </template>
 
