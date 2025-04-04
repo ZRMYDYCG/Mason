@@ -38,7 +38,7 @@ const searchText = ref('')
     <div class="fold-sidebar" v-if="foldStatus">
       <div class="sidebar-header">
         <div class="logo">
-          <img src="/favicon.svg" alt="logo" />
+          <img src="/ai.svg" alt="logo" />
         </div>
         <el-tooltip content="展开/收起侧边栏" placement="right">
           <i class="iconfont icon-unfold" @click="foldStatus = !foldStatus"></i>
@@ -65,7 +65,6 @@ const searchText = ref('')
         ></el-avatar>
       </div>
     </div>
-
     <transition name="slide">
       <div class="unfold-sidebar" v-if="!foldStatus">
         <div class="sidebar-header">
@@ -116,7 +115,6 @@ const searchText = ref('')
 .aside-container {
   height: 100%;
   overflow: hidden;
-  background-color: #f9fbff;
 
   .fold-sidebar {
     width: 80px;
@@ -126,6 +124,7 @@ const searchText = ref('')
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: #f9fbff;
 
     .sidebar-header {
       display: flex;
@@ -171,6 +170,7 @@ const searchText = ref('')
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #f9fbff;
 
     .sidebar-header {
       display: flex;
@@ -288,7 +288,7 @@ const searchText = ref('')
 
     .sidebar-footer {
       border-top: 1px solid #eee;
-      padding: 16px;
+      padding: 8px;
 
       .search-box {
         position: relative;
