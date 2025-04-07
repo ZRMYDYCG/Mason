@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite src/build",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.ts,.vue ./src",
     "lint:fix": "eslint --fix --ext .js,.ts,.vue ./src",
@@ -23,7 +23,7 @@
     "docs:dev": "vitepress dev docs",
     "new": "plop",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook src/build",
     "test": "vitest",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"
@@ -41,6 +41,7 @@
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "next",
     "axios": "^1.6.8",
+    "boxen": "^8.0.1",
     "countup.js": "^2.8.0",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.13",
@@ -50,6 +51,7 @@
     "express": "^4.21.2",
     "ezuikit-js": "^8.1.7",
     "file-saver": "^2.0.5",
+    "gradient-string": "^3.0.0",
     "highlight.js": "^11.11.1",
     "js-beautify": "^1.15.4",
     "lodash": "^4.17.21",
