@@ -7,8 +7,6 @@ const isLoading = ref(false)
 const handleSend = (value) => {
   isLoading.value = true
 }
-
-const handleClear = () => {}
 </script>
 
 <template>
@@ -28,7 +26,6 @@ const handleClear = () => {}
         :loading="isLoading"
         placeholder="请输入你的问题..."
         @send="handleSend"
-        @clear="handleClear"
       />
     </div>
     <div class="footer-notice">内容由 AI 生成，请仔细甄别</div>

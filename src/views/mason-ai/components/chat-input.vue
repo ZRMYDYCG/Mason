@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, nextTick, watch } from 'vue'
-import { Loading, CircleClose } from '@element-plus/icons-vue'
+import { Loading } from '@element-plus/icons-vue'
 
 interface IChatInputProps {
   modelValue: string
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<IChatInputProps>(), {
   placeholder: '请输入内容...'
 })
 
-const emit = defineEmits(['update:modelValue', 'send', 'clear'])
+const emit = defineEmits(['update:modelValue', 'send'])
 
 const textareaRef = ref<HTMLTextAreaElement>()
 const inputValue = ref(props.modelValue)
@@ -48,12 +48,6 @@ const handleKeydown = (e: KeyboardEvent) => {
   }
 }
 
-const handleClear = () => {
-  inputValue.value = ''
-  emit('clear')
-  adjustHeight()
-}
-
 watch(
   () => props.modelValue,
   (val) => {
@@ -75,9 +69,6 @@ watch(
         @input="handleInput"
         @keydown="handleKeydown"
       />
-      <div v-if="inputValue" class="clear-btn" @click="handleClear">
-        <el-icon :size="16"><CircleClose /></el-icon>
-      </div>
     </div>
     <button
       class="send-btn"
@@ -104,76 +95,70 @@ watch(
   border: 1px solid #e4e7ed;
   border-radius: 8px;
   transition: border-color 0.2s;
+
   &:focus-within {
     border-color: var(--el-color-primary);
     box-shadow: 0 0 4px rgba(var(--el-color-primary-rgb), 0.2);
   }
-}
 
-.input-wrapper {
-  position: relative;
-  flex: 1;
-  min-height: 40px;
-}
+  .input-wrapper {
+    position: relative;
+    flex: 1;
+    min-height: 40px;
 
-.input-area {
-  width: 100%;
-  min-height: inherit;
-  max-height: 200px;
-  padding: 8px 28px 8px 0;
-  line-height: 1.5;
-  border: none;
-  outline: none;
-  resize: none;
-  font-family: inherit;
-  font-size: 14px;
-  color: var(--el-text-color-regular);
-  &::placeholder {
-    color: var(--el-text-color-placeholder);
-  }
-  &:disabled {
-    background: transparent;
-    cursor: not-allowed;
-  }
-}
+    .input-area {
+      width: 100%;
+      min-height: inherit;
+      max-height: 200px;
+      padding: 8px;
+      line-height: 1.5;
+      border: none;
+      outline: none;
+      resize: none;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--el-text-color-regular);
 
-.clear-btn {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--el-text-color-secondary);
-  cursor: pointer;
-  &:hover {
-    color: var(--el-text-color-regular);
-  }
-}
+      &::placeholder {
+        color: var(--el-text-color-placeholder);
+      }
 
-.send-btn {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 4px;
-  background: var(--el-color-primary);
-  cursor: pointer;
-  transition: all 0.2s;
-  &:hover:not(:disabled) {
-    opacity: 0.9;
-  }
-  &:disabled {
-    background: var(--el-disabled-bg-color);
-    cursor: not-allowed;
-    &.loading {
-      background: var(--el-color-primary-light-5);
+      &:disabled {
+        background: transparent;
+        cursor: not-allowed;
+      }
     }
   }
-}
 
-.loading-icon {
-  animation: rotate 1s linear infinite;
+  .send-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 4px;
+    background: var(--el-color-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+
+    &:disabled {
+      background: var(--el-disabled-bg-color);
+      cursor: not-allowed;
+
+      &.loading {
+        background: var(--el-color-primary-light-5);
+      }
+    }
+
+    .loading-icon {
+      animation: rotate 1s linear infinite;
+    }
+  }
 }
 
 @keyframes rotate {
