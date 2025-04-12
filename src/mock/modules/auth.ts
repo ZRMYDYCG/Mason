@@ -5,7 +5,7 @@ export default [
    * 用户登录
    * */
   {
-    url: '/login',
+    url: '/api/kafka/login',
     type: 'post',
     response: (options: any) => {
       const body = JSON.parse(options.body)
@@ -35,7 +35,7 @@ export default [
    * 获取动态路由列表
    * */
   {
-    url: '/routes',
+    url: '/api/kafka/menu/list',
     type: 'get',
     response: () => {
       return Mock.mock({
@@ -90,9 +90,9 @@ export default [
               isLink: false,
               title: '集群概览'
             },
-            name: 'kafka-cluster',
+            name: 'kafka-overview',
             parentId: 0,
-            path: '/kafka-cluster',
+            path: '/kafka-overview',
             sort: 2
           },
           {
@@ -108,9 +108,9 @@ export default [
               isLink: false,
               title: 'Topic监控'
             },
-            name: 'kafka-cluster',
+            name: 'kafka-topic',
             parentId: 0,
-            path: '/kafka-cluster',
+            path: '/kafka-topic',
             sort: 3
           },
           {
@@ -126,9 +126,9 @@ export default [
               isLink: false,
               title: '消费者监控'
             },
-            name: 'kafka-cluster',
+            name: 'kafka-consumer',
             parentId: 0,
-            path: '/kafka-cluster',
+            path: '/kafka-consumer',
             sort: 4
           },
           {
@@ -144,9 +144,9 @@ export default [
               isLink: false,
               title: '主机负载'
             },
-            name: 'kafka-cluster',
+            name: 'kafka-host-load',
             parentId: 0,
-            path: '/kafka-cluster',
+            path: '/kafka-host-load',
             sort: 5
           },
           {
@@ -162,13 +162,43 @@ export default [
               isLink: false,
               title: 'Topic负载'
             },
-            name: 'kafka-cluster',
+            name: 'kafka-topic-load',
             parentId: 0,
-            path: '/kafka-cluster',
+            path: '/kafka-topic-load',
             sort: 6
           }
         ],
         msg: '获取菜单列表成功'
+      })
+    }
+  },
+  /**
+   * 获取用户信息
+   * */
+  {
+    url: '/api/kafka/info/13',
+    type: 'get',
+    response: () => {
+      return Mock.mock({
+        code: 200,
+        data: {
+          id: 13,
+          username: 'Mason',
+          email: 'mason@example.com',
+          role: 'admin',
+          permissions: [
+            'dashboard',
+            'kafka-cluster',
+            'kafka-overview',
+            'kafka-topic',
+            'kafka-consumer',
+            'kafka-host-load',
+            'kafka-topic-load'
+          ],
+          avatar: 'http://example.com/avatar.jpg',
+          createTime: '2021-06-15 16:20:00'
+        },
+        msg: '获取用户信息成功'
       })
     }
   }

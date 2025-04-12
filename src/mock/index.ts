@@ -1,11 +1,12 @@
 import Mock from 'mockjs'
 import Visualization from './modules/visualization.ts'
+import Auth from './modules/auth.ts'
 
 Mock.setup({
   timeout: '300'
 })
 
-const mocks = [...Visualization]
+const mocks = [...Visualization, ...Auth]
 
 export function mockXHR(enableMock: boolean) {
   if (!enableMock) {
