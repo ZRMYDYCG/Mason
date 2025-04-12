@@ -1,6 +1,9 @@
 import Mock from 'mockjs'
 
 export default [
+  /**
+   * 用户登录
+   * */
   {
     url: '/login',
     type: 'post',
@@ -26,6 +29,45 @@ export default [
           msg: '用户名或密码错误'
         }
       }
+    }
+  },
+  /**
+   * 获取动态路由列表
+   * */
+  {
+    url: '/routes',
+    type: 'get',
+    response: () => {
+      return Mock.mock({
+        code: 200,
+        data: [
+          {
+            children: [],
+            component: '/kafka-cluster/index'
+          },
+          {
+            children: [],
+            component: '/kafka-consumer/index'
+          },
+          {
+            children: [],
+            component: '/kafka-host-load/index'
+          },
+          {
+            children: [],
+            component: '/kafka-overview/index'
+          },
+          {
+            children: [],
+            component: '/kafka-topic/index'
+          },
+          {
+            children: [],
+            component: '/kafka-topic-load/index'
+          }
+        ],
+        msg: '获取菜单列表成功'
+      })
     }
   }
 ]

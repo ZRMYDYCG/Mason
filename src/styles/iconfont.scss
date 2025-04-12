@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4744911 */
-  src: url('//at.alicdn.com/t/c/font_4744911_v0uy7eqcf7n.woff2?t=1743684264267') format('woff2'),
-  url('//at.alicdn.com/t/c/font_4744911_v0uy7eqcf7n.woff?t=1743684264267') format('woff'),
-  url('//at.alicdn.com/t/c/font_4744911_v0uy7eqcf7n.ttf?t=1743684264267') format('truetype');
+  src: url('//at.alicdn.com/t/c/font_4744911_rk9b240j3jl.woff2?t=1744435771331') format('woff2'),
+  url('//at.alicdn.com/t/c/font_4744911_rk9b240j3jl.woff?t=1744435771331') format('woff'),
+  url('//at.alicdn.com/t/c/font_4744911_rk9b240j3jl.ttf?t=1744435771331') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,22 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-message:before {
+  content: "\e611";
+}
+
+.icon-Throughputcopy:before {
+  content: "\e60c";
+}
+
+.icon-produce_rate:before {
+  content: "\e615";
+}
+
+.icon-icon_consumer:before {
+  content: "\e603";
 }
 
 .icon-shouji1:before {

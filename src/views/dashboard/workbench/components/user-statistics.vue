@@ -83,15 +83,15 @@ const createChart = () => {
 
 const list = [
   {
-    name: '总销售额',
+    name: '总监控数据',
     value: '320万'
   },
   {
-    name: '总订单数',
+    name: '总事件数',
     value: '12800'
   },
   {
-    name: '月销售额',
+    name: '月监控数据',
     value: '100万'
   },
   {
@@ -109,7 +109,7 @@ onMounted(() => {
   <el-card class="sales-static">
     <div class="chart" ref="chartRef" :style="{ height: '200px' }"></div>
     <div class="overview">
-      <div class="title">销售概述</div>
+      <div class="title">监控概述</div>
       <div class="line">
         <span>比上月</span>
         <span class="up">+23%</span>

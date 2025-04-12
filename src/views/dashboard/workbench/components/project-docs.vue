@@ -3,11 +3,11 @@ import { ref, computed } from 'vue'
 
 const mockData = Array.from({ length: 100 }, (_, i) => ({
   id: i + 1,
-  title: `使用 GPT 自动生成文章的AI摘要（${i + 1}）`,
+  title: `Kafka监控平台自动生成报告（${i + 1}）`,
   tags: ['前端', 'DeepSeek', 'AI'],
   date: '2025-03-' + (12 + i).toString().padStart(2, '0'),
   content:
-    '本文介绍了如何利用GPT强大的自然语言处理能力来自动生成文章摘要。通过前端技术实现与DeepSeek平台的集成，用户可以快速获取文章的核心内容，提升阅读效率。探索AI在内容处理中的应用，打开新的视角。'
+    '本文介绍了如何利用GPT强大的自然语言处理能力来自动生成Kafka监控报告。通过前端技术实现与DeepSeek平台的集成，用户可以快速获取监控的核心信息，提升分析效率。探索AI在监控平台中的应用，打开新的视角。'
 }))
 
 const currentPage = ref(1)
@@ -24,7 +24,7 @@ const currentPageData = computed(() => {
 <template>
   <el-card>
     <template #header>
-      <el-text>项目文档</el-text>
+      <el-text>Kafka监控报告</el-text>
     </template>
     <template #default>
       <div class="list" v-for="item in currentPageData" :key="item.id">

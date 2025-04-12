@@ -71,7 +71,7 @@ const createChart = () => {
     },
     series: [
       {
-        name: '销售额',
+        name: '监控数据',
         color: '#ff6347',
         type: 'line',
         stack: '总量',
@@ -106,7 +106,7 @@ onMounted(() => {
 <template>
   <el-card class="sales-statistics">
     <div class="sales-statistics__title">
-      <div class="title">销售额</div>
+      <div class="title">监控数据</div>
       <div class="subtitle">
         <span>今年增长</span>
         <span class="increase">+15%</span>

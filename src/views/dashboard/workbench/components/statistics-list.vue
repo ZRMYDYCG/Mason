@@ -1,36 +1,35 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { CountTo } from 'vue3-count-to'
-import SvgRender from '@/components/SvgRender/index.vue'
 
 const dataList = reactive([
   {
-    des: '总访问次数',
-    icon: 'visits',
+    des: '总消息数',
+    icon: '#icon-message',
     startVal: 0,
     duration: 1000,
     num: 9120,
     change: '+20%'
   },
   {
-    des: '在线访客数',
-    icon: 'user',
+    des: '在线消费者数',
+    icon: '#icon-icon_consumer',
     startVal: 0,
     duration: 1000,
     num: 182,
     change: '+10%'
   },
   {
-    des: '点击量',
-    icon: 'click',
+    des: '消息吞吐量',
+    icon: '#icon-Throughputcopy',
     startVal: 0,
     duration: 1000,
     num: 9520,
     change: '-12%'
   },
   {
-    des: '新用户',
-    icon: 'new',
+    des: '新生产者',
+    icon: '#icon-produce_rate',
     startVal: 0,
     duration: 1000,
     num: 156,
@@ -62,7 +61,9 @@ const dataList = reactive([
             </div>
             <div class="content__right">
               <div class="icon-wrapper">
-                <SvgRender :name="item.icon"></SvgRender>
+                <svg class="icon" aria-hidden="true">
+                  <use :href="item.icon"></use>
+                </svg>
               </div>
             </div>
           </div>
@@ -113,9 +114,16 @@ const dataList = reactive([
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 15px;
         background-color: #effbff;
-        border-radius: 15px;
+        padding: 10px;
+        border-radius: 4px;
+        .icon {
+          width: 1em;
+          height: 1em;
+          vertical-align: -0.15em;
+          fill: currentColor;
+          overflow: hidden;
+        }
       }
     }
   }

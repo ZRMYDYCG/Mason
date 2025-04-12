@@ -14,7 +14,7 @@
           </div>
           <div>
             <h2 class="title">Hello Mason</h2>
-            <div class="description">欢迎使用 Mason • 石匠 后台管理集成方案</div>
+            <div class="description">欢迎使用Kafka监控平台</div>
           </div>
         </div>
         <div class="logo-section">
