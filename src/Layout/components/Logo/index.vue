@@ -20,7 +20,7 @@ const menuType = computed(() => settingStore.menuType)
       src="@/assets/images/logo.svg"
       alt="logo"
     />
-    <span v-show="!isCollapse || menuType === 'top'" class="logo-text">Mason • 石匠</span>
+    <span v-show="!isCollapse || menuType === 'top'" class="logo-text">Kafka监控</span>
   </div>
 </template>
 
