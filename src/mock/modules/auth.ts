@@ -43,6 +43,24 @@ export default [
         data: [
           {
             children: [],
+            component: '/workbench/index',
+            id: 0,
+            createAt: '2021-06-15 16:20:00',
+            meta: {
+              icon: 'dashboard',
+              isAffix: true,
+              isEnable: true,
+              isKeeAlive: false,
+              isLink: false,
+              title: '工作台'
+            },
+            name: 'dashboard',
+            parentId: 0,
+            path: '/dashboard',
+            sort: 1
+          },
+          {
+            children: [],
             component: '/kafka-cluster/index',
             id: 1,
             createAt: '2021-06-15 16:20:00',
