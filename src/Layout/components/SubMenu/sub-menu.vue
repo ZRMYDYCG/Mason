@@ -2,13 +2,17 @@
   <template v-for="subItem in menuList" :key="subItem.path">
     <el-sub-menu v-if="subItem.children?.length" :index="subItem.path">
       <template #title>
-        <i v-if="subItem.meta.icon" :class="['iconfont', subItem.meta.icon]" class="mr-2"></i>
+        <svg v-if="subItem.meta.icon" class="icon mr-2 w-4 h-4" aria-hidden="true">
+          <use :href="subItem.meta.icon"></use>
+        </svg>
         <span class="sle">{{ subItem.meta.title }}</span>
       </template>
       <SubMenu :menu-list="subItem.children" />
     </el-sub-menu>
     <el-menu-item v-else :index="subItem.path" @click="handleClickMenu(subItem)">
-      <i v-if="subItem.meta.icon" :class="['iconfont', subItem.meta.icon]" class="mr-2"></i>
+      <svg v-if="subItem.meta.icon" class="icon mr-2" aria-hidden="true">
+        <use :href="subItem.meta.icon"></use>
+      </svg>
       <template #title>
         <div class="flex items-center gap-2">
           <span class="sle mr-2">{{ subItem.meta.title }}</span>

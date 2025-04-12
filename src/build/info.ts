@@ -6,7 +6,7 @@ import boxen, { type Options as BoxenOptions } from 'boxen'
 dayjs.extend(duration)
 
 const welcomeMessage = gradient(['cyan', 'magenta']).multiline(
-  `您好! 欢迎使用 Mason Admin\n\n这是一款专为提升开发效率而设计的现代化管理后台系统。\n我们致力于为您提供最流畅的开发体验和最强大的工具支持。\n希望您在这里找到所需的资源，享受愉快的开发过程。\n\n祝您工作顺利!\n`
+  `您好! 欢迎使用 Kafka 监控系统\n\n这是一个专为Kafka集群监控而设计的现代化工具。\n我们致力于为您提供最全面的监控数据和最友好的操作界面。\n希望您在这里能够轻松地管理和优化您的Kafka集群，享受愉快的监控过程。\n\n祝您监控顺利!\n`
 )
 
 const boxenOptions: BoxenOptions = {

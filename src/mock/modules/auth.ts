@@ -47,7 +47,7 @@ export default [
             id: 0,
             createAt: '2021-06-15 16:20:00',
             meta: {
-              icon: 'dashboard',
+              icon: '#icon-gongzuotai',
               isAffix: true,
               isEnable: true,
               isKeeAlive: false,
@@ -65,7 +65,7 @@ export default [
             id: 1,
             createAt: '2021-06-15 16:20:00',
             meta: {
-              icon: '',
+              icon: '#icon-guanlizhongxin',
               isAffix: false,
               isEnable: true,
               isKeeAlive: false,
@@ -83,7 +83,7 @@ export default [
             id: 2,
             createAt: '2021-06-15 16:20:00',
             meta: {
-              icon: '',
+              icon: '#icon-fuzaijunheng',
               isAffix: false,
               isEnable: true,
               isKeeAlive: false,
@@ -101,7 +101,7 @@ export default [
             id: 3,
             createAt: '2021-06-15 16:20:00',
             meta: {
-              icon: '',
+              icon: '#icon-shiyanshijiankongjiankong',
               isAffix: false,
               isEnable: true,
               isKeeAlive: false,
@@ -119,7 +119,7 @@ export default [
             id: 4,
             createAt: '2021-06-15 16:20:00',
             meta: {
-              icon: '',
+              icon: '#icon-fangangaishuicon3',
               isAffix: false,
               isEnable: true,
               isKeeAlive: false,
@@ -137,7 +137,7 @@ export default [
             id: 5,
             createAt: '2021-06-15 16:20:00',
             meta: {
-              icon: '',
+              icon: '#icon-fuzaiyuce',
               isAffix: false,
               isEnable: true,
               isKeeAlive: false,
@@ -155,7 +155,7 @@ export default [
             id: 6,
             createAt: '2021-06-15 16:20:00',
             meta: {
-              icon: '',
+              icon: '#icon-jiankong',
               isAffix: false,
               isEnable: true,
               isKeeAlive: false,

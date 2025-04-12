@@ -1,19 +1,19 @@
 <template>
   <Tabs v-if="showWorkTab" />
   <el-main v-loading="refresh" :style="{ padding: routeInfo.path === '/mason-ai' ? '0' : '20px' }">
-    <!--    <div :style="{ width: containerWidth, margin: '0 auto' }">-->
-    <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
-      <!--      <transition :name="pageTransition" mode="out-in" appear>-->
-      <keep-alive :include="keepAliveNames">
-        <component
-          :is="createComponentWrapper(Component, route)!"
-          :key="route.fullPath"
-        ></component>
-      </keep-alive>
-      <!--      </transition>-->
-      <el-backtop target=".el-main" :right="10" :bottom="80" />
-    </router-view>
-    <!--    </div>-->
+    <div :style="{ width: containerWidth, margin: '0 auto' }">
+      <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
+        <transition :name="pageTransition" mode="out-in" appear>
+          <keep-alive :include="keepAliveNames">
+            <component
+              :is="createComponentWrapper(Component, route)!"
+              :key="route.fullPath"
+            ></component>
+          </keep-alive>
+        </transition>
+        <el-backtop target=".el-main" :right="10" :bottom="80" />
+      </router-view>
+    </div>
   </el-main>
 </template>
 

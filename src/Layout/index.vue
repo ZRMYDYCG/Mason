@@ -1,3 +1,71 @@
+<script setup lang="ts">
+import { computed, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+import { MenuTypeEnum } from '@/config'
+import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '@/store/modules/auth'
+import { useGlobalStore } from '@/store/modules/global'
+import SubMenu from './components/SubMenu/sub-menu.vue'
+import ToolBarLeft from './components/Header/tool-bar-left.vue'
+import ToolBarRight from './components/Header/tool-bar-right.vue'
+import MenuTop from './components/MenuTop/index.vue'
+import Main from './components/Main/index.vue'
+import ThemeDrawer from './components/ThemeDrawer/index.vue'
+import Footer from './components/Footer/index.vue'
+import { useSettingStore } from '@/store/modules/setting.ts'
+import Logo from './components/Logo/index.vue'
+import MenuMixed from './components/MenuMixed/index.vue'
+import Watermark from '@/components/Watermark/index.vue'
+import useResizable from '@/hooks/useResizable.ts'
+
+const route = useRoute()
+const router = useRouter()
+const authStore = useAuthStore()
+const globalStore = useGlobalStore()
+const settingStore = useSettingStore()
+
+const menuType = computed(() => settingStore.menuType)
+const watermarkVisible = computed(() => settingStore.watermarkVisible)
+const uniqueOpened = computed(() => settingStore.uniqueOpened)
+const menuTheme = computed(() => settingStore.getMenuTheme)
+const isFooter = computed(() => settingStore.isFooter)
+const { menuOpenWidth } = storeToRefs(settingStore)
+
+const options = {
+  minWidth: 200,
+  maxWidth: 400,
+  initialWidth: menuOpenWidth.value
+}
+
+const { width, handleMouseDown, isDragging } = useResizable(options)
+
+const fatherMenuList = computed(() => {
+  return authStore.showMenuListGet || []
+})
+
+watch(width, (val) => {
+  menuOpenWidth.value = val
+})
+
+const menuList = computed(() => {
+  if (menuType.value === MenuTypeEnum.DUAL_MENU || menuType.value === MenuTypeEnum.TOP_LEFT) {
+    const currentTopPath = `/${route.path.split('/')[1]}`
+    const currentMenu = authStore.showMenuListGet.find((menu) => menu.path === currentTopPath)
+    return currentMenu?.children.length > 0 ? currentMenu.children : [currentMenu]
+  }
+  return authStore.showMenuListGet || []
+})
+
+const isCollapse = computed(() => globalStore.isCollapse)
+
+const activeMenu = computed(() => route.path)
+
+const handleMenuJump = (menu: any) => {
+  if (menu.path === activeMenu.value) return
+  router.push(menu.path)
+}
+</script>
+
 <template>
   <el-container class="layout">
     <div class="dual-menu-left" v-if="menuType === MenuTypeEnum.DUAL_MENU">
@@ -84,74 +152,6 @@
   <ThemeDrawer />
   <Watermark :visible="watermarkVisible" />
 </template>
-
-<script setup lang="ts">
-import { computed, watch } from 'vue'
-import { storeToRefs } from 'pinia'
-import { MenuTypeEnum } from '@/config'
-import { useRoute, useRouter } from 'vue-router'
-import { useAuthStore } from '@/store/modules/auth'
-import { useGlobalStore } from '@/store/modules/global'
-import SubMenu from './components/SubMenu/sub-menu.vue'
-import ToolBarLeft from './components/Header/tool-bar-left.vue'
-import ToolBarRight from './components/Header/tool-bar-right.vue'
-import MenuTop from './components/MenuTop/index.vue'
-import Main from './components/Main/index.vue'
-import ThemeDrawer from './components/ThemeDrawer/index.vue'
-import Footer from './components/Footer/index.vue'
-import { useSettingStore } from '@/store/modules/setting.ts'
-import Logo from './components/Logo/index.vue'
-import MenuMixed from './components/MenuMixed/index.vue'
-import Watermark from '@/components/Watermark/index.vue'
-import useResizable from '@/hooks/useResizable.ts'
-
-const route = useRoute()
-const router = useRouter()
-const authStore = useAuthStore()
-const globalStore = useGlobalStore()
-const settingStore = useSettingStore()
-
-const menuType = computed(() => settingStore.menuType)
-const watermarkVisible = computed(() => settingStore.watermarkVisible)
-const uniqueOpened = computed(() => settingStore.uniqueOpened)
-const menuTheme = computed(() => settingStore.getMenuTheme)
-const isFooter = computed(() => settingStore.isFooter)
-const { menuOpenWidth } = storeToRefs(settingStore)
-
-const options = {
-  minWidth: 200,
-  maxWidth: 400,
-  initialWidth: menuOpenWidth.value
-}
-
-const { width, handleMouseDown, isDragging } = useResizable(options)
-
-const fatherMenuList = computed(() => {
-  return authStore.showMenuListGet || []
-})
-
-watch(width, (val) => {
-  menuOpenWidth.value = val
-})
-
-const menuList = computed(() => {
-  if (menuType.value === MenuTypeEnum.DUAL_MENU || menuType.value === MenuTypeEnum.TOP_LEFT) {
-    const currentTopPath = `/${route.path.split('/')[1]}`
-    const currentMenu = authStore.showMenuListGet.find((menu) => menu.path === currentTopPath)
-    return currentMenu?.children.length > 0 ? currentMenu.children : [currentMenu]
-  }
-  return authStore.showMenuListGet || []
-})
-
-const isCollapse = computed(() => globalStore.isCollapse)
-
-const activeMenu = computed(() => route.path)
-
-const handleMenuJump = (menu: any) => {
-  if (menu.path === activeMenu.value) return
-  router.push(menu.path)
-}
-</script>
 
 <style scoped lang="scss">
 $primary-color: var(--el-color-primary);
