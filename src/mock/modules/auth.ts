@@ -43,27 +43,111 @@ export default [
         data: [
           {
             children: [],
-            component: '/kafka-cluster/index'
+            component: '/kafka-cluster/index',
+            id: 1,
+            createAt: '2021-06-15 16:20:00',
+            meta: {
+              icon: '',
+              isAffix: false,
+              isEnable: true,
+              isKeeAlive: false,
+              isLink: false,
+              title: '集群管理'
+            },
+            name: 'kafka-cluster',
+            parentId: 0,
+            path: '/kafka-cluster',
+            sort: 1
           },
           {
             children: [],
-            component: '/kafka-consumer/index'
+            component: '/kafka-overview/index',
+            id: 2,
+            createAt: '2021-06-15 16:20:00',
+            meta: {
+              icon: '',
+              isAffix: false,
+              isEnable: true,
+              isKeeAlive: false,
+              isLink: false,
+              title: '集群概览'
+            },
+            name: 'kafka-cluster',
+            parentId: 0,
+            path: '/kafka-cluster',
+            sort: 2
           },
           {
             children: [],
-            component: '/kafka-host-load/index'
+            component: '/kafka-topic/index',
+            id: 3,
+            createAt: '2021-06-15 16:20:00',
+            meta: {
+              icon: '',
+              isAffix: false,
+              isEnable: true,
+              isKeeAlive: false,
+              isLink: false,
+              title: 'Topic监控'
+            },
+            name: 'kafka-cluster',
+            parentId: 0,
+            path: '/kafka-cluster',
+            sort: 3
           },
           {
             children: [],
-            component: '/kafka-overview/index'
+            component: '/kafka-consumer/index',
+            id: 4,
+            createAt: '2021-06-15 16:20:00',
+            meta: {
+              icon: '',
+              isAffix: false,
+              isEnable: true,
+              isKeeAlive: false,
+              isLink: false,
+              title: '消费者监控'
+            },
+            name: 'kafka-cluster',
+            parentId: 0,
+            path: '/kafka-cluster',
+            sort: 4
           },
           {
             children: [],
-            component: '/kafka-topic/index'
+            component: '/kafka-host-load/index',
+            id: 5,
+            createAt: '2021-06-15 16:20:00',
+            meta: {
+              icon: '',
+              isAffix: false,
+              isEnable: true,
+              isKeeAlive: false,
+              isLink: false,
+              title: '主机负载'
+            },
+            name: 'kafka-cluster',
+            parentId: 0,
+            path: '/kafka-cluster',
+            sort: 5
           },
           {
             children: [],
-            component: '/kafka-topic-load/index'
+            component: '/kafka-topic-load/index',
+            id: 6,
+            createAt: '2021-06-15 16:20:00',
+            meta: {
+              icon: '',
+              isAffix: false,
+              isEnable: true,
+              isKeeAlive: false,
+              isLink: false,
+              title: 'Topic负载'
+            },
+            name: 'kafka-cluster',
+            parentId: 0,
+            path: '/kafka-cluster',
+            sort: 6
           }
         ],
         msg: '获取菜单列表成功'
