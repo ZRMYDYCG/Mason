@@ -7,6 +7,7 @@ const modules = import.meta.glob('@/views/**/*.vue')
 
 export const initDynamicRouter = async () => {
   const authStore = useAuthStore()
+
   try {
     // 添加动态路由  flatMenuListGet 递归将菜单全部平铺
     authStore.flatMenuListGet.forEach((item) => {

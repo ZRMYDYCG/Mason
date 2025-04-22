@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { AuthState } from '@/store/interface'
 import { getAuthMenuListApi } from '@/api/modules/login'
 import { getAllBreadcrumbList, getFlatMenuList, getShowMenuList } from '@/utils'
-
 import { ElMessage } from 'element-plus'
 
 export const useAuthStore = defineStore({
@@ -25,11 +24,11 @@ export const useAuthStore = defineStore({
     // 递归处理后的所有面包屑导航列表
     breadcrumbListGet: (state) => getAllBreadcrumbList(state.authMenuList)
   },
-
   actions: {
     async getAuthMenuList() {
       try {
         const res = await getAuthMenuListApi()
+
         if (res.code === 200) {
           if (res.data.length === 0) {
             // 菜单列表为空，则跳转到登录页

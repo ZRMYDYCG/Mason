@@ -7,6 +7,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useSettingStore } from '@/store/modules/setting.ts'
 
 import NProgress from '@/utils/nprogress'
+import { ElLoading } from 'element-plus'
+
+let loadingInstance: ReturnType<typeof ElLoading.service> | null = null
 
 const routes: RouteRecordRaw[] = [
   {
@@ -72,8 +75,17 @@ router.beforeEach(async (to, from, next) => {
   const settingStore = useSettingStore()
   const userStore = useUserStore()
   const authStore = useAuthStore()
+
   // nprogress 启动
   if (settingStore.showNprogress) NProgress.start()
+
+  // 全屏 loading 启动
+  if (authStore.authMenuList.length === 0) {
+    loadingInstance = ElLoading.service({
+      lock: true,
+      background: 'rgba(0, 0, 0, 0)'
+    })
+  }
 
   // 判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
   if (to.path.toLocaleLowerCase() === LOGIN_URL) {
@@ -89,15 +101,17 @@ router.beforeEach(async (to, from, next) => {
   // 如果没有菜单列表，就重新请求菜单列表并添加动态路由
   if (!authStore.authMenuListGet.length) {
     const flag = await authStore.getAuthMenuList()
+
     if (flag) {
       // 动态加载路由
       await initDynamicRouter()
+      loadingInstance?.close()
+
       return next({ ...to, replace: true })
     } else {
       return next({ path: LOGIN_URL, replace: true })
     }
   }
-
   next()
 })
 
@@ -135,6 +149,7 @@ router.onError((error) => {
  * */
 router.afterEach(() => {
   const settingStore = useSettingStore()
+
   if (settingStore.showNprogress) NProgress.done()
 })
 
