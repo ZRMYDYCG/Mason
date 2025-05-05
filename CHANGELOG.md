@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.7](https://github.com/ZRMYDYCG/Mason/compare/v1.0.6...v1.0.7) (2025-05-05)
+
+### ✨ Features | 新功能
+
+* ✨️初始化mason-ai接口 ([267f69b](https://github.com/ZRMYDYCG/Mason/commit/267f69b3e8f6ea597be1f1ef9045eacec9892e51))
+* ✨️区分不同页面的padding问题 ([11c129f](https://github.com/ZRMYDYCG/Mason/commit/11c129f8099fcacac6e045c686ce516e6e6dc21c))
+* ✨️适配流式返回数据的会话结束终止点以及判断是否有联网查询的信息 ([03ac841](https://github.com/ZRMYDYCG/Mason/commit/03ac841a8145fd6d077c6e413569050e183297d9))
+* ✨️新增 MasonAI 侧边栏 ([3edddc6](https://github.com/ZRMYDYCG/Mason/commit/3edddc6a75437d76fdb65e64a31d4163f4c932e5))
+* ✨️新增 MasonAI 欢迎组件 ([3c02bd2](https://github.com/ZRMYDYCG/Mason/commit/3c02bd207e468ac906a491069f29317289f6512f))
+* ✨️新增 MasonAI 聊天详情容器 ([f42effb](https://github.com/ZRMYDYCG/Mason/commit/f42effb79ffbae2ad887b321f22d307183be81a1))
+* ✨️新增 MasonAI 输入框组件 ([27e2f25](https://github.com/ZRMYDYCG/Mason/commit/27e2f2588ed3cde46d29fbfd1e01a5deda0e20c0))
+* ✨新增多轮对话, 支持hightjs代码块渲染添加行数 ([7dab6b8](https://github.com/ZRMYDYCG/Mason/commit/7dab6b8b7cc80c90fdcbfa035e235dc652e9c467))
+* ✨️新增主题切换动画解决方案 ([86e3bbe](https://github.com/ZRMYDYCG/Mason/commit/86e3bbe11eda49223f844eee87f6b1e3a21b59b5))
+* ✨️新增sse工具 ([49badbd](https://github.com/ZRMYDYCG/Mason/commit/49badbd5c68174793f7b8aa6b1b6f9b42af5bf1e))
+* ✨️新增sse解决方案示例,处理zhipu大模型 ([3472b1a](https://github.com/ZRMYDYCG/Mason/commit/3472b1a1103cc06cf79873de5a96ef1f19502c20))
+* 优化全屏loading方式 ([f692b02](https://github.com/ZRMYDYCG/Mason/commit/f692b02aca95819dd05425a17f58ce7ad1bd7041))
+
+### 👷‍ Build System | 构建
+
+* 🔨️新增打包提示工具 ([783083f](https://github.com/ZRMYDYCG/Mason/commit/783083fb9b8969bf96ecc18d325a95c28d4c15c4))
+
 ## [1.0.6](https://github.com/ZRMYDYCG/Mason/compare/v1.0.5...v1.0.6) (2025-04-03)
 
 ### ✨ Features | 新功能
