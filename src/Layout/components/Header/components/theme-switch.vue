@@ -1,21 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SystemThemeEnum } from '@/config'
+import { themeAnimation } from '@/utils/animation.ts'
 import { useSettingStore } from '@/store/modules/setting.ts'
+import { computed } from 'vue'
 
 const settingStore = useSettingStore()
-
 const isDark = computed(() => settingStore.isDark)
-
-// 切换动画
-async function toggleDark({ clientX: x, clientY: y }: MouseEvent) {
-  const targetTheme = isDark.value ? SystemThemeEnum.LIGHT : SystemThemeEnum.DARK
-  settingStore.setGlopTheme(targetTheme, targetTheme)
-}
 </script>
 
 <template>
-  <i @click="toggleDark" :class="['iconfont', isDark ? 'icon-taiyang' : 'icon-yueliang1']"></i>
+  <i @click="themeAnimation" :class="['iconfont', isDark ? 'icon-taiyang' : 'icon-yueliang1']"></i>
 </template>
 
 <style scoped lang="scss">

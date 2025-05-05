@@ -45,7 +45,7 @@ const router = useRouter()
 const tabsStore = useTabsStore()
 
 const closeCurrentTab = () => {
-  if (route.meta.isAffix) return
+  if (route.meta?.isAffix) return
   tabsStore.removeTab(route.fullPath)
 }
 
