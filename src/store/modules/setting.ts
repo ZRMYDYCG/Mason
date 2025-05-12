@@ -32,6 +32,7 @@ export interface SettingState {
   customRadius: string // 自定义圆角
   containerWidth: ContainerWidthEnum // 容器宽度
   isFooter: boolean // 是否显示页脚
+  currentLanguage: 'chinese' | 'english' // 当前语言
 }
 
 export const useSettingStore = defineStore({
@@ -61,7 +62,8 @@ export const useSettingStore = defineStore({
     watermarkVisible: true,
     customRadius: defaultCustomRadius,
     containerWidth: ContainerWidthEnum.FULL,
-    isFooter: true
+    isFooter: true,
+    currentLanguage: 'chinese'
   }),
   getters: {
     getMenuTheme(): MenuThemeType {
@@ -106,6 +108,10 @@ export const useSettingStore = defineStore({
     // 设置菜单是否展开
     setMenuOpen(open: boolean) {
       this.menuOpen = open
+    },
+    // 页面重载
+    setRefresh(refresh: boolean) {
+      this.refresh = refresh
     }
   },
   persist: piniaPersistConfig('setting')
