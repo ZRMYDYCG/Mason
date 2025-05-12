@@ -7,9 +7,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useSettingStore } from '@/store/modules/setting.ts'
 
 import NProgress from '@/utils/nprogress'
-import { ElLoading } from 'element-plus'
+// import { ElLoading } from 'element-plus'
 
-let loadingInstance: ReturnType<typeof ElLoading.service> | null = null
+// let loadingInstance: ReturnType<typeof ElLoading.service> | null = null
 
 const routes: RouteRecordRaw[] = [
   {
@@ -80,12 +80,12 @@ router.beforeEach(async (to, from, next) => {
   if (settingStore.showNprogress) NProgress.start()
 
   // 全屏 loading 启动
-  if (authStore.authMenuList.length === 0) {
-    loadingInstance = ElLoading.service({
-      lock: true,
-      background: 'rgba(0, 0, 0, 0)'
-    })
-  }
+  // if (authStore.authMenuList.length === 0) {
+  //   loadingInstance = ElLoading.service({
+  //     lock: true,
+  //     background: 'rgba(0, 0, 0, 0)'
+  //   })
+  // }
 
   // 判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
   if (to.path.toLocaleLowerCase() === LOGIN_URL) {
@@ -105,7 +105,7 @@ router.beforeEach(async (to, from, next) => {
     if (flag) {
       // 动态加载路由
       await initDynamicRouter()
-      loadingInstance?.close()
+      // loadingInstance?.close()
 
       return next({ ...to, replace: true })
     } else {

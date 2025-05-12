@@ -19,6 +19,8 @@ import ElementPlus from 'element-plus'
 import PrintLogo from './print-logo.ts'
 import router from '@/router'
 import pinia from '@/store'
+// vue i18n
+import I18n from '@/language'
 
 // mock 开关
 mockXHR(true)
@@ -28,6 +30,7 @@ async function bootstrap() {
   app.use(router)
   app.use(ElementPlus)
   app.use(pinia)
+  app.use(I18n)
 
   // 注册全局指令
   setupGlobDirectives(app)

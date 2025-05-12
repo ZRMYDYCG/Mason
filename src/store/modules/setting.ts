@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { MenuThemeType } from '@/config'
+// import { useRouter } from 'vue-router'
 import piniaPersistConfig from '@/store/helper/persist'
 import { ThemeList, ElementPlusTheme, DarkMenuStyles, SystemSetting } from '@/config'
 import { SystemThemeEnum, MenuThemeEnum, MenuTypeEnum, ContainerWidthEnum } from '@/config'
@@ -32,7 +33,7 @@ export interface SettingState {
   customRadius: string // 自定义圆角
   containerWidth: ContainerWidthEnum // 容器宽度
   isFooter: boolean // 是否显示页脚
-  currentLanguage: 'chinese' | 'english' // 当前语言
+  currentLanguage: 'zh' | 'en' // 当前语言
 }
 
 export const useSettingStore = defineStore({
@@ -63,7 +64,7 @@ export const useSettingStore = defineStore({
     customRadius: defaultCustomRadius,
     containerWidth: ContainerWidthEnum.FULL,
     isFooter: true,
-    currentLanguage: 'chinese'
+    currentLanguage: 'zh'
   }),
   getters: {
     getMenuTheme(): MenuThemeType {
@@ -110,8 +111,13 @@ export const useSettingStore = defineStore({
       this.menuOpen = open
     },
     // 页面重载
-    setRefresh(refresh: boolean) {
-      this.refresh = refresh
+    // setRefresh() {
+    //   const router = useRouter()
+    //   router.go(0)
+    // },
+    // 设置当前语言
+    setLanguage(language: 'zh' | 'en') {
+      this.currentLanguage = language
     }
   },
   persist: piniaPersistConfig('setting')
