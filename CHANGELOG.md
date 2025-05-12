@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.8](https://github.com/ZRMYDYCG/Mason/compare/v1.0.7...v1.0.8) (2025-05-12)
+
+### ✨ Features | 新功能
+
+* ✨️提供页面重载 action ([8a98510](https://github.com/ZRMYDYCG/Mason/commit/8a98510cafead81513bd641d51f66ff7690a255c))
+* ✨新增国际化解决方案 ([01112ae](https://github.com/ZRMYDYCG/Mason/commit/01112ae87d311d665b1d35a533d8606265125ee7))
+* ✨️新增前端缓存方案 ([a5f4244](https://github.com/ZRMYDYCG/Mason/commit/a5f424497d994630a5ccf929a98e4efcc52fffd3))
+
 ## [1.0.7](https://github.com/ZRMYDYCG/Mason/compare/v1.0.6...v1.0.7) (2025-05-05)
 
 ### ✨ Features | 新功能
