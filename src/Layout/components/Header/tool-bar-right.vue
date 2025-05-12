@@ -1,6 +1,7 @@
 <template>
   <div class="tool-bar-rt">
     <ThemeSetting></ThemeSetting>
+    <Translate></Translate>
     <FullScreen class="tb-item" />
     <ThemeSwitch class="tb-item" />
     <Notificate />
@@ -17,6 +18,7 @@ import Avatar from './components/avatar.vue'
 import ThemeSetting from './components/theme-setting.vue'
 import ThemeSwitch from './components/theme-switch.vue'
 import Notificate from './components/notificate.vue'
+import Translate from './components/translate.vue'
 
 const userStore = useUserStore()
 const username = computed(() => userStore.userInfo.username)
