@@ -32,7 +32,7 @@ const createProjectCommand = async (projectName, options) => {
 async function download(projectName) {
   spinner.text = '拉取代码中...'
   spinner.start()
-  let requestUrl = `auth/project#branch`
+  let requestUrl = `github:ZRMYDYCG/Mason#main`
   downloadGitRepo(requestUrl, projectName, (err) => {
     if (err) {
       console.log()
@@ -43,7 +43,9 @@ async function download(projectName) {
       spinner.succeed('创建项目成功')
       console.log(green(`cd ${projectName} && npm i`))
       console.log()
-      console.log(green('npm run dev 启动项目'))
+      // perf 获取到的包管理器, 动态渲染, 默认值为 npm
+      console.log(green('pnpm install 安装依赖'))
+      console.log(green('pnpm run dev 启动项目'))
     }
   })
 }
