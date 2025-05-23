@@ -6,6 +6,7 @@ import { genViewCommandConfig } from './commands/createView.js'
 import { statisticsCommand } from './commands/statistics.js'
 import { installCommand } from './commands/install.js'
 import { uninstallCommand } from './commands/uninstall.js'
+import { createFileCommand } from './commands/createFile.js'
 
 // 初始化所有命令
 const initializeCommands = () => {
@@ -30,6 +31,9 @@ const initializeCommands = () => {
 
   // 注册 uninstall 命令组
   program.command('uninstall').description('卸载项目依赖').action(uninstallCommand)
+
+  // 注册 create-file 命令组
+  program.command('create-file').description('创建一个新文件').action(createFileCommand)
 
   // 最后解析参数
   program.parse(process.argv)
