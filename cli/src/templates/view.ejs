@@ -1,0 +1,22 @@
+<template>
+    <div id="<%= data.name %>"></div>
+  </template>
+  
+  <script>
+    export default {
+      name: '<%= data.name %>',
+    }
+  </script>
+  
+  <script setup>
+    import { ref, getCurrentInstance, provide } from 'vue'
+  
+    const { proxy: vue } = getCurrentInstance()
+    const api = vue.$api
+  
+    const getTableData = () => {}
+  
+    provide('getTableData', getTableData)
+  </script>
+  
+  <style lang="scss" scoped></style>
