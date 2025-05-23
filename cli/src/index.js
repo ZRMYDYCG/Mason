@@ -4,6 +4,8 @@ import { createProjectCommandConfig } from './commands/createProject.js'
 import { genComponentCommandConfig } from './commands/createComponent.js'
 import { genViewCommandConfig } from './commands/createView.js'
 import { statisticsCommand } from './commands/statistics.js'
+import { installCommand } from './commands/install.js'
+import { uninstallCommand } from './commands/uninstall.js'
 
 // 初始化所有命令
 const initializeCommands = () => {
@@ -22,6 +24,12 @@ const initializeCommands = () => {
     .command('statistics')
     .description('统计项目中的字符数和代码行数')
     .action(statisticsCommand)
+
+  // 注册 install 命令组
+  program.command('install').description('安装项目依赖').action(installCommand)
+
+  // 注册 uninstall 命令组
+  program.command('uninstall').description('卸载项目依赖').action(uninstallCommand)
 
   // 最后解析参数
   program.parse(process.argv)
