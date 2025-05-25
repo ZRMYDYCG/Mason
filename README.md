@@ -36,6 +36,10 @@ RBAC 权限设计部分以及系统设置部分、日志管理、个人中心, �
 
 其余部分不进行前后端分离设计
 
+## Mason cli
+
+🚀 [Mason cli 使用](https://github.com/ZRMYDYCG/Mason/blob/main/cli/README.md)
+
 ## Mock开箱即用版本
 
 🚀 请移步该[仓库](https://github.com/ZRMYDYCG/Mason-Mock)
