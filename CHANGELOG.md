@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.0.9](https://github.com/ZRMYDYCG/Mason/compare/v1.0.8...v1.0.9) (2025-06-11)
+
 ## [1.0.8](https://github.com/ZRMYDYCG/Mason/compare/v1.0.7...v1.0.8) (2025-05-12)
 
 ### ✨ Features | 新功能
