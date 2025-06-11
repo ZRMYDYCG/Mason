@@ -4,7 +4,7 @@ import { initDynamicRouter } from './dynamicRouter'
 import { useAuthStore } from '@/store/modules/auth'
 import { useUserStore } from '@/store/modules/user'
 import { createRouter, createWebHistory } from 'vue-router'
-import { useSettingStore } from '@/store/modules/setting.ts'
+import { useSettingStore } from '@/store/modules/setting'
 
 import NProgress from '@/utils/nprogress'
 // import { ElLoading } from 'element-plus'
