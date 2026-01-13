@@ -39,6 +39,24 @@ const verifyLogin = async (ctx: Context, next: Next) => {
   await next()
 }
 
+const verifyRegister = async (ctx: Context, next: Next) => {
+  const { username, password } = ctx.request.body as LoginParams
+  // 1. 验证用户名和密码不能为空
+  if (!username || !password) {
+    const error = new Error(ERROR_TYPES.NAME_OR_PASSWORD_IS_REQUIRED)
+    return ctx.app.emit('error', error, ctx)
+  }
+
+  // 2. 判断用户名是否已存在
+  const user = await userService.getUserByName(username)
+  if (user) {
+    const error = new Error(ERROR_TYPES.USER_ALREADY_EXISTS)
+    return ctx.app.emit('error', error, ctx)
+  }
+
+  await next()
+}
+
 const verifyAuth = async (ctx: Context, next: Next) => {
   // 1.获取请求头授权信息 token
   const authorization = ctx.headers.authorization
@@ -62,4 +80,4 @@ const verifyAuth = async (ctx: Context, next: Next) => {
   }
 }
 
-export { verifyLogin, verifyAuth }
+export { verifyLogin, verifyAuth, verifyRegister }

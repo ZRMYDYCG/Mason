@@ -16,6 +16,10 @@ export namespace Login {
     password: string
     expires7d: boolean
   }
+  export interface ReqRegisterForm {
+    username: string
+    password: string
+  }
   export interface ResLogin {
     id: number
     username: string

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import '@vue-office/excel/lib/index.css'
-import VueOfficeExcel from '@vue-office/excel'
 import { reactive, ref } from 'vue'
+import VueOfficeExcel from '@vue-office/excel'
+import '@vue-office/excel/lib/index.css'
 
 import XlsxFile from '@/assets/office/test.xlsx?url'
 

@@ -7,6 +7,11 @@ export const loginApi = (params: Login.ReqLoginForm) => {
   return http.post<Login.ResLogin>('/login', params)
 }
 
+// 用户注册
+export const registerApi = (params: Login.ReqRegisterForm) => {
+  return http.post('/register', params)
+}
+
 // 获取用户信息
 export const getUserInfoApi = (userId: number) => {
   return http.get<Login.Userinfo>(`/user/${userId}`)

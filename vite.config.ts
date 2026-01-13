@@ -24,7 +24,8 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
-        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js' // 避免i18n警告
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js', // 避免i18n警告
+        canvas: resolve(__dirname, './src/mock/canvas.ts') // 修复 mockjs 依赖 canvas 的问题
       },
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'] // 导入时省略的扩展名列表
     },

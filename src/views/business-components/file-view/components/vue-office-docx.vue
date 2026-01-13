@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import '@vue-office/docx/lib/index.css'
-import VueOfficeDocx from '@vue-office/docx'
 import { ref } from 'vue'
+import VueOfficeDocx from '@vue-office/docx'
+import '@vue-office/docx/lib/index.css'
 
 import DocxFile from '@/assets/office/test.docx?url'
 

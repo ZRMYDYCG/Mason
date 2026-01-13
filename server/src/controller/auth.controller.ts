@@ -2,6 +2,8 @@ import type { Context } from 'koa'
 import jwt from 'jsonwebtoken'
 import { PRIVATE_KEY } from '../config'
 import { LoginParams } from '../types'
+import { PasswordToHash } from '../utils'
+import userService from '../service/user.service'
 
 class AuthController {
   async login(ctx: Context) {
@@ -24,6 +26,34 @@ class AuthController {
         expires: getTimestamps(expires === '7d'),
       },
       msg: '登录成功',
+    }
+  }
+
+  async register(ctx: Context) {
+    const { username, password } = ctx.request.body as LoginParams
+
+    // 默认角色和部门
+    // 假设角色 ID 2 为普通用户，部门 ID 1 为默认部门
+    const defaultRoleId = 2
+    const defaultDeptId = 1
+
+    const newUser = {
+      username,
+      password: PasswordToHash(password), // 密码加密
+      roleId: defaultRoleId,
+      deptId: defaultDeptId,
+      name: username, // 默认昵称为用户名
+      email: '',
+      phone: '',
+      remark: '用户自行注册',
+    }
+
+    // 调用 userService 创建用户
+    await userService.addNewUser(newUser as any)
+
+    ctx.body = {
+      code: 200,
+      msg: '注册成功',
     }
   }
 
