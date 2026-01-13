@@ -250,6 +250,28 @@ const filteredIcons = computed(() => {
 const changeArrange = (arrange: string) => {
   iconArrange.value = arrange
 }
+
+const activeTab = ref('iconfont')
+// 过滤 Lucide 图标组件
+const lucideIconNames = Object.keys(LucideIcons).filter((key) => /^[A-Z]/.test(key))
+const filteredLucideIcons = computed(() => {
+  if (!searchValue.value) return lucideIconNames
+  return lucideIconNames.filter((name) =>
+    name.toLowerCase().includes(searchValue.value.toLowerCase())
+  )
+})
+
+const copyLucideIcon = (name: string) => {
+  const text = `<${name} />`
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      ElMessage.success(`复制成功: ${text}`)
+    })
+    .catch((err) => {
+      ElMessage.error('复制失败: ' + err)
+    })
+}
 </script>
 
 <template>
@@ -291,29 +313,55 @@ const changeArrange = (arrange: string) => {
       </template>
     </MasonSearchFormFilter>
   </el-card>
-  <el-row style="margin-bottom: 20px">
-    <el-button type="info" plain @click="copyIconClass('all')">复制所有图标</el-button>
-  </el-row>
-  <el-card>
-    <div
-      class="icon-view p-[10px] rounded-[5px]"
-      :class="{
-        'grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[10px]': iconArrange === 'grid',
-        'flex flex-wrap': iconArrange === 'list'
-      }"
-    >
-      <!-- 图标列表 -->
-      <template v-for="item in filteredIcons" :key="item.class">
-        <div class="icon-wrapper" @click="copyIconClass(item.class)">
-          <i
-            :class="['iconfont', item.class]"
-            :style="{ fontSize: iconSize, color: iconColor }"
-          ></i>
-          <el-text truncated class="class">{{ item.class }}</el-text>
-        </div>
-      </template>
-    </div>
-  </el-card>
+
+  <el-tabs v-model="activeTab" type="border-card">
+    <el-tab-pane label="Iconfont" name="iconfont">
+      <el-row style="margin-bottom: 20px">
+        <el-button type="info" plain @click="copyIconClass('all')">复制所有图标</el-button>
+      </el-row>
+      <div
+        class="icon-view p-[10px] rounded-[5px]"
+        :class="{
+          'grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[10px]':
+            iconArrange === 'grid',
+          'flex flex-wrap': iconArrange === 'list'
+        }"
+      >
+        <!-- 图标列表 -->
+        <template v-for="item in filteredIcons" :key="item.class">
+          <div class="icon-wrapper" @click="copyIconClass(item.class)">
+            <i
+              :class="['iconfont', item.class]"
+              :style="{ fontSize: iconSize, color: iconColor }"
+            ></i>
+            <el-text truncated class="class">{{ item.class }}</el-text>
+          </div>
+        </template>
+      </div>
+    </el-tab-pane>
+    <el-tab-pane label="Lucide Icons" name="lucide">
+      <div
+        class="icon-view p-[10px] rounded-[5px]"
+        :class="{
+          'grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[10px]':
+            iconArrange === 'grid',
+          'flex flex-wrap': iconArrange === 'list'
+        }"
+      >
+        <template v-for="name in filteredLucideIcons" :key="name">
+          <div class="icon-wrapper" @click="copyLucideIcon(name)">
+            <component
+              :is="LucideIcons[name]"
+              :size="parseInt(iconSize)"
+              :color="iconColor"
+              :stroke-width="1.5"
+            />
+            <el-text truncated class="class">{{ name }}</el-text>
+          </div>
+        </template>
+      </div>
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
 <style scoped lang="scss">

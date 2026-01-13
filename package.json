@@ -58,6 +58,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "lottie-web": "^5.12.2",
+    "lucide-vue-next": "^0.562.0",
     "markdown-it": "^14.1.0",
     "mitt": "^3.0.1",
     "mockjs": "^1.1.0",
