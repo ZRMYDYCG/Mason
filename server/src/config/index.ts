@@ -18,7 +18,7 @@ export const MYSQL_CONFIG = {
   password: process.env.MYSQL_PASSWORD as string,
   host: process.env.MYSQL_HOST as string,
   port: +(process.env.MYSQL_PORT as string),
-} // mysql配置
+}
 
 export const ADMIN_CONFIG = {
   username: process.env.ADMIN_USERNAME as string,

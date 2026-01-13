@@ -3,7 +3,7 @@ import { Context } from 'koa'
 import userService from '../service/user.service'
 import menuService from '../service/menu.service'
 import Joi from 'joi'
-import { MenuParams, UpdateMenuParams } from '../types'
+import { MenuParams, UpdateMenuParams } from '../types/index'
 import { ERROR_TYPES } from '../constant'
 
 class MenuController {

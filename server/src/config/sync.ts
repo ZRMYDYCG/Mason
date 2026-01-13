@@ -1,20 +1,27 @@
-import sequelize from '../config/mysql'
+import sequelize from './mysql'
 
-import roleModel from './role.model'
-import userModel from './user.model'
-import userRoleModel from './userRole.model'
-import menuModel from './menu.model'
-import roleMenuModel from './roleMenu.model'
+import roleModel from '../models/role.model'
+import userModel from '../models/user.model'
+import userRoleModel from '../models/userRole.model'
+import menuModel from '../models/menu.model'
+import roleMenuModel from '../models/roleMenu.model'
 
-import { ADMIN_CONFIG, TEST_CONFIG } from '../config'
-import { departmentModel } from '.'
+import { ADMIN_CONFIG, TEST_CONFIG } from './index'
+import { departmentModel } from '../models/index'
 
 const synchonize = async () => {
-  await sequelize.sync({ force: true }) // 同步
+  await sequelize.sync({ force: false })
+
+  // 如果数据库中已经有数据，则不再初始化
+  const userCount = await userModel.count()
+  if (userCount > 0) {
+    console.log('Database already initialized, skipping seed data.')
+    return
+  }
 
   // 添加初始部门
   await departmentModel.create({
-    name: 'YM科技',
+    name: 'Mason科技',
     sort: 1,
   })
   await departmentModel.create({

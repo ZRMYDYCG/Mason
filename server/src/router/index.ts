@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 
 import authRouter from './auth.router'
-import userRouter from './user.router'
+import userRouter from '../modules/user/user.router'
 import roleRouter from './role.router'
 import menuRouter from './menu.router'
 import uploadRouter from './upload.router'

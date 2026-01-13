@@ -2,8 +2,8 @@ import { createServer } from 'http'
 import dotenv from 'dotenv'
 dotenv.config()
 
-import app from './app'
-import { APP_PORT } from './config'
+import app from './app/index'
+import { APP_PORT } from './config/index'
 import { connectMysql } from './config/mysql'
 
 async function runServer() {

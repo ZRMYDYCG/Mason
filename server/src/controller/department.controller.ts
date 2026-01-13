@@ -1,7 +1,7 @@
 import { Context } from 'koa'
 
 import departmentService from '../service/department.service'
-import { DeptParams, UpdateDeptParams } from '../types'
+import { DeptParams, UpdateDeptParams } from '../types/index'
 import Joi from 'joi'
 import { ERROR_TYPES } from '../constant'
 
