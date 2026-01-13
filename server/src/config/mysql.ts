@@ -11,7 +11,6 @@ const sequelize = new Sequelize(
     dialect: 'mysql',
     logging: false,
     dialectOptions: {
-      // 返回正确的时间戳字符串。
       dateStrings: true,
       typeCast: true,
     },
