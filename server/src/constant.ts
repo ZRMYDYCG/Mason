@@ -1,10 +1,3 @@
-/*
- * @Author: ZRMYDYCG
- * @Date: 2024-10
- * @LastEditors: ZRMYDYCG
- * @LastEditTime: 2024-10
- * @Description:
- */
 export enum ERROR_TYPES {
   NAME_OR_PASSWORD_IS_REQUIRED = '用户名或者密码不能为空',
   USER_ALREADY_EXISTS = '用户名已经存在',

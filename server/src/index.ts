@@ -11,7 +11,6 @@ async function runServer() {
   try {
     await Promise.all([
       connectMysql(), // 连接mysql
-      // connectRedis(), // 连接redis
     ])
 
     await new Promise((resolve) => {

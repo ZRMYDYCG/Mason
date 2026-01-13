@@ -7,7 +7,6 @@ import { corsHandler } from './cors'
 import bodyParser from 'koa-bodyparser'
 // 引入错误处理中间件
 import { errorHandler } from './error-handler'
-import KoaRedis from 'ioredis'
 
 // import synchonize from '../models/sync'
 // synchonize()
@@ -24,17 +23,6 @@ app.use(cors(corsHandler))
 app.on('error', errorHandler)
 
 // swagger 配置
-
-// redis 配置
-const redisClient = new KoaRedis({
-  port: 6379,
-  host: 'localhost',
-})
-
-app.use(async (ctx, next) => {
-  ctx.redis = redisClient
-  await next()
-})
 
 // 导入路由
 app.use(router.routes())
