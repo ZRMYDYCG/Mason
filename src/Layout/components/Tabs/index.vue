@@ -9,20 +9,53 @@
           :name="item.path"
           :closable="item.close"
         >
+          <template #label>
+            <el-dropdown trigger="contextmenu" placement="bottom-start">
+              <span class="tab-label" @contextmenu.prevent>{{ getTitle(item) }}</span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item @click="closeCurrentTab(item)" :disabled="!item.close">
+                    <span class="flex items-center justify-center">
+                      <AppIcon name="x" class="mr-2" />{{ t('tabs.closeCurrent') }}
+                    </span>
+                  </el-dropdown-item>
+                  <el-dropdown-item @click="tabsStore.closeTabsOnSide(item.path, 'left')">
+                    <span class="flex items-center justify-center">
+                      <AppIcon name="chevrons-left" class="mr-2" />{{ t('tabs.closeLeft') }}
+                    </span>
+                  </el-dropdown-item>
+                  <el-dropdown-item @click="tabsStore.closeTabsOnSide(item.path, 'right')">
+                    <span class="flex items-center justify-center">
+                      <AppIcon name="chevrons-right" class="mr-2" />{{ t('tabs.closeRight') }}
+                    </span>
+                  </el-dropdown-item>
+                  <el-dropdown-item @click="tabsStore.closeMultipleTab(item.path)">
+                    <span class="flex items-center justify-center">
+                      <AppIcon name="ellipsis" class="mr-2" />{{ t('tabs.closeOther') }}
+                    </span>
+                  </el-dropdown-item>
+                  <el-dropdown-item @click="closeAllTab">
+                    <span class="flex items-center justify-center">
+                      <AppIcon name="x-circle" class="mr-2" />{{ t('tabs.closeAll') }}
+                    </span>
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </template>
         </el-tab-pane>
       </el-tabs>
-      <MoreButton />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed, onMounted, watch } from 'vue'
+import { HOME_URL } from '@/config'
 import { useTabsStore } from '@/store/modules/tabs'
 import { useAuthStore } from '@/store/modules/auth'
 import { useRoute, useRouter } from 'vue-router'
 import { TabPaneName, TabsPaneContext } from 'element-plus'
-import MoreButton from './components/more-button.vue'
 import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
@@ -89,6 +122,16 @@ const clickTab = (tabItem: TabsPaneContext) => {
 const removeTab = (fullPath: TabPaneName) => {
   tabsStore.removeTab(fullPath as string, fullPath == route.fullPath)
 }
+
+const closeCurrentTab = (tabItem: any) => {
+  if (!tabItem?.close) return
+  tabsStore.removeTab(tabItem.path, tabItem.path === route.fullPath)
+}
+
+const closeAllTab = () => {
+  tabsStore.closeMultipleTab()
+  router.push(HOME_URL)
+}
 </script>
 
 <style scoped lang="scss">
@@ -105,37 +148,45 @@ const removeTab = (fullPath: TabPaneName) => {
         height: 40px;
         padding: 0 10px;
         margin: 0;
+        border-bottom: none;
 
         .el-tabs__nav-wrap {
           position: absolute;
-          width: calc(100% - 70px);
+          width: 100%;
+          &::after {
+            height: 0;
+          }
 
           .el-tabs__nav {
             box-sizing: border-box;
             border: none;
 
             .el-tabs__item {
-              border-bottom: 1px solid transparent;
+              border: none;
               border-left: none;
+              height: 28px;
+              margin: 6px 4px;
+              line-height: 28px;
+              border-radius: 8px;
+              background-color: transparent;
+              transition:
+                background-color 0.15s ease,
+                color 0.15s ease;
             }
 
             .el-tabs__item.is-active {
               color: var(--el-color-primary) !important;
-              border-bottom: 3px solid var(--el-color-primary);
+              border: none;
+              background-color: var(--el-color-primary-light-9);
             }
 
             .el-tabs__item:hover {
               color: unset;
+              background-color: var(--el-fill-color-light);
             }
           }
         }
       }
-    }
-
-    .more-btn {
-      position: absolute;
-      top: 0;
-      right: 0;
     }
   }
 }

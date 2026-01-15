@@ -26,7 +26,6 @@
 .layout {
   :deep(.el-aside) {
     width: auto;
-    border-right: 1px solid var(--el-border-color-light);
   }
 
   :deep(.el-aside .aside) {
@@ -54,8 +53,6 @@
     justify-content: space-between;
     height: 55px;
     padding: 0 15px;
-    border-bottom: 1px solid var(--el-border-color-light);
   }
 }
 </style>
-

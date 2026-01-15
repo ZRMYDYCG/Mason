@@ -149,7 +149,6 @@ $primary-color: var(--el-color-primary);
   width: 100px;
   height: 100%;
   background-color: var(--el-bg-color-primary);
-  border-right: 1px solid var(--el-border-color-light);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -193,4 +192,3 @@ $primary-color: var(--el-color-primary);
   }
 }
 </style>
-

@@ -21,7 +21,6 @@
   color: #6b7280;
   gap: 8px;
   padding: 5px 0;
-  border-top: 1px solid #e5e7eb;
 
   .footer-content {
     display: flex;
