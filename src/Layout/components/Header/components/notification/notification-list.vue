@@ -64,7 +64,7 @@ const clickAction = (item: ActionOptions, index: number) => {
           </div>
         </div>
       </el-scrollbar>
-      <div class="h-[50px] flex items-center border-t-[1px] border-gray-200" @click="clickAction">
+      <div class="h-[50px] flex items-center border-t-[1px] border-gray-200">
         <div
           v-for="(item, index) in actions"
           :key="index"
@@ -72,11 +72,9 @@ const clickAction = (item: ActionOptions, index: number) => {
           :class="{
             'border-r-[1px] border-gray-200': index < actions.length - 1
           }"
+          @click="clickAction(item, index)"
         >
-          <div v-if="item.icon">
-            <!-- <component :is="`el-icon-${item.icon}`"></component>-->
-            <i :class="['iconfont', item.icon]"></i>
-          </div>
+          <AppIcon v-if="item.icon" :name="item.icon" />
           <div>{{ item.text }}</div>
         </div>
       </div>

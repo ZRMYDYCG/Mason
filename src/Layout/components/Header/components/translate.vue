@@ -1,6 +1,6 @@
 <template>
   <el-dropdown placement="bottom" trigger="click" @command="handleCommand">
-    <i class="iconfont icon-fanyi"></i>
+    <AppIcon name="languages" />
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="zh">
@@ -82,27 +82,11 @@ const router = useRouter()
 
 const handleCommand = (command: 'zh' | 'en') => {
   settingStore.setLanguage(command)
-  // settingStore.setRefresh()
   router.go(0)
 }
 </script>
 
 <style scoped lang="scss">
-$mason-grey-300-rgb: rgb(245, 245, 245) !default;
-
-i {
-  display: block;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    color: var(--mason-grey-700);
-    background-color: rgb($mason-grey-300-rgb, 0.5);
-    font-weight: bold;
-  }
-}
-
 .language-item {
   display: flex;
   gap: 8px;

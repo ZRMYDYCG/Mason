@@ -385,10 +385,10 @@ export const List = [
 export const actions = [
   {
     text: '清理代办',
-    icon: 'icon-error'
+    icon: 'trash-2'
   },
   {
     text: '查看更多',
-    icon: 'icon-elipsis'
+    icon: 'ellipsis'
   }
 ]

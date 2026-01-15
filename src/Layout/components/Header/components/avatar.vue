@@ -1,16 +1,25 @@
 <template>
   <el-dropdown trigger="click">
-    <el-avatar
-      src="https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg"
-      size="small"
-    ></el-avatar>
+    <div class="user-trigger">
+      <el-avatar
+        src="https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg"
+        size="small"
+      ></el-avatar>
+      <el-text class="name" type="info" size="small">{{ username }}</el-text>
+    </div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item>
-          <span @click="router.push('/user')"><i class="iconfont icon-user"></i>个人中心</span>
+          <span class="flex items-center gap-2" @click="router.push('/user')">
+            <AppIcon name="user" :size="16" />
+            个人中心
+          </span>
         </el-dropdown-item>
         <el-dropdown-item divided @click="logout">
-          <span><i class="iconfont icon-tuichu"></i>退出登录</span>
+          <span class="flex items-center gap-2">
+            <AppIcon name="log-out" :size="16" />
+            退出登录
+          </span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -22,8 +31,10 @@ import { LOGIN_URL } from '@/config'
 import router from '@/router'
 import { useUserStore } from '@/store/modules/user'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import { computed } from 'vue'
 
 const userStore = useUserStore()
+const username = computed(() => userStore.userInfo.username)
 
 const logout = () => {
   ElMessageBox.confirm('您是否确认退出登录?', '温馨提醒', {
@@ -39,16 +50,10 @@ const logout = () => {
 </script>
 
 <style scoped lang="scss">
-.avatar {
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
+.user-trigger {
+  display: flex;
+  gap: 8px;
+  align-items: center;
   cursor: pointer;
-  border-radius: 50%;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
 }
 </style>

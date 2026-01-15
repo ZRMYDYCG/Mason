@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { actions, List } from '@/config'
-import NotificationContainer from '@/components/Notification/index.vue'
-import NotificationList from '@/components/Notification/notification-list.vue'
+import NotificationContainer from './notification/index.vue'
+import NotificationList from './notification/notification-list.vue'
 </script>
 
 <template>

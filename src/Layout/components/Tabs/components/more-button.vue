@@ -1,34 +1,34 @@
 <template>
   <el-dropdown trigger="click" class="more-btn">
     <div class="down-box w-[50px] h-[40px] flx-center">
-      <iconpark-icon name="drop-down-list"></iconpark-icon>
+      <AppIcon name="chevron-down" />
     </div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item @click="closeCurrentTab">
           <span class="flex items-center justify-center">
-            <iconpark-icon name="close-current" class="mr-2"></iconpark-icon>关闭当前</span
-          >
+            <AppIcon name="x" class="mr-2" />关闭当前
+          </span>
         </el-dropdown-item>
         <el-dropdown-item @click="tabsStore.closeTabsOnSide(route.fullPath, 'left')">
-          <span class="flex items-center justify-center"
-            ><iconpark-icon name="circle-double-left" class="mr-2"></iconpark-icon>关闭左侧</span
-          >
+          <span class="flex items-center justify-center">
+            <AppIcon name="chevrons-left" class="mr-2" />关闭左侧
+          </span>
         </el-dropdown-item>
         <el-dropdown-item @click="tabsStore.closeTabsOnSide(route.fullPath, 'right')">
-          <span class="flex items-center justify-center"
-            ><iconpark-icon name="circle-double-right" class="mr-2"></iconpark-icon>关闭右侧</span
-          >
+          <span class="flex items-center justify-center">
+            <AppIcon name="chevrons-right" class="mr-2" />关闭右侧
+          </span>
         </el-dropdown-item>
         <el-dropdown-item @click="tabsStore.closeMultipleTab(route.fullPath)">
-          <span class="flex items-center justify-center"
-            ><iconpark-icon name="close-other" class="mr-2"></iconpark-icon>关闭其他</span
-          >
+          <span class="flex items-center justify-center">
+            <AppIcon name="ellipsis" class="mr-2" />关闭其他
+          </span>
         </el-dropdown-item>
         <el-dropdown-item @click="closeAllTab">
-          <span class="flex items-center justify-center"
-            ><iconpark-icon name="close-all" class="mr-2"></iconpark-icon>关闭全部</span
-          >
+          <span class="flex items-center justify-center">
+            <AppIcon name="x-circle" class="mr-2" />关闭全部
+          </span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>

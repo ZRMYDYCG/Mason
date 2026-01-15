@@ -8,21 +8,10 @@ const isDark = computed(() => settingStore.isDark)
 </script>
 
 <template>
-  <i @click="themeAnimation" :class="['iconfont', isDark ? 'icon-taiyang' : 'icon-yueliang1']"></i>
+  <AppIcon
+    @click="themeAnimation"
+    :name="isDark ? 'sun' : 'moon'"
+  />
 </template>
 
-<style scoped lang="scss">
-$mason-grey-300-rgb: rgb(245, 245, 245) !default;
-i {
-  display: block;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    color: var(--mason-grey-700);
-    background-color: rgb($mason-grey-300-rgb, 0.5);
-    font-weight: bold;
-  }
-}
-</style>
+<style scoped lang="scss"></style>

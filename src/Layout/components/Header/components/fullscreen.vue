@@ -1,8 +1,8 @@
 <template>
-  <i
+  <AppIcon
     @click="handleFullScreen"
-    :class="['iconfont', isFullscreen ? 'icon-quanping' : 'icon-suoxiao1']"
-  ></i>
+    :name="isFullscreen ? 'minimize-2' : 'maximize-2'"
+  />
 </template>
 
 <script setup lang="ts">

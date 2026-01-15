@@ -31,22 +31,9 @@ const showRefreshButton = computed(() => settingStore.showRefreshButton)
 </script>
 
 <style scoped lang="scss">
-$mason-grey-300-rgb: rgb(245, 245, 245) !default;
-
 .tool-bar-lf {
   display: flex;
   align-items: center;
-}
-i {
-  display: block;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    color: var(--mason-grey-700);
-    background-color: rgb($mason-grey-300-rgb, 0.5);
-    font-weight: bold;
-  }
+  gap: 12px;
 }
 </style>

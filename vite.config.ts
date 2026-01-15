@@ -11,7 +11,7 @@ import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 import inspect from 'vite-plugin-inspect'
 import tailwindcss from '@tailwindcss/vite'
 import viteImagemin from 'vite-plugin-imagemin'
-import { viteBuildInfo } from './src/build/info'
+import { codeInspectorPlugin } from 'code-inspector-plugin'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
@@ -78,14 +78,13 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
     },
     plugins: [
       vue({
-        template: {
-          compilerOptions: {
-            isCustomElement: (tag) => tag === 'iconpark-icon'
-          }
-        },
         script: {
           defineModel: true // 启用实验性 defineModel
         }
+      }),
+      codeInspectorPlugin({
+        bundler: 'vite',
+        editor: 'trae',
       }),
       AutoImport({
         imports: [
@@ -146,8 +145,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
         gifsicle: { optimizationLevel: 7 },
         optipng: { optimizationLevel: 7 },
         webp: { quality: 75 }
-      }),
-      viteBuildInfo()
+      })
     ],
     optimizeDeps: {
       include: ['vue', 'vue-router', 'pinia', 'element-plus', 'axios'],

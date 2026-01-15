@@ -15,11 +15,7 @@ const handleRefresh = () => {
 </script>
 
 <template>
-  <i class="iconfont icon-shuaxin" @click="handleRefresh" />
+  <AppIcon name="refresh-cw" @click="handleRefresh" />
 </template>
 
-<style scoped lang="scss">
-i {
-  margin-right: 8px;
-}
-</style>
+<style scoped lang="scss"></style>

@@ -1,5 +1,5 @@
 <template>
-  <i @click="openDrawer" class="iconfont icon-buju" />
+  <AppIcon @click="openDrawer" name="settings" />
 </template>
 
 <script setup lang="ts">
