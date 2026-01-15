@@ -1,16 +1,15 @@
 <template>
   <Tabs v-if="showWorkTab" />
-  <el-main v-loading="refresh" :style="{ padding: routeInfo.path === '/mason-ai' ? '0' : '20px' }">
+  <el-main v-loading="refresh">
     <div :style="{ width: containerWidth, margin: '0 auto' }">
       <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
-        <transition :name="pageTransition" mode="out-in" appear>
-          <keep-alive :include="keepAliveNames">
-            <component
-              :is="createComponentWrapper(Component, route)!"
-              :key="route.fullPath"
-            ></component>
-          </keep-alive>
-        </transition>
+        <keep-alive :include="keepAliveNames">
+          <transition :name="pageTransition" appear mode="out-in">
+            <div :key="route.path">
+              <component :is="Component"></component>
+            </div>
+          </transition>
+        </keep-alive>
         <el-backtop target=".el-main" :right="10" :bottom="80" />
       </router-view>
     </div>
@@ -18,8 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { VNode, computed, h, onBeforeUnmount, ref } from 'vue'
-import { RouteLocationNormalizedLoaded, useRoute } from 'vue-router'
+import { computed, onBeforeUnmount, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import Tabs from '@/Layout/components/Tabs/index.vue'
 import { useKeepAliveStore } from '@/store/modules/keepAlive'
 import { useDebounceFn } from '@vueuse/core'
@@ -31,22 +30,6 @@ const keepAliveStore = useKeepAliveStore()
 const keepAliveNames = computed(() => keepAliveStore.keepAliveNames)
 
 const routeInfo = useRoute()
-
-// keepAlive缓存 将组件路径fullPath作为key 设置为Component 识别名称
-const wrapperMap = new Map()
-function createComponentWrapper(component: VNode, route: RouteLocationNormalizedLoaded) {
-  if (!component) return
-  const wrapperName = route.fullPath
-  let wrapper = wrapperMap.get(wrapperName)
-  if (!wrapper) {
-    wrapper = {
-      name: route.fullPath,
-      render: () => h(component)
-    }
-    wrapperMap.set(wrapperName, wrapper)
-  }
-  return h(wrapper)
-}
 
 const globalStore = useGlobalStore()
 const settingStore = useSettingStore()

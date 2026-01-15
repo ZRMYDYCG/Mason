@@ -62,10 +62,10 @@
 
 
 .fade-transform-leave-to {
-  display: none; // 解决标签全部关闭时出现动画闪烁问题
   opacity: 0;
   transition: all 0.2s;
   transform: translateX(30px);
+  pointer-events: none; // 禁用交互，而不是隐藏DOM
 }
 
 .fade-enter-active,
@@ -79,6 +79,10 @@
 }
 
 .fade-enter-to {
+  opacity: 1;
+}
+
+.fade-leave-from {
   opacity: 1;
 }
 
