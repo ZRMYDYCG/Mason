@@ -1,8 +1,8 @@
 import { Context, Next } from 'koa'
 import Joi from 'joi'
 
-import roleService from '../service/role.service'
-import userService from '../service/user.service'
+import roleService from '../modules/role/role.service'
+import userService from '../modules/user/user.service'
 
 import { ERROR_TYPES } from '../constant'
 import { PasswordToHash } from '../utils'

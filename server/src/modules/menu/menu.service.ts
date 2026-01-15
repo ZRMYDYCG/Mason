@@ -1,7 +1,7 @@
 import { Op } from 'sequelize'
-import { menuModel, roleMenuModel, roleModel } from '../models/index'
-import { formatMenus } from '../utils/index'
-import { MenuParams, UpdateMenuParams } from '../types/index'
+import { menuModel, roleMenuModel, roleModel } from '../../models/index'
+import { formatMenus } from '../../utils/index'
+import { MenuParams, UpdateMenuParams } from '../../types/index'
 
 class MenuService {
   async getMenuListByRoleId(

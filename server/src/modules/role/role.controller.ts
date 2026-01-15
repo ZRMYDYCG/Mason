@@ -1,9 +1,9 @@
 import Joi from 'joi'
 import { Context } from 'koa'
-import { RolePageParams, RoleParams, UpdateRoleParams } from '../types/index'
-import roleService from '../service/role.service'
-import userService from '../service/user.service'
-import { ERROR_TYPES } from '../constant'
+import { RolePageParams, RoleParams, UpdateRoleParams } from '../../types/index'
+import roleService from './role.service'
+import userService from '../user/user.service'
+import { ERROR_TYPES } from '../../constant'
 
 class RoleController {
   async getRoleList(ctx: Context) {

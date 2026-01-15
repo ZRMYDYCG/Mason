@@ -1,9 +1,9 @@
 import Router from 'koa-router'
 
-import menuController from '../controller/menu.controller'
+import menuController from './menu.controller'
 
-import { verifyAuth } from '../middleware/auth.middleware'
-import { verifySuper } from '../middleware/user.middleware'
+import { verifyAuth } from '../../middleware/auth.middleware'
+import { verifySuper } from '../../middleware/user.middleware'
 
 const menuRouter = new Router({ prefix: '/menu' })
 

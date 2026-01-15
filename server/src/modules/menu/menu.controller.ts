@@ -1,10 +1,10 @@
 import { Context } from 'koa'
 
-import userService from '../service/user.service'
-import menuService from '../service/menu.service'
+import userService from '../user/user.service'
+import menuService from './menu.service'
 import Joi from 'joi'
-import { MenuParams, UpdateMenuParams } from '../types/index'
-import { ERROR_TYPES } from '../constant'
+import { MenuParams, UpdateMenuParams } from '../../types/index'
+import { ERROR_TYPES } from '../../constant'
 
 class MenuController {
   async menuListByRole(ctx: Context) {

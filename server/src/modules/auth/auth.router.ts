@@ -1,8 +1,8 @@
 import Router from 'koa-router'
 
-import authController from '../controller/auth.controller'
+import authController from './auth.controller'
 
-import { verifyAuth, verifyLogin, verifyRegister } from '../middleware/auth.middleware'
+import { verifyAuth, verifyLogin, verifyRegister } from '../../middleware/auth.middleware'
 
 const authRouter = new Router()
 

@@ -1,6 +1,6 @@
-import { DeptParams, UpdateDeptParams } from '../types/index'
-import { departmentModel, userModel } from '../models/index'
-import { buildTreeDepartment } from '../utils/index'
+import { DeptParams, UpdateDeptParams } from '../../types/index'
+import { departmentModel, userModel } from '../../models/index'
+import { buildTreeDepartment } from '../../utils/index'
 import { Op } from 'sequelize'
 
 class DepartmentService {

@@ -1,9 +1,9 @@
 import Router from 'koa-router'
 
-import departmentController from '../controller/department.controller'
+import departmentController from './department.controller'
 
-import { verifyAuth } from '../middleware/auth.middleware'
-import { verifySuper } from '../middleware/user.middleware'
+import { verifyAuth } from '../../middleware/auth.middleware'
+import { verifySuper } from '../../middleware/user.middleware'
 
 const departmentRouter = new Router({ prefix: '/department' })
 

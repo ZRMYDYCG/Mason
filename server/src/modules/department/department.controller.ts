@@ -1,9 +1,9 @@
 import { Context } from 'koa'
 
-import departmentService from '../service/department.service'
-import { DeptParams, UpdateDeptParams } from '../types/index'
+import departmentService from './department.service'
+import { DeptParams, UpdateDeptParams } from '../../types/index'
 import Joi from 'joi'
-import { ERROR_TYPES } from '../constant'
+import { ERROR_TYPES } from '../../constant'
 
 class DepartmentController {
   async allDepartmentList(ctx: Context) {

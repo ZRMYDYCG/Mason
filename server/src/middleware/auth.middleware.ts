@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 
 import { LoginParams } from '../types'
 import { ERROR_TYPES } from '../constant'
-import userService from '../service/user.service'
+import userService from '../modules/user/user.service'
 
 import { PUBLIC_KEY } from '../config'
 

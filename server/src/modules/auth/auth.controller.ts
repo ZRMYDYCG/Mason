@@ -1,9 +1,9 @@
 import type { Context } from 'koa'
 import jwt from 'jsonwebtoken'
-import { PRIVATE_KEY } from '../config/index'
-import { LoginParams } from '../types/index'
-import { PasswordToHash } from '../utils/index'
-import userService from '../service/user.service'
+import { PRIVATE_KEY } from '../../config/index'
+import { LoginParams } from '../../types/index'
+import { PasswordToHash } from '../../utils/index'
+import userService from '../user/user.service'
 
 class AuthController {
   async login(ctx: Context) {

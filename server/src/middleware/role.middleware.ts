@@ -1,10 +1,10 @@
 import { Context, Next } from 'koa'
 
-import roleService from '../service/role.service'
+import roleService from '../modules/role/role.service'
 import { ERROR_TYPES } from '../constant'
 import { RoleParams } from '../types'
 import Joi from 'joi'
-import userService from '../service/user.service'
+import userService from '../modules/user/user.service'
 
 const verifyRole = async (ctx: Context, next: Next) => {
   // 1.获取值

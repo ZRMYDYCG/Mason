@@ -1,7 +1,7 @@
 import { Op } from 'sequelize'
-import { roleMenuModel, roleModel, userRoleModel } from '../models/index'
-import { RolePageParams, RoleParams, UpdateRoleParams } from '../types/index'
-import sequelizeBase from '../config/mysql'
+import { roleMenuModel, roleModel, userRoleModel } from '../../models/index'
+import { RolePageParams, RoleParams, UpdateRoleParams } from '../../types/index'
+import sequelizeBase from '../../config/mysql'
 
 class RoleService {
   async getRoleById(id: number) {

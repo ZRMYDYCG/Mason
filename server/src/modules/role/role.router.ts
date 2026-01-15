@@ -1,10 +1,10 @@
 import Router from 'koa-router'
 
-import roleController from '../controller/role.controller'
+import roleController from './role.controller'
 
-import { verifyAuth } from '../middleware/auth.middleware'
+import { verifyAuth } from '../../middleware/auth.middleware'
 
-import { verifyRole } from '../middleware/role.middleware'
+import { verifyRole } from '../../middleware/role.middleware'
 
 const roleRouter = new Router({ prefix: '/role' })
 

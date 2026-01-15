@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import upload from '../middleware/upload.middleware'
+import upload from '../../middleware/upload.middleware'
 
 // 创建实例
 const uploadRouter = new Router({ prefix: '/upload' })
