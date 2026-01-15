@@ -37,6 +37,7 @@ export interface Menu {
 export interface MetaProps {
   icon: string
   title: string
+  titleKey?: string
   isLink: boolean
   isEnable: boolean
   isAffix: boolean
