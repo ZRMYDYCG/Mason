@@ -2,7 +2,7 @@
   <el-breadcrumb separator="/">
     <template v-for="item in breadcrumbList" :key="item.path">
       <el-breadcrumb-item :to="{ path: item.path } as any" @click="onBreadcrumbClick(item.path)">
-        <el-text> {{ item.meta.title }}</el-text>
+        <el-text> {{ getTitle(item.meta) }}</el-text>
       </el-breadcrumb-item>
     </template>
   </el-breadcrumb>
@@ -14,10 +14,18 @@ import router from '@/router'
 import { useAuthStore } from '@/store/modules/auth'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 const authStore = useAuthStore()
+const { t } = useI18n({ useScope: 'global' })
 
 const route = useRoute()
+
+const getTitle = (meta: any) => {
+  const titleKey = meta?.titleKey as string | undefined
+  const rawTitle = meta?.title as string | undefined
+  return titleKey ? t(titleKey) : rawTitle
+}
 
 const breadcrumbList = computed(() => {
   let breadcrumbData = authStore.breadcrumbListGet[route.matched[route.matched.length - 1].path]

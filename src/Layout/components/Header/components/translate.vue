@@ -26,7 +26,7 @@
                 p-id="27179"
               ></path>
             </svg>
-            <span>中文</span>
+            <span>{{ t('language.zh') }}</span>
           </div>
         </el-dropdown-item>
         <el-dropdown-item command="en">
@@ -65,7 +65,7 @@
               ></path>
               <path d="M20.852 524.59V410.555h979.782v114.037z" fill="#B7333C" p-id="24756"></path>
             </svg>
-            <span>English</span>
+            <span>{{ t('language.en') }}</span>
           </div>
         </el-dropdown-item>
       </el-dropdown-menu>
@@ -75,14 +75,15 @@
 
 <script setup lang="ts">
 import { useSettingStore } from '@/store/modules/setting'
-import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { setI18nLocale } from '@/language'
 
 const settingStore = useSettingStore()
-const router = useRouter()
+const { t } = useI18n({ useScope: 'global' })
 
 const handleCommand = (command: 'zh' | 'en') => {
   settingStore.setLanguage(command)
-  router.go(0)
+  setI18nLocale(command)
 }
 </script>
 

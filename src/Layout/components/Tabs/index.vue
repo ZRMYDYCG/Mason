@@ -5,7 +5,7 @@
         <el-tab-pane
           v-for="item in tabsMenuList"
           :key="item.path"
-          :label="item.title"
+          :label="getTitle(item)"
           :name="item.path"
           :closable="item.close"
         >
@@ -23,14 +23,22 @@ import { useAuthStore } from '@/store/modules/auth'
 import { useRoute, useRouter } from 'vue-router'
 import { TabPaneName, TabsPaneContext } from 'element-plus'
 import MoreButton from './components/more-button.vue'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const router = useRouter()
 const tabsStore = useTabsStore()
 const authStore = useAuthStore()
+const { t } = useI18n({ useScope: 'global' })
 
 const tabsMenuValue = ref(route.fullPath)
 const tabsMenuList = computed(() => tabsStore.tabsMenuList)
+
+const getTitle = (tabItem: any) => {
+  const titleKey = tabItem?.titleKey as string | undefined
+  const rawTitle = tabItem?.title as string | undefined
+  return titleKey ? t(titleKey) : rawTitle
+}
 
 onMounted(() => {
   initTabs()
@@ -43,7 +51,8 @@ watch(
     tabsMenuValue.value = route.fullPath
     const tabsParams = {
       icon: route.meta.icon as string,
-      title: route.meta.title as string,
+      title: (route.meta.title as string) ?? '',
+      titleKey: route.meta.titleKey as string,
       path: route.fullPath,
       name: route.name as string,
       close: !route.meta.isAffix,
@@ -61,6 +70,7 @@ const initTabs = () => {
       const tabsParams = {
         icon: item.meta.icon,
         title: item.meta.title,
+        titleKey: item.meta.titleKey,
         path: item.path,
         name: item.name,
         close: !item.meta.isAffix,

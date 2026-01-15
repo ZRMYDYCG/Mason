@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { MenuListType } from '@/config'
 const route = useRoute()
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 defineProps({
   list: {
@@ -13,6 +14,13 @@ defineProps({
 })
 
 const router = useRouter()
+const { t } = useI18n({ useScope: 'global' })
+
+const getTitle = (meta: any) => {
+  const titleKey = meta?.titleKey as string | undefined
+  const rawTitle = meta?.title as string | undefined
+  return titleKey ? t(titleKey) : rawTitle
+}
 
 const isActive = (item: MenuListType): boolean => {
   const currentPath = route.path
@@ -74,7 +82,7 @@ onMounted(() => {
       @scroll="handleScroll"
     >
       <div class="scroll-bar">
-        <template v-for="item in list" :key="item.meta.title">
+        <template v-for="item in list" :key="item.path">
           <div
             class="item"
             :class="{ active: isActive(item) }"
@@ -82,7 +90,7 @@ onMounted(() => {
             v-if="!item.meta.isHide"
           >
             <AllLucideIcon v-if="item.meta.icon" :name="item.meta.icon" class="mr-2" />
-            <span>{{ item.meta.title }}</span>
+            <span>{{ getTitle(item.meta) }}</span>
           </div>
         </template>
       </div>

@@ -14,7 +14,7 @@
           >
             <el-tooltip
               effect="dark"
-              :content="menu?.meta.title"
+              :content="menu ? getTitle(menu.meta) : ''"
               placement="right"
               :offset="25"
               :hide-after="0"
@@ -28,7 +28,7 @@
                 ]"
               >
                 <AllLucideIcon v-if="menu?.meta.icon" :name="menu.meta.icon" />
-                <div>{{ menu.meta.title }}</div>
+                <div>{{ getTitle(menu.meta) }}</div>
               </div>
             </el-tooltip>
           </li>
@@ -104,12 +104,20 @@ import Logo from './components/Logo/index.vue'
 import MenuMixed from './components/MenuMixed/index.vue'
 import Watermark from '@/components/Watermark/index.vue'
 import useResizable from '@/hooks/useResizable.ts'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
 const globalStore = useGlobalStore()
 const settingStore = useSettingStore()
+const { t } = useI18n({ useScope: 'global' })
+
+const getTitle = (meta: any) => {
+  const titleKey = meta?.titleKey as string | undefined
+  const rawTitle = meta?.title as string | undefined
+  return titleKey ? t(titleKey) : rawTitle
+}
 
 const menuType = computed(() => settingStore.menuType)
 const watermarkVisible = computed(() => settingStore.watermarkVisible)

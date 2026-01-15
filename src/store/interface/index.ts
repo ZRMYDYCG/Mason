@@ -47,6 +47,7 @@ export interface AuthState {
 export interface TabsMenuProps {
   icon: string
   title: string
+  titleKey?: string
   path: string
   name: string
   close: boolean

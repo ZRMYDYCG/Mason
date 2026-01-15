@@ -19,7 +19,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/Login/index.vue')
+    component: () => import('@/views/Login/index.vue'),
+    meta: {
+      titleKey: 'route.login'
+    }
   },
   {
     path: '/layout',
@@ -38,7 +41,8 @@ const routes: RouteRecordRaw[] = [
     name: '403',
     component: () => import('@/components/ErrorMessage/403.vue'),
     meta: {
-      title: '403页面'
+      title: '403页面',
+      titleKey: 'route.error403'
     }
   },
   {
@@ -46,7 +50,8 @@ const routes: RouteRecordRaw[] = [
     name: '404',
     component: () => import('@/components/ErrorMessage/404.vue'),
     meta: {
-      title: '404页面'
+      title: '404页面',
+      titleKey: 'route.error404'
     }
   },
   {
@@ -54,7 +59,8 @@ const routes: RouteRecordRaw[] = [
     name: '500',
     component: () => import('@/components/ErrorMessage/500.vue'),
     meta: {
-      title: '500页面'
+      title: '500页面',
+      titleKey: 'route.error500'
     }
   },
   {
