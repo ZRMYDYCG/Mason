@@ -57,7 +57,7 @@ const handlePassword = async (ctx: Context, next: Next) => {
   const user = ctx.request.body as UserParams
   ctx.user = {
     ...user,
-    password: PasswordToHash(user.password), // 密码加密
+    password: PasswordToHash(user.password),
   }
   await next()
 }

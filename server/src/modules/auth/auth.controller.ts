@@ -9,7 +9,7 @@ class AuthController {
   async login(ctx: Context) {
     const { id, username } = ctx.user
     const { expires7d } = ctx.request.body as LoginParams
-    // token 有效期
+
     const expires = expires7d ? '7d' : '24h'
 
     const token = jwt.sign({ id, username }, PRIVATE_KEY, {
@@ -33,22 +33,21 @@ class AuthController {
     const { username, password } = ctx.request.body as LoginParams
 
     // 默认角色和部门
-    // 假设角色 ID 2 为普通用户，部门 ID 1 为默认部门
+    // 角色 ID 2 为普通用户，部门 ID 1 为默认部门
     const defaultRoleId = 2
     const defaultDeptId = 1
 
     const newUser = {
       username,
-      password: PasswordToHash(password), // 密码加密
+      password: PasswordToHash(password),
       roleId: defaultRoleId,
       deptId: defaultDeptId,
-      name: username, // 默认昵称为用户名
+      name: username,
       email: '',
       phone: '',
       remark: '用户自行注册',
     }
 
-    // 调用 userService 创建用户
     await userService.addNewUser(newUser as any)
 
     ctx.body = {
