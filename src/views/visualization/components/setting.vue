@@ -3,6 +3,7 @@ import { useViewStore } from '@/store/modules/view.ts'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import { useI18n } from 'vue-i18n'
 const isScaleRadio = ref(false)
 const leftBottomRadio = ref(true)
 const rightBottomRadio = ref(true)
@@ -10,6 +11,7 @@ const viewStore = useViewStore()
 const { indexConfig } = storeToRefs(viewStore)
 
 const router = useRouter()
+const { t } = useI18n({ useScope: 'global' })
 
 const init = () => {
   viewStore.initSetting()
@@ -48,52 +50,52 @@ const indexRadioChange = (flag: boolean) => {
 <template>
   <el-drawer v-model="viewStore.settingShow" direction="rtl" size="360px">
     <template #header>
-      <h2 class="setting-title">设置</h2>
+      <h2 class="setting-title">{{ t('visualization.setting.title') }}</h2>
     </template>
     <template #default>
-      <div class="left_shu">全局设置</div>
+      <div class="left_shu">{{ t('visualization.setting.global') }}</div>
       <div class="setting_item">
-        <span class="setting_label">
-          是否进行自动适配<span class="setting_label_tip">(默认分辨率1920*1080)</span>:
-        </span>
+        <span class="setting_label"
+          >{{ t('visualization.setting.autoFit') }}<span class="setting_label_tip"
+            >({{ t('visualization.setting.autoFitTip') }})</span
+          >:</span
+        >
         <div class="setting_content">
           <el-radio-group v-model="isScaleRadio" @change="(flag) => isScaleChange(flag as boolean)">
-            <el-radio :label="true">是</el-radio>
-            <el-radio :label="false">否</el-radio>
+            <el-radio :label="true">{{ t('visualization.setting.yes') }}</el-radio>
+            <el-radio :label="false">{{ t('visualization.setting.no') }}</el-radio>
           </el-radio-group>
         </div>
       </div>
-      <div class="left_shu">实时监测</div>
+      <div class="left_shu">{{ t('visualization.setting.realtime') }}</div>
       <div class="setting_item">
-        <span class="setting_label">
-          设备提醒自动轮询: <span class="setting_label_tip"></span>
-        </span>
+        <span class="setting_label">{{ t('visualization.setting.activityAutoScroll') }}:</span>
         <div class="setting_content">
           <el-radio-group
             v-model="leftBottomRadio"
             @change="(flag) => indexRadioChange(flag as boolean)"
           >
-            <el-radio :label="true">是</el-radio>
-            <el-radio :label="false">否</el-radio>
+            <el-radio :label="true">{{ t('visualization.setting.yes') }}</el-radio>
+            <el-radio :label="false">{{ t('visualization.setting.no') }}</el-radio>
           </el-radio-group>
         </div>
       </div>
       <div class="setting_item">
-        <span class="setting_label"> 实时预警轮播: </span>
+        <span class="setting_label"> {{ t('visualization.setting.eventAutoScroll') }}: </span>
         <div class="setting_content">
           <el-radio-group
             v-model="rightBottomRadio"
             @change="(flag) => indexRadioChange(flag as boolean)"
           >
-            <el-radio :label="true">是</el-radio>
-            <el-radio :label="false">否</el-radio>
+            <el-radio :label="true">{{ t('visualization.setting.yes') }}</el-radio>
+            <el-radio :label="false">{{ t('visualization.setting.no') }}</el-radio>
           </el-radio-group>
         </div>
       </div>
-      <div class="left_shu">退出数据大屏:</div>
+      <div class="left_shu">{{ t('visualization.setting.exit') }}:</div>
       <div class="setting_item">
         <div class="setting_content">
-          <el-button type="primary" @click="handleClose">退出</el-button>
+          <el-button type="primary" @click="handleClose">{{ t('visualization.setting.exitButton') }}</el-button>
         </div>
       </div>
     </template>

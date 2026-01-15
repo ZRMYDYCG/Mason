@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import { graphic } from 'echarts/core'
 import { countUserNum } from '@/api/modules/visualization.ts'
 import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 let colors = ['#0BFC7F', '#A0A0A0', '#F48C02', '#F4023C']
 const option = ref({})
@@ -13,6 +14,7 @@ const state = reactive({
   alarmNum: 0,
   totalNum: 0
 })
+const { t, locale } = useI18n({ useScope: 'global' })
 const echartsGraphic = (colors: string[]) => {
   return new graphic.LinearGradient(1, 0, 0, 0, [
     { offset: 0, color: colors[0] },
@@ -44,7 +46,7 @@ const setOption = () => {
     title: {
       top: 'center',
       left: 'center',
-      text: [`{value|${state.totalNum}}`, '{name|总数}'].join('\n'),
+      text: [`{value|${state.totalNum}}`, `{name|${t('visualization.label.total')}}`].join('\n'),
       textStyle: {
         rich: {
           value: {
@@ -71,7 +73,7 @@ const setOption = () => {
     },
     series: [
       {
-        name: '用户总览',
+        name: t('visualization.section.userProfile'),
         type: 'pie',
         radius: ['40%', '70%'],
         // avoidLabelOverlap: false,
@@ -83,7 +85,7 @@ const setOption = () => {
         color: colors,
         label: {
           show: true,
-          formatter: '   {b|{b}}   \n   {c|{c}个}   {per|{d}%}  ',
+          formatter: '   {b|{b}}   \n   {c|{c}}   {per|{d}%}  ',
           //   position: "outside",
           rich: {
             b: {
@@ -119,28 +121,28 @@ const setOption = () => {
         data: [
           {
             value: state.onlineNum,
-            name: '在线',
+            name: t('visualization.label.online'),
             itemStyle: {
               color: echartsGraphic(['#0BFC7F', '#A3FDE0'])
             }
           },
           {
             value: state.offlineNum,
-            name: '离线',
+            name: t('visualization.label.offline'),
             itemStyle: {
               color: echartsGraphic(['#A0A0A0', '#DBDFDD'])
             }
           },
           {
             value: state.lockNum,
-            name: '锁定',
+            name: t('visualization.label.locked'),
             itemStyle: {
               color: echartsGraphic(['#F48C02', '#FDDB7D'])
             }
           },
           {
             value: state.alarmNum,
-            name: '异常',
+            name: t('visualization.label.abnormal'),
             itemStyle: {
               color: echartsGraphic(['#F4023C', '#FB6CB7'])
             }
@@ -150,6 +152,10 @@ const setOption = () => {
     ]
   }
 }
+
+watch(locale, () => {
+  setOption()
+})
 </script>
 
 <template>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import dayjs from 'dayjs'
 import { useViewStore } from '@/store/modules/view.ts'
+import { useI18n } from 'vue-i18n'
 
 const dateData = reactive<{
   dateDay: any
@@ -16,11 +17,25 @@ const dateData = reactive<{
 })
 
 const { setSettingShow } = useViewStore()
-const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+const { t, locale } = useI18n({ useScope: 'global' })
+
+const weekday = computed(() => {
+  return [
+    t('visualization.weekday.sun'),
+    t('visualization.weekday.mon'),
+    t('visualization.weekday.tue'),
+    t('visualization.weekday.wed'),
+    t('visualization.weekday.thu'),
+    t('visualization.weekday.fri'),
+    t('visualization.weekday.sat')
+  ]
+})
+
 const timeFn = () => {
   dateData.timing = setInterval(() => {
-    dateData.dateDay = dayjs().format('YYYY-MM-DD hh : mm : ss')
-    dateData.dateWeek = weekday[dayjs().day()]
+    dateData.dateYear = dayjs().format('YYYY-MM-DD')
+    dateData.dateDay = dayjs().format('HH : mm : ss')
+    dateData.dateWeek = weekday.value[dayjs().day()]
   }, 1000)
 }
 timeFn()
@@ -33,14 +48,14 @@ timeFn()
     <div class="guang"></div>
     <div class="d-flex jc-center">
       <div class="title">
-        <span class="title-text">互联网设备可视化平台</span>
+        <span class="title-text">{{ t('visualization.headerTitle') }}</span>
       </div>
     </div>
     <div class="timers">
       {{ dateData.dateYear }} {{ dateData.dateWeek }} {{ dateData.dateDay }}
 
       <div class="setting_icon" @click="setSettingShow(true)">
-        <img src="@/assets/img/headers/setting.png" alt="设置" />
+        <img src="@/assets/img/headers/setting.png" :alt="t('visualization.setting.title')" />
       </div>
     </div>
   </div>

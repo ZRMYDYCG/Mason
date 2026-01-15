@@ -6,9 +6,11 @@ import { useViewStore } from '@/store/modules/view.ts'
 import { storeToRefs } from 'pinia'
 import EmptyCom from './empty-com'
 import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const viewStore = useViewStore()
 const { defaultOption, indexConfig } = storeToRefs(viewStore)
+const { t } = useI18n({ useScope: 'global' })
 const state = reactive<any>({
   list: [],
   defaultOption: {
@@ -80,22 +82,22 @@ onMounted(() => {
             <div class="dibu"></div>
             <div class="flex">
               <div class="info">
-                <span class="labels">设备ID：</span>
+                <span class="labels">{{ t('visualization.label.nodeId') }}：</span>
                 <span class="text-content zhuyao"> {{ item.gatewayno }}</span>
               </div>
               <div class="info">
-                <span class="labels">型号：</span>
+                <span class="labels">{{ t('visualization.label.model') }}：</span>
                 <span class="text-content"> {{ item.terminalno }}</span>
               </div>
               <div class="info">
-                <span class="labels">告警值：</span>
+                <span class="labels">{{ t('visualization.label.metricValue') }}：</span>
                 <span class="text-content warning"> {{ montionFilter(item.alertvalue) }}</span>
               </div>
             </div>
 
             <div class="flex">
               <div class="info">
-                <span class="labels shrink-0"> 地址：</span>
+                <span class="labels shrink-0"> {{ t('visualization.label.address') }}：</span>
                 <span
                   class="ciyao truncate"
                   style="font-size: 12px; width: 220px"
@@ -105,15 +107,15 @@ onMounted(() => {
                 >
               </div>
               <div class="info time shrink-0">
-                <span class="labels">时间：</span>
+                <span class="labels">{{ t('visualization.label.time') }}：</span>
                 <span class="text-content" style="font-size: 12px"> {{ item.createtime }}</span>
               </div>
             </div>
             <div class="flex">
               <div class="info">
-                <span class="labels">报警内容：</span>
+                <span class="labels">{{ t('visualization.label.description') }}：</span>
                 <span class="text-content ciyao" :class="{ warning: item.alertdetail }">
-                  {{ item.alertdetail || '无' }}</span
+                  {{ item.alertdetail || t('visualization.label.empty') }}</span
                 >
               </div>
             </div>

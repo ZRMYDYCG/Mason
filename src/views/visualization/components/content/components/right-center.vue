@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import CapsuleChart from './capsule-chart'
 import { ranking } from '@/api/modules/visualization.ts'
 import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const config = ref({
   showValue: true,
-  unit: '次'
+  unit: ''
 })
+const { t, locale } = useI18n({ useScope: 'global' })
 const data = ref([])
 const getData = () => {
   ranking()
@@ -27,6 +29,17 @@ const getData = () => {
     })
 }
 getData()
+
+const syncUnit = () => {
+  config.value = {
+    ...config.value,
+    unit: t('visualization.unit.times')
+  }
+}
+syncUnit()
+watch(locale, () => {
+  syncUnit()
+})
 </script>
 
 <template>

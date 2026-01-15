@@ -3,8 +3,10 @@ import { reactive, ref, onMounted } from 'vue'
 import { countDeviceNum } from '@/api/modules/visualization.ts'
 import CountUp from './count-up'
 import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const duration = ref(2)
+const { t } = useI18n({ useScope: 'global' })
 const state = reactive({
   alarmNum: 0,
   offlineNum: 0,
@@ -41,25 +43,25 @@ onMounted(() => {
       <div class="user_Overview_nums allnum">
         <CountUp :end-val="state.totalNum" :duration="duration" />
       </div>
-      <p>总设备数</p>
+      <p>{{ t('visualization.label.totalNodes') }}</p>
     </li>
     <li class="user_Overview-item" style="color: #07f7a8">
       <div class="user_Overview_nums online">
         <CountUp :end-val="state.onlineNum" :duration="duration" />
       </div>
-      <p>在线数</p>
+      <p>{{ t('visualization.label.onlineNodes') }}</p>
     </li>
     <li class="user_Overview-item" style="color: #e3b337">
       <div class="user_Overview_nums offline">
         <CountUp :end-val="state.offlineNum" :duration="duration" />
       </div>
-      <p>掉线数</p>
+      <p>{{ t('visualization.label.offlineNodes') }}</p>
     </li>
     <li class="user_Overview-item" style="color: #f5023d">
       <div class="user_Overview_nums laramnum">
         <CountUp :end-val="state.alarmNum" :duration="duration" />
       </div>
-      <p>告警次数</p>
+      <p>{{ t('visualization.label.alertCount') }}</p>
     </li>
   </ul>
 </template>

@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, nextTick } from 'vue'
+import { ref, reactive, onMounted, nextTick, watch } from 'vue'
 import { installationPlan } from '@/api/modules/visualization.ts'
 import { graphic } from 'echarts/core'
 import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const option = ref({})
+const { t, locale } = useI18n({ useScope: 'global' })
 const getData = () => {
   installationPlan()
     .then((res) => {
@@ -22,7 +24,14 @@ const getData = () => {
       ElMessage.error(err)
     })
 }
+const cacheData = ref<any>(null)
+
 const setOption = async (newData: any) => {
+  cacheData.value = newData
+  const completedLabel = t('visualization.chart.completed')
+  const plannedLabel = t('visualization.chart.planned')
+  const rateLabel = t('visualization.chart.completionRate')
+  const itemUnit = t('visualization.unit.items')
   option.value = {
     tooltip: {
       trigger: 'axis',
@@ -36,10 +45,10 @@ const setOption = async (newData: any) => {
         let result = params[0].name + '<br>'
         params.forEach(function (item: any) {
           if (item.value) {
-            if (item.seriesName == '安装率') {
+            if (item.seriesName == rateLabel) {
               result += item.marker + ' ' + item.seriesName + ' : ' + item.value + '%</br>'
             } else {
-              result += item.marker + ' ' + item.seriesName + ' : ' + item.value + '个</br>'
+              result += item.marker + ' ' + item.seriesName + ' : ' + item.value + ` ${itemUnit}</br>`
             }
           } else {
             result += item.marker + ' ' + item.seriesName + ' :  - </br>'
@@ -49,7 +58,7 @@ const setOption = async (newData: any) => {
       }
     },
     legend: {
-      data: ['已安装', '计划安装', '安装率'],
+      data: [completedLabel, plannedLabel, rateLabel],
       textStyle: {
         color: '#B4B4B4'
       },
@@ -99,7 +108,7 @@ const setOption = async (newData: any) => {
     ],
     series: [
       {
-        name: '已安装',
+        name: completedLabel,
         type: 'bar',
         barWidth: 10,
         itemStyle: {
@@ -112,7 +121,7 @@ const setOption = async (newData: any) => {
         data: newData.barData
       },
       {
-        name: '计划安装',
+        name: plannedLabel,
         type: 'bar',
         barGap: '-100%',
         barWidth: 10,
@@ -128,7 +137,7 @@ const setOption = async (newData: any) => {
         data: newData.lineData
       },
       {
-        name: '安装率',
+        name: rateLabel,
         type: 'line',
         smooth: true,
         showAllSymbol: true,
@@ -145,6 +154,10 @@ const setOption = async (newData: any) => {
 }
 onMounted(() => {
   getData()
+})
+
+watch(locale, () => {
+  if (cacheData.value) setOption(cacheData.value)
 })
 </script>
 

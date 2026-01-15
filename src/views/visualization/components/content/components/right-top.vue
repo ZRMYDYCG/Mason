@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { alarmNum } from '@/api/modules/visualization.ts'
 import { graphic } from 'echarts/core'
 import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const option = ref({})
+const { t, locale } = useI18n({ useScope: 'global' })
 const getData = () => {
   alarmNum()
     .then((res: any) => {
@@ -22,7 +24,12 @@ const getData = () => {
       ElMessage.error(err)
     })
 }
+const cacheData = ref<{ xData: any[]; yData: any[]; yData2: any[] } | null>(null)
 const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
+  cacheData.value = { xData, yData, yData2 }
+  const highPriority = t('visualization.chart.highPriority')
+  const lowPriority = t('visualization.chart.lowPriority')
+  const peak = t('visualization.chart.peak')
   option.value = {
     xAxis: {
       type: 'category',
@@ -87,7 +94,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
         type: 'line',
         smooth: true,
         symbol: 'none', //去除点
-        name: '报警1次数',
+        name: highPriority,
         color: 'rgba(252,144,16,.7)',
         areaStyle: {
           //右，下，左，上
@@ -112,7 +119,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
         markPoint: {
           data: [
             {
-              name: '最大值',
+              name: peak,
               type: 'max',
               valueDim: 'y',
               symbol: 'rect',
@@ -128,11 +135,11 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
                 padding: [7, 14],
                 borderWidth: 0.5,
                 borderColor: 'rgba(252,144,16,.5)',
-                formatter: '报警1：{c}'
+                formatter: `${highPriority}：{c}`
               }
             },
             {
-              name: '最大值',
+              name: peak,
               type: 'max',
               valueDim: 'y',
               symbol: 'circle',
@@ -154,7 +161,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
         type: 'line',
         smooth: true,
         symbol: 'none', //去除点
-        name: '报警2次数',
+        name: lowPriority,
         color: 'rgba(9,202,243,.7)',
         areaStyle: {
           //右，下，左，上
@@ -179,7 +186,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
         markPoint: {
           data: [
             {
-              name: '最大值',
+              name: peak,
               type: 'max',
               valueDim: 'y',
               symbol: 'rect',
@@ -195,12 +202,12 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
                 borderRadius: 6,
                 borderColor: 'rgba(9,202,243,.5)',
                 padding: [7, 14],
-                formatter: '报警2：{c}',
+                formatter: `${lowPriority}：{c}`,
                 borderWidth: 0.5
               }
             },
             {
-              name: '最大值',
+              name: peak,
               type: 'max',
               valueDim: 'y',
               symbol: 'circle',
@@ -222,6 +229,10 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
 }
 onMounted(() => {
   getData()
+})
+
+watch(locale, () => {
+  if (cacheData.value) setOption(cacheData.value.xData, cacheData.value.yData, cacheData.value.yData2)
 })
 </script>
 

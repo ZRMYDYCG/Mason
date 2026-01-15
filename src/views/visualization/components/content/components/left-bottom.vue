@@ -6,9 +6,11 @@ import { useViewStore } from '@/store/modules/view.ts'
 import { storeToRefs } from 'pinia'
 import EmptyCom from './empty-com'
 import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const viewStore = useViewStore()
 const { defaultOption, indexConfig } = storeToRefs(viewStore)
+const { t } = useI18n({ useScope: 'global' })
 const state = reactive<any>({
   list: [] as any[],
   defaultOption: {
@@ -81,11 +83,11 @@ onMounted(() => {
             <div class="dibu"></div>
             <div class="flex">
               <div class="info">
-                <span class="labels">设备ID：</span>
+                <span class="labels">{{ t('visualization.label.nodeId') }}：</span>
                 <span class="text-content zhuyao doudong wangguan"> {{ item.gatewayno }}</span>
               </div>
               <div class="info">
-                <span class="labels">时间：</span>
+                <span class="labels">{{ t('visualization.label.time') }}：</span>
                 <span class="text-content" style="font-size: 12px"> {{ item.createTime }}</span>
               </div>
             </div>
@@ -96,11 +98,11 @@ onMounted(() => {
                 typeRed: item.onlineState == 0,
                 typeGreen: item.onlineState == 1
               }"
-              >{{ item.onlineState == 1 ? '上线' : '下线' }}</span
+              >{{ item.onlineState == 1 ? t('visualization.status.online') : t('visualization.status.offline') }}</span
             >
 
             <div class="info addresswrap">
-              <span class="labels">地址：</span>
+              <span class="labels">{{ t('visualization.label.region') }}：</span>
               <span class="text-content ciyao" style="font-size: 12px">
                 {{ addressHandle(item) }}</span
               >

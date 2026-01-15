@@ -6,11 +6,13 @@ import { registerMap, getMap } from 'echarts/core'
 import { optionHandle, regionCodes } from './center.map'
 import BorderBox from './border-box.vue'
 import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 import type { MapdataType } from './center.map'
 
 const option = ref({})
 const code = ref('china') //china 代表中国 其他地市是行政编码
+const { t } = useI18n({ useScope: 'global' })
 
 withDefaults(
   defineProps<{
@@ -83,7 +85,7 @@ const mapClick = (params: any) => {
   if (xzqData) {
     getData(xzqData.adcode)
   } else {
-    window['$message'].warning('暂无下级地市')
+    window['$message'].warning(t('visualization.map.noNextLevel'))
   }
 }
 </script>
@@ -97,7 +99,9 @@ const mapClick = (params: any) => {
     </div>
     <div class="mapwrap">
       <BorderBox>
-        <div class="quanguo" @click="getData('china')" v-if="code !== 'china'">中国</div>
+        <div class="quanguo" @click="getData('china')" v-if="code !== 'china'">
+          {{ t('visualization.map.national') }}
+        </div>
         <v-chart
           class="chart"
           :option="option"
