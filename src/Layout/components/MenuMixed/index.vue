@@ -18,7 +18,7 @@ const isActive = (item: MenuListType): boolean => {
   const currentPath = route.path
 
   if (item.children?.length) {
-    return item.children.some((child) => {
+    return item.children.some((child: MenuListType) => {
       if (child.children?.length) {
         return isActive(child)
       }
@@ -55,7 +55,7 @@ const scroll = (direction: 'left' | 'right') => {
   })
 }
 
-const handleMenuJump = (item) => {
+const handleMenuJump = (item: MenuListType) => {
   router.push(item.path)
 }
 
@@ -81,7 +81,7 @@ onMounted(() => {
             @click="handleMenuJump(item)"
             v-if="!item.meta.isHide"
           >
-            <i v-if="item.meta.icon" :class="['iconfont mr-2', item.meta.icon]" />
+            <AllLucideIcon v-if="item.meta.icon" :name="item.meta.icon" class="mr-2" />
             <span>{{ item.meta.title }}</span>
           </div>
         </template>

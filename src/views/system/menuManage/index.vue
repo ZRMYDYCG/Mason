@@ -4,6 +4,7 @@ import { onMounted, ref, reactive, toRaw } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { deleteMenu, getMenuList } from '@/api/modules/system'
 import { Menu } from '@/api/interface/system'
+import AllLucideIcon from '@/components/AllLucideIcon/index.vue'
 
 onMounted(() => {
   onSearch()
@@ -93,7 +94,7 @@ const handleEdit = (row: Menu) => {
         <el-table-column prop="meta.icon" label="菜单图标" align="center" width="100">
           <template #default="scope">
             <div style="display: flex; align-items: center; justify-content: center">
-              <i :class="['iconfont', scope.row.meta.icon]"></i>
+              <AllLucideIcon v-if="scope.row.meta.icon" :name="scope.row.meta.icon" />
             </div>
           </template>
         </el-table-column>

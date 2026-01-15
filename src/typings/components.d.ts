@@ -11,6 +11,7 @@ declare module 'vue' {
     403: typeof import('./../components/ErrorMessage/403.vue')['default']
     404: typeof import('./../components/ErrorMessage/404.vue')['default']
     500: typeof import('./../components/ErrorMessage/500.vue')['default']
+    AllLucideIcon: typeof import('./../components/AllLucideIcon/index.vue')['default']
     AppIcon: typeof import('./../components/AppIcon/index.vue')['default']
     Column: typeof import('./../components/Column/index.vue')['default']
     ColumnSetting: typeof import('./../components/CustomTable/column-setting.vue')['default']

@@ -27,7 +27,7 @@
                   'item-content'
                 ]"
               >
-                <i :class="['iconfont', menu?.meta.icon]"></i>
+                <AllLucideIcon v-if="menu?.meta.icon" :name="menu.meta.icon" />
                 <div>{{ menu.meta.title }}</div>
               </div>
             </el-tooltip>
@@ -135,12 +135,18 @@ watch(width, (val) => {
 })
 
 const menuList = computed(() => {
+  const list = authStore.showMenuListGet || []
+
   if (menuType.value === MenuTypeEnum.DUAL_MENU || menuType.value === MenuTypeEnum.TOP_LEFT) {
     const currentTopPath = `/${route.path.split('/')[1]}`
-    const currentMenu = authStore.showMenuListGet.find((menu) => menu.path === currentTopPath)
-    return currentMenu?.children.length > 0 ? currentMenu.children : [currentMenu]
+    const currentMenu = list.find((menu) => menu.path === currentTopPath)
+
+    if (!currentMenu) return []
+    if (currentMenu.children?.length) return currentMenu.children
+    return [currentMenu]
   }
-  return authStore.showMenuListGet || []
+
+  return list
 })
 
 const isCollapse = computed(() => globalStore.isCollapse)
@@ -158,7 +164,6 @@ $primary-color: var(--el-color-primary);
 .el-container {
   width: 100%;
   height: 100%;
-  //user-select: none;
   scrollbar-width: none;
 
   .dual-menu-left {

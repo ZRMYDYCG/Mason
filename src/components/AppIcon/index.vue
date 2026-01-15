@@ -92,4 +92,3 @@ const iconComponent = computed(() => iconMap[props.name] ?? CircleHelp)
     aria-hidden="true"
   />
 </template>
-

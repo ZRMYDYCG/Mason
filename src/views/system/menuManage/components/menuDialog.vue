@@ -5,6 +5,8 @@ import { addMenu, editMenu } from '@/api/modules/system'
 import { Menu } from '@/api/interface/system'
 import { useAuthStore } from '@/store/modules/auth'
 import { MenuOption, getTreeMenuOptions } from '@/utils'
+import AllLucideIcon from '@/components/AllLucideIcon/index.vue'
+import LucideIconPickerDialog from './lucideIconPickerDialog.vue'
 const isEdit = ref(false)
 const dialogVisible = ref(false)
 
@@ -51,6 +53,25 @@ const formRules = reactive({
 })
 
 const menuOptions = ref<MenuOption[]>([])
+const iconPickerVisible = ref(false)
+const iconPickerTarget = ref<'new' | 'edit'>('new')
+
+const openIconPicker = (target: 'new' | 'edit') => {
+  iconPickerTarget.value = target
+  iconPickerVisible.value = true
+}
+
+const iconPickerSelected = computed(() => {
+  return iconPickerTarget.value === 'new' ? menuForm.icon : editMenuForm.icon
+})
+
+const applySelectedIcon = (name: string) => {
+  if (iconPickerTarget.value === 'new') {
+    menuForm.icon = name
+  } else {
+    editMenuForm.icon = name
+  }
+}
 
 onMounted(() => {
   initMenus()
@@ -217,12 +238,23 @@ const handleConfirm = () => {
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
+          <el-col :span="16">
             <el-form-item label="菜单图标" prop="icon">
-              <el-input v-model="menuForm.icon" placeholder="输入图标" clearable />
+              <el-input v-model="menuForm.icon" placeholder="选择图标或输入 Lucide 图标名" clearable>
+                <template #prepend v-if="menuForm.icon">
+                  <div
+                    style="width: 40px; display: flex; align-items: center; justify-content: center"
+                  >
+                    <AllLucideIcon :name="menuForm.icon" />
+                  </div>
+                </template>
+                <template #append>
+                  <el-button @click="openIconPicker('new')">选择</el-button>
+                </template>
+              </el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="8">
             <el-form-item label="排序" prop="sort">
               <el-input-number v-model="menuForm.sort" :min="1" />
             </el-form-item>
@@ -264,12 +296,10 @@ const handleConfirm = () => {
             </el-form-item>
           </el-col>
         </el-row>
-        <div class="dialog-footer">
-          <el-form-item>
-            <el-button @click="handleCancel">取消</el-button>
-            <el-button type="primary" @click="handleConfirm"> 确认 </el-button>
-          </el-form-item>
-        </div>
+        <el-form-item class="dialog-footer" label-width="0px">
+          <el-button @click="handleCancel">取消</el-button>
+          <el-button type="primary" @click="handleConfirm"> 确认 </el-button>
+        </el-form-item>
       </el-form>
     </template>
     <template v-else>
@@ -311,12 +341,23 @@ const handleConfirm = () => {
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
+          <el-col :span="16">
             <el-form-item label="菜单图标" prop="icon">
-              <el-input v-model="editMenuForm.icon" placeholder="输入图标" clearable />
+              <el-input v-model="editMenuForm.icon" placeholder="选择图标或输入 Lucide 图标名" clearable>
+                <template #prepend v-if="editMenuForm.icon">
+                  <div
+                    style="width: 40px; display: flex; align-items: center; justify-content: center"
+                  >
+                    <AllLucideIcon :name="editMenuForm.icon" />
+                  </div>
+                </template>
+                <template #append>
+                  <el-button @click="openIconPicker('edit')">选择</el-button>
+                </template>
+              </el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="8">
             <el-form-item label="排序" prop="sort">
               <el-input-number v-model="editMenuForm.sort" :min="1" />
             </el-form-item>
@@ -358,15 +399,24 @@ const handleConfirm = () => {
             </el-form-item>
           </el-col>
         </el-row>
-        <div class="dialog-footer">
-          <el-form-item>
-            <el-button @click="handleCancel">取消</el-button>
-            <el-button type="primary" @click="handleConfirm"> 确认 </el-button>
-          </el-form-item>
-        </div>
+        <el-form-item class="dialog-footer" label-width="0px">
+          <el-button @click="handleCancel">取消</el-button>
+          <el-button type="primary" @click="handleConfirm"> 确认 </el-button>
+        </el-form-item>
       </el-form>
     </template>
   </el-dialog>
+  <LucideIconPickerDialog
+    v-model="iconPickerVisible"
+    :selected="iconPickerSelected"
+    @select="applySelectedIcon"
+  />
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.dialog-footer {
+  :deep(.el-form-item__content) {
+    justify-content: center;
+  }
+}
+</style>
