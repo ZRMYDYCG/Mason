@@ -7,7 +7,6 @@ import menuRouter from '../modules/menu/menu.router'
 import uploadRouter from '../modules/upload/upload.router'
 import departmentRouter from '../modules/department/department.router'
 
-// 路由
 export const router = new Router()
 
 router.use(authRouter.routes())

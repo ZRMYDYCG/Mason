@@ -7,16 +7,15 @@ import { APP_PORT } from './config/index'
 import { connectMysql } from './config/mysql'
 
 async function runServer() {
-  const port = APP_PORT // 端口
+  const port = APP_PORT
   try {
     await Promise.all([
-      connectMysql(), // 连接mysql
+      connectMysql(),
     ])
 
     await new Promise((resolve) => {
       const server = createServer(app.callback())
 
-      // 启动服务器
       server.listen(port, () => {
         console.log(`应用运行在: http://127.0.0.1:${port}`)
       })
