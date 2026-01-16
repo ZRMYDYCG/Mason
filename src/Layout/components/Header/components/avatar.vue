@@ -12,7 +12,7 @@
         <el-dropdown-item>
           <span class="flex items-center gap-2" @click="router.push('/user')">
             <AppIcon name="user" :size="16" />
-            个人中心
+            修改资料
           </span>
         </el-dropdown-item>
         <el-dropdown-item divided @click="logout">

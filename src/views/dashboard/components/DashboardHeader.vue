@@ -284,20 +284,6 @@ function handleRefresh() {
   border-radius: calc(var(--header-radius) + 2px);
   background-color: var(--header-surface);
   box-shadow: var(--header-shadow);
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(900px 240px at 0% 0%, rgba(var(--header-primary-rgb), 0.14), transparent 58%),
-      radial-gradient(700px 240px at 100% 0%, rgba(var(--header-primary-rgb), 0.08), transparent 58%),
-      radial-gradient(26px 26px at 18% 46%, rgba(var(--header-primary-rgb), 0.18), transparent 60%),
-      radial-gradient(28px 28px at 78% 40%, rgba(var(--header-primary-rgb), 0.14), transparent 60%),
-      linear-gradient(180deg, rgba(var(--header-primary-rgb), 0.05), transparent 55%);
-    opacity: 0.9;
-    pointer-events: none;
-  }
 }
 
 .page-header {
@@ -401,6 +387,7 @@ function handleRefresh() {
     display: flex;
     align-items: center;
     gap: var(--gap-sm);
+    flex-wrap: wrap;
     padding: 10px 10px;
     border-radius: 12px;
     background-color: var(--app-bg-overlay);
@@ -415,6 +402,10 @@ function handleRefresh() {
     gap: var(--gap-xs);
   }
 
+  .preset-radio {
+    flex-wrap: wrap;
+  }
+
   .divider {
     width: 1px;
     height: 24px;
@@ -423,8 +414,14 @@ function handleRefresh() {
   }
 
   .custom-range-wrapper {
-    width: 240px;
+    flex: 1 1 280px;
+    min-width: 260px;
+    width: auto;
     transition: all 0.3s ease;
+  }
+
+  .custom-date-picker {
+    width: 100%;
   }
 
   .preset-select {
@@ -478,6 +475,7 @@ function handleRefresh() {
 
       .custom-range-wrapper {
         width: 100%;
+        min-width: 0;
         order: 3;
         margin-top: 8px;
       }
