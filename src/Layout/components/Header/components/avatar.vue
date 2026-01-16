@@ -5,7 +5,7 @@
         src="https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg"
         size="small"
       ></el-avatar>
-      <el-text class="name" type="info" size="small">{{ username }}</el-text>
+      <!-- <el-text class="name" type="info" size="small">{{ username }}</el-text> -->
     </div>
     <template #dropdown>
       <el-dropdown-menu>

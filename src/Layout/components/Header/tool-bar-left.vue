@@ -4,7 +4,6 @@
       v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT"
       v-show="showMenuButton"
     />
-    <Flushed v-if="showRefreshButton" />
     <BreadCrumb
       v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT && showCrumbs"
       v-show="globalStore.breadcrumb"
@@ -19,7 +18,6 @@ import CollapseIcon from './components/collapseIcon.vue'
 import BreadCrumb from './components/bread-crumb.vue'
 import { useGlobalStore } from '@/store/modules/global'
 import { useSettingStore } from '@/store/modules/setting.ts'
-import Flushed from './components/flushed.vue'
 
 const globalStore = useGlobalStore()
 const settingStore = useSettingStore()
@@ -27,7 +25,6 @@ const settingStore = useSettingStore()
 const menuType = computed(() => settingStore.menuType)
 const showCrumbs = computed(() => settingStore.showCrumbs)
 const showMenuButton = computed(() => settingStore.showMenuButton)
-const showRefreshButton = computed(() => settingStore.showRefreshButton)
 </script>
 
 <style scoped lang="scss">

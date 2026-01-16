@@ -21,16 +21,18 @@ const iconName = computed(() => {
 </script>
 
 <template>
-  <el-popover placement="bottom" :width="300" trigger="click">
+  <el-popover placement="bottom" :width="360" trigger="click" popper-class="notification-popper">
     <template #reference>
       <el-badge
         :is-dot="isDot"
         :value="value"
         :max="max"
-        class="cursor-pointer"
-        :offset="[-2, 14]"
+        class="notification-badge"
+        :offset="[-2, 21]"
       >
-        <AppIcon :name="iconName" />
+        <span class="notification-trigger" role="button" tabindex="0">
+          <AppIcon syule="margin-top: 5px;" :name="iconName" />
+        </span>
       </el-badge>
     </template>
     <!-- 继承 Popover 的 slot   -->
@@ -38,4 +40,10 @@ const iconName = computed(() => {
   </el-popover>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+:global(.notification-popper) {
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 12px;
+}
+</style>

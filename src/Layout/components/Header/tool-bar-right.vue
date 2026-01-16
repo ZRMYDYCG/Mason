@@ -1,10 +1,11 @@
 <template>
   <div class="tool-bar-rt">
+    <Notificate />  
     <ThemeSetting></ThemeSetting>
     <Translate v-if="showLanguage" />
+    <Flushed v-if="showRefreshButton" />
     <FullScreen class="tb-item" />
     <ThemeSwitch class="tb-item" />
-    <Notificate />
     <Avatar />
   </div>
 </template>
@@ -18,9 +19,10 @@ import ThemeSetting from './components/theme-setting.vue'
 import ThemeSwitch from './components/theme-switch.vue'
 import Notificate from './components/notificate.vue'
 import Translate from './components/translate.vue'
+import Flushed from './components/flushed.vue'
 
 const settingStore = useSettingStore()
-const { showLanguage } = storeToRefs(settingStore)
+const { showLanguage, showRefreshButton } = storeToRefs(settingStore)
 </script>
 
 <style scoped lang="scss">
