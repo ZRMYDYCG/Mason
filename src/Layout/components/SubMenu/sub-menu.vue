@@ -2,13 +2,13 @@
   <template v-for="subItem in menuList" :key="subItem.path">
     <el-sub-menu v-if="subItem.children?.length" :index="subItem.path">
       <template #title>
-        <AllLucideIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="mr-2" />
+        <AllLucideIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="icon" />
         <span class="sle">{{ getTitle(subItem.meta) }}</span>
       </template>
       <SubMenu :menu-list="subItem.children" />
     </el-sub-menu>
     <el-menu-item v-else :index="subItem.path" @click="handleClickMenu(subItem)">
-      <AllLucideIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="mr-2" />
+      <AllLucideIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="icon" />
       <template #title>
         <div class="flex items-center gap-2">
           <span class="sle mr-2">{{ getTitle(subItem.meta) }}</span>
@@ -58,7 +58,7 @@ const handleClickMenu = (subItem: Menu) => {
 :global(.aside .el-menu-item),
 :global(.aside .el-sub-menu__title) {
   position: relative;
-  margin: 4px 10px;
+  margin: 6px 10px;
   border-radius: 10px;
   transition:
     background-color 0.15s ease,
@@ -69,6 +69,11 @@ const handleClickMenu = (subItem: Menu) => {
 :global(.aside .el-menu-item) {
   height: 40px;
   line-height: 40px;
+}
+
+:global(.aside .el-menu--collapse .el-menu-item .icon),
+:global(.aside .el-menu--collapse .el-sub-menu__title .icon) {
+  margin-left: -6px;
 }
 
 :global(html:not(.dark) .aside .el-menu-item:not(.is-active):hover),

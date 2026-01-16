@@ -40,17 +40,10 @@ const clickItem = (item: ListItem, index: number) => {
 const clickAction = (item: ActionOptions, index: number) => {
   emits('clickAction', item, index)
 }
-
-const hasAnyContent = computed(() => props.list.some((group) => (group.content?.length ?? 0) > 0))
 </script>
 
 <template>
   <div class="notification-panel">
-    <div class="panel-head">
-      <div class="panel-title">消息中心</div>
-      <div class="panel-subtitle" v-if="!hasAnyContent">暂无消息</div>
-    </div>
-
     <el-tabs class="panel-tabs" stretch>
       <el-tab-pane v-for="(group, groupIndex) in list" :key="groupIndex" :label="group.title">
         <el-scrollbar class="panel-scroll" max-height="320px">
@@ -104,7 +97,7 @@ const hasAnyContent = computed(() => props.list.some((group) => (group.content?.
         class="footer-action"
         @click="clickAction(action, actionIndex)"
       >
-        <AppIcon v-if="action.icon" :name="action.icon" :size="16" />
+        <AppIcon style="margin-right: 4px;" v-if="action.icon" :name="action.icon" :size="16" />
         <span>{{ action.text }}</span>
       </el-button>
     </div>
@@ -122,7 +115,6 @@ const hasAnyContent = computed(() => props.list.some((group) => (group.content?.
   align-items: baseline;
   justify-content: space-between;
   padding: 12px 14px 8px;
-  border-bottom: 1px solid var(--app-border-light);
 }
 
 .panel-title {
@@ -231,7 +223,7 @@ const hasAnyContent = computed(() => props.list.some((group) => (group.content?.
 
 .panel-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 10px;
   padding: 10px 12px;
   border-top: 1px solid var(--app-border-light);

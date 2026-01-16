@@ -30,9 +30,7 @@ const iconName = computed(() => {
         class="notification-badge"
         :offset="[-2, 21]"
       >
-        <span class="notification-trigger" role="button" tabindex="0">
-          <AppIcon syule="margin-top: 5px;" :name="iconName" />
-        </span>
+        <AppIcon style="margin-top: 5px;" :name="iconName" />
       </el-badge>
     </template>
     <!-- 继承 Popover 的 slot   -->

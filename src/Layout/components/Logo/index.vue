@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useGlobalStore } from '@/store/modules/global'
+// import { useGlobalStore } from '@/store/modules/global'
 import { MenuTypeEnum } from '@/config'
 import { computed } from 'vue'
 import { useSettingStore } from '@/store/modules/setting.ts'
 
-const globalStore = useGlobalStore()
+// const globalStore = useGlobalStore()
 
-const isCollapse = computed(() => globalStore.isCollapse)
+// const isCollapse = computed(() => globalStore.isCollapse)
 const settingStore = useSettingStore()
 
 const menuType = computed(() => settingStore.menuType)
@@ -20,7 +20,6 @@ const menuType = computed(() => settingStore.menuType)
       src="@/assets/images/logo.svg"
       alt="logo"
     />
-    <span v-show="!isCollapse || menuType === 'top'" class="logo-text">Mason • 石匠</span>
   </div>
 </template>
 

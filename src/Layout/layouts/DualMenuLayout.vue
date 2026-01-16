@@ -100,7 +100,6 @@ defineProps({
     <template #aside>
       <el-aside :style="{ color: menuTheme.textColor }">
         <div class="aside" :style="{ width: isCollapse ? '65px' : `${menuOpenWidth}px` }">
-          <Logo />
           <el-scrollbar>
             <el-menu
               :router="false"

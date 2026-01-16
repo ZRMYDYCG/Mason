@@ -47,17 +47,26 @@ const activeMenu = computed(() => {
 
 <style lang="scss" scoped>
 .menu-top {
+  display: flex;
+  align-items: center;
+
   .el-menu {
     border: none;
   }
 
   :deep(.el-menu--horizontal) {
+    display: flex;
+    align-items: center;
+    height: 55px;
     border-bottom: 0;
   }
 
   :deep(.el-menu--horizontal > .el-menu-item),
   :deep(.el-menu--horizontal > .el-sub-menu .el-sub-menu__title) {
+    display: inline-flex;
+    align-items: center;
     height: 40px;
+    line-height: 40px;
     margin: 0 4px;
     border-radius: 8px;
   }
