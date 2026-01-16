@@ -19,6 +19,7 @@
   align-items: center;
   font-size: 14px;
   color: var(--app-text-tertiary);
+  background-color: var(--app-bg-surface);
   gap: 8px;
   padding: 5px 0;
 
