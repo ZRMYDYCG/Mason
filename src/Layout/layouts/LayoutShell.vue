@@ -17,11 +17,9 @@ const topbarTextSecondaryColor = computed(() => {
   return menuTheme.value.systemNameColor
 })
 const tabsActiveBg = computed(() => {
-  if (!isSystemDark.value && menuTheme.value.theme === MenuThemeEnum.DARK) return 'var(--app-bg-active)'
-  return 'var(--app-bg-active-light)'
+  return 'rgba(var(--app-color-primary-rgb), 0.14)'
 })
 const tabsActiveText = computed(() => {
-  if (!isSystemDark.value && menuTheme.value.theme === MenuThemeEnum.DARK) return 'var(--app-text-inverse)'
   return 'var(--app-text-active)'
 })
 </script>

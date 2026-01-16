@@ -84,11 +84,38 @@ const iconComponent = computed(() => iconMap[props.name] ?? CircleHelp)
 </script>
 
 <template>
-  <component
-    :is="iconComponent"
-    :size="props.size"
-    :color="props.color"
-    :stroke-width="props.strokeWidth"
-    aria-hidden="true"
-  />
+  <span class="app-icon">
+    <component
+      :is="iconComponent"
+      :size="props.size"
+      :color="props.color"
+      :stroke-width="props.strokeWidth"
+      aria-hidden="true"
+    />
+  </span>
 </template>
+
+<style scoped lang="scss">
+.app-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+// .app-icon::before {
+//   content: '';
+//   position: absolute;
+//   inset: -6px;
+//   border-radius: 10px;
+//   background-color: var(--app-fill-light);
+//   opacity: 0;
+//   transition: opacity 0.15s ease;
+//   pointer-events: none;
+// }
+
+// .app-icon:hover::before {
+//   opacity: 1;
+// }
+</style>

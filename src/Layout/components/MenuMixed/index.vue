@@ -146,12 +146,13 @@ onMounted(() => {
       }
 
       &:hover {
-        color: $primary-color;
+        color: var(--layout-topbar-text, var(--app-text));
+        background-color: var(--app-fill-light);
       }
 
       &.active {
-        color: var(--app-text-inverse);
-        background-color: $primary-color;
+        color: var(--layout-tabs-active-text, var(--app-text-active));
+        background-color: var(--layout-tabs-active-bg, rgba(var(--app-color-primary-rgb), 0.14));
 
         &::after {
           position: absolute;
@@ -162,7 +163,7 @@ onMounted(() => {
           height: 2px;
           margin: auto;
           content: '';
-          background-color: $primary-color;
+          background-color: var(--app-text-active);
         }
       }
     }
