@@ -16,6 +16,7 @@ import {
   PanelLeftOpen,
   RefreshCw,
   Settings,
+  SwatchBook,
   Sun,
   Moon,
   Trash2,
@@ -38,6 +39,7 @@ type IconName =
   | 'panel-left-open'
   | 'refresh-cw'
   | 'settings'
+  | 'swatch-book'
   | 'sun'
   | 'moon'
   | 'trash-2'
@@ -72,6 +74,7 @@ const iconMap: Record<string, Component> = {
   'panel-left-open': PanelLeftOpen,
   'refresh-cw': RefreshCw,
   settings: Settings,
+  'swatch-book': SwatchBook,
   sun: Sun,
   moon: Moon,
   'trash-2': Trash2,

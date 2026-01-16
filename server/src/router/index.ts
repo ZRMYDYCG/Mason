@@ -6,6 +6,7 @@ import roleRouter from '../modules/role/role.router'
 import menuRouter from '../modules/menu/menu.router'
 import uploadRouter from '../modules/upload/upload.router'
 import departmentRouter from '../modules/department/department.router'
+import captchaRouter from '../modules/captcha/captcha.router'
 
 export const router = new Router()
 
@@ -15,3 +16,4 @@ router.use(roleRouter.routes())
 router.use(menuRouter.routes())
 router.use(uploadRouter.routes())
 router.use(departmentRouter.routes())
+router.use(captchaRouter.routes())

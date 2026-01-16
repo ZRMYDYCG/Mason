@@ -30,6 +30,7 @@
     "nodemon": "^3.1.7",
     "sequelize": "^6.37.3",
     "socket.io": "^4.8.1",
+    "svg-captcha": "^1.4.0",
     "swagger-jsdoc": "^6.2.8",
     "zhipuai-sdk-nodejs-v4": "^0.1.12"
   },

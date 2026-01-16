@@ -1,5 +1,5 @@
 <template>
-  <AppIcon @click="openDrawer" name="settings" />
+  <AppIcon @click="openDrawer" name="swatch-book" />
 </template>
 
 <script setup lang="ts">
