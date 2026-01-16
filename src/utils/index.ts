@@ -127,7 +127,7 @@ export function isInteger(val: any) {
  * @description: 获取 /assets/img 路径下随机图片
  */
 import { sampleSize } from 'lodash-es'
-export const getRandomImg = (size = 1) => {
+export const getRandomImg = (size = 1, type: 'viewer' | 'waterfall' = 'viewer') => {
   if (!isInteger(size) || size < 1) {
     return console.warn('参数必须是一个正整数!')
   }
@@ -135,8 +135,10 @@ export const getRandomImg = (size = 1) => {
   const images: string[] = []
   
   // 使用 Vite 的 import.meta.glob 获取本地图片
-  // 匹配 src/assets/images/viewer 下的所有 jpg 和 png 图片
-  const modules = import.meta.glob('../assets/images/viewer/*.{jpg,png}', { eager: true })
+  const viewerModules = import.meta.glob('../assets/images/viewer/*.{jpg,png}', { eager: true })
+  const waterfallModules = import.meta.glob('../assets/images/waterfall/*.{jpg,png}', { eager: true })
+  
+  const modules = type === 'waterfall' ? waterfallModules : viewerModules
   
   for (const path in modules) {
     const mod = modules[path] as { default: string }

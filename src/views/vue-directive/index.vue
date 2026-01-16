@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 
-const copyText = ref('我是被复制的文本 🍇🍇🍇🍓🍓🍓')
+const copyText = ref('我是被复制的文本')
 
 const handleLongpress = () => {
   ElMessage.success('长按事件触发成功')
@@ -19,8 +19,6 @@ const handleThrottle = () => {
 
 <template>
   <div class="card content-box">
-    <span class="text">自定义指令 🍇🍇🍇🍓🍓🍓</span>
-    
     <el-divider content-position="left">v-copy 复制指令</el-divider>
     <div class="box-item">
       <el-input v-model="copyText" placeholder="请输入内容" style="width: 500px">
