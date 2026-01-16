@@ -18,18 +18,14 @@
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import Tabs from '@/Layout/components/Tabs/index.vue'
 import { useKeepAliveStore } from '@/store/modules/keepAlive'
 import { useDebounceFn } from '@vueuse/core'
 import { useGlobalStore } from '@/store/modules/global'
 import { useSettingStore } from '@/store/modules/setting.ts'
-import { useUserStore } from '@/store/modules/user.ts'
 
 const keepAliveStore = useKeepAliveStore()
 const keepAliveNames = computed(() => keepAliveStore.keepAliveNames)
-
-const routeInfo = useRoute()
 
 const globalStore = useGlobalStore()
 const settingStore = useSettingStore()
@@ -54,10 +50,6 @@ window.addEventListener('resize', listeningWindow, false)
 onBeforeUnmount(() => {
   window.removeEventListener('resize', listeningWindow)
 })
-
-const testPiniaStorage = () => {
-  useUserStore().userInfo.username = '一个勺子'
-}
 </script>
 
 <style scoped lang="scss">

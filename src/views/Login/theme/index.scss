@@ -3,15 +3,15 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f7fafc;
+  background-color: var(--app-bg-page);
 
   .login-box {
     width: 100%;
     max-width: 480px;
     padding: 2rem;
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: var(--app-bg-surface);
+    border-radius: var(--app-radius);
+    box-shadow: var(--app-shadow-sm);
 
     .logo-title-container {
       display: flex;
@@ -28,7 +28,7 @@
         margin-left: 0.75rem;
         font-size: 1.5rem;
         font-weight: bold;
-        color: #4a5568;
+        color: var(--app-text-secondary);
       }
     }
 

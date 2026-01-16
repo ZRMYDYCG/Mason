@@ -10,7 +10,7 @@ const { defaultMenuWidth, defaultCustomRadius } = SystemSetting
 export interface SettingState {
   menuType: MenuTypeEnum // 菜单类型
   menuOpenWidth: number // 菜单展开宽度
-  systemThemeType: SystemThemeEnum // 全局主题类型 light dark
+  systemThemeType: Exclude<SystemThemeEnum, SystemThemeEnum.AUTO> // 当前生效主题类型 light dark
   systemThemeMode: SystemThemeEnum // 全局主题模式 light dark auto
   menuThemeType: MenuThemeEnum // 菜单主题类型
   systemThemeColor: string // 系统主题颜色
@@ -92,9 +92,12 @@ export const useSettingStore = defineStore({
     setMenuType(type: MenuTypeEnum) {
       this.menuType = type
     },
-    setGlopTheme(theme: SystemThemeEnum, themeMode: SystemThemeEnum) {
-      this.systemThemeType = theme
-      this.systemThemeMode = themeMode
+    setThemeMode(mode: SystemThemeEnum) {
+      this.systemThemeMode = mode
+      if (mode !== SystemThemeEnum.AUTO) this.systemThemeType = mode
+    },
+    setThemeType(type: Exclude<SystemThemeEnum, SystemThemeEnum.AUTO>) {
+      this.systemThemeType = type
     },
     setMenuTheme(theme: MenuThemeEnum) {
       this.menuThemeType = theme

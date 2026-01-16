@@ -18,7 +18,7 @@
   justify-content: center;
   align-items: center;
   font-size: 14px;
-  color: #6b7280;
+  color: var(--app-text-tertiary);
   gap: 8px;
   padding: 5px 0;
 
@@ -37,8 +37,7 @@
       .logo {
         width: 24px;
         height: 24px;
-        /* 添加光晕效果 */
-        filter: drop-shadow(0 0 8px rgba(123, 231, 115, 0.93));
+        filter: drop-shadow(0 0 8px rgba(var(--app-color-primary-rgb), 0.75));
         animation: glow 2s ease-in-out infinite alternate;
       }
     }
@@ -47,10 +46,10 @@
 
 @keyframes glow {
   from {
-    filter: drop-shadow(0 0 4px rgba(99, 241, 241, 0.3));
+    filter: drop-shadow(0 0 4px rgba(var(--app-color-primary-rgb), 0.25));
   }
   to {
-    filter: drop-shadow(0 0 12px rgba(99, 241, 123, 0.6));
+    filter: drop-shadow(0 0 12px rgba(var(--app-color-primary-rgb), 0.75));
   }
 }
 </style>

@@ -98,7 +98,7 @@ defineProps({
     </template>
 
     <template #aside>
-      <el-aside :style="{ backgroundColor: menuTheme.background, color: menuTheme.textColor }">
+      <el-aside :style="{ color: menuTheme.textColor }">
         <div class="aside" :style="{ width: isCollapse ? '65px' : `${menuOpenWidth}px` }">
           <Logo />
           <el-scrollbar>
@@ -108,7 +108,7 @@ defineProps({
               :collapse="isCollapse"
               :unique-opened="uniqueOpened"
               :collapse-transition="false"
-              :background-color="menuTheme.background"
+              background-color="var(--layout-topbar-bg, var(--app-bg-surface))"
               :active-text-color="menuTheme.textActiveColor"
               :text-color="menuTheme.textColor"
             >
@@ -148,7 +148,7 @@ $primary-color: var(--el-color-primary);
 .dual-menu-left {
   width: 100px;
   height: 100%;
-  background-color: var(--el-bg-color-primary);
+  background-color: var(--layout-topbar-bg, var(--app-bg-surface));
   display: flex;
   flex-direction: column;
   align-items: center;

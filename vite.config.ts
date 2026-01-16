@@ -104,7 +104,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
       Components({
         resolvers: [
           ElementPlusResolver({
-            importStyle: 'sass' // 使用sass样式
+            importStyle: false
           })
         ],
         dts: 'src/typings/components.d.ts',

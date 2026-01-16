@@ -202,7 +202,7 @@ export const ThemeList: MenuThemeType[] = [
     textColor: '#BABBBD',
     textActiveColor: '#FFFFFF',
     iconActiveColor: '#FFFFFF',
-    tabBarBackground: '#FFFFFF',
+    tabBarBackground: '#191A23',
     systemBackground: '#F8F8F8',
     leftLineColor: '#3F4257',
     rightLineColor: '#EDEEF0'
@@ -226,16 +226,16 @@ export const ThemeList: MenuThemeType[] = [
 export const DarkMenuStyles: MenuThemeType[] = [
   {
     theme: MenuThemeEnum.DARK,
-    background: '#161618',
-    systemNameColor: '#DDDDDD',
-    iconColor: '#BABBBD',
-    textColor: 'rgba(#FFFFFF, 0.7)',
-    textActiveColor: '',
-    iconActiveColor: '#FFFFFF',
-    tabBarBackground: '#FFFFFF',
-    systemBackground: '#F8F8F8',
-    leftLineColor: '#3F4257',
-    rightLineColor: '#EDEEF0'
+    background: 'var(--app-bg-overlay)',
+    systemNameColor: 'var(--app-text)',
+    iconColor: 'var(--app-text-secondary)',
+    textColor: 'var(--app-text-secondary)',
+    textActiveColor: 'var(--app-text-inverse)',
+    iconActiveColor: 'var(--app-text-inverse)',
+    tabBarBackground: 'var(--app-bg-surface)',
+    systemBackground: 'var(--app-bg-page)',
+    leftLineColor: 'var(--app-border)',
+    rightLineColor: 'var(--app-border)'
   }
 ]
 

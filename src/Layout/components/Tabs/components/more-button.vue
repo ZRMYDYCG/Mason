@@ -59,6 +59,6 @@ const closeAllTab = () => {
 
 <style scoped lang="scss">
 .down-box {
-  border-left: 1px solid var(--el-border-color-light);
+  border-left: 1px solid var(--app-border-light);
 }
 </style>

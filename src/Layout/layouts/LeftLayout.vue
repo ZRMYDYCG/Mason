@@ -60,7 +60,7 @@ defineProps({
 <template>
   <LayoutShell>
     <template #aside>
-      <el-aside :style="{ backgroundColor: menuTheme.background, color: menuTheme.textColor }">
+      <el-aside :style="{ color: menuTheme.textColor }">
         <div class="aside" :style="{ width: isCollapse ? '65px' : `${menuOpenWidth}px` }">
           <Logo />
           <el-scrollbar>
@@ -70,7 +70,7 @@ defineProps({
               :collapse="isCollapse"
               :unique-opened="uniqueOpened"
               :collapse-transition="false"
-              :background-color="menuTheme.background"
+              background-color="var(--layout-topbar-bg, var(--app-bg-surface))"
               :active-text-color="menuTheme.textActiveColor"
               :text-color="menuTheme.textColor"
             >

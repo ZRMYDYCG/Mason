@@ -136,7 +136,11 @@ const closeAllTab = () => {
 
 <style scoped lang="scss">
 .tabs-box {
-  background-color: var(--el-bg-color);
+  background-color: var(--layout-topbar-bg, var(--app-bg-surface));
+  color: var(--layout-topbar-text, var(--app-text));
+  --el-text-color-primary: var(--layout-topbar-text, var(--app-text));
+  --el-text-color-regular: var(--layout-topbar-text, var(--app-text));
+  --el-text-color-secondary: var(--layout-topbar-text-secondary, var(--app-text-secondary));
 
   .tabs-menu {
     position: relative;
@@ -168,21 +172,30 @@ const closeAllTab = () => {
               margin: 6px 4px;
               line-height: 28px;
               border-radius: 8px;
+              color: var(--layout-topbar-text, var(--app-text));
               background-color: transparent;
               transition:
                 background-color 0.15s ease,
                 color 0.15s ease;
+
+              .tab-label {
+                color: inherit;
+              }
+
+              .el-icon {
+                color: inherit;
+              }
             }
 
             .el-tabs__item.is-active {
-              color: var(--el-color-primary) !important;
+              color: var(--layout-tabs-active-text, var(--app-text-active)) !important;
               border: none;
-              background-color: var(--el-color-primary-light-9);
+              background-color: var(--layout-tabs-active-bg, var(--app-bg-active-light));
             }
 
             .el-tabs__item:hover {
-              color: unset;
-              background-color: var(--el-fill-color-light);
+              color: var(--layout-topbar-text, var(--app-text));
+              background-color: var(--app-fill-light);
             }
           }
         }

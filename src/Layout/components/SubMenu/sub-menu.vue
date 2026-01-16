@@ -51,7 +51,7 @@ const handleClickMenu = (subItem: Menu) => {
 }
 
 .el-menu-item.is-active {
-  color: #ffffff;
-  background-color: var(--el-color-primary);
+  color: var(--app-text-inverse);
+  background-color: var(--app-bg-active);
 }
 </style>

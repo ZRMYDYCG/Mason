@@ -150,7 +150,7 @@ onMounted(() => {
       }
 
       &.active {
-        color: #fff;
+        color: var(--app-text-inverse);
         background-color: $primary-color;
 
         &::after {

@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import mittBus from '@/utils/mittBus'
 import { SettingThemeList, ThemeList, SystemMainColor } from '@/config'
 import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum } from '@/config'
+import type { MenuThemeType, SystemThemeEnum } from '@/config'
 import { useSettingStore } from '@/store/modules/setting.ts'
-import { useTheme } from '@/hooks/useTheme.ts'
 import { ElMessage } from 'element-plus'
 
 const store = useSettingStore()
 
 const drawerVisible = ref(false)
-
-const { switchDark, changePrimary } = useTheme()
 
 const menuThemeList = ThemeList
 const mainColor = SystemMainColor
@@ -21,7 +19,6 @@ const systemThemeMode = computed(() => store.systemThemeMode)
 const currentMenuTheme = computed(() => store.menuThemeType)
 const systemThemeColor = computed(() => store.systemThemeColor)
 const boxBorderMode = computed(() => store.boxBorderMode)
-const customRadius = computed(() => store.customRadius)
 const isLeftMenu = computed(() => store.menuType === MenuTypeEnum.LEFT)
 const isTopMenu = computed(() => store.menuType === MenuTypeEnum.TOP)
 const isTopLeftMenu = computed(() => store.menuType === MenuTypeEnum.TOP_LEFT)
@@ -100,7 +97,8 @@ const {
   pageTransition,
   showRefreshButton,
   showMenuButton,
-  isFooter
+  isFooter,
+  customRadius
 } = storeToRefs(store)
 
 // 设置菜单布局
@@ -114,7 +112,7 @@ const setMenuType = (type: MenuTypeEnum) => {
 }
 
 // 设置菜单主图
-const setMenuTheme = (item) => {
+const setMenuTheme = (item: MenuThemeType) => {
   if (isDualMenu.value || isTopMenu.value || isDark.value) {
     return
   }
@@ -122,28 +120,18 @@ const setMenuTheme = (item) => {
 }
 
 // 设置（白天/黑夜/随系统）模式
-const setTheme = (item) => {
-  store.setGlopTheme(item.theme, item.theme)
+const setTheme = (item: { theme: SystemThemeEnum }) => {
+  store.setThemeMode(item.theme)
 }
 
 // 设置项目主题颜色
-const setSystemThemeColor = (color) => {
+const setSystemThemeColor = (color: string) => {
   store.setElementTheme(color)
 }
 
 // 设置容器宽度
-const setContainerWidth = (item) => {
+const setContainerWidth = (item: { value: ContainerWidthEnum }) => {
   store.setContainerWidth(item.value)
-}
-
-// 设置色弱模式
-const setColorWeak = () => {
-  let el = document.getElementsByTagName('html')[0]
-  if (colorWeak.value) {
-    el.setAttribute('class', 'color-weak')
-  } else {
-    el.className = el.className.replace(/\bcolor-weak\b/g, '').trim()
-  }
 }
 
 // 复制配置
@@ -162,14 +150,6 @@ const copyConfig = () => {
     ElMessage.error('未找到配置')
   }
 }
-
-watch(systemThemeMode, () => {
-  switchDark()
-})
-
-watch(systemThemeColor, (val) => {
-  changePrimary(val)
-})
 
 mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 </script>
@@ -433,7 +413,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
           </div>
           <div class="item">
             <span>色弱模式</span>
-            <el-switch @change="setColorWeak" v-model="colorWeak" />
+            <el-switch v-model="colorWeak" />
           </div>
           <div class="item">
             <span>全局水印</span>
@@ -499,31 +479,9 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
 <style scoped lang="scss">
 .drawer-con {
-  $box-shadow: 0 2px 8px 0 rgb(0 0 0 / 20%);
+  $box-shadow: var(--app-shadow);
   $box-radius: 8px;
   $device-ipad: 784px;
-  $primary-color: var(--el-color-primary);
-
-  $mason-grey-100: #ffffff !default;
-  $mason-grey-200: #fafafa !default;
-  $mason-grey-300: #f5f5f5 !default;
-  $mason-grey-400: #e8e8e8 !default;
-  $mason-grey-500: #d9d9d9 !default;
-  $mason-grey-600: #bfbfbf !default;
-  $mason-grey-700: #8c8c8c !default;
-  $mason-grey-800: #595959 !default;
-  $mason-grey-900: #262626 !default;
-  $mason-grey-1000: #000000 !default;
-  $mason-grey-100-rgb: rgb(255, 255, 255) !default;
-  $mason-grey-200-rgb: rgb(250, 250, 250) !default;
-  $mason-grey-300-rgb: rgb(245, 245, 245) !default;
-  $mason-grey-400-rgb: rgb(232, 232, 232) !default;
-  $mason-grey-500-rgb: rgb(217, 217, 217) !default;
-  $mason-grey-600-rgb: rgb(191, 191, 191) !default;
-  $mason-grey-700-rgb: rgb(140, 140, 140) !default;
-  $mason-grey-800-rgb: rgb(89, 89, 89) !default;
-  $mason-grey-900-rgb: rgb(38, 38, 38) !default;
-  $mason-grey-1000-rgb: rgb(0, 0, 0) !default;
 
   padding: 0 5px 30px;
 
@@ -541,8 +499,8 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
       border-radius: 5px;
 
       &:hover {
-        color: var(--mason-grey-700);
-        background-color: rgb($mason-grey-300-rgb, 0.5);
+        color: $mason-grey-700;
+        background-color: var(--app-fill);
       }
     }
   }
@@ -550,7 +508,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
   .title {
     position: relative;
     font-size: 14px;
-    color: #6b7280;
+    color: var(--app-text-tertiary);
     text-align: center;
 
     &:first-of-type {
@@ -564,7 +522,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
       width: 50px;
       margin: auto;
       content: '';
-      border-bottom: 1px solid rgba($mason-grey-300-rgb, 0.8);
+      border-bottom: 1px solid var(--app-border);
     }
 
     &::before {
@@ -613,7 +571,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
           box-sizing: border-box;
           height: 50px;
           cursor: pointer;
-          background-color: #f5f7f9;
+          background-color: var(--app-fill-light);
           border: 2px solid transparent;
           border-radius: $box-radius;
           box-shadow: $box-shadow;
@@ -633,14 +591,14 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
               padding: 0 3px;
               margin: 2px 0 0 2px;
               overflow: hidden;
-              background-color: #ddd;
+              background-color: var(--app-border);
               border-radius: 2px;
 
               .line {
                 width: 100%;
                 height: 2px;
                 margin-top: 4.4px;
-                background: #fff;
+                background: var(--app-bg-surface);
                 border-radius: 1px;
               }
             }
@@ -654,7 +612,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
               .header {
                 height: 6px;
                 margin: auto;
-                background-color: #edeef0;
+                background-color: var(--app-fill);
                 border-radius: 2px;
               }
 
@@ -665,7 +623,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
                 div {
                   height: 12px;
-                  background-color: #edeef0;
+                  background-color: var(--app-fill);
                   border-radius: 2px;
 
                   &:first-of-type {
@@ -681,7 +639,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
               .row2 {
                 height: 12px;
                 margin-top: 4px;
-                background-color: #edeef0;
+                background-color: var(--app-fill);
               }
             }
           }
@@ -697,14 +655,14 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
               padding: 0 3px;
               margin: 2px auto;
               overflow: hidden;
-              background-color: #ddd;
+              background-color: var(--app-border);
               border-radius: 2px;
 
               .line {
                 width: 7px;
                 height: 2px;
                 margin-right: 2px;
-                background: #fff;
+                background: var(--app-bg-surface);
               }
             }
 
@@ -719,7 +677,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
                 div {
                   height: 12px;
-                  background-color: #edeef0;
+                  background-color: var(--app-fill);
                   border-radius: 2px;
 
                   &:first-of-type {
@@ -735,7 +693,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
               .row2 {
                 height: 12px;
                 margin-top: 4px;
-                background-color: #edeef0;
+                background-color: var(--app-fill);
               }
             }
           }
@@ -748,14 +706,14 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
             .tl-left {
               min-width: 10px;
               margin: 2px 0;
-              background-color: #ddd;
+              background-color: var(--app-border);
               border-radius: 2px;
 
               > div {
                 width: 4px;
                 height: 2px;
                 margin: 4px auto;
-                background: #fff;
+                background: var(--app-bg-surface);
               }
             }
 
@@ -770,14 +728,14 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
                 padding: 0 3px;
                 margin: 2px auto;
                 overflow: hidden;
-                background-color: #ddd;
+                background-color: var(--app-border);
                 border-radius: 2px;
 
                 .line {
                   width: 7px;
                   height: 2px;
                   margin-right: 2px;
-                  background: #fff;
+                  background: var(--app-bg-surface);
                 }
               }
 
@@ -792,7 +750,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
                   div {
                     height: 12px;
-                    background-color: #edeef0;
+                    background-color: var(--app-fill);
                     border-radius: 2px;
 
                     &:first-of-type {
@@ -808,7 +766,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
                 .row2 {
                   height: 12px;
                   margin-top: 4px;
-                  background-color: #edeef0;
+                  background-color: var(--app-fill);
                 }
               }
             }
@@ -823,14 +781,14 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
               min-width: 6px;
               margin: 2px 0;
               margin-right: 2px;
-              background-color: #edeef0;
+              background-color: var(--app-fill);
               border-radius: 2px;
 
               > div {
                 width: 4px;
                 height: 2px;
                 margin: 4px auto;
-                background: #fff;
+                background: var(--app-bg-surface);
               }
             }
 
@@ -838,14 +796,14 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
               min-width: 10px;
               margin: 2px 0;
               margin-right: 4px;
-              background-color: #ddd;
+              background-color: var(--app-border);
               border-radius: 2px;
 
               > div {
                 width: 4px;
                 height: 2px;
                 margin: 4px auto;
-                background: #fff;
+                background: var(--app-bg-surface);
               }
             }
 
@@ -860,7 +818,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
                 padding: 0 3px;
                 margin: 2px auto;
                 overflow: hidden;
-                background-color: #edeef0;
+                background-color: var(--app-fill);
                 border-radius: 2px;
               }
 
@@ -875,7 +833,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
                   div {
                     height: 13px;
-                    background-color: #edeef0;
+                    background-color: var(--app-fill);
                     border-radius: 2px;
 
                     &:first-of-type {
@@ -891,7 +849,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
                 .row2 {
                   height: 13px;
                   margin-top: 4px;
-                  background-color: #edeef0;
+                  background-color: var(--app-fill);
                 }
               }
             }
@@ -1026,7 +984,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
           height: 50px;
           overflow: hidden;
           cursor: pointer;
-          background: #f5f7f9 !important;
+          background: var(--app-fill-light) !important;
           border: 2px solid $mason-grey-100;
           border-radius: $box-radius;
           box-shadow: $box-shadow;
@@ -1136,7 +1094,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
         i {
           font-size: 14px;
-          color: #fff !important;
+          color: var(--app-text-inverse) !important;
         }
       }
     }
@@ -1149,7 +1107,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
     justify-content: space-between;
     padding: 4px;
     margin-top: 20px;
-    background-color: $mason-grey-200;
+    background-color: var(--app-fill-light);
     border-radius: 7px;
 
     .button {
@@ -1164,13 +1122,13 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
       transition: all 0.2s !important;
 
       &.is-active {
-        color: $mason-grey-800;
-        background-color: #cccccc;
+        color: var(--app-text);
+        background-color: var(--app-bg-surface);
       }
 
       &:hover:not(.is-active) {
-        color: $mason-grey-800;
-        background-color: rgba($color: #000, $alpha: 4%);
+        color: var(--app-text);
+        background-color: var(--app-fill);
       }
     }
   }
@@ -1188,7 +1146,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
       margin-right: 15px;
       margin-bottom: 15px;
       cursor: pointer;
-      border: 2px solid #6b7280;
+      border: 2px solid var(--app-border-dark);
       border-radius: 10px;
 
       &:last-of-type {
@@ -1199,7 +1157,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
         border-color: $primary-color;
 
         i {
-          color: #6b7280 !important;
+          color: var(--app-text-tertiary) !important;
         }
       }
 
@@ -1237,23 +1195,6 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
   &::-webkit-scrollbar {
     width: 0 !important;
-  }
-}
-
-.dark {
-  .drawer-con {
-    .box-style {
-      .button {
-        &.is-active {
-          color: #fff !important;
-          background-color: rgba(#eee, 0.7);
-        }
-
-        &:hover:not(.is-active) {
-          background-color: rgba($color: #000, $alpha: 20%);
-        }
-      }
-    }
   }
 }
 
