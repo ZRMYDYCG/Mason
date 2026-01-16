@@ -71,6 +71,8 @@
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
     "tailwindcss": "^4.0.15",
+    "v-viewer": "^3.0.22",
+    "viewerjs": "^1.11.7",
     "vite-plugin-imagemin": "^0.6.1",
     "vue": "^3.4.21",
     "vue-demi": "^0.14.6",

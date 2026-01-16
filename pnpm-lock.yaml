@@ -134,6 +134,12 @@ importers:
       tailwindcss:
         specifier: ^4.0.15
         version: 4.1.0
+      v-viewer:
+        specifier: ^3.0.22
+        version: 3.0.22(viewerjs@1.11.7)(vue@3.5.13(typescript@5.8.2))
+      viewerjs:
+        specifier: ^1.11.7
+        version: 1.11.7
       vite-plugin-imagemin:
         specifier: ^0.6.1
         version: 0.6.1(vite@6.2.4(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.86.1)(terser@5.39.0))
@@ -7401,6 +7407,12 @@ packages:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
 
+  v-viewer@3.0.22:
+    resolution: {integrity: sha512-uYyP5FPT4K/Sd5D1mhB2HMVV8jnf6zYy2HD1PHCNAO6s2Iway+Wls60pwh7y4F3e2Nlc9549Pvy2HXaq8PKrAg==}
+    peerDependencies:
+      viewerjs: ^1.11.0
+      vue: ^3.0.0
+
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
@@ -7420,6 +7432,9 @@ packages:
 
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
+
+  viewerjs@1.11.7:
+    resolution: {integrity: sha512-0JuVqOmL5v1jmEAlG5EBDR3XquxY8DWFQbFMprOXgaBB0F7Q/X9xWdEaQc59D8xzwkdUgXEMSSknTpriq95igg==}
 
   vite-dev-rpc@1.0.7:
     resolution: {integrity: sha512-FxSTEofDbUi2XXujCA+hdzCDkXFG1PXktMjSk1efq9Qb5lOYaaM9zNSvKvPPF7645Bak79kSp1PTooMW2wktcA==}
@@ -15369,6 +15384,12 @@ snapshots:
 
   uuid@9.0.1: {}
 
+  v-viewer@3.0.22(viewerjs@1.11.7)(vue@3.5.13(typescript@5.8.2)):
+    dependencies:
+      lodash-es: 4.17.21
+      viewerjs: 1.11.7
+      vue: 3.5.13(typescript@5.8.2)
+
   v8-compile-cache-lib@3.0.1: {}
 
   v8flags@4.0.1: {}
@@ -15389,6 +15410,8 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
+
+  viewerjs@1.11.7: {}
 
   vite-dev-rpc@1.0.7(vite@6.2.4(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.29.2)(sass@1.86.1)(terser@5.39.0)):
     dependencies:

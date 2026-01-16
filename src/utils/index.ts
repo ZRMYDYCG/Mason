@@ -98,6 +98,57 @@ export function findNodeById(tree: Department[], id: number): Department | undef
 }
 
 /**
+ * @description 获取需要展开的 subMenu
+ * @param {String} path 当前访问地址
+ * @returns {Array}
+ */
+export function getOpenKeys(path: string) {
+  let newStr: string = ''
+  let newArr: any[] = []
+  let arr = path.split('/').map((i) => '/' + i)
+  for (let i = 1; i < arr.length - 1; i++) {
+    newStr += arr[i]
+    newArr.push(newStr)
+  }
+  return newArr
+}
+
+/**
+ * @description 判断是否为整数
+ * @param {any} val
+ * @returns {Boolean}
+ */
+export function isInteger(val: any) {
+  return typeof val === 'number' && val % 1 === 0
+}
+
+/**
+ * @param {number} size 随机获取几张图片数组，默认获取随机一张图片
+ * @description: 获取 /assets/img 路径下随机图片
+ */
+import { sampleSize } from 'lodash-es'
+export const getRandomImg = (size = 1) => {
+  if (!isInteger(size) || size < 1) {
+    return console.warn('参数必须是一个正整数!')
+  }
+  // 匹配该目录下所有的图片
+  const images: string[] = []
+  
+  // 使用 Vite 的 import.meta.glob 获取本地图片
+  // 匹配 src/assets/images/viewer 下的所有 jpg 和 png 图片
+  const modules = import.meta.glob('../assets/images/viewer/*.{jpg,png}', { eager: true })
+  
+  for (const path in modules) {
+    const mod = modules[path] as { default: string }
+    images.push(mod.default)
+  }
+
+  // 获取图片集合
+  const result = sampleSize(images, size)
+  return result.length === 1 ? result[0] : result
+}
+
+/*
  * @description 手机号码将 xxxxxxxxxx 格式化为 xxx****xxx
  * @param phoneNumber - 需要格式化的手机号码
  * @returns 格式化后的手机号码
