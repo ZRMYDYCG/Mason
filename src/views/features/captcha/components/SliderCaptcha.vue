@@ -112,15 +112,17 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .captcha-item {
-  border: 1px solid #ebeef5;
+  border: 1px solid var(--el-border-color-light);
   padding: 20px;
   border-radius: 4px;
   width: 340px;
+  background-color: var(--el-bg-color);
   
   .header {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 15px;
+    color: var(--el-text-color-primary);
   }
   
   .content {
@@ -137,7 +139,7 @@ onUnmounted(() => {
   .bg-img {
     width: 300px;
     height: 150px;
-    background-color: #eee;
+    background-color: var(--el-fill-color-light);
     background-size: cover;
     border-radius: 4px 4px 0 0;
   }
@@ -154,14 +156,14 @@ onUnmounted(() => {
   .slider-track {
     width: 300px;
     height: 40px;
-    background: #f7f9fa;
-    border: 1px solid #e4e7eb;
+    background: var(--el-fill-color);
+    border: 1px solid var(--el-border-color);
     border-radius: 0 0 4px 4px;
     position: relative;
     
     .slider-bar {
         height: 100%;
-        background: #d1e9ff;
+        background: var(--el-color-primary-light-9);
         border-radius: 0 0 0 4px;
         position: absolute;
         top: 0;
@@ -175,7 +177,7 @@ onUnmounted(() => {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #999;
+        color: var(--el-text-color-secondary);
         font-size: 14px;
         user-select: none;
     }
@@ -183,8 +185,8 @@ onUnmounted(() => {
     .slider-handle {
       width: 40px;
       height: 40px;
-      background: #fff;
-      border: 1px solid #e4e7eb;
+      background: var(--el-bg-color);
+      border: 1px solid var(--el-border-color);
       box-shadow: 0 0 3px rgba(0,0,0,0.1);
       position: absolute;
       top: -1px;
@@ -193,7 +195,7 @@ onUnmounted(() => {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #666;
+      color: var(--el-text-color-secondary);
       z-index: 3;
       
       &:active {

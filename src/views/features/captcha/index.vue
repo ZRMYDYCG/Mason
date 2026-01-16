@@ -21,7 +21,7 @@ import ClickCaptcha from './components/ClickCaptcha.vue'
 <style scoped lang="scss">
 .captcha-container {
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--el-bg-color);
     border-radius: 6px;
     min-height: 100%;
 }
