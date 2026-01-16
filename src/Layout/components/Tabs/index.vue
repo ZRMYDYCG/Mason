@@ -136,7 +136,7 @@ const closeAllTab = () => {
 
 <style scoped lang="scss">
 .tabs-box {
-  background-color: var(--layout-topbar-bg, var(--app-bg-surface));
+  background-color: var(--el-bg-color-page);
   color: var(--layout-topbar-text, var(--app-text));
   --el-text-color-primary: var(--layout-topbar-text, var(--app-text));
   --el-text-color-regular: var(--layout-topbar-text, var(--app-text));

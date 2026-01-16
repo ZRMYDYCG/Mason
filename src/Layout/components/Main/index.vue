@@ -56,7 +56,6 @@ onBeforeUnmount(() => {
 .el-main {
   box-sizing: border-box;
   padding: 10px;
-  /*消除横移动画出现x轴滚动条*/
   overflow-x: hidden;
   background-color: var(--el-bg-color-page);
 }
