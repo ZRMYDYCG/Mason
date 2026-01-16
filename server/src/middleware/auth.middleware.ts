@@ -60,11 +60,13 @@ const verifyRegister = async (ctx: Context, next: Next) => {
 const verifyAuth = async (ctx: Context, next: Next) => {
   // 1.获取请求头授权信息 token
   const authorization = ctx.headers.authorization
+  console.log('Authorization header:', authorization)
   if (!authorization) {
     const error = new Error(ERROR_TYPES.UNAUTHORIZATION)
     return ctx.app.emit('error', error, ctx)
   }
   const token = authorization.replace('Bearer ', '')
+  console.log('Token after replace:', token)
 
   // 2.验证token
   try {
@@ -74,9 +76,17 @@ const verifyAuth = async (ctx: Context, next: Next) => {
     })
     ctx.user = result // {"id": 1,"username": "admin_test","iat": 1718075827, "exp": 1718162227 }
     await next()
-  } catch (err) {
-    const error = new Error(ERROR_TYPES.UNAUTHORIZATION)
-    ctx.app.emit('error', error, ctx)
+  } catch (err: any) {
+    console.log('Token verification failed:', err)
+    // const error = new Error(ERROR_TYPES.UNAUTHORIZATION)
+    // ctx.app.emit('error', error, ctx)
+    ctx.status = 401
+    ctx.body = {
+      code: 401,
+      msg: ERROR_TYPES.UNAUTHORIZATION,
+      error: err.message, // 返回具体的错误信息
+      debug_token: token.substring(0, 10) + '...' // 返回部分 token 用于调试
+    }
   }
 }
 

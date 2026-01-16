@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@types/koa-mount':
+        specifier: ^4.0.5
+        version: 4.0.5
       '@types/socket.io':
         specifier: ^3.0.2
         version: 3.0.2
@@ -35,6 +38,9 @@ importers:
       koa-bodyparser:
         specifier: ^4.4.1
         version: 4.4.1
+      koa-mount:
+        specifier: ^4.2.0
+        version: 4.2.0
       koa-multer:
         specifier: ^1.0.2
         version: 1.0.2
@@ -289,6 +295,9 @@ packages:
 
   '@types/koa-compose@3.2.8':
     resolution: {integrity: sha512-4Olc63RY+MKvxMwVknCUDhRQX1pFQoBZ/lXcRLP69PQkEpze/0cr8LNqJQe5NFb/b19DWi2a5bTi2VAlQzhJuA==}
+
+  '@types/koa-mount@4.0.5':
+    resolution: {integrity: sha512-pV1njJ7r94iqAFzT9D5sGSYKUHFGudCLAnmr4WFli7V5tJf5MAgRQK9leTPJ4gjvgr+hnTf86fZsKoFN358c7w==}
 
   '@types/koa-multer@1.0.4':
     resolution: {integrity: sha512-Aty7k5W/bVgvCtyc7iwzjP1QXp1CPsQE3klmIEVBphK2bthjJjUpgkvFNChckA8DPxaatzFmnotWZnXLAAnLog==}
@@ -1168,6 +1177,10 @@ packages:
   koa-convert@2.0.0:
     resolution: {integrity: sha512-asOvN6bFlSnxewce2e/DK3p4tltyfC4VM7ZwuTuepI7dEQVcvpyFuBcEARu1+Hxg8DIwytce2n7jrZtRlPrARA==}
     engines: {node: '>= 10'}
+
+  koa-mount@4.2.0:
+    resolution: {integrity: sha512-2iHQc7vbA9qLeVq5gKAYh3m5DOMMlMfIKjW/REPAS18Mf63daCJHHVXY9nbu7ivrnYn5PiPC4CE523Tf5qvjeQ==}
+    engines: {node: '>= 7.6.0'}
 
   koa-multer@1.0.2:
     resolution: {integrity: sha512-0kFzN4atVd+9oiG+4fYxQ9S2T3dPhKNvmhITIY606Qn9wLEmfhW0DhSpOzRYhddN//4rh/TCK95TMtflmFa5lA==}
@@ -2168,6 +2181,10 @@ snapshots:
     dependencies:
       '@types/koa': 2.15.0
 
+  '@types/koa-mount@4.0.5':
+    dependencies:
+      '@types/koa': 2.15.0
+
   '@types/koa-multer@1.0.4':
     dependencies:
       '@types/koa': 2.15.0
@@ -3136,6 +3153,13 @@ snapshots:
     dependencies:
       co: 4.6.0
       koa-compose: 4.1.0
+
+  koa-mount@4.2.0:
+    dependencies:
+      debug: 4.4.0(supports-color@5.5.0)
+      koa-compose: 4.1.0
+    transitivePeerDependencies:
+      - supports-color
 
   koa-multer@1.0.2:
     dependencies:

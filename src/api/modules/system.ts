@@ -76,3 +76,7 @@ export const addDept = (data: object) => {
 export const editDept = (data: object) => {
   return http.post('/department/update', { ...data })
 }
+
+export const updateUserProfile = (data: FormData) => {
+  return http.post<{ avatar?: string }>('/user/update-profile', data)
+}

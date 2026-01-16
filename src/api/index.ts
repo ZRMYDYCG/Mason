@@ -42,7 +42,12 @@ class Http {
       (config: InternalAxiosRequestConfig) => {
         // 为请求头对象，添加 Token 验证的 Authorization 字段
         const userStore = useUserStore()
-        config.headers.Authorization = userStore.token
+        if (userStore.token) {
+          const token = userStore.token.startsWith('Bearer ')
+            ? userStore.token
+            : `Bearer ${userStore.token}`
+          config.headers.Authorization = token
+        }
         return config
       },
       (error: string) => {

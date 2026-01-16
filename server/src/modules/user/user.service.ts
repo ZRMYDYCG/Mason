@@ -157,6 +157,33 @@ class UserService {
     }
   }
 
+  async updateProfile(user: any) {
+    try {
+      const updateData: any = {
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        remark: user.remark,
+      }
+      
+      if (user.avatar) {
+        updateData.avatar = user.avatar
+      }
+
+      // Remove undefined keys
+      Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key])
+
+      await userModel.update(
+        updateData,
+        { where: { id: user.id } }
+      )
+      return 'ok'
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+
   async deleteUser(id: number) {
     try {
       await sequelizeBase.transaction(async (t: Transaction) => {

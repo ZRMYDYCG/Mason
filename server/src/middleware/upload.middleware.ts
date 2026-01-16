@@ -1,11 +1,18 @@
 import multer from 'koa-multer'
 import path from 'path'
+import fs from 'fs'
+
+// 确保上传目录存在
+const uploadDir = path.join(__dirname, '../../public/uploads')
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true })
+}
 
 // 配置 storage
 const storage = multer.diskStorage({
   // 文件保存路径
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../public/uploads'))
+    cb(null, uploadDir)
   },
   // 修改文件名称
   filename: (req, file, cb) => {

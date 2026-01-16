@@ -28,6 +28,9 @@ export const useUserStore = defineStore({
       this.token = token
       this.expires = expires
     },
+    setUserInfo(userInfo: UserState['userInfo']) {
+      this.userInfo = userInfo
+    },
     async getUserInfo(userId: number) {
       if (userId) {
         const res = await getUserInfoApi(userId)

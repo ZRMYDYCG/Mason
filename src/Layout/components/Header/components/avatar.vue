@@ -2,7 +2,7 @@
   <el-dropdown trigger="click">
     <div class="user-trigger">
       <el-avatar
-        src="https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg"
+        :src="avatar || 'https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg'"
         size="small"
       ></el-avatar>
       <!-- <el-text class="name" type="info" size="small">{{ username }}</el-text> -->
@@ -10,7 +10,7 @@
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item>
-          <span class="flex items-center gap-2" @click="router.push('/user')">
+          <span class="flex items-center gap-2" @click="openDialog">
             <AppIcon name="user" :size="16" />
             修改资料
           </span>
@@ -24,6 +24,7 @@
       </el-dropdown-menu>
     </template>
   </el-dropdown>
+  <UpdateProfileDialog ref="dialogRef" />
 </template>
 
 <script setup lang="ts">
@@ -31,10 +32,17 @@ import { LOGIN_URL } from '@/config'
 import router from '@/router'
 import { useUserStore } from '@/store/modules/user'
 import { ElMessageBox, ElMessage } from 'element-plus'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import UpdateProfileDialog from './UpdateProfileDialog.vue'
 
 const userStore = useUserStore()
 const username = computed(() => userStore.userInfo.username)
+const avatar = computed(() => userStore.userInfo.avatar)
+const dialogRef = ref<InstanceType<typeof UpdateProfileDialog>>()
+
+const openDialog = () => {
+  dialogRef.value?.open()
+}
 
 const logout = () => {
   ElMessageBox.confirm('您是否确认退出登录?', '温馨提醒', {

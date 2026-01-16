@@ -3,6 +3,7 @@ import userService from './user.service'
 import { userSearchSchema, userUpdateSchema } from './user.dto'
 import { ERROR_TYPES } from '../../constant'
 import { UserPageParams, UpdateUserParams } from '../../types/index'
+import { APP_HOST, APP_PORT } from '../../config'
 
 class UserController {
   async userInfo(ctx: Context) {
@@ -40,6 +41,33 @@ class UserController {
       code: 200,
       data: result,
       msg: '添加用户成功',
+    }
+  }
+
+  async updateProfile(ctx: Context) {
+    const { id } = ctx.user
+    const body = (ctx.req as any).body
+    const file = (ctx.req as any).file
+
+    let avatarUrl
+    if (file) {
+      avatarUrl = `http://${APP_HOST}:${APP_PORT}/public/uploads/${file.filename}`
+    }
+
+    const updateData = {
+      id,
+      ...body,
+      ...(avatarUrl && { avatar: avatarUrl }),
+    }
+
+    await userService.updateProfile(updateData)
+
+    ctx.body = {
+      code: 200,
+      msg: '修改成功',
+      data: {
+        avatar: avatarUrl
+      }
     }
   }
 

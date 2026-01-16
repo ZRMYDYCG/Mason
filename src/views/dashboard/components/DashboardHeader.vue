@@ -5,7 +5,7 @@
         <div class="avatar-wrap">
           <el-avatar
             :size="52"
-            :src="avatar"
+            :src="avatar || 'https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg'"
             class="user-avatar"
             shape="circle"
             role="img"
