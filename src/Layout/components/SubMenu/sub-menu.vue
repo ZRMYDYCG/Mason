@@ -50,21 +50,54 @@ const handleClickMenu = (subItem: Menu) => {
   vertical-align: middle;
 }
 
+:global(.aside .el-menu) {
+  padding: 6px 0;
+  border-right: 0;
+}
+
+:global(.aside .el-menu-item),
+:global(.aside .el-sub-menu__title) {
+  position: relative;
+  margin: 4px 10px;
+  border-radius: 10px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+:global(.aside .el-sub-menu__title),
+:global(.aside .el-menu-item) {
+  height: 40px;
+  line-height: 40px;
+}
+
 :global(html:not(.dark) .aside .el-menu-item:not(.is-active):hover),
 :global(html:not(.dark) .aside .el-sub-menu__title:hover) {
   color: var(--app-text-active);
   background-color: rgba(var(--app-color-primary-rgb), 0.08);
 }
 
-:global(html:not(.dark) .aside .el-menu-item:not(.is-active):focus-visible),
-:global(html:not(.dark) .aside .el-sub-menu__title:focus-visible) {
-  outline: 2px solid rgba(var(--app-color-primary-rgb), 0.35);
-  outline-offset: -2px;
-  border-radius: 6px;
+:global(html.dark .aside .el-menu-item:not(.is-active):hover),
+:global(html.dark .aside .el-sub-menu__title:hover) {
+  color: var(--app-text-active);
+  background-color: rgba(var(--app-color-primary-rgb), 0.16);
 }
 
-.el-menu-item.is-active {
-  color: var(--app-text-inverse);
-  background-color: var(--app-bg-active);
+:global(.aside .el-menu-item:not(.is-active):focus-visible),
+:global(.aside .el-sub-menu__title:focus-visible) {
+  outline: 2px solid rgba(var(--app-color-primary-rgb), 0.35);
+  outline-offset: -2px;
+}
+
+:global(.aside .el-menu-item.is-active) {
+  color: var(--app-text-active);
+  background-color: rgba(var(--app-color-primary-rgb), 0.14);
+  font-weight: 600;
+}
+
+:global(.aside .el-sub-menu.is-active > .el-sub-menu__title) {
+  color: var(--app-text-active);
+  background-color: rgba(var(--app-color-primary-rgb), 0.08);
+  font-weight: 600;
 }
 </style>
