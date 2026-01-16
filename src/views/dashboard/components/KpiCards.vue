@@ -199,13 +199,91 @@ const sparkColor = (key: string) => {
 
 function sparkOption(key: string, values: number[]) {
   const color = sparkColor(key)
-  const area = toRgba(color, 0.18)
-  return {
+  const baseOption = {
     animation: true,
     grid: { left: 0, right: 0, top: 0, bottom: 0, containLabel: false },
     tooltip: { show: false },
     xAxis: { type: 'category', show: false, data: values.map((_, idx) => idx) },
-    yAxis: { type: 'value', show: false },
+    yAxis: { type: 'value', show: false }
+  }
+
+  // 访问量：平滑面积图
+  if (key === 'visits') {
+    const area = toRgba(color, 0.18)
+    return {
+      ...baseOption,
+      series: [
+        {
+          type: 'line',
+          data: values,
+          smooth: true,
+          symbol: 'none',
+          silent: true,
+          lineStyle: { width: 2, color },
+          areaStyle: { opacity: 1, color: area }
+        }
+      ]
+    }
+  }
+
+  // 活跃用户：柱状图
+  if (key === 'activeUsers') {
+    return {
+      ...baseOption,
+      series: [
+        {
+          type: 'bar',
+          data: values,
+          barWidth: '55%',
+          itemStyle: { color, borderRadius: [2, 2, 0, 0] },
+          silent: true
+        }
+      ]
+    }
+  }
+
+  // 待办事项：阶梯线图 (体现任务的阶段性)
+  if (key === 'pendingTodos') {
+    const area = toRgba(color, 0.1)
+    return {
+      ...baseOption,
+      series: [
+        {
+          type: 'line',
+          step: 'middle',
+          data: values,
+          symbol: 'none',
+          silent: true,
+          lineStyle: { width: 2, color },
+          areaStyle: { opacity: 1, color: area }
+        }
+      ]
+    }
+  }
+
+  // 错误率：尖锐面积图 (体现波动的突兀感)
+  if (key === 'errorRate') {
+    const area = toRgba(color, 0.18)
+    return {
+      ...baseOption,
+      series: [
+        {
+          type: 'line',
+          data: values,
+          smooth: false,
+          symbol: 'none',
+          silent: true,
+          lineStyle: { width: 2, color },
+          areaStyle: { opacity: 1, color: area }
+        }
+      ]
+    }
+  }
+
+  // 默认：平滑面积图
+  const area = toRgba(color, 0.18)
+  return {
+    ...baseOption,
     series: [
       {
         type: 'line',
@@ -213,7 +291,6 @@ function sparkOption(key: string, values: number[]) {
         smooth: true,
         symbol: 'none',
         silent: true,
-        emphasis: { disabled: true },
         lineStyle: { width: 2, color },
         areaStyle: { opacity: 1, color: area }
       }
