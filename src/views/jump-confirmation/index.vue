@@ -29,9 +29,7 @@ let initialFormData: FormData | null = null
 
 // 模拟从接口获取数据
 const initData = () => {
-  // 这里模拟一个异步请求
   setTimeout(() => {
-    // 假设这是从服务器获取的数据
     const dataFromApi = {
       name: '张三',
       email: 'zhangsan@example.com',
@@ -39,10 +37,8 @@ const initData = () => {
       description: '这是一段初始描述'
     }
     
-    // 更新表单数据
     Object.assign(formData, dataFromApi)
     
-    // 保存快照
     initialFormData = cloneDeep(formData)
   }, 500)
 }
@@ -50,11 +46,9 @@ const initData = () => {
 onMounted(() => {
   initData()
   
-  // 也可以在这里处理 window 刷新/关闭事件
   window.addEventListener('beforeunload', handleBeforeUnload)
 })
 
-// 移除事件监听
 onUnmounted(() => {
   window.removeEventListener('beforeunload', handleBeforeUnload)
 })
@@ -87,24 +81,19 @@ onBeforeRouteLeave((to, from, next) => {
       }
     )
       .then(() => {
-        // 用户确认离开
         next()
       })
       .catch(() => {
-        // 用户取消，留在当前页
         next(false)
       })
   } else {
-    // 没有修改，直接通过
     next()
   }
 })
 
 // 保存操作
 const handleSave = () => {
-  // 模拟保存
   ElMessage.success('保存成功')
-  // 更新快照
   initialFormData = cloneDeep(formData)
 }
 
