@@ -1,7 +1,7 @@
 <template>
   <div class="tool-bar-rt">
     <ThemeSetting></ThemeSetting>
-    <Translate></Translate>
+    <Translate v-if="showLanguage" />
     <FullScreen class="tb-item" />
     <ThemeSwitch class="tb-item" />
     <Notificate />
@@ -10,12 +10,17 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useSettingStore } from '@/store/modules/setting'
 import FullScreen from './components/fullscreen.vue'
 import Avatar from './components/avatar.vue'
 import ThemeSetting from './components/theme-setting.vue'
 import ThemeSwitch from './components/theme-switch.vue'
 import Notificate from './components/notificate.vue'
 import Translate from './components/translate.vue'
+
+const settingStore = useSettingStore()
+const { showLanguage } = storeToRefs(settingStore)
 </script>
 
 <style scoped lang="scss">

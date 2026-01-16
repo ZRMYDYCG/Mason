@@ -241,13 +241,13 @@ export const DarkMenuStyles: MenuThemeType[] = [
 
 // 系统主色
 export const SystemMainColor = [
-  '#5D87FF',
-  '#B48DF3',
-  '#1D84FF',
-  '#60C041',
-  '#38C0FC',
-  '#F9901F',
-  '#FF80C8'
+  '#2563EB',
+  '#4F46E5',
+  '#7C3AED',
+  '#0EA5E9',
+  '#10B981',
+  '#F59E0B',
+  '#F43F5E'
 ]
 
 // 系统设置中心配置

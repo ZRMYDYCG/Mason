@@ -50,6 +50,19 @@ const handleClickMenu = (subItem: Menu) => {
   vertical-align: middle;
 }
 
+:global(html:not(.dark) .aside .el-menu-item:not(.is-active):hover),
+:global(html:not(.dark) .aside .el-sub-menu__title:hover) {
+  color: var(--app-text-active);
+  background-color: rgba(var(--app-color-primary-rgb), 0.08);
+}
+
+:global(html:not(.dark) .aside .el-menu-item:not(.is-active):focus-visible),
+:global(html:not(.dark) .aside .el-sub-menu__title:focus-visible) {
+  outline: 2px solid rgba(var(--app-color-primary-rgb), 0.35);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
 .el-menu-item.is-active {
   color: var(--app-text-inverse);
   background-color: var(--app-bg-active);
