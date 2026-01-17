@@ -1,7 +1,7 @@
 <template>
   <div class="tool-bar-lf">
     <CollapseIcon
-      v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT"
+      v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT && menuType !== MenuTypeEnum.DUAL_MENU"
       v-show="showMenuButton"
     />
     <BreadCrumb

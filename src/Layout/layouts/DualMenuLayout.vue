@@ -61,9 +61,9 @@ defineProps({
   <LayoutShell>
     <template #beforeAside>
       <div class="dual-menu-left">
-        <div class="logo">
+        <!-- <div class="logo">
           <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
-        </div>
+        </div> -->
         <el-scrollbar style="height: calc(100% - 10px)">
           <ul class="item-wrapper">
             <li
@@ -151,6 +151,7 @@ $primary-color: var(--el-color-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 10px;
 
   .logo {
     width: 40px;

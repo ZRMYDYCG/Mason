@@ -56,7 +56,7 @@ defineProps({
 <template>
   <LayoutShell>
     <template #headerLeft>
-      <Logo />
+      <!-- <Logo /> -->
       <ToolBarLeft />
       <MenuTop />
     </template>
