@@ -2,9 +2,10 @@
 import type { PropType } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { MenuListType } from '@/config'
-const route = useRoute()
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+const route = useRoute()
 
 defineProps({
   list: {
@@ -153,18 +154,6 @@ onMounted(() => {
       &.active {
         color: var(--layout-tabs-active-text, var(--app-text-active));
         background-color: var(--layout-tabs-active-bg, rgba(var(--app-color-primary-rgb), 0.14));
-
-        &::after {
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          width: 40px;
-          height: 2px;
-          margin: auto;
-          content: '';
-          background-color: var(--app-text-active);
-        }
       }
     }
   }
