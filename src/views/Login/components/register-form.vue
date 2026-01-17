@@ -43,7 +43,7 @@ const validatePass = (rule: any, value: any, callback: any) => {
   } else {
     if (account.confirmPassword !== '') {
       if (!registerFormRef.value) return
-      registerFormRef.value.validateField('confirmPassword', () => null)
+      registerFormRef.value.validateField('confirmPassword', () => {})
     }
     callback()
   }
