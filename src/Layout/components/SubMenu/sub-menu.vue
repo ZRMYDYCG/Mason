@@ -1,11 +1,11 @@
 <template>
   <template v-for="subItem in menuList" :key="subItem.path">
-    <el-sub-menu v-if="subItem.children?.length" :index="subItem.path">
+    <el-sub-menu v-if="subItem.children?.length" :index="subItem.path" :popper-class="popperClass">
       <template #title>
         <AllLucideIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="icon" />
         <span class="sle">{{ getTitle(subItem.meta) }}</span>
       </template>
-      <SubMenu :menu-list="subItem.children" />
+      <SubMenu :menu-list="subItem.children" :popper-class="popperClass" />
     </el-sub-menu>
     <el-menu-item v-else :index="subItem.path" @click="handleClickMenu(subItem)">
       <AllLucideIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="icon" />
@@ -24,7 +24,7 @@ import { Menu } from '@/api/interface/system'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
-defineProps<{ menuList: Menu[] }>()
+defineProps<{ menuList: Menu[]; popperClass?: string }>()
 
 const router = useRouter()
 const { t } = useI18n({ useScope: 'global' })
@@ -74,6 +74,9 @@ const handleClickMenu = (subItem: Menu) => {
 :global(.aside .el-menu--collapse .el-menu-item .icon),
 :global(.aside .el-menu--collapse .el-sub-menu__title .icon) {
   margin-left: -6px;
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 :global(html:not(.dark) .aside .el-menu-item:not(.is-active):hover),
@@ -103,6 +106,29 @@ const handleClickMenu = (subItem: Menu) => {
 :global(.aside .el-sub-menu.is-active > .el-sub-menu__title) {
   color: var(--app-text-active);
   background-color: rgba(var(--app-color-primary-rgb), 0.08);
+  font-weight: 600;
+}
+
+/* Aside Popup Menu Styles */
+:global(.aside-popup-menu.el-menu--popup) {
+  background-color: var(--app-bg-surface) !important;
+}
+
+:global(html:not(.dark) .aside-popup-menu .el-menu-item:not(.is-active):hover),
+:global(html:not(.dark) .aside-popup-menu .el-sub-menu__title:hover) {
+  color: var(--app-text-active);
+  background-color: rgba(var(--app-color-primary-rgb), 0.08);
+}
+
+:global(html.dark .aside-popup-menu .el-menu-item:not(.is-active):hover),
+:global(html.dark .aside-popup-menu .el-sub-menu__title:hover) {
+  color: var(--app-text-active);
+  background-color: rgba(var(--app-color-primary-rgb), 0.16);
+}
+
+:global(.aside-popup-menu .el-menu-item.is-active) {
+  color: var(--app-text-active);
+  background-color: rgba(var(--app-color-primary-rgb), 0.14);
   font-weight: 600;
 }
 </style>

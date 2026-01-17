@@ -43,7 +43,7 @@ const iconComponent = computed<Component>(() => {
 </script>
 
 <template>
-  <span class="menu-icon" v-bind="attrs">
+  <div class="menu-icon" v-bind="attrs">
     <component
       :is="iconComponent"
       :size="props.size"
@@ -51,7 +51,7 @@ const iconComponent = computed<Component>(() => {
       :stroke-width="props.strokeWidth"
       aria-hidden="true"
     />
-  </span>
+  </div>
 </template>
 
 <style scoped>

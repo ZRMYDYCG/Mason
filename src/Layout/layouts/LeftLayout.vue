@@ -74,7 +74,7 @@ defineProps({
               :active-text-color="menuTheme.textActiveColor"
               :text-color="menuTheme.textColor"
             >
-              <SubMenu :menu-list="menuList" />
+              <SubMenu :menu-list="menuList" popper-class="aside-popup-menu" />
             </el-menu>
             <div
               class="absolute right-0 top-0 w-1 h-full cursor-ew-resize bg-transparent"

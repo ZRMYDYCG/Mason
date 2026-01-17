@@ -5,73 +5,32 @@
         <el-tab-pane
           v-for="item in tabsMenuList"
           :key="item.path"
-          :label="getTitle(item)"
+          :label="item.title"
           :name="item.path"
           :closable="item.close"
         >
-          <template #label>
-            <el-dropdown trigger="contextmenu" placement="bottom-start">
-              <span class="tab-label" @contextmenu.prevent>{{ getTitle(item) }}</span>
-              <template #dropdown>
-                <el-dropdown-menu>
-                  <el-dropdown-item @click="closeCurrentTab(item)" :disabled="!item.close">
-                    <span class="flex items-center justify-center">
-                      <AppIcon name="x" class="mr-2" />{{ t('tabs.closeCurrent') }}
-                    </span>
-                  </el-dropdown-item>
-                  <el-dropdown-item @click="tabsStore.closeTabsOnSide(item.path, 'left')">
-                    <span class="flex items-center justify-center">
-                      <AppIcon name="chevrons-left" class="mr-2" />{{ t('tabs.closeLeft') }}
-                    </span>
-                  </el-dropdown-item>
-                  <el-dropdown-item @click="tabsStore.closeTabsOnSide(item.path, 'right')">
-                    <span class="flex items-center justify-center">
-                      <AppIcon name="chevrons-right" class="mr-2" />{{ t('tabs.closeRight') }}
-                    </span>
-                  </el-dropdown-item>
-                  <el-dropdown-item @click="tabsStore.closeMultipleTab(item.path)">
-                    <span class="flex items-center justify-center">
-                      <AppIcon name="ellipsis" class="mr-2" />{{ t('tabs.closeOther') }}
-                    </span>
-                  </el-dropdown-item>
-                  <el-dropdown-item @click="closeAllTab">
-                    <span class="flex items-center justify-center">
-                      <AppIcon name="x-circle" class="mr-2" />{{ t('tabs.closeAll') }}
-                    </span>
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </template>
-            </el-dropdown>
-          </template>
         </el-tab-pane>
       </el-tabs>
+      <MoreButton />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { HOME_URL } from '@/config'
 import { useTabsStore } from '@/store/modules/tabs'
 import { useAuthStore } from '@/store/modules/auth'
 import { useRoute, useRouter } from 'vue-router'
 import { TabPaneName, TabsPaneContext } from 'element-plus'
-import { useI18n } from 'vue-i18n'
+import MoreButton from './components/more-button.vue'
 
 const route = useRoute()
 const router = useRouter()
 const tabsStore = useTabsStore()
 const authStore = useAuthStore()
-const { t } = useI18n({ useScope: 'global' })
 
 const tabsMenuValue = ref(route.fullPath)
 const tabsMenuList = computed(() => tabsStore.tabsMenuList)
-
-const getTitle = (tabItem: any) => {
-  const titleKey = tabItem?.titleKey as string | undefined
-  const rawTitle = tabItem?.title as string | undefined
-  return titleKey ? t(titleKey) : rawTitle
-}
 
 onMounted(() => {
   initTabs()
@@ -84,8 +43,7 @@ watch(
     tabsMenuValue.value = route.fullPath
     const tabsParams = {
       icon: route.meta.icon as string,
-      title: (route.meta.title as string) ?? '',
-      titleKey: route.meta.titleKey as string,
+      title: route.meta.title as string,
       path: route.fullPath,
       name: route.name as string,
       close: !route.meta.isAffix,
@@ -103,7 +61,6 @@ const initTabs = () => {
       const tabsParams = {
         icon: item.meta.icon,
         title: item.meta.title,
-        titleKey: item.meta.titleKey,
         path: item.path,
         name: item.name,
         close: !item.meta.isAffix,
@@ -122,25 +79,11 @@ const clickTab = (tabItem: TabsPaneContext) => {
 const removeTab = (fullPath: TabPaneName) => {
   tabsStore.removeTab(fullPath as string, fullPath == route.fullPath)
 }
-
-const closeCurrentTab = (tabItem: any) => {
-  if (!tabItem?.close) return
-  tabsStore.removeTab(tabItem.path, tabItem.path === route.fullPath)
-}
-
-const closeAllTab = () => {
-  tabsStore.closeMultipleTab()
-  router.push(HOME_URL)
-}
 </script>
 
 <style scoped lang="scss">
 .tabs-box {
- background-color: var(--layout-topbar-bg, var(--app-bg-surface));
-  color: var(--layout-topbar-text, var(--app-text));
-  --el-text-color-primary: var(--layout-topbar-text, var(--app-text));
-  --el-text-color-regular: var(--layout-topbar-text, var(--app-text));
-  --el-text-color-secondary: var(--layout-topbar-text-secondary, var(--app-text-secondary));
+  background-color: var(--layout-topbar-bg);
 
   .tabs-menu {
     position: relative;
@@ -152,54 +95,37 @@ const closeAllTab = () => {
         height: 40px;
         padding: 0 10px;
         margin: 0;
-        border-bottom: none;
 
         .el-tabs__nav-wrap {
           position: absolute;
-          width: 100%;
-          &::after {
-            height: 0;
-          }
+          width: calc(100% - 70px);
 
           .el-tabs__nav {
             box-sizing: border-box;
             border: none;
 
             .el-tabs__item {
-              border: none;
+              border-bottom: 1px solid transparent;
               border-left: none;
-              height: 28px;
-              margin: 6px 4px;
-              line-height: 28px;
-              border-radius: 8px;
-              color: var(--layout-topbar-text, var(--app-text));
-              background-color: transparent;
-              transition:
-                background-color 0.15s ease,
-                color 0.15s ease;
-
-              .tab-label {
-                color: inherit;
-              }
-
-              .el-icon {
-                color: inherit;
-              }
             }
 
             .el-tabs__item.is-active {
-              color: var(--layout-tabs-active-text, var(--app-text-active)) !important;
-              border: none;
-              background-color: var(--layout-tabs-active-bg, var(--app-bg-active-light));
+              color: var(--el-color-primary) !important;
+              border-bottom: 3px solid var(--el-color-primary);
             }
 
             .el-tabs__item:hover {
-              color: var(--layout-topbar-text, var(--app-text));
-              background-color: var(--app-fill-light);
+              color: unset;
             }
           }
         }
       }
+    }
+
+    .more-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 }
