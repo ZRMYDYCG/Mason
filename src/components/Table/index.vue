@@ -43,7 +43,7 @@ withDefaults(defineProps<TableProps>(), {
   pagination: () => ({ isShow: true, total: 0 })
 })
 
-const emits = defineEmits(['pageChange', 'sizeChange', 'detail', 'edit', 'delete'])
+const emits = defineEmits(['page-change', 'size-change', 'detail', 'edit', 'delete'])
 
 const elTableRef = ref(null)
 
@@ -80,7 +80,7 @@ const currentPage = ref(1)
 // 页码变化
 const handleCurrentChange = (page) => {
   currentPage.value = page
-  emits('pageChange', page)
+  emits('page-change', page)
 }
 // 每页条数
 const pageSize = ref(PAGE_SIZES[0])
@@ -88,7 +88,7 @@ const pageSize = ref(PAGE_SIZES[0])
 const handleSizeChange = (size) => {
   pageSize.value = size
   currentPage.value = 1
-  emits('sizeChange', size)
+  emits('size-change', size)
 }
 
 defineExpose({

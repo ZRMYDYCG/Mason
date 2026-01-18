@@ -29,7 +29,7 @@ import { ElMessage, type FormInstance } from 'element-plus'
 import { registerApi } from '@/api/modules/login'
 import { Login } from '@/api/interface'
 
-const emit = defineEmits(['registerSuccess'])
+const emit = defineEmits(['register-success'])
 
 const account = reactive({
   username: '',
@@ -87,7 +87,7 @@ const registerAction = () => {
       const res = await registerApi(params)
       if (res.code === 200) {
         ElMessage.success('注册成功，请登录')
-        emit('registerSuccess')
+        emit('register-success')
       } else {
         ElMessage.error(res.msg)
       }

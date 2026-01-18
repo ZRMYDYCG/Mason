@@ -31,14 +31,14 @@ const props = defineProps<{
   actions: ActionOptions[]
 }>()
 
-const emits = defineEmits(['clickItem', 'clickAction'])
+const emits = defineEmits(['click-item', 'click-action'])
 
 const clickItem = (item: ListItem, index: number) => {
-  emits('clickItem', item, index)
+  emits('click-item', item, index)
 }
 
 const clickAction = (item: ActionOptions, index: number) => {
-  emits('clickAction', item, index)
+  emits('click-action', item, index)
 }
 </script>
 

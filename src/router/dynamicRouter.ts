@@ -14,7 +14,9 @@ export const initDynamicRouter = async () => {
       if (item.children && item.children.length > 0) {
         item.redirect = item.children[0].path
       }
-      item.children && delete item.children
+      if (item.children) {
+        delete item.children
+      }
       if (item.component && typeof item.component == 'string') {
         item.component = modules['/src/views' + item.component + '.vue']
       }

@@ -38,9 +38,12 @@ export function paramObj(url: string) {
  * @description: 数组去重
  * */
 function ArrSet(Arr: any[], id: string): any[] {
-  let obj: any = {}
+  const obj: any = {}
   return Arr.reduce((setArr, item) => {
-    obj[item[id]] ? '' : (obj[item[id]] = true && setArr.push(item))
+    if (!obj[item[id]]) {
+      obj[item[id]] = true
+      setArr.push(item)
+    }
     return setArr
   }, [])
 }

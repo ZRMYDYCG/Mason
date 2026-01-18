@@ -39,7 +39,7 @@
             link
             :disabled="row.status === 'done'"
             aria-label="标记完成"
-            @click="$emit('markDone', row.id)"
+            @click="$emit('mark-done', row.id)"
           >
             完成
           </el-button>
@@ -60,7 +60,7 @@ defineProps<{
 
 defineEmits<{
   (e: 'retry'): void
-  (e: 'markDone', id: string): void
+  (e: 'mark-done', id: string): void
 }>()
 
 function priorityText(p: TodoPriority) {

@@ -80,7 +80,7 @@
       destroy-on-close
       class="auth-dialog"
     >
-      <RegisterForm ref="registerRef" @registerSuccess="handleRegisterSuccess" />
+      <RegisterForm ref="registerRef" @register-success="handleRegisterSuccess" />
       <template #footer>
         <div class="dialog-footer">
           <div class="dialog-links">

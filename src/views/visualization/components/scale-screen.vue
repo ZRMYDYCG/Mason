@@ -15,14 +15,16 @@ import type { CSSProperties, PropType } from 'vue'
  * @param {number} delay
  * @returns {() => void}
  */
-function debounce(fn: Function, delay: number): () => void {
+function debounce(fn: (...args: unknown[]) => unknown, delay: number): () => void {
   // let timer: NodeJS.Timer;
   let timer: any
   return function (...args: any[]): void {
     if (timer) clearTimeout(timer)
     timer = setTimeout(
       () => {
-        typeof fn === 'function' && fn.apply(null, args)
+        if (typeof fn === 'function') {
+          fn.apply(null, args)
+        }
         clearTimeout(timer)
       },
       delay > 0 ? delay : 100
@@ -173,8 +175,12 @@ const autoScale = (scale: number) => {
   let mx = Math.max((currentWidth - domWidth * scale) / 2, 0)
   let my = Math.max((currentHeight - domHeight * scale) / 2, 0)
   if (typeof props.autoScale === 'object') {
-    !props.autoScale.x && (mx = 0)
-    !props.autoScale.y && (my = 0)
+    if (!props.autoScale.x) {
+      mx = 0
+    }
+    if (!props.autoScale.y) {
+      my = 0
+    }
   }
   screenWrapper.value!.style.margin = `${my}px ${mx}px`
 }

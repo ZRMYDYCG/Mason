@@ -36,7 +36,9 @@ export const useTabsStore = defineStore({
 
       // keepalive
       const tabItem = this.tabsMenuList.find((item) => item.path === tabPath)
-      tabItem?.isKeepAlive && keepAliveStore.removeKeepAlive(tabItem.path)
+      if (tabItem?.isKeepAlive) {
+        keepAliveStore.removeKeepAlive(tabItem.path)
+      }
 
       this.tabsMenuList = this.tabsMenuList.filter((item) => item.path !== tabPath)
     },

@@ -39,7 +39,7 @@ const animation = ref<LottieEvent>()
 const dom = ref<Element>()
 
 const emits = defineEmits<{
-  (e: 'getAnimation', value: LottieEvent): void
+  (e: 'get-animation', value: LottieEvent): void
   (e: 'getDom', value: Element): void
 }>()
 
@@ -51,7 +51,7 @@ onMounted(() => {
     autoplay: props.autoplay, // 是否自动播放, 默认true
     animationData: props.animationData // AE动画使用bodymovie导出的json数据
   })
-  emits('getAnimation', animation.value)
+  emits('get-animation', animation.value)
 })
 </script>
 

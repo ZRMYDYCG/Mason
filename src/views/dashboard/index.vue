@@ -41,7 +41,7 @@
           :loading="todosLoading"
           :error="todosError"
           @retry="fetchTodos"
-          @markDone="markTodoDone"
+          @mark-done="markTodoDone"
         />
 
         <ActivityTimeline

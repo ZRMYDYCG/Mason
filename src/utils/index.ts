@@ -21,7 +21,9 @@ export function getFlatMenuList(menuList: Menu[]): Menu[] {
 export function getShowMenuList(menuList: Menu[]) {
   let newMenuList: Menu[] = JSON.parse(JSON.stringify(menuList))
   return newMenuList.filter((item) => {
-    item.children?.length && (item.children = getShowMenuList(item.children))
+    if (item.children?.length) {
+      item.children = getShowMenuList(item.children)
+    }
     return item.meta.isEnable
   })
 }
