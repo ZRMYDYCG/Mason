@@ -92,7 +92,6 @@ import TodoList from './components/TodoList.vue'
 import ActivityTimeline from './components/ActivityTimeline.vue'
 import SystemHealthCard from './components/SystemHealth.vue'
 
-// Re-using the state logic
 const rangePreset = ref<DashboardRangePreset>('7d')
 const customRange = ref<[string, string] | null>(null)
 

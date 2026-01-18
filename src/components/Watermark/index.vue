@@ -43,11 +43,11 @@ withDefaults(defineProps<WatermarkProps>(), {
 
 <style scoped>
 .watermark-container {
-  position: fixed; // 固定定位，使水印覆盖整个页面
-  top: 0; // 距离顶部0像素
-  left: 0; // 距离左侧0像素
-  width: 100vw; // 宽度为视口宽度
-  height: 100vh; // 高度为视口高度
-  pointer-events: none; // 使水印不响应鼠标事件
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
 }
 </style>

@@ -305,7 +305,7 @@ function handleRefresh() {
   display: flex;
   align-items: center;
   gap: var(--gap-sm);
-  min-width: 0; // Prevent flex item overflow
+  min-width: 0;
 
   .avatar-wrap {
     position: relative;
@@ -456,7 +456,6 @@ function handleRefresh() {
   }
 }
 
-// Responsive Breakpoints
 @media screen and (max-width: 768px) {
   .page-header {
     flex-direction: column;
@@ -478,7 +477,7 @@ function handleRefresh() {
       flex-wrap: wrap;
 
       .preset-select {
-        width: 110px; // Compact
+        width: 110px;
       }
 
       .custom-range-wrapper {
