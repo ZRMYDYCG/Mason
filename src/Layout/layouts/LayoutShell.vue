@@ -8,7 +8,8 @@ const menuTheme = computed(() => settingStore.getMenuTheme)
 const isSystemDark = computed(() => settingStore.isDark)
 const topbarBg = computed(() => menuTheme.value.tabBarBackground)
 const topbarTextColor = computed(() => {
-  if (!isSystemDark.value && menuTheme.value.theme === MenuThemeEnum.DARK) return 'var(--app-text-inverse)'
+  if (!isSystemDark.value && menuTheme.value.theme === MenuThemeEnum.DARK)
+    return 'var(--app-text-inverse)'
   return menuTheme.value.textColor
 })
 const topbarTextSecondaryColor = computed(() => {

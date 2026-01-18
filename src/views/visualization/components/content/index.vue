@@ -20,10 +20,16 @@ const { t } = useI18n({ useScope: 'global' })
         <div class="item">实时监测</div>
         <div class="item">统计分析</div>
       </div> -->
-      <ItemWrap class="contetn_left-top contetn_lr-item" :title="t('visualization.section.runtimeOverview')">
+      <ItemWrap
+        class="contetn_left-top contetn_lr-item"
+        :title="t('visualization.section.runtimeOverview')"
+      >
         <LeftTop />
       </ItemWrap>
-      <ItemWrap class="contetn_left-center contetn_lr-item" :title="t('visualization.section.userProfile')">
+      <ItemWrap
+        class="contetn_left-center contetn_lr-item"
+        :title="t('visualization.section.userProfile')"
+      >
         <LeftCenter />
       </ItemWrap>
       <ItemWrap
@@ -41,7 +47,10 @@ const { t } = useI18n({ useScope: 'global' })
       </ItemWrap>
     </div>
     <div class="contetn_right">
-      <ItemWrap class="contetn_left-bottom contetn_lr-item" :title="t('visualization.section.alertTrend')">
+      <ItemWrap
+        class="contetn_left-bottom contetn_lr-item"
+        :title="t('visualization.section.alertTrend')"
+      >
         <RightTop />
       </ItemWrap>
       <ItemWrap
@@ -51,7 +60,10 @@ const { t } = useI18n({ useScope: 'global' })
       >
         <RightCenter />
       </ItemWrap>
-      <ItemWrap class="contetn_left-bottom contetn_lr-item" :title="t('visualization.section.eventList')">
+      <ItemWrap
+        class="contetn_left-bottom contetn_lr-item"
+        :title="t('visualization.section.eventList')"
+      >
         <RightBottom />
       </ItemWrap>
     </div>

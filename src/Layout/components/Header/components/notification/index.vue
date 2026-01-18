@@ -30,7 +30,7 @@ const iconName = computed(() => {
         class="notification-badge"
         :offset="[-2, 21]"
       >
-        <AppIcon style="margin-top: 5px;" :name="iconName" />
+        <AppIcon style="margin-top: 5px" :name="iconName" />
       </el-badge>
     </template>
     <!-- 继承 Popover 的 slot   -->

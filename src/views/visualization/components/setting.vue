@@ -31,7 +31,9 @@ const cancelClick = () => {
   viewStore.setSettingShow(false)
 }
 
-const confirmClick = () => {}
+const confirmClick = () => {
+  viewStore.setSettingShow(false)
+}
 const isScaleChange = (flag: boolean) => {
   viewStore.setIsScale(flag)
 }
@@ -56,8 +58,8 @@ const indexRadioChange = (flag: boolean) => {
       <div class="left_shu">{{ t('visualization.setting.global') }}</div>
       <div class="setting_item">
         <span class="setting_label"
-          >{{ t('visualization.setting.autoFit') }}<span class="setting_label_tip"
-            >({{ t('visualization.setting.autoFitTip') }})</span
+          >{{ t('visualization.setting.autoFit')
+          }}<span class="setting_label_tip">({{ t('visualization.setting.autoFitTip') }})</span
           >:</span
         >
         <div class="setting_content">
@@ -95,7 +97,9 @@ const indexRadioChange = (flag: boolean) => {
       <div class="left_shu">{{ t('visualization.setting.exit') }}:</div>
       <div class="setting_item">
         <div class="setting_content">
-          <el-button type="primary" @click="handleClose">{{ t('visualization.setting.exitButton') }}</el-button>
+          <el-button type="primary" @click="handleClose">{{
+            t('visualization.setting.exitButton')
+          }}</el-button>
         </div>
       </div>
     </template>

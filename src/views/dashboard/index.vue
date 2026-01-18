@@ -1,8 +1,8 @@
 <template>
   <div class="dashboard-page">
     <DashboardHeader
-      v-model:rangePreset="rangePreset"
-      v-model:customRange="customRange"
+      v-model:range-preset="rangePreset"
+      v-model:custom-range="customRange"
       :loading="refreshing"
       @refresh="refreshAll"
       @change="onRangeChange"
@@ -41,7 +41,7 @@
           :loading="todosLoading"
           :error="todosError"
           @retry="fetchTodos"
-          @mark-done="markTodoDone"
+          @markDone="markTodoDone"
         />
 
         <ActivityTimeline
@@ -221,14 +221,23 @@ function currentRangeParams(): DashboardRangeParams {
   }
 
   if (rangePreset.value === '30d') {
-    return { startDate: today.subtract(29, 'day').format('YYYY-MM-DD'), endDate: today.format('YYYY-MM-DD') }
+    return {
+      startDate: today.subtract(29, 'day').format('YYYY-MM-DD'),
+      endDate: today.format('YYYY-MM-DD')
+    }
   }
 
   if (rangePreset.value === 'month') {
-    return { startDate: today.startOf('month').format('YYYY-MM-DD'), endDate: today.endOf('month').format('YYYY-MM-DD') }
+    return {
+      startDate: today.startOf('month').format('YYYY-MM-DD'),
+      endDate: today.endOf('month').format('YYYY-MM-DD')
+    }
   }
 
-  return { startDate: today.subtract(6, 'day').format('YYYY-MM-DD'), endDate: today.format('YYYY-MM-DD') }
+  return {
+    startDate: today.subtract(6, 'day').format('YYYY-MM-DD'),
+    endDate: today.format('YYYY-MM-DD')
+  }
 }
 
 async function fetchSummary() {
@@ -317,8 +326,20 @@ async function refreshAll() {
   pageError.value = ''
   refreshing.value = true
   try {
-    await Promise.all([fetchSummary(), fetchTrend(), fetchTodos(), fetchActivities(), fetchHealth()])
-    if (summaryError.value || trendError.value || todosError.value || activitiesError.value || healthError.value) {
+    await Promise.all([
+      fetchSummary(),
+      fetchTrend(),
+      fetchTodos(),
+      fetchActivities(),
+      fetchHealth()
+    ])
+    if (
+      summaryError.value ||
+      trendError.value ||
+      todosError.value ||
+      activitiesError.value ||
+      healthError.value
+    ) {
       pageError.value = '部分模块加载失败，请稍后重试'
     }
   } catch (e) {

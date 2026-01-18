@@ -38,7 +38,9 @@ const handleThrottle = () => {
       <el-button type="primary" v-debounce="handleDebounce">防抖按钮 (0.5s)</el-button>
     </div>
 
-    <el-divider content-position="left">v-throttle 节流指令 (立即执行，冷却时间内不执行)</el-divider>
+    <el-divider content-position="left"
+      >v-throttle 节流指令 (立即执行，冷却时间内不执行)</el-divider
+    >
     <div class="box-item">
       <el-button type="danger" v-throttle="handleThrottle">节流按钮 (1s)</el-button>
     </div>

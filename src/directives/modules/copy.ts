@@ -14,11 +14,14 @@ const copy: Directive = {
         ElMessage.warning('无复制内容')
         return
       }
-      navigator.clipboard.writeText(el.copyValue).then(() => {
-        ElMessage.success('复制成功')
-      }).catch(() => {
-        ElMessage.error('复制失败')
-      })
+      navigator.clipboard
+        .writeText(el.copyValue)
+        .then(() => {
+          ElMessage.success('复制成功')
+        })
+        .catch(() => {
+          ElMessage.error('复制失败')
+        })
     }
     el.addEventListener('click', el.handler)
   },

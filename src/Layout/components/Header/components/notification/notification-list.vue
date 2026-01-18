@@ -97,7 +97,7 @@ const clickAction = (item: ActionOptions, index: number) => {
         class="footer-action"
         @click="clickAction(action, actionIndex)"
       >
-        <AppIcon style="margin-right: 4px;" v-if="action.icon" :name="action.icon" :size="16" />
+        <AppIcon style="margin-right: 4px" v-if="action.icon" :name="action.icon" :size="16" />
         <span>{{ action.text }}</span>
       </el-button>
     </div>

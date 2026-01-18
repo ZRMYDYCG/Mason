@@ -1,8 +1,5 @@
 <template>
-  <AppIcon
-    @click="handleFullScreen"
-    :name="isFullscreen ? 'minimize-2' : 'maximize-2'"
-  />
+  <AppIcon @click="handleFullScreen" :name="isFullscreen ? 'minimize-2' : 'maximize-2'" />
 </template>
 
 <script setup lang="ts">

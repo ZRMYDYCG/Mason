@@ -1,6 +1,6 @@
 <template>
   <div class="tool-bar-rt">
-    <Notificate />  
+    <Notificate />
     <ThemeSetting></ThemeSetting>
     <Translate v-if="showLanguage" />
     <Flushed v-if="showRefreshButton" />

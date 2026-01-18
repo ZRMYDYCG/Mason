@@ -8,7 +8,7 @@ const throttle: Directive = {
   mounted(el: ElType, binding: DirectiveBinding) {
     let timer: any = null
     const delay = binding.arg ? parseInt(binding.arg) : 1000
-    
+
     el.__handleClick__ = function (this: any, e: Event) {
       if (!timer) {
         binding.value(e)

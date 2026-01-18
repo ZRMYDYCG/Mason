@@ -98,7 +98,11 @@ onMounted(() => {
                 typeRed: item.onlineState == 0,
                 typeGreen: item.onlineState == 1
               }"
-              >{{ item.onlineState == 1 ? t('visualization.status.online') : t('visualization.status.offline') }}</span
+              >{{
+                item.onlineState == 1
+                  ? t('visualization.status.online')
+                  : t('visualization.status.offline')
+              }}</span
             >
 
             <div class="info addresswrap">

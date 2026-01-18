@@ -133,13 +133,15 @@ export const getRandomImg = (size = 1, type: 'viewer' | 'waterfall' = 'viewer') 
   }
   // 匹配该目录下所有的图片
   const images: string[] = []
-  
+
   // 使用 Vite 的 import.meta.glob 获取本地图片
   const viewerModules = import.meta.glob('../assets/images/viewer/*.{jpg,png}', { eager: true })
-  const waterfallModules = import.meta.glob('../assets/images/waterfall/*.{jpg,png}', { eager: true })
-  
+  const waterfallModules = import.meta.glob('../assets/images/waterfall/*.{jpg,png}', {
+    eager: true
+  })
+
   const modules = type === 'waterfall' ? waterfallModules : viewerModules
-  
+
   for (const path in modules) {
     const mod = modules[path] as { default: string }
     images.push(mod.default)

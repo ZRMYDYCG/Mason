@@ -48,7 +48,8 @@ const setOption = async (newData: any) => {
             if (item.seriesName == rateLabel) {
               result += item.marker + ' ' + item.seriesName + ' : ' + item.value + '%</br>'
             } else {
-              result += item.marker + ' ' + item.seriesName + ' : ' + item.value + ` ${itemUnit}</br>`
+              result +=
+                item.marker + ' ' + item.seriesName + ' : ' + item.value + ` ${itemUnit}</br>`
             }
           } else {
             result += item.marker + ' ' + item.seriesName + ' :  - </br>'

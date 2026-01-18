@@ -5,14 +5,7 @@
       <div class="muted">{{ todos.length ? `共 ${todos.length} 项` : '今日待办' }}</div>
     </div>
 
-    <el-alert
-      v-if="error"
-      type="error"
-      show-icon
-      :closable="false"
-      :title="error"
-      class="mb10"
-    >
+    <el-alert v-if="error" type="error" show-icon :closable="false" :title="error" class="mb10">
       <template #default>
         <el-button type="primary" link @click="$emit('retry')" aria-label="重试加载待办"
           >重试</el-button
@@ -46,7 +39,7 @@
             link
             :disabled="row.status === 'done'"
             aria-label="标记完成"
-            @click="$emit('mark-done', row.id)"
+            @click="$emit('markDone', row.id)"
           >
             完成
           </el-button>
@@ -67,7 +60,7 @@ defineProps<{
 
 defineEmits<{
   (e: 'retry'): void
-  (e: 'mark-done', id: string): void
+  (e: 'markDone', id: string): void
 }>()
 
 function priorityText(p: TodoPriority) {

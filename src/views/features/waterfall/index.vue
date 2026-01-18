@@ -21,10 +21,11 @@ const generateUniqueID = () => {
   return `${timestamp}-${randomness}`
 }
 
-const getList = (pageSize = 10) => times(pageSize, () => ({ 
-  id: generateUniqueID(), 
-  url: getRandomImg(1, 'waterfall') as string 
-}))
+const getList = (pageSize = 10) =>
+  times(pageSize, () => ({
+    id: generateUniqueID(),
+    url: getRandomImg(1, 'waterfall') as string
+  }))
 
 const list = ref(getList(20))
 
@@ -33,14 +34,14 @@ const options = reactive({
   width: 310,
   breakpoints: {
     1200: {
-      rowPerView: 4,
+      rowPerView: 4
     },
     800: {
-      rowPerView: 3,
+      rowPerView: 3
     },
     500: {
-      rowPerView: 2,
-    },
+      rowPerView: 2
+    }
   },
   gutter: 15,
   hasAroundGutter: true,
@@ -55,16 +56,16 @@ const options = reactive({
     loading: logo,
     error: logo,
     ratioCalculator: (width: number, height: number) => {
-      const minRatio = random(3, 4, true);
-      const maxRatio = random(3, 4, true);
-      return minRatio / maxRatio;
-    },
+      const minRatio = random(3, 4, true)
+      const maxRatio = random(3, 4, true)
+      return minRatio / maxRatio
+    }
   },
   lazyload: true,
   crossOrigin: true,
   delay: 300,
-  align: 'center',
-});
+  align: 'center'
+})
 
 const afterRender = () => {
   loading.value = false
@@ -81,15 +82,24 @@ const handleLoadMore = () => {
 
 <template>
   <div class="h-full flex flex-col overflow-hidden p-4">
-    <div ref="waterFallRef" class="waterfall-scroller flex-auto overflow-y-auto" v-loading="loading">
+    <div
+      ref="waterFallRef"
+      class="waterfall-scroller flex-auto overflow-y-auto"
+      v-loading="loading"
+    >
       <Waterfall :list="list" v-bind="options" @after-render="afterRender">
         <template #default="{ item }">
           <LazyImg :url="item.url" class="w-full block" />
         </template>
       </Waterfall>
-      
+
       <div v-if="!loading" class="flex justify-center mt-4 pb-4">
-        <el-button v-if="list.length < 100" type="primary" :loading="moreLoading" @click="handleLoadMore">
+        <el-button
+          v-if="list.length < 100"
+          type="primary"
+          :loading="moreLoading"
+          @click="handleLoadMore"
+        >
           加载更多
         </el-button>
         <p v-else class="text-gray-400">没有更多了</p>

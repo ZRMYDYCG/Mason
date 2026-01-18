@@ -16,14 +16,7 @@
       </div>
     </div>
 
-    <el-alert
-      v-if="error"
-      type="error"
-      show-icon
-      :closable="false"
-      :title="error"
-      class="mb10"
-    >
+    <el-alert v-if="error" type="error" show-icon :closable="false" :title="error" class="mb10">
       <template #default>
         <el-button type="primary" link @click="$emit('retry')" aria-label="重试加载系统状态"
           >重试</el-button

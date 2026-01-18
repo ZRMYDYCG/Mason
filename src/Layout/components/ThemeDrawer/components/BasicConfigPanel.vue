@@ -29,12 +29,7 @@ const props = defineProps<{
   copyConfig: () => void
 }>()
 
-const {
-  models,
-  pageTransitionOps,
-  customRadiusOps,
-  copyConfig
-} = props
+const { models, pageTransitionOps, customRadiusOps, copyConfig } = props
 
 const {
   showWorkTab,

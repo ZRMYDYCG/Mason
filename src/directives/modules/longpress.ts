@@ -4,12 +4,12 @@ const longpress: Directive = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     const delay = binding.arg ? parseInt(binding.arg) : 1000
     const cb = binding.value
-    
+
     let pressTimer: any = null
 
     const start = (e: MouseEvent | TouchEvent) => {
       if (e instanceof MouseEvent && e.button !== 0) return
-      
+
       if (pressTimer === null) {
         pressTimer = setTimeout(() => {
           cb(e)
@@ -52,12 +52,12 @@ const longpressDirective: Directive = {
   mounted(el: LongPressElement, binding: DirectiveBinding) {
     const delay = binding.arg ? parseInt(binding.arg) : 1000
     const cb = binding.value
-    
+
     let pressTimer: any = null
 
     el._start = (e: MouseEvent | TouchEvent) => {
       if (e instanceof MouseEvent && e.button !== 0) return
-      
+
       if (pressTimer === null) {
         pressTimer = setTimeout(() => {
           cb(e)

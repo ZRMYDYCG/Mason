@@ -18,7 +18,7 @@ class GitHelper {
     }
   }
 
-  static commit(msg = 'Auto commit') {
+  static commit(msg = 'chore: auto commit') {
     try {
       execSync('git add .', { stdio: 'inherit' })
       execSync(`git commit -m "${msg}"`, { stdio: 'inherit' })
@@ -156,7 +156,7 @@ export const gitHelperCommand = () => {
   program
     .command('commit')
     .description('快速提交更改')
-    .option('-m, --message <message>', '提交信息', 'Auto commit')
+    .option('-m, --message <message>', '提交信息', 'chore: auto commit')
     .action((options) => {
       GitHelper.commit(options.message)
     })

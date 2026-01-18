@@ -15,6 +15,8 @@
     "dev": "vite",
     "build": "vite src/build",
     "preview": "vite preview",
+    "prepare": "lefthook install",
+    "commit": "cz",
     "lint": "eslint --ext .js,.ts,.vue ./src",
     "lint:fix": "eslint --fix --ext .js,.ts,.vue ./src",
     "lint:prettier": "prettier --write \"src/**/*.{js,ts,tsx,css,less,scss,vue,html}\"",
@@ -27,6 +29,11 @@
     "test": "vitest",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
@@ -86,6 +93,8 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "3",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
     "@originjs/vite-plugin-commonjs": "^1.0.3",
     "@release-it/conventional-changelog": "^10.0.0",
     "@storybook/addon-essentials": "8.6.10",
@@ -118,6 +127,8 @@
     "autoprefixer": "^10.4.20",
     "chalk": "^5.3.0",
     "code-inspector-plugin": "^1.3.4",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
@@ -126,6 +137,7 @@
     "happy-dom": "^17.4.4",
     "inquirer": "^9.2.12",
     "kebab-case": "^1.0.2",
+    "lefthook": "^2.0.15",
     "playwright": "^1.51.1",
     "plop": "^4.0.1",
     "prettier": "^3.2.5",

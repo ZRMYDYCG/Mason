@@ -60,19 +60,19 @@ onMounted(() => {
   border-radius: 4px;
   width: 300px;
   background-color: var(--el-bg-color);
-  
+
   .header {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 15px;
     color: var(--el-text-color-primary);
   }
-  
+
   .content {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    
+
     .img-box {
       cursor: pointer;
       border: 1px solid var(--el-border-color);
@@ -84,7 +84,7 @@ onMounted(() => {
       justify-content: center;
       background: var(--el-fill-color-light);
     }
-    
+
     .form-box {
       display: flex;
       gap: 10px;

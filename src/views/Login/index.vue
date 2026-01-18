@@ -33,9 +33,7 @@
       <div class="feature-card">
         <div class="card-content">
           <h3 class="card-title">Mason Admin Template</h3>
-          <p class="card-desc">
-            在这个项目里，一切全是纯粹的。
-          </p>
+          <p class="card-desc">在这个项目里，一切全是纯粹的。</p>
           <div
             class="card-image-placeholder"
             :style="{ backgroundImage: `url(${isDark ? LoginImageDark : LoginImageLight})` }"
@@ -82,7 +80,7 @@
       destroy-on-close
       class="auth-dialog"
     >
-      <RegisterForm ref="registerRef" @register-success="handleRegisterSuccess" />
+      <RegisterForm ref="registerRef" @registerSuccess="handleRegisterSuccess" />
       <template #footer>
         <div class="dialog-footer">
           <div class="dialog-links">
@@ -168,9 +166,11 @@ const handleRegisterSuccess = () => {
   color: var(--el-text-color-primary);
   display: flex;
   flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .header {

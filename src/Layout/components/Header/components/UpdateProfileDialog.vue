@@ -1,12 +1,6 @@
 <template>
   <el-dialog v-model="visible" title="修改资料" width="500px" destroy-on-close>
-    <el-form
-      ref="formRef"
-      :model="form"
-      :rules="rules"
-      label-width="100px"
-      label-suffix=" :"
-    >
+    <el-form ref="formRef" :model="form" :rules="rules" label-width="100px" label-suffix=" :">
       <el-form-item label="头像" prop="avatar">
         <el-upload
           class="avatar-uploader"
@@ -29,19 +23,13 @@
         <el-input v-model="form.phone" placeholder="请输入手机号" />
       </el-form-item>
       <el-form-item label="备注" prop="remark">
-        <el-input
-          v-model="form.remark"
-          type="textarea"
-          placeholder="请输入备注"
-        />
+        <el-input v-model="form.remark" type="textarea" placeholder="请输入备注" />
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="visible = false">取消</el-button>
-        <el-button type="primary" :loading="loading" @click="handleSubmit">
-          确认
-        </el-button>
+        <el-button type="primary" :loading="loading" @click="handleSubmit"> 确认 </el-button>
       </span>
     </template>
   </el-dialog>
@@ -63,14 +51,14 @@ const form = reactive({
   name: '',
   email: '',
   phone: '',
-  remark: '',
+  remark: ''
 })
 
 const imageUrl = ref('')
 const avatarFile = ref<File | null>(null)
 
 const rules = {
-  name: [{ required: true, message: '请输入昵称', trigger: 'blur' }],
+  name: [{ required: true, message: '请输入昵称', trigger: 'blur' }]
 }
 
 const open = () => {
@@ -107,7 +95,7 @@ const handleSubmit = async () => {
         }
 
         const res = await updateUserProfile(formData)
-        
+
         userStore.setUserInfo({
           ...userStore.userInfo,
           name: form.name,

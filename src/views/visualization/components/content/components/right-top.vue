@@ -232,7 +232,8 @@ onMounted(() => {
 })
 
 watch(locale, () => {
-  if (cacheData.value) setOption(cacheData.value.xData, cacheData.value.yData, cacheData.value.yData2)
+  if (cacheData.value)
+    setOption(cacheData.value.xData, cacheData.value.yData, cacheData.value.yData2)
 })
 </script>
 

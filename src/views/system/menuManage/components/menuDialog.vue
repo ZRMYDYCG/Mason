@@ -240,7 +240,11 @@ const handleConfirm = () => {
         <el-row>
           <el-col :span="16">
             <el-form-item label="菜单图标" prop="icon">
-              <el-input v-model="menuForm.icon" placeholder="选择图标或输入 Lucide 图标名" clearable>
+              <el-input
+                v-model="menuForm.icon"
+                placeholder="选择图标或输入 Lucide 图标名"
+                clearable
+              >
                 <template #prepend v-if="menuForm.icon">
                   <div
                     style="width: 40px; display: flex; align-items: center; justify-content: center"
@@ -343,7 +347,11 @@ const handleConfirm = () => {
         <el-row>
           <el-col :span="16">
             <el-form-item label="菜单图标" prop="icon">
-              <el-input v-model="editMenuForm.icon" placeholder="选择图标或输入 Lucide 图标名" clearable>
+              <el-input
+                v-model="editMenuForm.icon"
+                placeholder="选择图标或输入 Lucide 图标名"
+                clearable
+              >
                 <template #prepend v-if="editMenuForm.icon">
                   <div
                     style="width: 40px; display: flex; align-items: center; justify-content: center"

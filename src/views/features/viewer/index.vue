@@ -4,7 +4,7 @@ import { directive as viewer } from 'v-viewer'
 import { getRandomImg } from '@/utils'
 
 const vViewer = viewer({
-  debug: true,
+  debug: true
 })
 </script>
 
@@ -12,13 +12,19 @@ const vViewer = viewer({
   <div>
     <el-card shadow="never">
       <template #extra>
-        <el-button type="primary" tag="a" href="https://github.com/mirari/v-viewer" target="_blank" rel="noopener noreferrer">
+        <el-button
+          type="primary"
+          tag="a"
+          href="https://github.com/mirari/v-viewer"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           v-viewer
         </el-button>
       </template>
       <div v-viewer class="image-grid">
         <img
-          v-for="(img, index) in (getRandomImg(20) as string[])"
+          v-for="(img, index) in getRandomImg(20) as string[]"
           :key="index"
           :src="img"
           class="image-item"
@@ -33,7 +39,7 @@ const vViewer = viewer({
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
-  
+
   .image-item {
     width: 100%;
     height: 150px;
@@ -41,10 +47,10 @@ const vViewer = viewer({
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
-    
+
     &:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
   }
 }

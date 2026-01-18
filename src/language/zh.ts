@@ -90,5 +90,5 @@ export default {
       yes: '是',
       no: '否'
     }
-  },
+  }
 }

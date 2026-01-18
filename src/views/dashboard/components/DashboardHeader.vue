@@ -17,9 +17,7 @@
         </div>
         <div class="header-info">
           <div class="title-row">
-            <h1 class="welcome-title text-ellipsis">
-              {{ greetingText }}，{{ displayName }}
-            </h1>
+            <h1 class="welcome-title text-ellipsis">{{ greetingText }}，{{ displayName }}</h1>
             <el-tag v-if="isSuperUser" size="small" type="danger" effect="light">超级管理员</el-tag>
           </div>
 
@@ -34,10 +32,16 @@
           </div>
 
           <div class="meta-row">
-            <el-tag v-if="roleLabel" size="small" type="primary" effect="plain">{{ roleLabel }}</el-tag>
+            <el-tag v-if="roleLabel" size="small" type="primary" effect="plain">{{
+              roleLabel
+            }}</el-tag>
             <el-tag v-if="accountLabel" size="small" effect="plain">{{ accountLabel }}</el-tag>
-            <el-tag v-if="emailLabel" size="small" type="info" effect="plain">{{ emailLabel }}</el-tag>
-            <el-tag v-if="phoneLabel" size="small" type="info" effect="plain">{{ phoneLabel }}</el-tag>
+            <el-tag v-if="emailLabel" size="small" type="info" effect="plain">{{
+              emailLabel
+            }}</el-tag>
+            <el-tag v-if="phoneLabel" size="small" type="info" effect="plain">{{
+              phoneLabel
+            }}</el-tag>
           </div>
         </div>
       </div>
@@ -444,8 +448,12 @@ function handleRefresh() {
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 // Responsive Breakpoints
@@ -484,7 +492,7 @@ function handleRefresh() {
     .control-group.action-controls {
       margin-left: auto;
     }
-    
+
     .divider {
       display: none;
     }

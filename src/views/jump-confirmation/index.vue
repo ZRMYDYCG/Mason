@@ -36,16 +36,16 @@ const initData = () => {
       type: 'personal',
       description: '这是一段初始描述'
     }
-    
+
     Object.assign(formData, dataFromApi)
-    
+
     initialFormData = cloneDeep(formData)
   }, 500)
 }
 
 onMounted(() => {
   initData()
-  
+
   window.addEventListener('beforeunload', handleBeforeUnload)
 })
 
@@ -71,15 +71,11 @@ const isModified = () => {
 // 路由守卫
 onBeforeRouteLeave((to, from, next) => {
   if (isModified()) {
-    ElMessageBox.confirm(
-      '当前页面有未保存的修改，离开后数据将丢失，是否确认离开？',
-      '提示',
-      {
-        confirmButtonText: '确定离开',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }
-    )
+    ElMessageBox.confirm('当前页面有未保存的修改，离开后数据将丢失，是否确认离开？', '提示', {
+      confirmButtonText: '确定离开',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
       .then(() => {
         next()
       })
@@ -117,46 +113,45 @@ const handleReset = () => {
           </div>
         </div>
       </template>
-      
-      <el-form 
-        ref="formRef" 
-        :model="formData" 
-        label-width="120px"
-        class="demo-form"
-      >
+
+      <el-form ref="formRef" :model="formData" label-width="120px" class="demo-form">
         <el-form-item label="用户名">
           <el-input v-model="formData.name" placeholder="请输入用户名" />
         </el-form-item>
-        
+
         <el-form-item label="邮箱">
           <el-input v-model="formData.email" placeholder="请输入邮箱" />
         </el-form-item>
-        
+
         <el-form-item label="类型">
           <el-select v-model="formData.type" placeholder="请选择类型" style="width: 100%">
             <el-option label="个人" value="personal" />
             <el-option label="企业" value="business" />
           </el-select>
         </el-form-item>
-        
+
         <el-form-item label="描述">
-          <el-input 
-            v-model="formData.description" 
-            type="textarea" 
-            :rows="4" 
-            placeholder="请输入描述" 
+          <el-input
+            v-model="formData.description"
+            type="textarea"
+            :rows="4"
+            placeholder="请输入描述"
           />
         </el-form-item>
-        
+
         <el-form-item>
           <el-button type="primary" @click="handleSave">保存 (更新快照)</el-button>
           <el-button @click="handleReset">重置</el-button>
         </el-form-item>
       </el-form>
-      
+
       <div class="status-bar" v-if="initialFormData">
         <el-alert
-          :title="isModified() ? '当前状态：已修改 (尝试切换页面会触发拦截)' : '当前状态：未修改 (可自由切换页面)'"
+          :title="
+            isModified()
+              ? '当前状态：已修改 (尝试切换页面会触发拦截)'
+              : '当前状态：未修改 (可自由切换页面)'
+          "
           :type="isModified() ? 'warning' : 'success'"
           :closable="false"
           show-icon
@@ -169,18 +164,18 @@ const handleReset = () => {
 <style scoped lang="scss">
 .jump-confirmation-container {
   padding: 20px;
-  
+
   .box-card {
     max-width: 800px;
     margin: 0 auto;
   }
-  
+
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .status-bar {
     margin-top: 20px;
   }

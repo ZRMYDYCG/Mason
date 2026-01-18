@@ -29,7 +29,7 @@ import { ElMessage, type FormInstance } from 'element-plus'
 import { registerApi } from '@/api/modules/login'
 import { Login } from '@/api/interface'
 
-const emit = defineEmits(['register-success'])
+const emit = defineEmits(['registerSuccess'])
 
 const account = reactive({
   username: '',
@@ -43,7 +43,7 @@ const validatePass = (rule: any, value: any, callback: any) => {
   } else {
     if (account.confirmPassword !== '') {
       if (!registerFormRef.value) return
-      registerFormRef.value.validateField('confirmPassword', () => {})
+      registerFormRef.value.validateField('confirmPassword')
     }
     callback()
   }
@@ -87,7 +87,7 @@ const registerAction = () => {
       const res = await registerApi(params)
       if (res.code === 200) {
         ElMessage.success('注册成功，请登录')
-        emit('register-success')
+        emit('registerSuccess')
       } else {
         ElMessage.error(res.msg)
       }

@@ -78,7 +78,7 @@ watch(
             </template>
           </el-button>
         </template>
-        <MasonColumnSetting v-model:tableColumns="tableColumnConfig"></MasonColumnSetting>
+        <MasonColumnSetting v-model:table-columns="tableColumnConfig"></MasonColumnSetting>
       </el-popover>
     </div>
     <MasonTable ref="MasonTableRef" v-bind="tableAttrs">

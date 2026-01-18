@@ -23,7 +23,9 @@ export const useTheme = () => {
 
   const applyThemeMode = () => {
     const resolvedType =
-      systemThemeMode.value === SystemThemeEnum.AUTO ? resolveAutoThemeType() : systemThemeMode.value
+      systemThemeMode.value === SystemThemeEnum.AUTO
+        ? resolveAutoThemeType()
+        : systemThemeMode.value
 
     if (settingStore.systemThemeType !== resolvedType) settingStore.setThemeType(resolvedType)
     applyRootClass('dark', resolvedType === SystemThemeEnum.DARK)

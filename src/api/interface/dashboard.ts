@@ -54,4 +54,3 @@ export interface SystemHealth {
   version: string
   buildTime: string
 }
-

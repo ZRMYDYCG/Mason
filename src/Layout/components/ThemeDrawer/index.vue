@@ -191,7 +191,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
       <DrawerShell @close="drawerVisible = false">
         <ThemeModeSelector :list="SettingThemeList" :active="systemThemeMode" @select="setTheme" />
 
-        <MenuLayoutSelector :menuType="menuType" @select="setMenuType" />
+        <MenuLayoutSelector :menu-type="menuType" @select="setMenuType" />
 
         <MenuThemeSelector
           :list="menuThemeList"
@@ -200,9 +200,13 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
           @select="setMenuTheme"
         />
 
-        <MainColorSelector :list="mainColor" :active="systemThemeColor" @select="setSystemThemeColor" />
+        <MainColorSelector
+          :list="mainColor"
+          :active="systemThemeColor"
+          @select="setSystemThemeColor"
+        />
 
-        <BoxStyleSelector :boxBorderMode="boxBorderMode" />
+        <BoxStyleSelector :box-border-mode="boxBorderMode" />
 
         <ContainerWidthSelector
           :list="containerWidthList"
@@ -212,9 +216,9 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
         <BasicConfigPanel
           :models="basicModels"
-          :pageTransitionOps="pageTransitionOps"
-          :customRadiusOps="customRadiusOps"
-          :copyConfig="copyConfig"
+          :page-transition-ops="pageTransitionOps"
+          :custom-radius-ops="customRadiusOps"
+          :copy-config="copyConfig"
         />
       </DrawerShell>
     </el-drawer>

@@ -27,4 +27,3 @@ export const getDashboardActivities = () => {
 export const getDashboardSystemHealth = () => {
   return http.get<SystemHealth>('/dashboard/systemHealth')
 }
-

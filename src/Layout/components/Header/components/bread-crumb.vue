@@ -10,8 +10,15 @@
           <template #dropdown>
             <el-dropdown-menu>
               <template v-for="subItem in item.children" :key="subItem.path">
-                <el-dropdown-item v-if="subItem.meta?.isEnable" @click="onBreadcrumbClick(subItem.path)">
-                  <AppIcon v-if="subItem.meta?.icon" :name="subItem.meta.icon" style="margin-right: 6px" />
+                <el-dropdown-item
+                  v-if="subItem.meta?.isEnable"
+                  @click="onBreadcrumbClick(subItem.path)"
+                >
+                  <AppIcon
+                    v-if="subItem.meta?.icon"
+                    :name="subItem.meta.icon"
+                    style="margin-right: 6px"
+                  />
                   <span>{{ getTitle(subItem.meta) }}</span>
                 </el-dropdown-item>
               </template>

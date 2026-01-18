@@ -4,27 +4,23 @@
     <div class="content">
       <div class="slider-box" ref="sliderBox">
         <div class="bg-img" :style="{ backgroundImage: `url('${bgUrl}')` }"></div>
-        <div 
-          class="puzzle-img" 
-          :style="{ 
-            backgroundImage: `url('${puzzleUrl}')`, 
-            top: `${puzzleY}px`, 
-            left: `${sliderValue}px` 
+        <div
+          class="puzzle-img"
+          :style="{
+            backgroundImage: `url('${puzzleUrl}')`,
+            top: `${puzzleY}px`,
+            left: `${sliderValue}px`
           }"
         ></div>
         <div class="slider-track">
-            <div class="slider-bar" :style="{ width: `${sliderValue}px` }"></div>
-            <div 
-                class="slider-handle" 
-                :style="{ left: `${sliderValue}px` }"
-                @mousedown="startDrag"
-            >
-                <el-icon><ArrowRight /></el-icon>
-            </div>
-            <div class="slider-text" v-if="!isDragging && sliderValue === 0">向右滑动填充拼图</div>
+          <div class="slider-bar" :style="{ width: `${sliderValue}px` }"></div>
+          <div class="slider-handle" :style="{ left: `${sliderValue}px` }" @mousedown="startDrag">
+            <el-icon><ArrowRight /></el-icon>
+          </div>
+          <div class="slider-text" v-if="!isDragging && sliderValue === 0">向右滑动填充拼图</div>
         </div>
       </div>
-      <el-button @click="refresh" size="small" style="margin-top: 10px;">刷新</el-button>
+      <el-button @click="refresh" size="small" style="margin-top: 10px">刷新</el-button>
     </div>
   </div>
 </template>
@@ -105,8 +101,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-    document.removeEventListener('mousemove', onDrag)
-    document.removeEventListener('mouseup', stopDrag)
+  document.removeEventListener('mousemove', onDrag)
+  document.removeEventListener('mouseup', stopDrag)
 })
 </script>
 
@@ -117,14 +113,14 @@ onUnmounted(() => {
   border-radius: 4px;
   width: 340px;
   background-color: var(--el-bg-color);
-  
+
   .header {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 15px;
     color: var(--el-text-color-primary);
   }
-  
+
   .content {
     display: flex;
     flex-direction: column;
@@ -135,7 +131,7 @@ onUnmounted(() => {
 .slider-box {
   position: relative;
   width: 300px;
-  
+
   .bg-img {
     width: 300px;
     height: 150px;
@@ -143,7 +139,7 @@ onUnmounted(() => {
     background-size: cover;
     border-radius: 4px 4px 0 0;
   }
-  
+
   .puzzle-img {
     position: absolute;
     width: 50px; /* puzzleSize + tab + padding, roughly */
@@ -152,7 +148,7 @@ onUnmounted(() => {
     background-repeat: no-repeat;
     z-index: 2;
   }
-  
+
   .slider-track {
     width: 300px;
     height: 40px;
@@ -160,34 +156,34 @@ onUnmounted(() => {
     border: 1px solid var(--el-border-color);
     border-radius: 0 0 4px 4px;
     position: relative;
-    
+
     .slider-bar {
-        height: 100%;
-        background: var(--el-color-primary-light-9);
-        border-radius: 0 0 0 4px;
-        position: absolute;
-        top: 0;
-        left: 0;
+      height: 100%;
+      background: var(--el-color-primary-light-9);
+      border-radius: 0 0 0 4px;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     .slider-text {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--el-text-color-secondary);
-        font-size: 14px;
-        user-select: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--el-text-color-secondary);
+      font-size: 14px;
+      user-select: none;
     }
-    
+
     .slider-handle {
       width: 40px;
       height: 40px;
       background: var(--el-bg-color);
       border: 1px solid var(--el-border-color);
-      box-shadow: 0 0 3px rgba(0,0,0,0.1);
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
       position: absolute;
       top: -1px;
       left: 0;
@@ -197,7 +193,7 @@ onUnmounted(() => {
       justify-content: center;
       color: var(--el-text-color-secondary);
       z-index: 3;
-      
+
       &:active {
         cursor: grabbing;
         background: #409eff;

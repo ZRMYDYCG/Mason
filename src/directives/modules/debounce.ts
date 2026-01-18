@@ -8,7 +8,7 @@ const debounce: Directive = {
   mounted(el: ElType, binding: DirectiveBinding) {
     let timer: any = null
     const delay = binding.arg ? parseInt(binding.arg) : 500
-    
+
     el.__handleClick__ = function (this: any, e: Event) {
       if (timer) clearTimeout(timer)
       timer = setTimeout(() => {

@@ -1,8 +1,5 @@
 <template>
-  <AppIcon
-    @click="changeCollapse"
-    :name="isCollapse ? 'panel-left-open' : 'panel-left-close'"
-  />
+  <AppIcon @click="changeCollapse" :name="isCollapse ? 'panel-left-open' : 'panel-left-close'" />
 </template>
 
 <script setup lang="ts">

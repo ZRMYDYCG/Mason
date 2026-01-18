@@ -4,15 +4,15 @@
     <div class="content">
       <div class="click-box" ref="clickBox">
         <div class="img-wrapper" @click="addPoint">
-             <img :src="imgUrl" class="bg-img" draggable="false" />
-             <div 
-                v-for="(point, index) in points" 
-                :key="index" 
-                class="point-marker"
-                :style="{ top: `${point.y}px`, left: `${point.x}px` }"
-             >
-                {{ index + 1 }}
-             </div>
+          <img :src="imgUrl" class="bg-img" draggable="false" />
+          <div
+            v-for="(point, index) in points"
+            :key="index"
+            class="point-marker"
+            :style="{ top: `${point.y}px`, left: `${point.x}px` }"
+          >
+            {{ index + 1 }}
+          </div>
         </div>
         <div class="prompt">{{ prompt }}</div>
       </div>
@@ -33,7 +33,7 @@ import { ElMessage } from 'element-plus'
 const imgUrl = ref('')
 const captchaId = ref('')
 const prompt = ref('')
-const points = ref<{x: number, y: number}[]>([])
+const points = ref<{ x: number; y: number }[]>([])
 
 const refresh = async () => {
   try {
@@ -50,27 +50,22 @@ const refresh = async () => {
 }
 
 const addPoint = (e: MouseEvent) => {
-    // Relative coordinates
-    // @ts-ignore
-    const rect = e.target.getBoundingClientRect();
-    // Use offset of the click relative to the image
-    const x = e.offsetX
-    const y = e.offsetY
-    
-    // We limit to 4 points max
-    if (points.value.length >= 4) return;
-    
-    points.value.push({ x, y })
+  const x = (e as MouseEvent & { offsetX: number }).offsetX
+  const y = (e as MouseEvent & { offsetY: number }).offsetY
+
+  if (points.value.length >= 4) return
+
+  points.value.push({ x, y })
 }
 
 const resetPoints = () => {
-    points.value = []
+  points.value = []
 }
 
 const verify = async () => {
   if (points.value.length !== 4) return ElMessage.warning('请点击所有目标')
-  
-  const answer = points.value;
+
+  const answer = points.value
 
   try {
     const res = await verifyCaptcha({ id: captchaId.value, answer })
@@ -92,65 +87,65 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .captcha-item {
-  border: 1px solid var(--el-border-color-light);
-  padding: 20px;
-  border-radius: 4px;
   width: 340px;
+  padding: 20px;
   background-color: var(--el-bg-color);
-  
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 4px;
+
   .header {
+    margin-bottom: 15px;
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 15px;
     color: var(--el-text-color-primary);
   }
 }
 
 .click-box {
+  width: 300px;
+
+  .img-wrapper {
+    position: relative;
     width: 300px;
-    
-    .img-wrapper {
-        position: relative;
-        width: 300px;
-        height: 200px;
-        cursor: crosshair;
-        overflow: hidden;
-        
-        .bg-img {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-        
-        .point-marker {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #409eff;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            border: 2px solid #fff;
-            box-shadow: 0 0 4px rgba(0,0,0,0.5);
-        }
+    height: 200px;
+    overflow: hidden;
+    cursor: crosshair;
+
+    .bg-img {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
-    
-    .prompt {
-        margin-top: 10px;
-        text-align: center;
-        color: var(--el-text-color-secondary);
-        font-weight: bold;
+
+    .point-marker {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      color: #ffffff;
+      pointer-events: none;
+      background: #409eff;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 4px rgb(0 0 0 / 50%);
+      transform: translate(-50%, -50%);
     }
+  }
+
+  .prompt {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--el-text-color-secondary);
+    text-align: center;
+  }
 }
 
 .actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }
 </style>
