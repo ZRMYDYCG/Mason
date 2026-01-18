@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted } from 'vue'
 import { countDeviceNum } from '@/api/modules/visualization.ts'
-import CountUp from './count-up'
+import CountUp from './count-up.vue'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 
@@ -66,7 +66,7 @@ onMounted(() => {
   </ul>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .left-top {
   width: 100%;
   height: 100%;

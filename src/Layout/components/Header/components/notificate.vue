@@ -10,4 +10,4 @@ import NotificationList from './notification/notification-list.vue'
   </NotificationContainer>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped></style>

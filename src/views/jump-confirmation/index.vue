@@ -161,7 +161,7 @@ const handleReset = () => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .jump-confirmation-container {
   padding: 20px;
 

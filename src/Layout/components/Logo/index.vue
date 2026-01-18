@@ -23,7 +23,7 @@ const menuType = computed(() => settingStore.menuType)
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .logo {
   display: flex;
   gap: 10px;

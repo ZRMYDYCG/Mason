@@ -53,19 +53,17 @@
   transition: all 0.2s;
 }
 
-
 .fade-transform-enter-from {
   opacity: 0;
   transition: all 0.2s;
   transform: translateX(-30px);
 }
 
-
 .fade-transform-leave-to {
+  pointer-events: none;
   opacity: 0;
   transition: all 0.2s;
   transform: translateX(30px);
-  pointer-events: none; // 禁用交互，而不是隐藏DOM
 }
 
 .fade-enter-active,
@@ -90,7 +88,7 @@
   opacity: 0;
 }
 
-// slide-right 动画
+/* slide-right 动画 */
 .slide-right-enter-active,
 .slide-right-leave-active {
   transition:
@@ -114,7 +112,7 @@
   transform: translate3d(30px, 0, 0);
 }
 
-// slide-top 动画
+/* slide-top 动画 */
 .slide-top-enter-active,
 .slide-top-leave-active {
   transition:
@@ -124,21 +122,21 @@
 }
 
 .slide-top-enter-from {
-  transform: translateY(20px);
   opacity: 0;
+  transform: translateY(20px);
 }
 
 .slide-top-enter-to {
-  transform: translateY(0);
   opacity: 1;
+  transform: translateY(0);
 }
 
 .slide-top-leave-to {
-  transform: translateY(-20px);
   opacity: 0;
+  transform: translateY(-20px);
 }
 
-// slide-bottom 动画
+/* slide-bottom 动画 */
 .slide-bottom-enter-active,
 .slide-bottom-leave-active {
   transition:
@@ -148,20 +146,19 @@
 }
 
 .slide-bottom-enter-from {
-  transform: translateY(-20px);
   opacity: 0;
+  transform: translateY(-20px);
 }
 
 .slide-bottom-enter-to {
-  transform: translateY(0);
   opacity: 1;
+  transform: translateY(0);
 }
 
 .slide-bottom-leave-to {
-  transform: translateY(20px);
   opacity: 0;
+  transform: translateY(20px);
 }
-
 
 /* 滚动条 */
 ::-webkit-scrollbar {
@@ -191,35 +188,34 @@
 }
 
 /* 外边距、内边距全局样式 */
-@for $i from 0 through 100 {
-  .mt#{$i} {
-    margin-top: #{$i}px !important;
+@for $i from 0 to 100 {
+  .mt$(i) {
+    margin-top: $(i) px !important;
   }
-  .mr#{$i} {
-    margin-right: #{$i}px !important;
+  .mr$(i) {
+    margin-right: $(i) px !important;
   }
-  .mb#{$i} {
-    margin-bottom: #{$i}px !important;
+  .mb$(i) {
+    margin-bottom: $(i) px !important;
   }
-  .ml#{$i} {
-    margin-left: #{$i}px !important;
+  .ml$(i) {
+    margin-left: $(i) px !important;
   }
-  .pt#{$i} {
-    padding-top: #{$i}px !important;
+  .pt$(i) {
+    padding-top: $(i) px !important;
   }
-  .pr#{$i} {
-    padding-right: #{$i}px !important;
+  .pr$(i) {
+    padding-right: $(i) px !important;
   }
-  .pb#{$i} {
-    padding-bottom: #{$i}px !important;
+  .pb$(i) {
+    padding-bottom: $(i) px !important;
   }
-  .pl#{$i} {
-    padding-left: #{$i}px !important;
+  .pl$(i) {
+    padding-left: $(i) px !important;
   }
 }
 
 /* 色弱模式 */
 .color-weak {
   filter: invert(80%);
-  -webkit-filter: invert(80%);
 }

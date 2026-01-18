@@ -38,7 +38,7 @@ const iconName = computed(() => {
   </el-popover>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 :global(.notification-popper) {
   padding: 0 !important;
   overflow: hidden;

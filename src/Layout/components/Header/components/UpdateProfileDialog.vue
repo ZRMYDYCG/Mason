@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch } from 'vue'
+import { ref, reactive } from 'vue'
 import { ElMessage, type FormInstance, type UploadFile } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { updateUserProfile } from '@/api/modules/system'

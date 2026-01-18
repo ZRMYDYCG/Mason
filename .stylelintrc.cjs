@@ -15,6 +15,17 @@ module.exports = {
     {
       files: ["**/*.{vue,html}"],
       customSyntax: "postcss-html"
+    },
+    {
+      files: ["**/*.css"],
+      rules: {
+        "at-rule-no-unknown": [
+          true,
+          {
+            ignoreAtRules: ["for"]
+          }
+        ]
+      }
     }
   ],
   rules: {

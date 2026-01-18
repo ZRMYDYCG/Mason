@@ -11,4 +11,4 @@ const isDark = computed(() => settingStore.isDark)
   <AppIcon @click="themeAnimation" :name="isDark ? 'sun' : 'moon'" />
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped></style>

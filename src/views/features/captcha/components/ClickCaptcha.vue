@@ -85,7 +85,7 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .captcha-item {
   width: 340px;
   padding: 20px;

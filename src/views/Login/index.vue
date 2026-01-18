@@ -159,7 +159,7 @@ const handleRegisterSuccess = () => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .landing-page {
   min-height: 100vh;
   background-color: var(--el-bg-color);

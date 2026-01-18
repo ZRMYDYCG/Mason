@@ -83,7 +83,7 @@ const handleEdit = (row: Department) => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .department-manage {
   height: 100%;
 }

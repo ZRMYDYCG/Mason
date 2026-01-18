@@ -120,7 +120,7 @@ function progressColor(val: number) {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .card-head {
   display: flex;
   align-items: baseline;

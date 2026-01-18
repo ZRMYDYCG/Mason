@@ -93,7 +93,7 @@ watch(
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .mason-custom-table {
   .mason-custom-table__setting {
     display: flex;

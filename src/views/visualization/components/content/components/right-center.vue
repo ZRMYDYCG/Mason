@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, reactive, watch } from 'vue'
-import CapsuleChart from './capsule-chart'
+import { ref, watch } from 'vue'
+import CapsuleChart from './capsule-chart.vue'
 import { ranking } from '@/api/modules/visualization.ts'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
@@ -48,7 +48,7 @@ watch(locale, () => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .right_bottom {
   box-sizing: border-box;
   padding: 0 16px;

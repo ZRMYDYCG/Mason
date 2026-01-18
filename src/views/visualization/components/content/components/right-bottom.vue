@@ -126,7 +126,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .right_bottom {
   width: 100%;
   height: 100%;
@@ -174,7 +174,7 @@ onMounted(() => {
       }
 
       .zhuyao {
-        color: $primary-color;
+        color: var(--primary-color);
         font-size: 15px;
       }
 

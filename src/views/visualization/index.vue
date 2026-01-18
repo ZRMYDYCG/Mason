@@ -32,7 +32,7 @@ const wrapperStyle = {}
   <Setting />
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .content_wrap {
   width: 100%;
   height: 100%;

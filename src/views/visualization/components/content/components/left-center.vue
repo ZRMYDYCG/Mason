@@ -162,4 +162,4 @@ watch(locale, () => {
   <v-chart class="chart" :option="option" />
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped></style>

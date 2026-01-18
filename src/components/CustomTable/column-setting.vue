@@ -208,7 +208,7 @@ const columnSettingTableData = computed(() => {
   ></MasonTable>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .nt-table {
   padding-bottom: 0;
   margin-bottom: 0;

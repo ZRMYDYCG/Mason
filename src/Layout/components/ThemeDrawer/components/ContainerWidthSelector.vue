@@ -33,7 +33,7 @@ const emit = defineEmits<{
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .title {
   position: relative;
   font-size: 14px;
@@ -80,7 +80,7 @@ const emit = defineEmits<{
     }
 
     &.is-active {
-      border-color: $primary-color;
+      border-color: var(--primary-color);
 
       i {
         color: var(--app-text-tertiary) !important;

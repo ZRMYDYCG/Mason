@@ -52,7 +52,7 @@ const tabsActiveText = computed(() => {
   <slot name="overlay" />
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .layout {
   width: 100%;
   height: 100%;

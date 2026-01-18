@@ -366,6 +366,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang="scss">
-/* Only page-level styles if any */
-</style>
+<style scoped></style>

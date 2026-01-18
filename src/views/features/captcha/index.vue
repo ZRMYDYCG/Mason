@@ -18,7 +18,7 @@ import RotateCaptcha from './components/RotateCaptcha.vue'
 import ClickCaptcha from './components/ClickCaptcha.vue'
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .captcha-container {
   padding: 20px;
   background-color: var(--el-bg-color);

@@ -110,7 +110,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .dv-capsule-chart {
   position: relative;
   display: flex;

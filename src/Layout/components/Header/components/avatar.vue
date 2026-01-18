@@ -57,7 +57,7 @@ const logout = () => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .user-trigger {
   display: flex;
   gap: 8px;

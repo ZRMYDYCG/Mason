@@ -265,7 +265,7 @@ defineExpose({
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .mason-table {
   .mason-table-pagination {
     margin-bottom: 16px;

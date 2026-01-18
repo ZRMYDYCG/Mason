@@ -69,4 +69,4 @@ const onBreadcrumbClick = (path: string) => {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped></style>

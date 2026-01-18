@@ -12,12 +12,21 @@ import inspect from 'vite-plugin-inspect'
 import tailwindcss from '@tailwindcss/vite'
 import viteImagemin from 'vite-plugin-imagemin'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
+import autoprefixer from 'autoprefixer'
+import postcssFor from 'postcss-for'
+import postcssNested from 'postcss-nested'
+import postcssImport from 'postcss-import'
+import postcssScss from 'postcss-scss'
+import postcssSimpleVars from 'postcss-simple-vars'
+import postcssSassyMixins from 'postcss-sassy-mixins'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
   const viteEnv = loadEnv(mode, process.cwd())
   const isProduction = mode === 'production'
   const isBuild = command === 'build'
+
+  console.log(isBuild)
 
   return {
     base: viteEnv.VITE_BASE_URL || '/',
@@ -68,12 +77,22 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
     css: {
       devSourcemap: !isProduction, // 开发环境下启用 sourcemap
       postcss: {
-        plugins: []
-      },
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@use "@/styles/var.scss" as *;` // 全局scss变量
-        }
+        parser: postcssScss,
+        plugins: [
+          postcssImport({
+            resolve: (id) => {
+              if (id.startsWith('@/')) {
+                return resolve(__dirname, 'src', id.slice(2))
+              }
+              return id
+            }
+          }),
+          postcssSassyMixins(),
+          postcssSimpleVars(),
+          postcssFor(),
+          postcssNested(),
+          autoprefixer()
+        ]
       }
     },
     plugins: [
@@ -84,7 +103,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
       }),
       codeInspectorPlugin({
         bundler: 'vite',
-        editor: 'trae',
+        editor: 'trae'
       }),
       AutoImport({
         imports: [

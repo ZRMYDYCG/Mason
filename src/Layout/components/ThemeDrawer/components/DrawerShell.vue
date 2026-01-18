@@ -13,7 +13,7 @@ const emit = defineEmits<{
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .drawer-con {
   padding: 0 5px 30px;
 
@@ -26,12 +26,12 @@ const emit = defineEmits<{
       padding: 8px;
       font-size: 15px;
       font-weight: bold;
-      color: $mason-grey-600;
+      color: var(--mason-grey-600);
       cursor: pointer;
       border-radius: 5px;
 
       &:hover {
-        color: $mason-grey-700;
+        color: var(--mason-grey-700);
         background-color: var(--app-fill);
       }
     }

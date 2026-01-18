@@ -126,7 +126,7 @@ const handleSelect = (name: string) => {
   </el-dialog>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .toolbar {
   display: flex;
   gap: 12px;

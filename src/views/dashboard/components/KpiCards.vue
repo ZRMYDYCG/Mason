@@ -360,7 +360,7 @@ watch(
 )
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .kpi-row {
   @media screen and (max-width: 768px) {
     row-gap: 12px;

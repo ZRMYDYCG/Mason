@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ItemWrap from './components/item-wrap'
+import ItemWrap from './components/item-wrap.vue'
 import LeftTop from './components/left-top.vue'
 import LeftCenter from './components/left-center.vue'
 import LeftBottom from './components/left-bottom.vue'
@@ -70,14 +70,13 @@ const { t } = useI18n({ useScope: 'global' })
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .index-box {
   width: 100%;
   display: flex;
   min-height: calc(100% - 64px);
   justify-content: space-between;
 }
-//左边 右边 结构一样
 .contetn_left,
 .contetn_right {
   display: flex;

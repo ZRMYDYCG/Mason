@@ -98,7 +98,7 @@ const iconComponent = computed(() => iconMap[props.name] ?? CircleHelp)
   </span>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .app-icon {
   display: inline-flex;
   align-items: center;
@@ -106,19 +106,4 @@ const iconComponent = computed(() => iconMap[props.name] ?? CircleHelp)
   cursor: pointer;
   position: relative;
 }
-
-// .app-icon::before {
-//   content: '';
-//   position: absolute;
-//   inset: -6px;
-//   border-radius: 10px;
-//   background-color: var(--app-fill-light);
-//   opacity: 0;
-//   transition: opacity 0.15s ease;
-//   pointer-events: none;
-// }
-
-// .app-icon:hover::before {
-//   opacity: 1;
-// }
 </style>

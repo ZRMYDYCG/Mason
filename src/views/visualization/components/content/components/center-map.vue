@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, nextTick } from 'vue'
+import { ref, nextTick } from 'vue'
 import { centerMap } from '@/api/modules/visualization.ts'
 import { GETNOBASE } from '@/api'
 import { registerMap, getMap } from 'echarts/core'
@@ -114,7 +114,7 @@ const mapClick = (params: any) => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .centermap {
   margin-bottom: 30px;
 
@@ -155,7 +155,6 @@ const mapClick = (params: any) => {
   .mapwrap {
     height: 580px;
     width: 100%;
-    // padding: 0 0 10px 0;
     box-sizing: border-box;
     position: relative;
 

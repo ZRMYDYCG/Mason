@@ -100,14 +100,13 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .mixed-top-menu {
   position: relative;
   box-sizing: border-box;
   display: flex;
   width: 100%;
   overflow: hidden;
-  $primary-color: var(--el-color-primary);
 
   :deep(.el-scrollbar__bar.is-horizontal) {
     bottom: 5px;
@@ -171,7 +170,7 @@ onMounted(() => {
     transform: translateY(-50%);
 
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
 
     &.left {

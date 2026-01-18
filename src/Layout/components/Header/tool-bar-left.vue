@@ -31,7 +31,7 @@ const showCrumbs = computed(() => settingStore.showCrumbs)
 const showMenuButton = computed(() => settingStore.showMenuButton)
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .tool-bar-lf {
   display: flex;
   align-items: center;

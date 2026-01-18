@@ -53,7 +53,7 @@ const handleThrottle = () => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .content-box {
   padding: 20px;
 }

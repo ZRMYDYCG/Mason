@@ -109,7 +109,7 @@ const handleLoadMore = () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .card-container {
   .lazy__img[lazy='loading'] {
     opacity: 0;

@@ -283,7 +283,7 @@ const handleConfirm = () => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .menu-tree {
   .el-tree-node__content:hover {
     background-color: var(--el-tree-node-hover-bg-color);

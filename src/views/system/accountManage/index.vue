@@ -194,7 +194,7 @@ const handleEdit = (row: User) => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .search-container {
   padding-bottom: 0;
 }

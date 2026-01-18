@@ -41,7 +41,7 @@ const handleFileUpload = async (event: Event) => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .card {
   padding: 20px;
 }

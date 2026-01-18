@@ -141,9 +141,7 @@ defineProps({
   </LayoutShell>
 </template>
 
-<style scoped lang="scss">
-$primary-color: var(--el-color-primary);
-
+<style scoped>
 .dual-menu-left {
   width: 100px;
   height: 100%;
@@ -185,7 +183,7 @@ $primary-color: var(--el-color-primary);
         padding: 5px;
 
         &.is-active {
-          background-color: $primary-color;
+          background-color: var(--primary-color);
         }
       }
     }

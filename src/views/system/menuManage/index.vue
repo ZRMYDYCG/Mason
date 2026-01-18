@@ -148,7 +148,7 @@ const handleEdit = (row: Menu) => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .el-select {
   width: 100px;
 }

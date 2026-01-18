@@ -272,7 +272,7 @@ function handleRefresh() {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .dashboard-header-card {
   --gap-xs: 8px;
   --gap-sm: 16px;

@@ -47,15 +47,12 @@ const emit = defineEmits<{
   </div>
 </template>
 
-<style scoped lang="scss">
-$box-shadow: var(--app-shadow);
-$box-radius: 8px;
-
+<style scoped>
 @mixin preview-shell($border-color) {
   box-sizing: border-box;
   border: 2px solid $border-color;
-  border-radius: $box-radius;
-  box-shadow: $box-shadow;
+  border-radius: 8px;
+  box-shadow: var(--app-shadow);
 }
 
 .title {
@@ -101,11 +98,11 @@ $box-radius: 8px;
       height: 50px;
       overflow: hidden;
       cursor: pointer;
-      @include preview-shell($mason-grey-100);
+      @include preview-shell(var(--mason-grey-100));
       transition: box-shadow 0.1s;
 
       &.is-active {
-        border: 2px solid $primary-color;
+        border: 2px solid var(--primary-color);
       }
 
       > div {

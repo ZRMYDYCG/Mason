@@ -34,7 +34,7 @@ const vViewer = viewer({
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

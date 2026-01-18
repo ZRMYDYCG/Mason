@@ -1,7 +1,5 @@
-$bg-animation-duration: 0.5s;
-
 html {
-  // View transition styles
+  /* View transition styles */
   &::view-transition-old(*),
   &::view-transition-new(*) {
     animation: none;
@@ -20,7 +18,7 @@ html {
 
   &::view-transition-new(root) {
     background-color: var(--vt-bg-new, transparent);
-    animation: clip $bg-animation-duration ease-in;
+    animation: clip 0.5s ease-in;
     z-index: 9999;
   }
 }
@@ -34,3 +32,4 @@ html {
     clip-path: circle(var(--r) at var(--x) var(--y));
   }
 }
+

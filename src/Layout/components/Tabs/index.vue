@@ -81,7 +81,7 @@ const removeTab = (fullPath: TabPaneName) => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .tabs-box {
   background-color: var(--layout-topbar-bg);
 

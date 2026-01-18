@@ -421,7 +421,7 @@ const handleConfirm = () => {
   />
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .dialog-footer {
   :deep(.el-form-item__content) {
     justify-content: center;

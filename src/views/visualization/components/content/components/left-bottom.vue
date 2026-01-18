@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { leftBottom } from '@/api/modules/visualization.ts'
-import SeamlessScroll from './seamless-scroll'
+import SeamlessScroll from './seamless-scroll.vue'
 import { computed, onMounted, reactive } from 'vue'
 import { useViewStore } from '@/store/modules/view.ts'
 import { storeToRefs } from 'pinia'
-import EmptyCom from './empty-com'
+import EmptyCom from './empty-com.vue'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 
@@ -118,7 +118,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .left_boottom_wrap {
   overflow: hidden;
   width: 100%;
@@ -162,7 +162,7 @@ onMounted(() => {
       }
 
       .zhuyao {
-        color: $primary-color;
+        color: var(--primary-color);
         font-size: 15px;
       }
 
@@ -212,14 +212,12 @@ onMounted(() => {
 
     .time {
       font-size: 12px;
-      // color: rgba(211, 210, 210,.8);
       color: #fff;
     }
 
     .address {
       font-size: 12px;
       cursor: pointer;
-      // @include text-overflow(1);
     }
 
     .types {

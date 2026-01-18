@@ -53,7 +53,7 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .captcha-item {
   border: 1px solid var(--el-border-color-light);
   padding: 20px;

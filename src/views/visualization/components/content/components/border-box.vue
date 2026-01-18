@@ -64,7 +64,7 @@ const mergedColor = computed<[string, string]>(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .dv-border-box {
   position: relative;
   box-sizing: border-box;

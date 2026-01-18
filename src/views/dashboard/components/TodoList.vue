@@ -88,7 +88,7 @@ function statusTagType(s: TodoStatus) {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .card-head {
   display: flex;
   align-items: baseline;

@@ -45,7 +45,7 @@ const activeMenu = computed(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .menu-top {
   display: flex;
   align-items: center;

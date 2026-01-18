@@ -107,7 +107,7 @@ const emit = defineEmits<{
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 @mixin preview-shell($border-color) {
   box-sizing: border-box;
   border: 2px solid $border-color;
@@ -179,7 +179,7 @@ const emit = defineEmits<{
         background-color: var(--app-fill-light);
 
         &.is-active {
-          border: 2px solid $primary-color;
+          border: 2px solid var(--primary-color);
         }
 
         &.bl {
@@ -463,7 +463,7 @@ const emit = defineEmits<{
         margin-top: 8px;
         font-size: 13px;
         line-height: 1;
-        color: $mason-grey-700;
+        color: var(--mason-grey-700);
       }
     }
   }

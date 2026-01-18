@@ -18,4 +18,4 @@ const handleRefresh = () => {
   <AppIcon name="refresh-cw" @click="handleRefresh" />
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped></style>

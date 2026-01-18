@@ -12,7 +12,7 @@
   </footer>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .footer {
   display: flex;
   justify-content: center;

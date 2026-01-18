@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BorderBox13 from './border-box'
+import BorderBox13 from './border-box.vue'
 
 interface IItemWrapProps {
   title?: number | string
@@ -22,17 +22,13 @@ const props = withDefaults(defineProps<IItemWrapProps>(), {
   ></BorderBox13>
 </template>
 
-<style scoped lang="scss">
-$item-title-height: 38px;
-$item_title_content-height: calc(100% - 38px);
-
+<style scoped>
 .item_title {
-  height: $item-title-height;
-  line-height: $item-title-height;
+  height: 38px;
+  line-height: calc(100% - 38px);
   width: 100%;
   color: #31abe3;
   text-align: center;
-  // background: linear-gradient(to right, transparent, #0f0756, transparent);
   position: relative;
   display: flex;
   align-items: center;
@@ -63,7 +59,7 @@ $item_title_content-height: calc(100% - 38px);
 }
 
 .item_title_content {
-  height: $item_title_content-height;
+  height: calc(100% - 38px);
 }
 
 .item_title_content_def {

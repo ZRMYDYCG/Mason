@@ -13,7 +13,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .title {
   position: relative;
   font-size: 14px;

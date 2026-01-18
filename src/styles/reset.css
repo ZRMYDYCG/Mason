@@ -21,7 +21,7 @@ body {
 }
 
 :root {
-  // 系统主色
+  /* 系统主色 */
   --main-color: var(--el-color-primary);
   --custom-radius: 0.75rem;
   --app-color-primary: var(--el-color-primary);
@@ -46,10 +46,10 @@ body {
   --app-bg-active-light: var(--el-color-primary-light-9);
   --app-text-active: var(--el-color-primary);
 
-  // 按钮粗度
+  /* 按钮粗度 */
   --el-font-weight-primary: 400 !important;
-  
-  // 边框、按钮圆角...
+
+  /* 边框、按钮圆角... */
   --el-border-radius-base: calc(var(--custom-radius) / 2 + 2px) !important;
   --el-border-radius-small: 10px !important;
   --el-messagebox-border-radius: 10px !important;
@@ -58,7 +58,7 @@ body {
   }
 }
 
-// el-dialog 动画
+/* el-dialog 动画 */
 .dialog-fade-enter-active {
   .el-dialog {
     animation: dialog-open 0.3s cubic-bezier(0.32, 0.14, 0.15, 0.86);
@@ -93,7 +93,7 @@ body {
     transform: scale(0.2);
   }
 }
-// 遮罩层动画
+/* 遮罩层动画 */
 @keyframes fade-out {
   0% {
     opacity: 1;
@@ -103,3 +103,4 @@ body {
     opacity: 0;
   }
 }
+

@@ -42,7 +42,7 @@ const handleClickMenu = (subItem: Menu) => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .menu-icon {
   margin-right: 5px;
   font-size: 18px;

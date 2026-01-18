@@ -1,14 +1,7 @@
 <template>
-    <div class="<%= data.name %>"></div>
+  <div class="<%= data.name %>"></div>
 </template>
-  
-<script setup>
-import { ref, getCurrentInstance, inject } from 'vue'
 
-const { proxy: vue } = getCurrentInstance()
-const api = vue.$api
+<script setup></script>
 
-const getTableData = inject('getTableData')
-</script>
-  
-<style lang="scss" scoped></style>
+<style scoped></style>

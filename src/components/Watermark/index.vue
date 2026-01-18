@@ -41,7 +41,7 @@ withDefaults(defineProps<WatermarkProps>(), {
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .watermark-container {
   position: fixed; // 固定定位，使水印覆盖整个页面
   top: 0; // 距离顶部0像素

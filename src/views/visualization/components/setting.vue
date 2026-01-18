@@ -112,7 +112,7 @@ const indexRadioChange = (flag: boolean) => {
   </el-drawer>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .setting-title {
   font-size: 20px;
   color: #000;

@@ -61,7 +61,7 @@ timeFn()
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .title_wrap {
   height: 60px;
   background-image: url('../../../assets/img/top.png');

@@ -25,7 +25,7 @@ const settingStore = useSettingStore()
 const { showLanguage, showRefreshButton } = storeToRefs(settingStore)
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .tool-bar-rt {
   display: flex;
   align-items: center;

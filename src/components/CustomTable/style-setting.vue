@@ -48,4 +48,4 @@ const tableConfig = computed({
   </el-form>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped></style>

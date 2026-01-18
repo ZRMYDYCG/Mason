@@ -87,7 +87,7 @@ const handleCommand = (command: 'zh' | 'en') => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .language-item {
   display: flex;
   gap: 8px;

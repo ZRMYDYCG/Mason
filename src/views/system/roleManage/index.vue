@@ -155,7 +155,7 @@ const handleEdit = (row: Role) => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .el-select {
   width: 100px;
 }

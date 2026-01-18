@@ -14,7 +14,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 h2 {
   font-size: 60px;
   color: var(--el-text-color-primary);

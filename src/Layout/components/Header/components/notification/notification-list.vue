@@ -104,7 +104,7 @@ const clickAction = (item: ActionOptions, index: number) => {
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .notification-panel {
   width: 100%;
   background: var(--app-bg-surface);
