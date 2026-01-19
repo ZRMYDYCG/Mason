@@ -17,7 +17,7 @@ defineProps<{
 .title {
   position: relative;
   font-size: 14px;
-  color: var(--app-text-tertiary);
+  color: var(--sys-text-3);
   text-align: center;
 
   &::before,
@@ -27,7 +27,7 @@ defineProps<{
     width: 50px;
     margin: auto;
     content: '';
-    border-bottom: 1px solid var(--app-border);
+    border-bottom: 1px solid var(--sys-border);
   }
 
   &::before {
@@ -46,7 +46,7 @@ defineProps<{
   justify-content: space-between;
   padding: 4px;
   margin-top: 20px;
-  background-color: var(--app-fill-light);
+  background-color: var(--sys-fill-light);
   border-radius: 7px;
 
   .button {
@@ -61,13 +61,13 @@ defineProps<{
     transition: all 0.2s !important;
 
     &.is-active {
-      color: var(--app-text);
-      background-color: var(--app-bg-surface);
+      color: var(--sys-text);
+      background-color: var(--sys-bg-surface);
     }
 
     &:hover:not(.is-active) {
-      color: var(--app-text);
-      background-color: var(--app-fill);
+      color: var(--sys-text);
+      background-color: var(--sys-fill);
     }
   }
 }

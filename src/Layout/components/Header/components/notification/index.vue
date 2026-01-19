@@ -21,7 +21,7 @@ const iconName = computed(() => {
 </script>
 
 <template>
-  <el-popover placement="bottom" :width="360" trigger="click" popper-class="notification-popper">
+  <el-popover placement="bottom" :width="280" trigger="click" popper-class="notification-popper">
     <template #reference>
       <el-badge
         :is-dot="isDot"

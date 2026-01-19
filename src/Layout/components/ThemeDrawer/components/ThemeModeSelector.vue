@@ -52,14 +52,14 @@ const emit = defineEmits<{
   box-sizing: border-box;
   border: 2px solid $border-color;
   border-radius: 8px;
-  box-shadow: var(--app-shadow);
+  box-shadow: var(--sys-shadow);
 }
 
 .title {
   position: relative;
   margin-top: 20px;
   font-size: 14px;
-  color: var(--app-text-tertiary);
+  color: var(--sys-text-3);
   text-align: center;
 
   &::before,
@@ -69,7 +69,7 @@ const emit = defineEmits<{
     width: 50px;
     margin: auto;
     content: '';
-    border-bottom: 1px solid var(--app-border);
+    border-bottom: 1px solid var(--sys-border);
   }
 
   &::before {

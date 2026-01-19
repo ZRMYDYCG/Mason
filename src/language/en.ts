@@ -16,6 +16,44 @@ export default {
     closeOther: 'Close Others',
     closeAll: 'Close All'
   },
+  systemLog: {
+    label: {
+      user: 'User',
+      path: 'Path',
+      method: 'Method',
+      status: 'Status',
+      range: 'Range',
+      id: 'ID',
+      ip: 'IP',
+      duration: 'Duration(ms)',
+      time: 'Time',
+      params: 'Params',
+      actions: 'Actions'
+    },
+    placeholder: {
+      username: 'Username',
+      path: 'Request path',
+      all: 'All',
+      start: 'Start',
+      end: 'End'
+    },
+    action: {
+      search: 'Search',
+      reset: 'Reset',
+      delete: 'Delete',
+      confirm: 'Confirm',
+      cancel: 'Cancel'
+    },
+    message: {
+      deleteConfirm: 'Delete this log?'
+    }
+  },
+  search: {
+    title: 'Global Search',
+    open: 'Open global search',
+    placeholder: 'Search routes',
+    empty: 'No matching routes'
+  },
   visualization: {
     headerTitle: 'Mason Real-time Ops Dashboard',
     weekday: {

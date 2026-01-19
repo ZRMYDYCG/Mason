@@ -146,13 +146,13 @@ onMounted(() => {
       }
 
       &:hover {
-        color: var(--layout-topbar-text, var(--app-text));
-        background-color: var(--app-fill-light);
+        color: var(--layout-topbar-text, var(--sys-text));
+        background-color: var(--sys-fill-light);
       }
 
       &.active {
-        color: var(--layout-tabs-active-text, var(--app-text-active));
-        background-color: var(--layout-tabs-active-bg, rgba(var(--app-color-primary-rgb), 0.14));
+        color: var(--layout-tabs-active-text, var(--sys-brand));
+        background-color: var(--layout-tabs-active-bg, rgba(var(--sys-brand-rgb), 0.14));
       }
     }
   }

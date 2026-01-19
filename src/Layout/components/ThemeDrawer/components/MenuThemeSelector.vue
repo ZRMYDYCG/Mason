@@ -47,17 +47,10 @@ const emit = defineEmits<{
 </template>
 
 <style scoped>
-@mixin preview-shell($border-color) {
-  box-sizing: border-box;
-  border: 2px solid $border-color;
-  border-radius: 8px;
-  box-shadow: var(--app-shadow);
-}
-
 .title {
   position: relative;
   font-size: 14px;
-  color: var(--app-text-tertiary);
+  color: var(--sys-text-3);
   text-align: center;
 
   &::before,
@@ -67,7 +60,7 @@ const emit = defineEmits<{
     width: 50px;
     margin: auto;
     content: '';
-    border-bottom: 1px solid var(--app-border);
+    border-bottom: 1px solid var(--sys-border);
   }
 
   &::before {
@@ -98,13 +91,14 @@ const emit = defineEmits<{
 
       .box {
         position: relative;
+        box-sizing: border-box;
         height: 50px;
         overflow: hidden;
         cursor: pointer;
-        background: var(--app-fill-light) !important;
-
-        @include preview-shell(var(--mason-grey-100));
-
+        background: var(--sys-fill-light) !important;
+        border: 2px solid var(--mason-grey-100);
+        border-radius: 8px;
+        box-shadow: var(--sys-shadow);
         transition: box-shadow 0.1s;
 
         &.is-active {

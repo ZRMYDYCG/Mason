@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="visible" title="修改资料" width="500px" destroy-on-close>
+  <el-dialog v-model="visible" title="修改资料" width="500px" destroy-on-close append-to-body>
     <el-form ref="formRef" :model="form" :rules="rules" label-width="100px" label-suffix=" :">
       <el-form-item label="头像" prop="avatar">
         <el-upload

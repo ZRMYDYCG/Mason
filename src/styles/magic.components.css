@@ -1,0 +1,139 @@
+/* ep.magic.components.css */
+:root {
+  /* =========================================================
+   * Button（更“干净”的默认按钮 + 更柔和的 hover/active）
+   * ========================================================= */
+  --el-button-border-color: var(--el-border-color);
+  --el-button-bg-color: var(--el-fill-color-blank);
+  --el-button-text-color: var(--el-text-color-regular);
+  --el-button-hover-bg-color: rgba(var(--sys-brand-rgb), 0.08);
+  --el-button-hover-text-color: var(--el-color-primary);
+  --el-button-hover-border-color: color-mix(
+    in srgb,
+    var(--el-color-primary) 55%,
+    var(--el-border-color)
+  );
+  --el-button-active-bg-color: rgba(var(--sys-brand-rgb), 0.12);
+  --el-button-active-text-color: var(--el-color-primary);
+  --el-button-active-border-color: var(--el-color-primary);
+  --el-button-disabled-bg-color: var(--el-disabled-bg-color);
+  --el-button-disabled-text-color: var(--el-disabled-text-color);
+  --el-button-disabled-border-color: var(--el-disabled-border-color);
+
+  /* =========================================================
+   * Input / Select（输入控件是后台质感的核心）
+   * ========================================================= */
+  --el-input-bg-color: var(--el-fill-color-blank);
+  --el-input-border-color: var(--el-border-color);
+  --el-input-hover-border-color: var(--el-border-color-hover);
+  --el-input-focus-border-color: var(--el-color-primary);
+  --el-input-text-color: var(--el-text-color-primary);
+  --el-input-placeholder-color: var(--el-text-color-placeholder);
+  --el-select-border-color-hover: var(--el-border-color-hover);
+  --el-select-input-focus-border-color: var(--el-color-primary);
+
+  /* 输入框内 icon/clear 的色调更克制 */
+  --el-input-icon-color: var(--el-text-color-secondary);
+  --el-input-clear-hover-color: var(--el-text-color-regular);
+
+  /* =========================================================
+   * Popper 系（Dropdown / Popover / Tooltip / Select 下拉）
+   * ========================================================= */
+  --el-popper-border-radius: calc(var(--custom-radius) + 2px);
+  --el-popper-border-color: var(--el-border-color-light);
+  --el-popper-bg-color: var(--el-bg-color-overlay);
+  --el-popper-box-shadow: var(--el-box-shadow-light);
+
+  /* Tooltip 更“高级”的半透明深色 */
+  --el-tooltip-bg-color: rgb(15 23 42 / 92%);
+  --el-tooltip-text-color: #ffffff;
+  --el-tooltip-border-color: transparent;
+
+  /* =========================================================
+   * Dialog / Drawer（弹层决定高级感：圆角 + 内边距 + 阴影）
+   * ========================================================= */
+  --el-dialog-bg-color: var(--el-bg-color-overlay);
+  --el-dialog-box-shadow: var(--el-box-shadow);
+  --el-dialog-border-radius: calc(var(--custom-radius) + 6px);
+  --el-dialog-padding-primary: 18px;
+  --el-drawer-bg-color: var(--el-bg-color-overlay);
+  --el-drawer-box-shadow: var(--el-box-shadow);
+  --el-drawer-padding-primary: 18px;
+
+  /* =========================================================
+   * Message / Notification / MessageBox（提示类统一“轻底色”）
+   * ========================================================= */
+  --el-message-bg-color: var(--el-bg-color-overlay);
+  --el-message-border-color: var(--el-border-color-light);
+  --el-message-text-color: var(--el-text-color-regular);
+  --el-message-close-icon-color: var(--el-text-color-secondary);
+  --el-message-close-hover-color: var(--el-text-color-primary);
+  --el-notification-bg-color: var(--el-bg-color-overlay);
+  --el-notification-border-color: var(--el-border-color-light);
+  --el-notification-box-shadow: var(--el-box-shadow-light);
+
+  /* =========================================================
+   * Table（中后台第二核心：表头/hover/斑马纹/边框）
+   * ========================================================= */
+  --el-table-border-color: var(--el-border-color-light);
+  --el-table-header-bg-color: var(--el-fill-color-light);
+  --el-table-header-text-color: var(--el-text-color-regular);
+  --el-table-text-color: var(--el-text-color-regular);
+  --el-table-row-hover-bg-color: rgba(var(--sys-brand-rgb), 0.06);
+  --el-table-current-row-bg-color: rgba(var(--sys-brand-rgb), 0.1);
+  --el-table-tr-bg-color: var(--el-bg-color);
+  --el-table-expanded-cell-bg-color: var(--el-fill-color-extra-light);
+
+  /* 这些变量在文档/社区里就是常用调节点（Table/Menu 都是） */
+
+  /* Table 相关变量名可见社区/实践搜索结果 :contentReference[oaicite:1]{index=1} */
+
+  /* =========================================================
+   * Menu（侧边栏/顶部导航常用：背景更干净、active 更明确）
+   * ========================================================= */
+  --el-menu-bg-color: var(--el-bg-color);
+  --el-menu-text-color: var(--el-text-color-regular);
+  --el-menu-hover-bg-color: var(--el-fill-color-light);
+  --el-menu-active-color: var(--el-color-primary);
+
+  /* Menu 变量名是 Element Plus 常用可覆写项 :contentReference[oaicite:2]{index=2} */
+
+  /* =========================================================
+   * Tabs（后台常用：更清爽的底边 + 更明显的激活态）
+   * ========================================================= */
+  --el-tabs-header-height: 40px;
+  --el-tabs-item-color: var(--el-text-color-regular);
+  --el-tabs-item-hover-color: var(--el-color-primary);
+  --el-tabs-item-active-color: var(--el-color-primary);
+  --el-tabs-nav-wrap-after-color: var(--el-border-color-light);
+
+  /* =========================================================
+   * Pagination（更“按钮化”的分页）
+   * ========================================================= */
+  --el-pagination-bg-color: transparent;
+  --el-pagination-button-color: var(--el-text-color-regular);
+  --el-pagination-button-disabled-color: var(--el-disabled-text-color);
+  --el-pagination-button-disabled-bg-color: transparent;
+  --el-pagination-hover-color: var(--el-color-primary);
+
+  /* =========================================================
+   * Switch / Checkbox / Radio（统一开关的“主色一致性”）
+   * ========================================================= */
+  --el-switch-on-color: var(--el-color-primary);
+  --el-switch-off-color: rgb(15 23 42 / 18%);
+  --el-checkbox-checked-text-color: var(--el-color-primary);
+  --el-checkbox-checked-bg-color: var(--el-color-primary);
+  --el-checkbox-checked-input-border-color: var(--el-color-primary);
+  --el-radio-checked-text-color: var(--el-color-primary);
+  --el-radio-checked-input-border-color: var(--el-color-primary);
+  --el-radio-checked-input-bg-color: var(--el-color-primary);
+
+  /* =========================================================
+   * Tag / Badge（更像“设计系统”的小胶囊）
+   * ========================================================= */
+  --el-tag-border-radius: 999px;
+  --el-tag-bg-color: rgba(var(--sys-brand-rgb), 0.1);
+  --el-tag-border-color: rgba(var(--sys-brand-rgb), 0.18);
+  --el-tag-text-color: var(--el-color-primary);
+  --el-badge-bg-color: var(--el-color-danger);
+}

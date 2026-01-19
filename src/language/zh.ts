@@ -16,6 +16,44 @@ export default {
     closeOther: '关闭其他',
     closeAll: '关闭全部'
   },
+  systemLog: {
+    label: {
+      user: '用户',
+      path: '路径',
+      method: '方法',
+      status: '状态',
+      range: '时间范围',
+      id: 'ID',
+      ip: 'IP',
+      duration: '耗时(ms)',
+      time: '时间',
+      params: '参数',
+      actions: '操作'
+    },
+    placeholder: {
+      username: '用户名',
+      path: '请求路径',
+      all: '全部',
+      start: '开始时间',
+      end: '结束时间'
+    },
+    action: {
+      search: '搜索',
+      reset: '重置',
+      delete: '删除',
+      confirm: '确认',
+      cancel: '取消'
+    },
+    message: {
+      deleteConfirm: '确认删除该日志？'
+    }
+  },
+  search: {
+    title: '全局搜索',
+    open: '打开全局搜索',
+    placeholder: '搜索路由',
+    empty: '暂无匹配的路由'
+  },
   visualization: {
     headerTitle: 'Mason 实时运营看板',
     weekday: {

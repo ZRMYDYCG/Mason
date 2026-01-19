@@ -1,5 +1,5 @@
 import http from '@/api'
-import { Department, Menu, ResultTable, Role, User } from '@/api/interface/system'
+import { Department, Menu, ResultTable, Role, SystemLog, User } from '@/api/interface/system'
 
 export const getUserList = (data: object) => {
   return http.post<ResultTable<User>>('/user/list', { ...data })
@@ -79,4 +79,12 @@ export const editDept = (data: object) => {
 
 export const updateUserProfile = (data: FormData) => {
   return http.post<{ avatar?: string }>('/user/update-profile', data)
+}
+
+export const getSystemLogList = (data: object) => {
+  return http.post<ResultTable<SystemLog>>('/log/list', { ...data })
+}
+
+export const deleteSystemLog = (id: number) => {
+  return http.post('/log/delete', { id })
 }

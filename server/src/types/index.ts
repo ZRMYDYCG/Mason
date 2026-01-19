@@ -112,6 +112,15 @@ export interface UpdateDeptParams extends DeptParams {
   id: number
 }
 
+export interface LogPageParams extends PageParams {
+  username?: string
+  method?: string
+  path?: string
+  status?: number
+  startTime?: string
+  endTime?: string
+}
+
 // 拓展http.IncomingMessage接口
 declare module 'http' {
   interface IncomingMessage {

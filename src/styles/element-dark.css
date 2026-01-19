@@ -39,8 +39,8 @@ html.dark {
   }
 
   .el-menu-item.is-active {
-    color: var(--app-text-inverse);
-    background-color: var(--app-bg-active);
+    color: var(--sys-text-inverse);
+    background-color: var(--sys-brand);
   }
 }
 

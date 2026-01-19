@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 interface ListItem {
   /*头像*/
   avatar?: string
@@ -87,7 +85,7 @@ const clickAction = (item: ActionOptions, index: number) => {
       </el-tab-pane>
     </el-tabs>
 
-    <div class="panel-footer" v-if="actions.length">
+    <!-- <div class="panel-footer" v-if="actions.length">
       <el-button
         v-for="(action, actionIndex) in actions"
         :key="actionIndex"
@@ -100,14 +98,14 @@ const clickAction = (item: ActionOptions, index: number) => {
         <AppIcon style="margin-right: 4px" v-if="action.icon" :name="action.icon" :size="16" />
         <span>{{ action.text }}</span>
       </el-button>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <style scoped>
 .notification-panel {
   width: 100%;
-  background: var(--app-bg-surface);
+  background: var(--sys-bg-surface);
 }
 
 .panel-head {
@@ -120,12 +118,12 @@ const clickAction = (item: ActionOptions, index: number) => {
 .panel-title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--app-text);
+  color: var(--sys-text);
 }
 
 .panel-subtitle {
   font-size: 12px;
-  color: var(--app-text-secondary);
+  color: var(--sys-text-2);
 }
 
 .panel-tabs {
@@ -135,18 +133,18 @@ const clickAction = (item: ActionOptions, index: number) => {
 
   :deep(.el-tabs__nav-wrap::after) {
     height: 1px;
-    background-color: var(--app-border-light);
+    background-color: var(--sys-border-light);
   }
 
   :deep(.el-tabs__item) {
     height: 40px;
     font-size: 13px;
-    color: var(--app-text-secondary);
+    color: var(--sys-text-2);
   }
 
   :deep(.el-tabs__item.is-active) {
     font-weight: 600;
-    color: var(--app-text-active);
+    color: var(--sys-brand);
   }
 }
 
@@ -165,11 +163,11 @@ const clickAction = (item: ActionOptions, index: number) => {
 }
 
 .panel-item:hover {
-  background-color: var(--app-fill-light);
+  background-color: var(--sys-fill-light);
 }
 
 .panel-item:focus-visible {
-  outline: 2px solid rgba(var(--app-color-primary-rgb), 0.35);
+  outline: 2px solid rgba(var(--sys-brand-rgb), 0.35);
   outline-offset: 2px;
 }
 
@@ -179,8 +177,8 @@ const clickAction = (item: ActionOptions, index: number) => {
 }
 
 .avatar-fallback {
-  color: var(--app-text-secondary);
-  background-color: var(--app-fill);
+  color: var(--sys-text-2);
+  background-color: var(--sys-fill);
 }
 
 .item-content {
@@ -201,7 +199,7 @@ const clickAction = (item: ActionOptions, index: number) => {
   overflow: hidden;
   font-size: 13px;
   font-weight: 600;
-  color: var(--app-text);
+  color: var(--sys-text);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -210,7 +208,7 @@ const clickAction = (item: ActionOptions, index: number) => {
   margin-top: 4px;
   overflow: hidden;
   font-size: 12px;
-  color: var(--app-text-secondary);
+  color: var(--sys-text-2);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -218,7 +216,7 @@ const clickAction = (item: ActionOptions, index: number) => {
 .item-time {
   margin-top: 4px;
   font-size: 12px;
-  color: var(--app-text-tertiary);
+  color: var(--sys-text-3);
 }
 
 .panel-footer {
@@ -226,7 +224,7 @@ const clickAction = (item: ActionOptions, index: number) => {
   gap: 10px;
   justify-content: center;
   padding: 10px 12px;
-  border-top: 1px solid var(--app-border-light);
+  border-top: 1px solid var(--sys-border-light);
 }
 
 .footer-action {

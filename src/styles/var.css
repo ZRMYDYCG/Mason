@@ -1,5 +1,5 @@
 :root {
-  --primary-color: var(--el-color-primary);
+  --primary-color: var(--sys-brand);
   --mason-grey-100: #ffffff;
   --mason-grey-200: #fafafa;
   --mason-grey-300: #f5f5f5;

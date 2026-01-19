@@ -83,7 +83,8 @@ const removeTab = (fullPath: TabPaneName) => {
 
 <style scoped>
 .tabs-box {
-  background-color: var(--layout-topbar-bg);
+  background-color: var(--layout-topbar-bg, var(--sys-bg-surface));
+  color: var(--layout-topbar-text, var(--sys-text));
 
   .tabs-menu {
     position: relative;
@@ -107,15 +108,18 @@ const removeTab = (fullPath: TabPaneName) => {
             .el-tabs__item {
               border-bottom: 1px solid transparent;
               border-left: none;
+              color: var(--layout-topbar-text-secondary, var(--sys-text-2));
+              background-color: transparent;
             }
 
             .el-tabs__item.is-active {
-              color: var(--el-color-primary) !important;
-              border-bottom: 3px solid var(--el-color-primary);
+              color: var(--layout-tabs-active-text, var(--sys-brand)) !important;
+              background-color: var(--layout-tabs-active-bg, rgba(var(--sys-brand-rgb), 0.14));
+              border-bottom: 3px solid var(--layout-tabs-active-text, var(--sys-brand));
             }
 
             .el-tabs__item:hover {
-              color: unset;
+              color: var(--layout-topbar-text, var(--sys-text));
             }
           }
         }
@@ -126,6 +130,7 @@ const removeTab = (fullPath: TabPaneName) => {
       position: absolute;
       top: 0;
       right: 0;
+      color: var(--layout-topbar-text, var(--sys-text));
     }
   }
 }

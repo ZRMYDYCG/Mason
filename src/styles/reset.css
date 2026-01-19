@@ -1,3 +1,37 @@
+:root {
+  /* 系统主色 */
+  --main-color: var(--sys-brand);
+  --custom-radius: 0.75rem;
+  --app-color-primary: var(--sys-brand);
+  --app-color-primary-rgb: var(--sys-brand-rgb);
+  --app-text: var(--sys-text);
+  --app-text-secondary: var(--sys-text-2);
+  --app-text-tertiary: var(--sys-text-3);
+  --app-text-placeholder: var(--sys-text-placeholder);
+  --app-text-inverse: var(--sys-text-inverse);
+  --app-bg-page: var(--sys-bg-page);
+  --app-bg-surface: var(--sys-bg-surface);
+  --app-bg-overlay: var(--sys-bg-overlay);
+  --app-fill: var(--sys-fill);
+  --app-fill-light: var(--sys-fill-light);
+  --app-border: var(--sys-border);
+  --app-border-light: var(--sys-border-light);
+  --app-border-dark: var(--sys-border-dark);
+  --app-radius: var(--sys-radius);
+  --app-bg-active: var(--sys-brand);
+  --app-bg-active-light: var(--sys-primary-light-9);
+  --app-text-active: var(--sys-brand);
+  --app-surface-tint: var(--sys-surface-tint);
+  --app-surface-glow: var(--sys-surface-glow);
+  --app-border-soft: var(--sys-border-soft);
+  --app-border-strong: var(--sys-border-strong);
+  --app-shadow-xs: var(--sys-shadow-xs);
+  --app-shadow-sm: var(--sys-shadow-sm);
+  --app-shadow-md: var(--sys-shadow-md);
+  --app-shadow: var(--sys-shadow);
+  --app-shadow-lg: var(--sys-shadow-lg);
+}
+
 /* Reset style sheet */
 html,
 body,
@@ -8,11 +42,6 @@ body,
   margin: 0;
 }
 
-html,
-body {
-  overflow-x: clip;
-}
-
 @supports not (overflow: clip) {
   html,
   body {
@@ -20,46 +49,7 @@ body {
   }
 }
 
-:root {
-  /* 系统主色 */
-  --main-color: var(--el-color-primary);
-  --custom-radius: 0.75rem;
-  --app-color-primary: var(--el-color-primary);
-  --app-color-primary-rgb: var(--el-color-primary-rgb);
-  --app-text: var(--el-text-color-primary);
-  --app-text-secondary: var(--el-text-color-regular);
-  --app-text-tertiary: var(--el-text-color-secondary);
-  --app-text-placeholder: var(--el-text-color-placeholder);
-  --app-text-inverse: var(--el-color-white);
-  --app-bg-page: var(--el-bg-color-page);
-  --app-bg-surface: var(--el-bg-color);
-  --app-bg-overlay: var(--el-bg-color-overlay);
-  --app-fill: var(--el-fill-color);
-  --app-fill-light: var(--el-fill-color-light);
-  --app-border: var(--el-border-color);
-  --app-border-light: var(--el-border-color-light);
-  --app-border-dark: var(--el-border-color-dark);
-  --app-shadow-sm: var(--el-box-shadow-lighter);
-  --app-shadow: var(--el-box-shadow-light);
-  --app-radius: var(--custom-radius);
-  --app-bg-active: var(--el-color-primary);
-  --app-bg-active-light: var(--el-color-primary-light-9);
-  --app-text-active: var(--el-color-primary);
-
-  /* 按钮粗度 */
-  --el-font-weight-primary: 400 !important;
-
-  /* 边框、按钮圆角... */
-  --el-border-radius-base: calc(var(--custom-radius) / 2 + 2px) !important;
-  --el-border-radius-small: 10px !important;
-  --el-messagebox-border-radius: 10px !important;
-
-  .region .el-radio-button__original-radio:checked + .el-radio-button__inner {
-    color: var(--main-color);
-  }
-}
-
-/* el-dialog 动画 */
+/* el-dialog 动画调整 */
 .dialog-fade-enter-active {
   .el-dialog {
     animation: dialog-open 0.3s cubic-bezier(0.32, 0.14, 0.15, 0.86);
@@ -98,7 +88,6 @@ body {
   }
 }
 
-/* 遮罩层动画 */
 @keyframes fade-out {
   0% {
     opacity: 1;
@@ -108,4 +97,3 @@ body {
     opacity: 0;
   }
 }
-

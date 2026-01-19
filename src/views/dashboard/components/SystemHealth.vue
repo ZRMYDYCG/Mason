@@ -168,8 +168,8 @@ function progressColor(val: number) {
   align-items: center;
   padding: 10px;
   margin-bottom: 12px;
-  background: var(--app-bg-overlay);
-  border: 1px solid var(--app-border-light);
+  background: var(--sys-bg-overlay);
+  border: 1px solid var(--sys-border-light);
   border-radius: 10px;
 
   .health-label {
@@ -192,7 +192,7 @@ function progressColor(val: number) {
     width: 28px;
     height: 28px;
     color: var(--el-text-color-primary);
-    background: var(--app-fill-light);
+    background: var(--sys-fill-light);
     border-radius: 8px;
 
     &.is-primary {

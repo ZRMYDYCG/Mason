@@ -7,6 +7,7 @@ import menuRouter from '../modules/menu/menu.router'
 import uploadRouter from '../modules/upload/upload.router'
 import departmentRouter from '../modules/department/department.router'
 import captchaRouter from '../modules/captcha/captcha.router'
+import logRouter from '../modules/log/log.router'
 
 export const router = new Router()
 
@@ -17,3 +18,4 @@ router.use(menuRouter.routes())
 router.use(uploadRouter.routes())
 router.use(departmentRouter.routes())
 router.use(captchaRouter.routes())
+router.use(logRouter.routes())

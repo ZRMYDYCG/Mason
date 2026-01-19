@@ -1,5 +1,6 @@
 <template>
   <div class="tool-bar-rt">
+    <GlobalSearch />
     <Notificate />
     <ThemeSetting></ThemeSetting>
     <Translate v-if="showLanguage" />
@@ -20,6 +21,7 @@ import ThemeSwitch from './components/theme-switch.vue'
 import Notificate from './components/notificate.vue'
 import Translate from './components/translate.vue'
 import Flushed from './components/flushed.vue'
+import GlobalSearch from './components/global-search.vue'
 
 const settingStore = useSettingStore()
 const { showLanguage, showRefreshButton } = storeToRefs(settingStore)

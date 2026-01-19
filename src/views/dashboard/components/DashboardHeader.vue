@@ -277,18 +277,17 @@ function handleRefresh() {
   --gap-xs: 8px;
   --gap-sm: 16px;
   --gap-md: 24px;
-  --header-radius: var(--app-radius);
-  --header-surface: var(--app-bg-surface);
-  --header-border: var(--app-border-light);
-  --header-shadow: var(--app-shadow-sm);
-  --header-primary-rgb: var(--app-color-primary-rgb);
+  --header-radius: var(--sys-radius);
+  --header-surface: var(--sys-bg-surface);
+  --header-border: var(--sys-border-light);
+  --header-shadow: var(--sys-shadow-sm);
+  --header-primary-rgb: var(--sys-brand-rgb);
 
   position: relative;
   overflow: hidden;
   background-color: var(--header-surface);
   border: 1px solid var(--header-border);
   border-radius: calc(var(--header-radius) + 2px);
-  box-shadow: var(--header-shadow);
 }
 
 .page-header {
@@ -319,7 +318,7 @@ function handleRefresh() {
     font-weight: 600;
     color: var(--el-color-primary);
     background-color: var(--el-color-primary-light-9);
-    border: 2px solid var(--app-bg-surface);
+    border: 2px solid var(--sys-bg-surface);
     box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
   }
 
@@ -330,7 +329,7 @@ function handleRefresh() {
     width: 12px;
     height: 12px;
     background-color: var(--el-color-success);
-    border: 2px solid var(--app-bg-surface);
+    border: 2px solid var(--sys-bg-surface);
     border-radius: 999px;
     box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
   }
@@ -395,10 +394,10 @@ function handleRefresh() {
     align-items: center;
     max-width: 100%;
     padding: 10px;
-    background-color: var(--app-bg-overlay);
-    border: 1px solid var(--app-border-light);
+    background-color: var(--sys-bg-overlay);
+    border: 1px solid var(--sys-border-light);
     border-radius: 12px;
-    box-shadow: var(--app-shadow-sm);
+    box-shadow: var(--sys-shadow-sm);
   }
 
   .control-group {

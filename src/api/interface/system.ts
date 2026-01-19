@@ -60,3 +60,17 @@ export interface Department {
   createdAt: string
   children?: Department[]
 }
+
+export interface SystemLog {
+  id: number
+  userId: number | null
+  username: string | null
+  method: string
+  path: string
+  status: number
+  ip: string | null
+  userAgent: string | null
+  requestParams: string | null
+  duration: number | null
+  createdAt: string
+}

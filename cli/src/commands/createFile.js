@@ -1,11 +1,11 @@
 import inquirer from 'inquirer'
 import fs from 'fs-extra'
 import pkg from 'picocolors'
-import { fileURLToPath } from 'url'
-import path from 'path'
+// import { fileURLToPath } from 'url'
+// import path from 'path'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = path.dirname(__filename)
 const { red, yellow, green } = pkg
 
 export const createFileCommand = () => {

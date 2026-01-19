@@ -4,6 +4,7 @@ import userModel from './user.model'
 import roleMenuModel from './roleMenu.model'
 import userRoleModel from './userRole.model'
 import departmentModel from './department.model'
+import logModel from './log.model'
 
 roleModel.belongsToMany(menuModel, {
   through: roleMenuModel,
@@ -33,4 +34,5 @@ export {
   departmentModel,
   roleMenuModel,
   userRoleModel,
+  logModel,
 }

@@ -32,7 +32,7 @@ const emit = defineEmits<{
 
       &:hover {
         color: var(--mason-grey-700);
-        background-color: var(--app-fill);
+        background-color: var(--sys-fill);
       }
     }
   }

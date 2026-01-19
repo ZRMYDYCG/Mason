@@ -226,16 +226,16 @@ export const ThemeList: MenuThemeType[] = [
 export const DarkMenuStyles: MenuThemeType[] = [
   {
     theme: MenuThemeEnum.DARK,
-    background: 'var(--app-bg-overlay)',
-    systemNameColor: 'var(--app-text)',
-    iconColor: 'var(--app-text-secondary)',
-    textColor: 'var(--app-text-secondary)',
-    textActiveColor: 'var(--app-text-inverse)',
-    iconActiveColor: 'var(--app-text-inverse)',
-    tabBarBackground: 'var(--app-bg-surface)',
-    systemBackground: 'var(--app-bg-page)',
-    leftLineColor: 'var(--app-border)',
-    rightLineColor: 'var(--app-border)'
+    background: 'var(--sys-bg-overlay)',
+    systemNameColor: 'var(--sys-text)',
+    iconColor: 'var(--sys-text-2)',
+    textColor: 'var(--sys-text-2)',
+    textActiveColor: 'var(--sys-text-inverse)',
+    iconActiveColor: 'var(--sys-text-inverse)',
+    tabBarBackground: 'var(--sys-bg-surface)',
+    systemBackground: 'var(--sys-bg-page)',
+    leftLineColor: 'var(--sys-border)',
+    rightLineColor: 'var(--sys-border)'
   }
 ]
 
@@ -255,140 +255,3 @@ export const SystemSetting = {
   defaultMenuWidth: 210, // 菜单展开宽度默认值
   defaultCustomRadius: '0.75' // 圆角默认值
 }
-
-export const List = [
-  {
-    title: '通知',
-    content: [
-      {
-        avatar: 'https://pica.zhimg.com/v2-a56b64418526d7c0c8f4ce46c25b06fe_1440w.jpg',
-        title: '活动一',
-        desc: '这是活动一的描述。',
-        time: '2023-10-01 10:00',
-        tag: '新',
-        tagType: 'success'
-      },
-      {
-        avatar: 'https://pic2.zhimg.com/v2-9b47dec7b5251759eeb5257cfbb6d3e7_r.jpg',
-        title: '活动二',
-        desc: '这是活动二的描述。',
-        time: '2023-10-02 11:00',
-        tag: '热',
-        tagType: 'warning'
-      },
-      {
-        title: '活动三',
-        desc: '这是活动三的描述。',
-        time: '2023-10-03 12:00',
-        tag: '推荐',
-        tagType: 'info'
-      },
-      {
-        avatar: 'https://pic1.zhimg.com/v2-9e716daacd3f1ed9987c6d2ae0e47e4a_1440w.jpg',
-        title: '活动四',
-        desc: '这是活动四的描述。',
-        time: '2023-10-04 13:00',
-        tag: '即将结束',
-        tagType: 'danger'
-      },
-      {
-        title: '活动五',
-        desc: '这是活动五的描述。',
-        time: '2023-10-05 14:00'
-      }
-    ]
-  },
-  {
-    title: '关注',
-    content: [
-      {
-        avatar: 'https://pic2.zhimg.com/v2-2ee2b5efbffc1162c208c2685aabb4fb_r.jpg',
-        title: '活动一',
-        desc: '这是活动一的描述。',
-        time: '2023-10-01 10:00',
-        tag: '新',
-        tagType: 'success'
-      },
-      {
-        avatar: 'https://pic4.zhimg.com/v2-2501a93fe6acebfc81f8c1c825df2367_r.jpg',
-        title: '活动二',
-        desc: '这是活动二的描述。',
-        time: '2023-10-02 11:00',
-        tag: '热',
-        tagType: 'warning'
-      },
-      {
-        title: '活动三',
-        desc: '这是活动三的描述。',
-        time: '2023-10-03 12:00',
-        tag: '推荐',
-        tagType: 'info'
-      },
-      {
-        avatar: 'https://pic1.zhimg.com/v2-83d4420602c69b2611103f50037b537a_1440w.jpg',
-        title: '活动四',
-        desc: '这是活动四的描述。',
-        time: '2023-10-04 13:00',
-        tag: '即将结束',
-        tagType: 'danger'
-      },
-      {
-        title: '活动五',
-        desc: '这是活动五的描述。',
-        time: '2023-10-05 14:00'
-      }
-    ]
-  },
-  {
-    title: '代办',
-    content: [
-      {
-        avatar: 'https://pica.zhimg.com/v2-1218ebd63cbebccabf7a982446b30f6a_r.jpg',
-        title: '活动一',
-        desc: '这是活动一的描述。',
-        time: '2023-10-01 10:00',
-        tag: '新',
-        tagType: 'success'
-      },
-      {
-        avatar: 'https://pic4.zhimg.com/v2-57c2595305c41b944e470db795d000a5_1440w.jpg',
-        title: '活动二',
-        desc: '这是活动二的描述。',
-        time: '2023-10-02 11:00',
-        tag: '热',
-        tagType: 'warning'
-      },
-      {
-        title: '活动三',
-        desc: '这是活动三的描述。',
-        time: '2023-10-03 12:00',
-        tag: '推荐',
-        tagType: 'info'
-      },
-      {
-        avatar: 'https://pic1.zhimg.com/v2-5f78f05e8753f2771da04f4068f64adc_1440w.jpg',
-        title: '活动四',
-        desc: '这是活动四的描述。',
-        time: '2023-10-04 13:00',
-        tag: '即将结束',
-        tagType: 'danger'
-      },
-      {
-        title: '活动五',
-        desc: '这是活动五的描述。',
-        time: '2023-10-05 14:00'
-      }
-    ]
-  }
-]
-
-export const actions = [
-  {
-    text: '清理代办',
-    icon: 'trash-2'
-  },
-  {
-    text: '查看更多',
-    icon: 'ellipsis'
-  }
-]

@@ -6,6 +6,7 @@ import { router } from '../router/index'
 import { corsHandler } from './cors'
 import bodyParser from 'koa-bodyparser'
 import { errorHandler } from './error-handler'
+import { operationLogger } from '../middleware/operation-log.middleware'
 
 import synchonize from '../config/sync'
 synchonize()
@@ -17,6 +18,7 @@ const app = new Koa()
 app.use(bodyParser())
 app.use(cors(corsHandler))
 app.use(mount('/public', serve(path.join(__dirname, '../../public'))))
+app.use(operationLogger())
 app.on('error', errorHandler)
 app.use(router.routes())
 app.use(router.allowedMethods())

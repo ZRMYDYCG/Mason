@@ -64,19 +64,19 @@ export const useTheme = () => {
     if (!val) {
       val = DEFAULT_PRIMARY
     }
-    root().style.setProperty('--el-color-primary', val)
+    root().style.setProperty('--sys-primary', val)
     const rgb = hexToRgbNums(val)
-    if (rgb) root().style.setProperty('--el-color-primary-rgb', `${rgb[0]},${rgb[1]},${rgb[2]}`)
+    if (rgb) root().style.setProperty('--sys-primary-rgb', `${rgb[0]},${rgb[1]},${rgb[2]}`)
 
     root().style.setProperty(
-      '--el-color-primary-dark-2',
+      '--sys-primary-dark-2',
       isDark.value ? `${getLightColor(val, 0.2)}` : `${getDarkColor(val, 0.3)}`
     )
     for (let i = 1; i <= 9; i++) {
       const primaryColor = isDark.value
         ? `${getDarkColor(val, i / 10)}`
         : `${getLightColor(val, i / 10)}`
-      root().style.setProperty(`--el-color-primary-light-${i}`, primaryColor)
+      root().style.setProperty(`--sys-primary-light-${i}`, primaryColor)
     }
   }
 

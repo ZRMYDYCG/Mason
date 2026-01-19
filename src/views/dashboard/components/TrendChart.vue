@@ -83,7 +83,7 @@ function updatePaletteFromCssVars() {
   axisColors.value = {
     textRegular: resolveCssColor('--el-text-color-regular', axisColors.value.textRegular),
     textSecondary: resolveCssColor('--el-text-color-secondary', axisColors.value.textSecondary),
-    border: resolveCssColor('--app-border', axisColors.value.border)
+    border: resolveCssColor('--sys-border', axisColors.value.border)
   }
 }
 

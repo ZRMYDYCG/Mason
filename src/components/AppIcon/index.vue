@@ -21,6 +21,7 @@ import {
   Moon,
   Trash2,
   User,
+  Search,
   X,
   XCircle
 } from 'lucide-vue-next'
@@ -42,6 +43,7 @@ type IconName =
   | 'swatch-book'
   | 'sun'
   | 'moon'
+  | 'search'
   | 'trash-2'
   | 'user'
   | 'x'
@@ -77,6 +79,7 @@ const iconMap: Record<string, Component> = {
   'swatch-book': SwatchBook,
   sun: Sun,
   moon: Moon,
+  search: Search,
   'trash-2': Trash2,
   user: User,
   x: X,
