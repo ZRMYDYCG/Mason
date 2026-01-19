@@ -15,4 +15,7 @@ authRouter.post('/login', verifyLogin, authController.login)
 // 授权测试
 authRouter.get('/test', verifyAuth, authController.success)
 
+// 用户退出
+authRouter.post('/logout', authController.logout)
+
 export default authRouter

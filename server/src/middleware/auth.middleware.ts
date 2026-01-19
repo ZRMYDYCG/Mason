@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
 import { LoginParams } from '../types'
-import { ERROR_TYPES } from '../constant'
+import { AUTH_COOKIE_NAME, ERROR_TYPES } from '../constant'
 import userService from '../modules/user/user.service'
 
 import { PUBLIC_KEY } from '../config'
@@ -61,11 +61,17 @@ const verifyAuth = async (ctx: Context, next: Next) => {
   // 1.获取请求头授权信息 token
   const authorization = ctx.headers.authorization
   console.log('Authorization header:', authorization)
-  if (!authorization) {
+  const headerToken =
+    typeof authorization === 'string'
+      ? authorization.replace('Bearer ', '')
+      : ''
+  const cookieToken = ctx.cookies.get(AUTH_COOKIE_NAME) || ''
+  const token = headerToken || cookieToken
+
+  if (!token) {
     const error = new Error(ERROR_TYPES.UNAUTHORIZATION)
     return ctx.app.emit('error', error, ctx)
   }
-  const token = authorization.replace('Bearer ', '')
   console.log('Token after replace:', token)
 
   // 2.验证token

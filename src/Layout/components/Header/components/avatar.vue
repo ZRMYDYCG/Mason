@@ -29,13 +29,20 @@
 
 <script setup lang="ts">
 import { LOGIN_URL } from '@/config'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
+import { logoutApi } from '@/api/modules/login'
+import { useAuthStore } from '@/store/modules/auth'
+import { useKeepAliveStore } from '@/store/modules/keepAlive'
+import { useTabsStore } from '@/store/modules/tabs'
 import { useUserStore } from '@/store/modules/user'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { computed, ref } from 'vue'
 import UpdateProfileDialog from './UpdateProfileDialog.vue'
 
 const userStore = useUserStore()
+const authStore = useAuthStore()
+const tabsStore = useTabsStore()
+const keepAliveStore = useKeepAliveStore()
 const username = computed(() => userStore.userInfo.username)
 const avatar = computed(() => userStore.userInfo.avatar)
 const dialogRef = ref<InstanceType<typeof UpdateProfileDialog>>()
@@ -49,8 +56,17 @@ const logout = () => {
     confirmButtonText: '确认',
     cancelButtonText: '取消',
     type: 'warning'
-  } as any).then(() => {
-    userStore.setTokenWithExpires('', 0)
+  } as any).then(async () => {
+    try {
+      await logoutApi()
+    } catch (error) {
+      console.log(error)
+    }
+    authStore.authMenuList = []
+    await keepAliveStore.setKeepAliveNames([])
+    await tabsStore.setTabs([])
+    userStore.clearSession()
+    resetRouter()
     router.replace(LOGIN_URL)
     ElMessage.success('退出登录成功！')
   })

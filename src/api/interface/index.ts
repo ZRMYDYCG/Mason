@@ -23,7 +23,6 @@ export namespace Login {
   export interface ResLogin {
     id: number
     username: string
-    token: string
     expires: number
   }
   export interface Userinfo {

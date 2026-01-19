@@ -81,6 +81,7 @@ router.beforeEach(async (to, from, next) => {
   const settingStore = useSettingStore()
   const userStore = useUserStore()
   const authStore = useAuthStore()
+  const hasSession = Boolean(userStore.userInfo?.id)
 
   // nprogress 启动
   if (settingStore.showNprogress) NProgress.start()
@@ -93,16 +94,13 @@ router.beforeEach(async (to, from, next) => {
   //   })
   // }
 
-  // 判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
   if (to.path.toLocaleLowerCase() === LOGIN_URL) {
-    if (userStore.token && isTokenValid(userStore.expires)) return next(from.fullPath) // 保持原页面
-    resetRouter() // 清除已加载动态路由
+    if (hasSession) return next(from.fullPath)
+    resetRouter()
     return next()
   }
 
-  // 判断是否有 Token，没有或者token过期 重定向到 login 页面
-  if (!userStore.token || !isTokenValid(userStore.expires))
-    return next({ path: LOGIN_URL, replace: true })
+  if (!hasSession) return next({ path: LOGIN_URL, replace: true })
 
   // 如果没有菜单列表，就重新请求菜单列表并添加动态路由
   if (!authStore.authMenuListGet.length) {
@@ -114,9 +112,10 @@ router.beforeEach(async (to, from, next) => {
       // loadingInstance?.close()
 
       return next({ ...to, replace: true })
-    } else {
-      return next({ path: LOGIN_URL, replace: true })
     }
+    userStore.clearSession()
+    resetRouter()
+    return next({ path: LOGIN_URL, replace: true })
   }
   next()
 })
@@ -130,15 +129,6 @@ export const resetRouter = () => {
     const { name } = route
     if (name && router.hasRoute(name)) router.removeRoute(name)
   })
-}
-
-/**
- * token 是否有效
- * @param time token 过期时间
- * @returns boolean true:有效 / false:无效
- */
-export const isTokenValid = (time: number) => {
-  return time * 1000 > Date.now()
 }
 
 /**

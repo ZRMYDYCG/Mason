@@ -18,3 +18,5 @@ export enum ERROR_TYPES {
   DEPT_NOT_EXISTS = '部门不存在',
   DEPT_HAS_ASSOCIATED_USERS = '部门拥有关联用户',
 }
+
+export const AUTH_COOKIE_NAME = 'access_token'

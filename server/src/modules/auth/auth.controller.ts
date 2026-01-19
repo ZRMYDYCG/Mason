@@ -4,6 +4,7 @@ import { PRIVATE_KEY } from '../../config/index'
 import { LoginParams } from '../../types/index'
 import { PasswordToHash } from '../../utils/index'
 import userService from '../user/user.service'
+import { AUTH_COOKIE_NAME } from '../../constant'
 
 class AuthController {
   async login(ctx: Context) {
@@ -11,10 +12,20 @@ class AuthController {
     const { expires7d } = ctx.request.body as LoginParams
 
     const expires = expires7d ? '7d' : '24h'
+    const maxAge = expires7d ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000
 
     const token = jwt.sign({ id, username }, PRIVATE_KEY, {
       expiresIn: expires,
       algorithm: 'RS256',
+    })
+
+    ctx.cookies.set(AUTH_COOKIE_NAME, token, {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      maxAge,
+      overwrite: true,
+      path: '/',
     })
 
     ctx.body = {
@@ -22,7 +33,6 @@ class AuthController {
       data: {
         id,
         username,
-        token,
         expires: getTimestamps(expires === '7d'),
       },
       msg: '登录成功',
@@ -62,6 +72,23 @@ class AuthController {
       code: 200,
       data: user,
       msg: '授权成功',
+    }
+  }
+
+  async logout(ctx: Context) {
+    ctx.cookies.set(AUTH_COOKIE_NAME, '', {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 0,
+      expires: new Date(0),
+      overwrite: true,
+      path: '/',
+    })
+    ctx.body = {
+      code: 200,
+      data: null,
+      msg: '退出成功',
     }
   }
 }
