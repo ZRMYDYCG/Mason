@@ -2,22 +2,24 @@
   <Tabs v-if="showWorkTab" />
   <el-main v-loading="refresh">
     <div :style="{ width: containerWidth, margin: '0 auto' }">
-      <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
+    <router-view v-slot="{ Component, route }" v-if="isRouterAlive">
+      <transition :name="pageTransition" appear mode="out-in">
         <keep-alive :include="keepAliveNames">
-          <transition :name="pageTransition" appear mode="out-in">
-            <div :key="route.path">
-              <component :is="Component"></component>
-            </div>
-          </transition>
+          <component
+            :is="createComponentWrapper(Component, route)"
+            :key="route.fullPath"
+          ></component>
         </keep-alive>
-        <el-backtop target=".el-main" :right="10" :bottom="80" />
-      </router-view>
-    </div>
-  </el-main>
+      </transition>
+      <el-backtop target=".el-main" :right="10" :bottom="80" />
+    </router-view>
+  </div>
+</el-main>
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, h, onBeforeUnmount, ref } from 'vue'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import Tabs from '@/Layout/components/Tabs/index.vue'
 import { useKeepAliveStore } from '@/store/modules/keepAlive'
 import { useDebounceFn } from '@vueuse/core'
@@ -26,6 +28,22 @@ import { useSettingStore } from '@/store/modules/setting.ts'
 
 const keepAliveStore = useKeepAliveStore()
 const keepAliveNames = computed(() => keepAliveStore.keepAliveNames)
+
+// KeepAlive uses component names; wrap each route with fullPath as the name.
+const wrapperMap = new Map<string, any>()
+function createComponentWrapper(component: any, route: RouteLocationNormalizedLoaded) {
+  if (!component) return
+  const wrapperName = route.fullPath
+  let wrapper = wrapperMap.get(wrapperName)
+  if (!wrapper) {
+    wrapper = {
+      name: wrapperName,
+      render: () => h(component)
+    }
+    wrapperMap.set(wrapperName, wrapper)
+  }
+  return wrapper
+}
 
 const globalStore = useGlobalStore()
 const settingStore = useSettingStore()
