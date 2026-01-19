@@ -61,9 +61,9 @@ function activityTimelineType(level: ActivityLevel) {
 <style scoped>
 .card-head {
   display: flex;
+  gap: 12px;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
 
   .card-title {
     font-size: 14px;

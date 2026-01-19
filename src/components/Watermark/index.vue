@@ -2,7 +2,7 @@
   <div v-if="visible" class="watermark-container" :style="{ zIndex: zIndex }">
     <el-watermark
       :content="content"
-      :font="[{ fontSize: fontSize, color: fontColor }]"
+      :font="{ fontSize: fontSize, color: fontColor }"
       :rotate="rotate"
       :gap="[gapX, gapY]"
       :offset="[offsetX, offsetY]"
