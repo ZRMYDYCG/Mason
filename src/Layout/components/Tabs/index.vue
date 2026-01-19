@@ -1,46 +1,71 @@
 <template>
-  <div class="tabs-box">
+  <div class="tabs-box" :class="`tabs-style-${tabsStyle}`">
     <div class="tabs-menu">
-      <el-tabs v-model="tabsMenuValue" type="card" @tab-click="clickTab" @tab-remove="removeTab">
-        <el-tab-pane
+      <div class="tabs-scroll" ref="tabsScrollRef">
+        <div
           v-for="item in tabsMenuList"
           :key="item.path"
-          :label="item.title"
-          :name="item.path"
-          :closable="item.close"
+          class="tab-item"
+          :class="{ 'is-active': item.path === activePath, 'is-closable': item.close }"
+          :ref="(el) => setTabRef(el, item.path)"
+          @click="clickTab(item.path)"
         >
-        </el-tab-pane>
-      </el-tabs>
+          <span class="tab-title" :title="item.title">{{ item.title }}</span>
+          <button
+            v-if="item.close"
+            class="tab-close"
+            type="button"
+            @click.stop="removeTab(item.path)"
+          >
+            <AppIcon name="x" :size="14" />
+          </button>
+        </div>
+      </div>
       <MoreButton />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted, watch } from 'vue'
-import { useTabsStore } from '@/store/modules/tabs'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useAuthStore } from '@/store/modules/auth'
+import { useTabsStore } from '@/store/modules/tabs'
+import { useSettingStore } from '@/store/modules/setting'
 import { useRoute, useRouter } from 'vue-router'
-import { TabPaneName, TabsPaneContext } from 'element-plus'
 import MoreButton from './components/more-button.vue'
 
 const route = useRoute()
 const router = useRouter()
 const tabsStore = useTabsStore()
 const authStore = useAuthStore()
+const settingStore = useSettingStore()
 
-const tabsMenuValue = ref(route.fullPath)
 const tabsMenuList = computed(() => tabsStore.tabsMenuList)
+const activePath = computed(() => route.fullPath)
+const tabsStyle = computed(() => settingStore.tabsStyle)
+const tabsScrollRef = ref<HTMLDivElement | null>(null)
+const tabRefs = new Map<string, HTMLDivElement>()
+let tabsResizeObserver: ResizeObserver | null = null
+let scrollRafId: number | null = null
 
 onMounted(() => {
   initTabs()
+  scrollActiveTabIntoView()
+  setupTabsResizeObserver()
 })
 
-// 监听路由的变化（防止浏览器后退/前进不变化 tabsMenuValue）
+onBeforeUnmount(() => {
+  tabsResizeObserver?.disconnect()
+  tabsResizeObserver = null
+  if (scrollRafId !== null) {
+    cancelAnimationFrame(scrollRafId)
+    scrollRafId = null
+  }
+})
+
 watch(
   () => route.fullPath,
   () => {
-    tabsMenuValue.value = route.fullPath
     const tabsParams = {
       icon: route.meta.icon as string,
       title: route.meta.title as string,
@@ -54,7 +79,29 @@ watch(
   { immediate: true }
 )
 
-// 初始化需要固定的 tabs
+watch([activePath, () => tabsMenuList.value.length], () => {
+  scrollActiveTabIntoView()
+})
+
+const scheduleScrollActiveTabIntoView = () => {
+  if (scrollRafId !== null) cancelAnimationFrame(scrollRafId)
+  scrollRafId = requestAnimationFrame(() => {
+    scrollRafId = null
+    scrollActiveTabIntoView()
+  })
+}
+
+const setupTabsResizeObserver = () => {
+  const el = tabsScrollRef.value
+  if (!el) return
+  if (typeof ResizeObserver === 'undefined') return
+  tabsResizeObserver?.disconnect()
+  tabsResizeObserver = new ResizeObserver(() => {
+    scheduleScrollActiveTabIntoView()
+  })
+  tabsResizeObserver.observe(el)
+}
+
 const initTabs = () => {
   authStore.flatMenuListGet.forEach((item) => {
     if (item.meta.isAffix && item.meta.isEnable) {
@@ -71,66 +118,206 @@ const initTabs = () => {
   })
 }
 
-const clickTab = (tabItem: TabsPaneContext) => {
-  const fullPath = tabItem.props.name as string
+const clickTab = (fullPath: string) => {
+  if (fullPath === route.fullPath) return
   router.push(fullPath)
 }
 
-const removeTab = (fullPath: TabPaneName) => {
-  tabsStore.removeTab(fullPath as string, fullPath == route.fullPath)
+const setTabRef = (el: Element | null, path: string) => {
+  if (!el) {
+    tabRefs.delete(path)
+    return
+  }
+  tabRefs.set(path, el as HTMLDivElement)
+}
+
+const scrollActiveTabIntoView = async () => {
+  await nextTick()
+  const container = tabsScrollRef.value
+  const activeEl = tabRefs.get(activePath.value)
+  if (!container || !activeEl) return
+
+  const containerRect = container.getBoundingClientRect()
+  const activeRect = activeEl.getBoundingClientRect()
+  const padding = 12
+  const leftOverflow = containerRect.left + padding - activeRect.left
+  const rightOverflow = activeRect.right - (containerRect.right - padding)
+
+  if (leftOverflow > 0) {
+    container.scrollTo({
+      left: Math.max(0, container.scrollLeft - leftOverflow),
+      behavior: 'smooth'
+    })
+    return
+  }
+
+  if (rightOverflow > 0) {
+    container.scrollTo({
+      left: container.scrollLeft + rightOverflow,
+      behavior: 'smooth'
+    })
+  }
+}
+
+const removeTab = (fullPath: string) => {
+  tabsStore.removeTab(fullPath, fullPath === route.fullPath)
 }
 </script>
 
 <style scoped>
 .tabs-box {
-  background-color: var(--layout-topbar-bg, var(--sys-bg-surface));
   color: var(--layout-topbar-text, var(--sys-text));
+  background-color: var(--layout-topbar-bg, var(--sys-bg-surface));
 
   .tabs-menu {
-    position: relative;
-    width: 100%;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
 
-    :deep(.el-tabs) {
-      .el-tabs__header {
-        box-sizing: border-box;
-        height: 40px;
-        padding: 0 10px;
-        margin: 0;
-
-        .el-tabs__nav-wrap {
-          position: absolute;
-          width: calc(100% - 70px);
-
-          .el-tabs__nav {
-            box-sizing: border-box;
-            border: none;
-
-            .el-tabs__item {
-              border-bottom: 1px solid transparent;
-              border-left: none;
-              color: var(--layout-topbar-text-secondary, var(--sys-text-2));
-              background-color: transparent;
-            }
-
-            .el-tabs__item.is-active {
-              color: var(--layout-tabs-active-text, var(--sys-brand)) !important;
-              background-color: var(--layout-tabs-active-bg, rgba(var(--sys-brand-rgb), 0.14));
-              border-bottom: 3px solid var(--layout-tabs-active-text, var(--sys-brand));
-            }
-
-            .el-tabs__item:hover {
-              color: var(--layout-topbar-text, var(--sys-text));
-            }
-          }
-        }
-      }
+    .tabs-scroll {
+      display: flex;
+      flex: 1 1 auto;
+      gap: 6px;
+      align-items: center;
+      min-width: 0;
+      padding-bottom: 2px;
+      overflow: auto hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
-    .more-btn {
+    .tabs-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-item {
+      position: relative;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      height: 30px;
+      padding: 0 10px;
+      font-size: 13px;
+      color: var(--layout-topbar-text-secondary, var(--sys-text-2));
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        padding-right 0.2s ease;
+    }
+
+    .tab-item:hover {
+      color: var(--layout-tabs-active-text, var(--sys-brand));
+    }
+
+    .tab-item.is-active {
+      color: var(--layout-tabs-active-text, var(--sys-brand));
+    }
+
+    .tab-item.is-closable {
+      padding-right: 10px;
+    }
+
+    .tab-item.is-closable:hover {
+      padding-right: 32px;
+    }
+
+    .tab-title {
+      line-height: 1;
+    }
+
+    .tab-close {
       position: absolute;
-      top: 0;
-      right: 0;
-      color: var(--layout-topbar-text, var(--sys-text));
+      top: 50%;
+      right: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      color: inherit;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      border-radius: 999px;
+      transform: translateY(-50%);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .tab-item:hover .tab-close {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .tab-close:hover {
+      background: var(--sys-fill);
+    }
+
+    :deep(.more-btn) {
+      flex: 0 0 auto;
+    }
+
+    :deep(.down-box) {
+      border-radius: 8px;
+    }
+  }
+
+  &.tabs-style-card {
+    .tab-item.is-active,
+    .tab-item:hover {
+      background-color: var(--layout-tabs-active-bg, rgba(var(--sys-brand-rgb), 0.14));
+      border-color: rgba(var(--sys-brand-rgb), 0.35);
+      box-shadow: 0 6px 12px rgb(0 0 0 / 8%);
+    }
+  }
+
+  &.tabs-style-line {
+    .tab-item {
+      padding: 0 6px;
+      background-color: transparent;
+      border-color: transparent;
+      border-style: solid;
+      border-width: 0 0 2px;
+      border-radius: 0;
+    }
+
+    .tab-item.is-closable:hover {
+      padding-right: 30px;
+    }
+
+    .tab-item.is-active,
+    .tab-item:hover {
+      border-color: var(--layout-tabs-active-text, var(--sys-brand));
+      box-shadow: none;
+    }
+  }
+
+  &.tabs-style-pill {
+    .tab-item {
+      background-color: var(--sys-fill-light);
+      border-color: transparent;
+      border-radius: 999px;
+    }
+
+    .tab-item.is-active,
+    .tab-item:hover {
+      background-color: var(--layout-tabs-active-bg, rgba(var(--sys-brand-rgb), 0.14));
+      border-color: rgba(var(--sys-brand-rgb), 0.25);
+      box-shadow: 0 6px 12px rgb(0 0 0 / 8%);
     }
   }
 }

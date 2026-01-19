@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import mittBus from '@/utils/mittBus'
 import { SettingThemeList, ThemeList, SystemMainColor } from '@/config'
-import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum } from '@/config'
+import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum, TabsStyleEnum } from '@/config'
 import type { MenuThemeType, SystemThemeEnum } from '@/config'
 import { useSettingStore } from '@/store/modules/setting.ts'
 import { ElMessage } from 'element-plus'
@@ -59,6 +59,20 @@ const pageTransitionOps = [
     label: 'slide-bottom'
   }
 ]
+const tabsStyleOps = [
+  {
+    value: TabsStyleEnum.CARD,
+    label: 'Card'
+  },
+  {
+    value: TabsStyleEnum.LINE,
+    label: 'Line'
+  },
+  {
+    value: TabsStyleEnum.PILL,
+    label: 'Pill'
+  }
+]
 const customRadiusOps = [
   {
     value: '0',
@@ -107,7 +121,8 @@ const {
   showRefreshButton,
   showMenuButton,
   isFooter,
-  customRadius
+  customRadius,
+  tabsStyle
 } = storeToRefs(store)
 
 const basicModels = {
@@ -118,6 +133,7 @@ const basicModels = {
   showCrumbs,
   showLanguage,
   showNprogress,
+  tabsStyle,
   colorWeak,
   watermarkVisible,
   isFooter,
@@ -217,6 +233,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
         <BasicConfigPanel
           :models="basicModels"
           :page-transition-ops="pageTransitionOps"
+          :tabs-style-ops="tabsStyleOps"
           :custom-radius-ops="customRadiusOps"
           :copy-config="copyConfig"
         />

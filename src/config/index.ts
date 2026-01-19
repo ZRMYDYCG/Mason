@@ -123,6 +123,13 @@ export enum ContainerWidthEnum {
   BOXED = '1200px'
 }
 
+// Tabs style enum
+export enum TabsStyleEnum {
+  CARD = 'card',
+  LINE = 'line',
+  PILL = 'pill'
+}
+
 // Background color enum
 export enum BgColorEnum {
   PRIMARY = 'bg-primary',

@@ -3,7 +3,13 @@ import { MenuThemeType } from '@/config'
 // import { useRouter } from 'vue-router'
 import piniaPersistConfig from '@/store/helper/persist'
 import { ThemeList, ElementPlusTheme, DarkMenuStyles, SystemSetting } from '@/config'
-import { SystemThemeEnum, MenuThemeEnum, MenuTypeEnum, ContainerWidthEnum } from '@/config'
+import {
+  SystemThemeEnum,
+  MenuThemeEnum,
+  MenuTypeEnum,
+  ContainerWidthEnum,
+  TabsStyleEnum
+} from '@/config'
 
 const { defaultMenuWidth, defaultCustomRadius } = SystemSetting
 
@@ -15,6 +21,7 @@ export interface SettingState {
   menuThemeType: MenuThemeEnum // 菜单主题类型
   systemThemeColor: string // 系统主题颜色
   boxBorderMode: boolean // 盒子模式 border | shadow
+  tabsStyle: TabsStyleEnum // tabs style
   uniqueOpened: boolean // 是否开启手风琴模式
   showMenuButton: boolean // 是否显示菜单展开按钮
   showRefreshButton: boolean // 是否显示页面刷新按钮
@@ -45,6 +52,7 @@ export const useSettingStore = defineStore({
     systemThemeMode: SystemThemeEnum.LIGHT,
     menuThemeType: MenuThemeEnum.DESIGN,
     boxBorderMode: true,
+    tabsStyle: TabsStyleEnum.CARD,
     uniqueOpened: true,
     systemThemeColor: ElementPlusTheme.primary,
     showMenuButton: true,

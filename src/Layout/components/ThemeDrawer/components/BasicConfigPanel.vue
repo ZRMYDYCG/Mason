@@ -19,17 +19,19 @@ type BasicModels = {
   isFooter: Ref<boolean>
   menuOpenWidth: Ref<number>
   pageTransition: Ref<string>
+  tabsStyle: Ref<string>
   customRadius: Ref<string>
 }
 
 const props = defineProps<{
   models: BasicModels
   pageTransitionOps: SelectOption[]
+  tabsStyleOps: SelectOption[]
   customRadiusOps: SelectOption[]
   copyConfig: () => void
 }>()
 
-const { models, pageTransitionOps, customRadiusOps, copyConfig } = props
+const { models, pageTransitionOps, tabsStyleOps, customRadiusOps, copyConfig } = props
 
 const {
   showWorkTab,
@@ -44,6 +46,7 @@ const {
   isFooter,
   menuOpenWidth,
   pageTransition,
+  tabsStyle,
   customRadius
 } = models
 </script>
@@ -108,6 +111,17 @@ const {
       <el-select v-model="pageTransition" placeholder="Select" size="default" style="width: 120px">
         <el-option
           v-for="item in pageTransitionOps"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </div>
+    <div class="item" style="display: flex">
+      <span>Tabs 样式</span>
+      <el-select v-model="tabsStyle" placeholder="Select" size="default" style="width: 120px">
+        <el-option
+          v-for="item in tabsStyleOps"
           :key="item.value"
           :label="item.label"
           :value="item.value"
