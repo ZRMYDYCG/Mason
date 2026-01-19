@@ -60,6 +60,7 @@ export default [
       'no-multiple-empty-lines': ['error', { max: 1 }],
       'prefer-const': 'off',
       'no-use-before-define': 'off',
+      'prettier/prettier': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-empty-function': 'error',
       '@typescript-eslint/prefer-ts-expect-error': 'error',

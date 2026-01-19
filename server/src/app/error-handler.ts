@@ -79,7 +79,7 @@ export const errorHandler = (error: { message: string }, ctx: Context) => {
   ctx.body = {
     code: status || -1,
     data: null,
-    msg: msg || '失败',
+    msg: msg || '失败'
   }
 
   // 保证返回状态是 200, 这样前端不会抛出异常
