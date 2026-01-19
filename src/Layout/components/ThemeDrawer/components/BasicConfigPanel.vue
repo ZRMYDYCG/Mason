@@ -178,7 +178,7 @@ const {
   }
 }
 
-@media screen and (max-width: 783px) {
+@media screen and (width <= 783px) {
   .mobile-hide {
     display: none !important;
   }

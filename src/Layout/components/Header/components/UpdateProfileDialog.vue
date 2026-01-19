@@ -121,20 +121,20 @@ defineExpose({ open })
 
 <style scoped>
 .avatar-uploader .avatar {
+  display: block;
   width: 100px;
   height: 100px;
-  display: block;
   object-fit: cover;
 }
 </style>
 
 <style>
 .avatar-uploader .el-upload {
-  border: 1px dashed var(--el-border-color);
-  border-radius: 6px;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
   transition: var(--el-transition-duration-fast);
 }
 
@@ -143,10 +143,10 @@ defineExpose({ open })
 }
 
 .avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
   width: 100px;
   height: 100px;
+  font-size: 28px;
+  color: #8c939d;
   text-align: center;
 }
 </style>

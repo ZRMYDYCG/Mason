@@ -72,16 +72,16 @@ function handleClick(item: NoticeItem) {
 
 .notice-item {
   display: flex;
-  align-items: center;
   gap: 12px;
-  cursor: pointer;
+  align-items: center;
   padding: 8px 0;
+  cursor: pointer;
   border-bottom: 1px dashed var(--el-border-color-lighter);
   transition: all 0.2s;
 
   &:last-child {
-    border-bottom: none;
     padding-bottom: 0;
+    border-bottom: none;
   }
 
   &:first-child {
@@ -99,23 +99,23 @@ function handleClick(item: NoticeItem) {
   }
 
   .notice-content {
-    flex: 1;
     display: flex;
+    flex: 1;
+    gap: 12px;
     align-items: center;
     justify-content: space-between;
     min-width: 0;
-    gap: 12px;
   }
 
   .notice-title {
+    flex: 1;
     font-size: 13px;
     color: var(--el-text-color-primary);
-    flex: 1;
   }
 
   .notice-date {
-    font-size: 12px;
     flex-shrink: 0;
+    font-size: 12px;
   }
 }
 

@@ -66,8 +66,8 @@ const activeMenu = computed(() => {
     display: inline-flex;
     align-items: center;
     height: 40px;
-    line-height: 40px;
     margin: 0 4px;
+    line-height: 40px;
     border-radius: 8px;
   }
 
@@ -85,7 +85,7 @@ const activeMenu = computed(() => {
   }
 }
 
-@media screen and (max-width: 568px) {
+@media screen and (width <= 568px) {
   .menu-top {
     .el-menu {
       width: 38vw !important;

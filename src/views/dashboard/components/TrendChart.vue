@@ -46,12 +46,24 @@ type TrendPalette = {
   info: string
 }
 
+type TrendAxisColors = {
+  textRegular: string
+  textSecondary: string
+  border: string
+}
+
 const palette = ref<TrendPalette>({
   primary: '#409EFF',
   success: '#67C23A',
   warning: '#E6A23C',
   danger: '#F56C6C',
   info: '#909399'
+})
+
+const axisColors = ref<TrendAxisColors>({
+  textRegular: '#606266',
+  textSecondary: '#909399',
+  border: '#e4e7ed'
 })
 
 function resolveCssColor(variableName: string, fallback: string) {
@@ -67,6 +79,11 @@ function updatePaletteFromCssVars() {
     warning: resolveCssColor('--el-color-warning', palette.value.warning),
     danger: resolveCssColor('--el-color-danger', palette.value.danger),
     info: resolveCssColor('--el-color-info', palette.value.info)
+  }
+  axisColors.value = {
+    textRegular: resolveCssColor('--el-text-color-regular', axisColors.value.textRegular),
+    textSecondary: resolveCssColor('--el-text-color-secondary', axisColors.value.textSecondary),
+    border: resolveCssColor('--app-border', axisColors.value.border)
   }
 }
 
@@ -162,7 +179,7 @@ const trendOption = computed(() => {
       trigger: 'axis',
       axisPointer: {
         type: 'line',
-        lineStyle: { color: 'var(--app-border)', width: 1 }
+        lineStyle: { color: axisColors.value.border, width: 1 }
       }
     },
     legend: {
@@ -173,7 +190,7 @@ const trendOption = computed(() => {
       itemWidth: 18,
       itemHeight: 6,
       itemGap: 16,
-      textStyle: { color: 'var(--el-text-color-regular)' }
+      textStyle: { color: axisColors.value.textRegular }
     },
     grid: { left: 12, right: 12, top: 16, bottom: 46, containLabel: true },
     xAxis: {
@@ -181,13 +198,13 @@ const trendOption = computed(() => {
       data: x,
       boundaryGap: false,
       axisTick: { show: false },
-      axisLine: { lineStyle: { color: 'var(--app-border)' } },
-      axisLabel: { color: 'var(--el-text-color-secondary)' }
+      axisLine: { lineStyle: { color: axisColors.value.border } },
+      axisLabel: { color: axisColors.value.textSecondary }
     },
     yAxis: {
       type: 'value',
-      axisLabel: { color: 'var(--el-text-color-secondary)' },
-      splitLine: { lineStyle: { color: 'var(--app-border)', type: 'dashed', opacity: 0.6 } }
+      axisLabel: { color: axisColors.value.textSecondary },
+      splitLine: { lineStyle: { color: axisColors.value.border, type: 'dashed', opacity: 0.6 } }
     },
     series: [
       makeLineSeries('访问量', visits, palette.value.primary),
@@ -211,9 +228,9 @@ watch(
 <style scoped>
 .card-head {
   display: flex;
+  gap: 12px;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
 
   .card-title {
     font-size: 14px;
@@ -230,8 +247,8 @@ watch(
   height: 320px;
 
   .chart {
-    height: 100%;
     width: 100%;
+    height: 100%;
   }
 }
 </style>

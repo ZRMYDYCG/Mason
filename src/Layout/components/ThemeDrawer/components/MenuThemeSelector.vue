@@ -102,7 +102,9 @@ const emit = defineEmits<{
         overflow: hidden;
         cursor: pointer;
         background: var(--app-fill-light) !important;
+
         @include preview-shell(var(--mason-grey-100));
+
         transition: box-shadow 0.1s;
 
         &.is-active {

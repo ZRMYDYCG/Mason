@@ -57,23 +57,25 @@ const handleThrottle = () => {
 .content-box {
   padding: 20px;
 }
+
 .box-item {
-  margin-bottom: 20px;
   display: flex;
-  align-items: center;
   gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
 }
+
 .ripple-box {
-  width: 150px;
-  height: 60px;
-  background: var(--el-color-primary-light-9);
-  color: var(--el-color-primary);
-  border: 1px solid var(--el-color-primary-light-5);
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 150px;
+  height: 60px;
+  color: var(--el-color-primary);
   cursor: pointer;
   user-select: none;
+  background: var(--el-color-primary-light-9);
+  border: 1px solid var(--el-color-primary-light-5);
   border-radius: 4px;
 }
 </style>

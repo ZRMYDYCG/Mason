@@ -77,29 +77,29 @@ onMounted(() => {
     flex: 1;
 
     p {
-      text-align: center;
       height: 16px;
       font-size: 16px;
+      text-align: center;
     }
 
     .user_Overview_nums {
+      position: relative;
       width: 100px;
       height: 100px;
-      text-align: center;
-      line-height: 100px;
-      font-size: 22px;
       margin: 50px auto 30px;
-      background-size: cover;
+      font-size: 22px;
+      line-height: 100px;
+      text-align: center;
       background-position: center center;
-      position: relative;
+      background-size: cover;
 
       &::before {
-        content: '';
         position: absolute;
-        width: 100%;
-        height: 100%;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
       }
 
       &.bgdonghua::before {

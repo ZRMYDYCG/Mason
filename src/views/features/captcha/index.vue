@@ -20,10 +20,10 @@ import ClickCaptcha from './components/ClickCaptcha.vue'
 
 <style scoped>
 .captcha-container {
+  min-height: 100%;
   padding: 20px;
   background-color: var(--el-bg-color);
   border-radius: 6px;
-  min-height: 100%;
 }
 
 .captcha-grid {

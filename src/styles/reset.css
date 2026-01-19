@@ -53,6 +53,7 @@ body {
   --el-border-radius-base: calc(var(--custom-radius) / 2 + 2px) !important;
   --el-border-radius-small: 10px !important;
   --el-messagebox-border-radius: 10px !important;
+
   .region .el-radio-button__original-radio:checked + .el-radio-button__inner {
     color: var(--main-color);
   }
@@ -64,6 +65,7 @@ body {
     animation: dialog-open 0.3s cubic-bezier(0.32, 0.14, 0.15, 0.86);
   }
 }
+
 .dialog-fade-leave-active {
   animation: fade-out 0.2s linear;
 
@@ -71,6 +73,7 @@ body {
     animation: dialog-close 0.2s cubic-bezier(0.78, 0.14, 0.15, 0.86);
   }
 }
+
 @keyframes dialog-open {
   0% {
     opacity: 0;
@@ -82,6 +85,7 @@ body {
     transform: scale(1);
   }
 }
+
 @keyframes dialog-close {
   0% {
     opacity: 1;
@@ -93,6 +97,7 @@ body {
     transform: scale(0.2);
   }
 }
+
 /* 遮罩层动画 */
 @keyframes fade-out {
   0% {

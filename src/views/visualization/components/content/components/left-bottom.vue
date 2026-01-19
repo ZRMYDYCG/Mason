@@ -120,9 +120,9 @@ onMounted(() => {
 
 <style scoped>
 .left_boottom_wrap {
-  overflow: hidden;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .doudong {
@@ -143,76 +143,79 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     padding: 8px;
-    font-size: 14px;
     margin: 10px 0;
+    font-size: 14px;
+
     .orderNum {
       margin: 0 16px 0 -20px;
     }
 
     .info {
-      margin-right: 10px;
       display: flex;
       align-items: center;
-      color: #fff;
+      margin-right: 10px;
+      color: #ffffff;
 
       .labels {
         flex-shrink: 0;
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgb(255 255 255 / 60%);
       }
 
       .zhuyao {
-        color: var(--primary-color);
         font-size: 15px;
+        color: var(--primary-color);
       }
 
       .ciyao {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgb(255 255 255 / 80%);
       }
 
       .warning {
-        color: #e6a23c;
         font-size: 15px;
+        color: #e6a23c;
       }
     }
 
     .inner_right {
       position: relative;
-      height: 100%;
-      width: 380px;
-      flex-shrink: 0;
-      line-height: 1;
       display: flex;
+      flex-shrink: 0;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      width: 380px;
+      height: 100%;
+      line-height: 1;
+
       .dibu {
         position: absolute;
-        height: 2px;
-        width: 104%;
-        background-image: url('@/assets/img/zuo_xuxian.png');
         bottom: -10px;
         left: -2%;
+        width: 104%;
+        height: 2px;
+        background-image: url('@/assets/img/zuo_xuxian.png');
         background-size: cover;
       }
+
       .addresswrap {
-        width: 100%;
         display: flex;
+        width: 100%;
         margin-top: 8px;
       }
     }
 
     .wangguan {
-      color: #1890ff;
-      font-weight: 900;
-      font-size: 15px;
-      width: 80px;
       flex-shrink: 0;
+      width: 80px;
+      font-size: 15px;
+      font-weight: 900;
+      color: #1890ff;
     }
 
     .time {
       font-size: 12px;
-      color: #fff;
+      color: #ffffff;
     }
 
     .address {
@@ -221,8 +224,8 @@ onMounted(() => {
     }
 
     .types {
-      width: 30px;
       flex-shrink: 0;
+      width: 30px;
     }
 
     .typeRed {

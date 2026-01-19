@@ -92,6 +92,7 @@ const handleCommand = (command: 'zh' | 'en') => {
   display: flex;
   gap: 8px;
   align-items: center;
+
   svg {
     width: 24px;
     height: 20px;

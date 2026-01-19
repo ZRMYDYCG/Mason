@@ -113,20 +113,20 @@ onMounted(() => {
 <style scoped>
 .dv-capsule-chart {
   position: relative;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  box-sizing: border-box;
   padding: 10px;
-  color: #fff;
+  color: #ffffff;
 
   .label-column {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-sizing: border-box;
     padding-right: 10px;
-    text-align: right;
     font-size: 12px;
+    text-align: right;
 
     div {
       height: 20px;
@@ -135,27 +135,27 @@ onMounted(() => {
   }
 
   .capsule-container {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: space-between;
   }
 
   .capsule-item {
-    box-shadow: 0 0 3px #999;
     height: 10px;
-    margin: 5px 0px;
+    margin: 5px 0;
     border-radius: 5px;
+    box-shadow: 0 0 3px #999999;
 
     .capsule-item-column {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
       height: 8px;
       margin-top: 1px;
       border-radius: 5px;
       transition: all 0.3s;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
 
       .capsule-item-value {
         font-size: 12px;
@@ -165,21 +165,21 @@ onMounted(() => {
   }
 
   .unit-label {
-    height: 20px;
-    font-size: 12px;
     position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    height: 20px;
+    font-size: 12px;
   }
 
   .unit-text {
-    text-align: right;
     display: flex;
     align-items: flex-end;
+    margin-left: 10px;
     font-size: 12px;
     line-height: 20px;
-    margin-left: 10px;
+    text-align: right;
   }
 }
 </style>

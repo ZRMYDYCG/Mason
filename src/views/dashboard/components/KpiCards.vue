@@ -362,18 +362,18 @@ watch(
 
 <style scoped>
 .kpi-row {
-  @media screen and (max-width: 768px) {
+  @media screen and (width <= 768px) {
     row-gap: 12px;
   }
 }
 
 .kpi-card {
-  height: 136px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  user-select: none;
+  height: 136px;
   overflow: hidden;
+  user-select: none;
 
   &.clickable {
     cursor: pointer;
@@ -381,9 +381,9 @@ watch(
 
   .kpi-top {
     display: flex;
+    gap: 12px;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
   }
 
   .kpi-label {
@@ -395,17 +395,17 @@ watch(
     margin-top: 6px;
     font-size: 26px;
     font-weight: 700;
-    color: var(--el-text-color-primary);
     line-height: 1.1;
+    color: var(--el-text-color-primary);
   }
 
   .kpi-chart {
-    margin-top: 10px;
     height: 36px;
+    margin-top: 10px;
 
     .chart {
-      height: 100%;
       width: 100%;
+      height: 100%;
       pointer-events: none;
     }
   }

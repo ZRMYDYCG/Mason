@@ -28,8 +28,8 @@ const { showLanguage, showRefreshButton } = storeToRefs(settingStore)
 <style scoped>
 .tool-bar-rt {
   display: flex;
+  gap: 12px;
   align-items: center;
   justify-content: center;
-  gap: 12px;
 }
 </style>

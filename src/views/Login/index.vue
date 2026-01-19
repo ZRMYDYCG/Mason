@@ -161,13 +161,13 @@ const handleRegisterSuccess = () => {
 
 <style scoped>
 .landing-page {
-  min-height: 100vh;
-  background-color: var(--el-bg-color);
-  color: var(--el-text-color-primary);
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--el-text-color-primary);
+  background-color: var(--el-bg-color);
   transition:
     background-color 0.3s,
     color 0.3s;
@@ -175,15 +175,15 @@ const handleRegisterSuccess = () => {
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
   background-color: transparent;
 
   .logo-container {
     display: flex;
-    align-items: center;
     gap: 10px;
+    align-items: center;
 
     .logo {
       width: 32px;
@@ -191,20 +191,21 @@ const handleRegisterSuccess = () => {
     }
 
     .app-name {
-      font-weight: 700;
       font-size: 1.2rem;
+      font-weight: 700;
       color: var(--el-text-color-primary);
     }
   }
 
   .header-actions {
     display: flex;
-    align-items: center;
     gap: 1rem;
+    align-items: center;
 
     .nav-btn {
       font-size: 1rem;
       color: var(--el-text-color-regular);
+
       &:hover {
         color: var(--el-text-color-primary);
       }
@@ -213,8 +214,8 @@ const handleRegisterSuccess = () => {
 }
 
 .main-content {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   padding-top: 4rem;
@@ -223,33 +224,33 @@ const handleRegisterSuccess = () => {
 
 .hero-section {
   max-width: 800px;
-  margin-bottom: 4rem;
   padding: 0 1rem;
+  margin-bottom: 4rem;
 
   .hero-title {
+    margin-bottom: 1.5rem;
+    font-family: 'Songti SC', SimSun, 'Times New Roman', serif;
     font-size: 3.5rem;
     font-weight: 400;
-    margin-bottom: 1.5rem;
     color: var(--el-text-color-primary);
     letter-spacing: -0.02em;
-    font-family: 'Songti SC', 'SimSun', 'Times New Roman', serif;
   }
 
   .hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--el-text-color-secondary);
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
     max-width: 600px;
-    margin-left: auto;
     margin-right: auto;
+    margin-bottom: 2.5rem;
+    margin-left: auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--el-text-color-secondary);
   }
 
   .cta-button {
+    height: auto;
     padding: 12px 30px;
     font-size: 1rem;
     font-weight: 600;
-    height: auto;
   }
 }
 
@@ -260,49 +261,48 @@ const handleRegisterSuccess = () => {
   margin-bottom: 4rem;
 
   .card-content {
-    background: var(--el-fill-color-light);
-    border-radius: 12px;
     padding: 3rem;
     text-align: left;
+    background: var(--el-fill-color-light);
+    border-radius: 12px;
     box-shadow: var(--el-box-shadow-light);
 
     .card-title {
+      margin-bottom: 1.5rem;
+      font-family: 'Songti SC', SimSun, 'Times New Roman', serif;
       font-size: 1.8rem;
       font-weight: 400;
-      margin-bottom: 1.5rem;
-      font-family: 'Songti SC', 'SimSun', 'Times New Roman', serif;
       color: var(--el-text-color-primary);
     }
 
     .card-desc {
-      font-size: 1rem;
-      color: var(--el-text-color-regular);
-      line-height: 1.8;
       margin-bottom: 2rem;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--el-text-color-regular);
     }
 
     .card-image-placeholder {
-      width: 100%;
-      height: 300px;
-      background: linear-gradient(135deg, var(--el-fill-color) 0%, var(--el-fill-color-dark) 100%);
-      border-radius: 8px;
-      overflow: hidden;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-
-      background-size: cover;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--el-fill-color) 0%, var(--el-fill-color-dark) 100%);
       background-position: center;
+      background-size: cover;
+      border-radius: 8px;
 
       .placeholder-overlay {
-        background: rgba(0, 0, 0, 0.3);
         padding: 1rem 2rem;
-        border-radius: 4px;
-        color: white;
         font-size: 1.2rem;
+        color: white;
         letter-spacing: 2px;
+        background: rgb(0 0 0 / 30%);
         backdrop-filter: blur(4px);
+        border-radius: 4px;
       }
     }
   }
@@ -310,8 +310,8 @@ const handleRegisterSuccess = () => {
 
 .dialog-footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
 </style>

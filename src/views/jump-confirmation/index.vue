@@ -172,8 +172,8 @@ const handleReset = () => {
 
   .card-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
   }
 
   .status-bar {

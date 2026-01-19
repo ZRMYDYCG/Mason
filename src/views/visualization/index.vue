@@ -34,12 +34,12 @@ const wrapperStyle = {}
 
 <style scoped>
 .content_wrap {
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 16px 16px 16px 16px;
-  box-sizing: border-box;
+  padding: 16px;
   background-image: url('../../assets/img/pageBg.png');
-  background-size: cover;
   background-position: center center;
+  background-size: cover;
 }
 </style>

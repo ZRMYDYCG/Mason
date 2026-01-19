@@ -24,15 +24,15 @@ const props = withDefaults(defineProps<IItemWrapProps>(), {
 
 <style scoped>
 .item_title {
-  height: 38px;
-  line-height: calc(100% - 38px);
-  width: 100%;
-  color: #31abe3;
-  text-align: center;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 38px;
+  line-height: calc(100% - 38px);
+  color: #31abe3;
+  text-align: center;
 
   .zuo,
   .you {
@@ -44,18 +44,19 @@ const props = withDefaults(defineProps<IItemWrapProps>(), {
   .you {
     transform: rotate(180deg);
   }
+
   .title-inner {
     font-weight: 900;
     letter-spacing: 2px;
-    background: linear-gradient(92deg, #0072ff 0%, #00eaff 48.8525390625%, #01aaff 100%);
-    -webkit-background-clip: text;
+    background: linear-gradient(92deg, #0072ff 0%, #00eaff 48%, #01aaff 100%);
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }
 
 :deep(.dv-border-box-content) {
   box-sizing: border-box;
-  padding: 6px 16px 0px;
+  padding: 6px 16px 0;
 }
 
 .item_title_content {

@@ -71,14 +71,16 @@ const mergedColor = computed<[string, string]>(() => {
   width: 100%;
   height: 100%;
 }
+
 .dv-border-svg-container {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
   display: block;
+  width: 100%;
+  height: 100%;
 }
+
 .dv-border-box-content {
   position: relative;
   width: 100%;

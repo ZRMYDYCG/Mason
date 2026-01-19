@@ -103,7 +103,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
       }),
       codeInspectorPlugin({
         bundler: 'vite',
-        editor: 'trae'
+        editor: 'code'
       }),
       AutoImport({
         imports: [

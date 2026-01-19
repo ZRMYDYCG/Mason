@@ -174,6 +174,7 @@ const emit = defineEmits<{
 
       .box {
         @include preview-shell(transparent);
+
         height: 50px;
         cursor: pointer;
         background-color: var(--app-fill-light);

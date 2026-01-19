@@ -18,9 +18,11 @@ const router = useRouter()
 h2 {
   color: var(--el-text-color-primary);
 }
+
 h4 {
   color: var(--el-text-color-regular);
 }
+
 .el-button {
   width: 100px;
 }

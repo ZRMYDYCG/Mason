@@ -119,28 +119,28 @@ const mapClick = (params: any) => {
   margin-bottom: 30px;
 
   .maptitle {
-    height: 60px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
+    height: 60px;
     padding-top: 10px;
-    box-sizing: border-box;
 
     .titletext {
+      margin: 0 10px;
       font-size: 28px;
       font-weight: 900;
       letter-spacing: 6px;
-      background: linear-gradient(92deg, #0072ff 0%, #00eaff 48.8525390625%, #01aaff 100%);
-      -webkit-background-clip: text;
+      background: linear-gradient(92deg, #0072ff 0%, #00eaff 48%, #01aaff 100%);
+      background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 0 10px;
     }
 
     .zuo,
     .you {
-      background-size: 100% 100%;
       width: 29px;
       height: 20px;
       margin-top: 8px;
+      background-size: 100% 100%;
     }
 
     .zuo {
@@ -153,28 +153,28 @@ const mapClick = (params: any) => {
   }
 
   .mapwrap {
-    height: 580px;
-    width: 100%;
-    box-sizing: border-box;
     position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 580px;
 
     .quanguo {
       position: absolute;
-      right: 20px;
       top: -46px;
+      right: 20px;
+      z-index: 10;
       width: 80px;
       height: 28px;
-      border: 1px solid #00eded;
-      border-radius: 10px;
+      line-height: 26px;
       color: #00f7f6;
       text-align: center;
-      line-height: 26px;
       letter-spacing: 6px;
       cursor: pointer;
+      border: 1px solid #00eded;
+      border-radius: 10px;
       box-shadow:
-        0 2px 4px rgba(0, 237, 237, 0.5),
-        0 0 6px rgba(0, 237, 237, 0.4);
-      z-index: 10;
+        0 2px 4px rgb(0 237 237 / 50%),
+        0 0 6px rgb(0 237 237 / 40%);
     }
   }
 }

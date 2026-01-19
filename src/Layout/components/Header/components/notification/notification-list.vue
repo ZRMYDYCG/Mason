@@ -145,8 +145,8 @@ const clickAction = (item: ActionOptions, index: number) => {
   }
 
   :deep(.el-tabs__item.is-active) {
-    color: var(--app-text-active);
     font-weight: 600;
+    color: var(--app-text-active);
   }
 }
 
@@ -158,9 +158,9 @@ const clickAction = (item: ActionOptions, index: number) => {
   display: flex;
   gap: 10px;
   align-items: flex-start;
-  padding: 10px 10px;
-  border-radius: 10px;
+  padding: 10px;
   cursor: pointer;
+  border-radius: 10px;
   transition: background-color 0.15s ease;
 }
 
@@ -223,8 +223,8 @@ const clickAction = (item: ActionOptions, index: number) => {
 
 .panel-footer {
   display: flex;
-  justify-content: center;
   gap: 10px;
+  justify-content: center;
   padding: 10px 12px;
   border-top: 1px solid var(--app-border-light);
 }

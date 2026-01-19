@@ -34,7 +34,7 @@ const showMenuButton = computed(() => settingStore.showMenuButton)
 <style scoped>
 .tool-bar-lf {
   display: flex;
-  align-items: center;
   gap: 12px;
+  align-items: center;
 }
 </style>

@@ -100,7 +100,7 @@ onMounted(() => {
                 <span class="labels shrink-0"> {{ t('visualization.label.address') }}：</span>
                 <span
                   class="ciyao truncate"
-                  style="font-size: 12px; width: 220px"
+                  style=" width: 220px;font-size: 12px"
                   :title="handleAddress(item)"
                 >
                   {{ handleAddress(item) }}</span
@@ -138,7 +138,7 @@ onMounted(() => {
     height: auto;
     padding: 10px;
     font-size: 14px;
-    color: #fff;
+    color: #ffffff;
 
     .orderNum {
       margin: 0 20px 0 -20px;
@@ -146,54 +146,54 @@ onMounted(() => {
 
     .inner_right {
       position: relative;
-      height: 100%;
-      width: 400px;
       flex-shrink: 0;
+      width: 400px;
+      height: 100%;
       line-height: 1.5;
 
       .dibu {
         position: absolute;
-        height: 2px;
-        width: 104%;
-        background-image: url('@/assets/img/zuo_xuxian.png');
         bottom: -12px;
         left: -2%;
+        width: 104%;
+        height: 2px;
+        background-image: url('@/assets/img/zuo_xuxian.png');
         background-size: cover;
       }
     }
 
     .info {
-      margin-right: 10px;
       display: flex;
       align-items: center;
+      margin-right: 10px;
 
       .labels {
         flex-shrink: 0;
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgb(255 255 255 / 60%);
       }
 
       .zhuyao {
-        color: var(--primary-color);
         font-size: 15px;
+        color: var(--primary-color);
       }
 
       .ciyao {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgb(255 255 255 / 80%);
       }
 
       .warning {
-        color: #e6a23c;
         font-size: 15px;
+        color: #e6a23c;
       }
     }
   }
 }
 
 .right_bottom_wrap {
-  overflow: hidden;
   width: 100%;
   height: 252px;
+  overflow: hidden;
 }
 
 .overflow-y-auto {

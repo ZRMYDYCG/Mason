@@ -130,15 +130,15 @@ onMounted(() => {
 
     .item {
       position: relative;
+      display: flex;
+      gap: 4px;
+      align-items: center;
       height: 40px;
       padding: 0 12px;
       font-size: 14px;
       line-height: 40px;
       cursor: pointer;
       border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
 
       i {
         margin-right: 5px;
@@ -183,7 +183,7 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 678px) {
+@media (width <= 678px) {
   .mixed-top-menu {
     :deep(.scrollbar-wrapper) {
       width: calc(48vw - 100px);

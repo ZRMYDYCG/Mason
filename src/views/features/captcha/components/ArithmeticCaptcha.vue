@@ -55,16 +55,16 @@ onMounted(() => {
 
 <style scoped>
 .captcha-item {
-  border: 1px solid var(--el-border-color-light);
-  padding: 20px;
-  border-radius: 4px;
   width: 300px;
+  padding: 20px;
   background-color: var(--el-bg-color);
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 4px;
 
   .header {
+    margin-bottom: 15px;
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 15px;
     color: var(--el-text-color-primary);
   }
 
@@ -74,15 +74,15 @@ onMounted(() => {
     gap: 15px;
 
     .img-box {
-      cursor: pointer;
-      border: 1px solid var(--el-border-color);
-      border-radius: 4px;
-      overflow: hidden;
-      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 50px;
+      overflow: hidden;
+      cursor: pointer;
       background: var(--el-fill-color-light);
+      border: 1px solid var(--el-border-color);
+      border-radius: 4px;
     }
 
     .form-box {

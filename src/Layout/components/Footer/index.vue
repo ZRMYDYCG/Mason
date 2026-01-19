@@ -15,13 +15,13 @@
 <style scoped>
 .footer {
   display: flex;
-  justify-content: center;
+  gap: 8px;
   align-items: center;
+  justify-content: center;
+  padding: 5px 0;
   font-size: 14px;
   color: var(--app-text-tertiary);
   background-color: var(--app-bg-surface);
-  gap: 8px;
-  padding: 5px 0;
 
   .footer-content {
     display: flex;
@@ -32,8 +32,8 @@
 
     .footer-text {
       display: flex;
-      align-items: center;
       gap: 8px;
+      align-items: center;
 
       .logo {
         width: 24px;
@@ -49,6 +49,7 @@
   from {
     filter: drop-shadow(0 0 4px rgba(var(--app-color-primary-rgb), 0.25));
   }
+
   to {
     filter: drop-shadow(0 0 12px rgba(var(--app-color-primary-rgb), 0.75));
   }

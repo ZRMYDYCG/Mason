@@ -71,16 +71,16 @@ onMounted(() => {
 
 <style scoped>
 .captcha-item {
-  border: 1px solid var(--el-border-color-light);
-  padding: 20px;
-  border-radius: 4px;
   width: 300px;
+  padding: 20px;
   background-color: var(--el-bg-color);
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 4px;
 
   .header {
+    margin-bottom: 15px;
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 15px;
     color: var(--el-text-color-primary);
   }
 }
@@ -88,15 +88,15 @@ onMounted(() => {
 .rotate-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 20px;
+  align-items: center;
 
   .img-container {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
     overflow: hidden;
     border: 2px solid var(--el-border-color);
+    border-radius: 50%;
 
     .rotate-img {
       width: 100%;
@@ -111,9 +111,9 @@ onMounted(() => {
     text-align: center;
 
     .hint {
+      margin-top: 5px;
       font-size: 12px;
       color: var(--el-text-color-secondary);
-      margin-top: 5px;
     }
   }
 }

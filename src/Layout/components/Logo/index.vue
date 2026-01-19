@@ -25,9 +25,9 @@ const menuType = computed(() => settingStore.menuType)
 
 <style scoped>
 .logo {
+  box-sizing: border-box;
   display: flex;
   gap: 10px;
-  box-sizing: border-box;
   align-items: center;
   justify-content: center;
   height: 55px;

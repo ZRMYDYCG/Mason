@@ -247,7 +247,7 @@ const handleConfirm = () => {
               >
                 <template #prepend v-if="menuForm.icon">
                   <div
-                    style="width: 40px; display: flex; align-items: center; justify-content: center"
+                    style=" display: flex; align-items: center; justify-content: center;width: 40px"
                   >
                     <AllLucideIcon :name="menuForm.icon" />
                   </div>
@@ -354,7 +354,7 @@ const handleConfirm = () => {
               >
                 <template #prepend v-if="editMenuForm.icon">
                   <div
-                    style="width: 40px; display: flex; align-items: center; justify-content: center"
+                    style=" display: flex; align-items: center; justify-content: center;width: 40px"
                   >
                     <AllLucideIcon :name="editMenuForm.icon" />
                   </div>

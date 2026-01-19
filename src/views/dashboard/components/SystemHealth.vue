@@ -123,9 +123,9 @@ function progressColor(val: number) {
 <style scoped>
 .card-head {
   display: flex;
+  gap: 12px;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
 
   .card-title {
     font-size: 14px;
@@ -136,8 +136,8 @@ function progressColor(val: number) {
 
 .card-head-rt {
   display: flex;
-  align-items: center;
   gap: 12px;
+  align-items: center;
 }
 
 .head-metric {
@@ -166,8 +166,8 @@ function progressColor(val: number) {
   grid-template-columns: 140px 1fr;
   gap: 12px;
   align-items: center;
+  padding: 10px;
   margin-bottom: 12px;
-  padding: 10px 10px;
   background: var(--app-bg-overlay);
   border: 1px solid var(--app-border-light);
   border-radius: 10px;
@@ -179,43 +179,43 @@ function progressColor(val: number) {
 
   .health-left {
     display: flex;
-    align-items: center;
     gap: 10px;
+    align-items: center;
     min-width: 0;
   }
 
   .health-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     justify-content: center;
-    flex: 0 0 auto;
-    background: var(--app-fill-light);
+    width: 28px;
+    height: 28px;
     color: var(--el-text-color-primary);
+    background: var(--app-fill-light);
+    border-radius: 8px;
 
     &.is-primary {
-      background: rgba(var(--el-color-primary-rgb), 0.12);
       color: var(--el-color-primary);
+      background: rgba(var(--el-color-primary-rgb), 0.12);
     }
 
     &.is-success {
-      background: rgba(var(--el-color-success-rgb), 0.12);
       color: var(--el-color-success);
+      background: rgba(var(--el-color-success-rgb), 0.12);
     }
 
     &.is-warning {
-      background: rgba(var(--el-color-warning-rgb), 0.12);
       color: var(--el-color-warning);
+      background: rgba(var(--el-color-warning-rgb), 0.12);
     }
   }
 
   .health-left-txt {
-    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 2px;
+    min-width: 0;
   }
 
   .health-val {
@@ -227,9 +227,9 @@ function progressColor(val: number) {
 
 .health-meta {
   display: flex;
+  gap: 12px;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
   margin-top: 4px;
 }
 </style>

@@ -63,20 +63,20 @@ timeFn()
 
 <style scoped>
 .title_wrap {
-  height: 60px;
-  background-image: url('../../../assets/img/top.png');
-  background-size: cover;
-  background-position: center center;
   position: relative;
+  height: 60px;
   margin-bottom: 4px;
+  background-image: url('../../../assets/img/top.png');
+  background-position: center center;
+  background-size: cover;
 
   .guang {
     position: absolute;
     bottom: -26px;
-    background-image: url('../../../assets/img/guang.png');
-    background-position: 80px center;
     width: 100%;
     height: 56px;
+    background-image: url('../../../assets/img/guang.png');
+    background-position: 80px center;
   }
 
   .zuojuxing,
@@ -99,17 +99,18 @@ timeFn()
 
   .timers {
     position: absolute;
-    right: 0;
     top: 30px;
-    font-size: 18px;
+    right: 0;
     display: flex;
     align-items: center;
+    font-size: 18px;
 
     .setting_icon {
       width: 20px;
       height: 20px;
-      cursor: pointer;
       margin-left: 12px;
+      cursor: pointer;
+
       img {
         width: 100%;
         height: 100%;
@@ -117,22 +118,22 @@ timeFn()
     }
   }
 }
+
 .title {
   position: relative;
-  // width: 500px;
-  text-align: center;
-  background-size: cover;
-  color: transparent;
   height: 60px;
   line-height: 46px;
+  color: transparent;
+  text-align: center;
+  background-size: cover;
 
   .title-text {
+    width: 100%;
     font-size: 38px;
     font-weight: 900;
     letter-spacing: 6px;
-    width: 100%;
-    background: linear-gradient(92deg, #0072ff 0%, #00eaff 48.8525390625%, #01aaff 100%);
-    -webkit-background-clip: text;
+    background: linear-gradient(92deg, #0072ff 0%, #00eaff 48%, #01aaff 100%);
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }

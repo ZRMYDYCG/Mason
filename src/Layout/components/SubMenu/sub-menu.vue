@@ -58,25 +58,21 @@ const handleClickMenu = (subItem: Menu) => {
 :global(.aside .el-menu-item),
 :global(.aside .el-sub-menu__title) {
   position: relative;
+  height: 40px;
   margin: 6px 10px;
+  line-height: 40px;
   border-radius: 10px;
   transition:
     background-color 0.15s ease,
     color 0.15s ease;
 }
 
-:global(.aside .el-sub-menu__title),
-:global(.aside .el-menu-item) {
-  height: 40px;
-  line-height: 40px;
-}
-
 :global(.aside .el-menu--collapse .el-menu-item .icon),
 :global(.aside .el-menu--collapse .el-sub-menu__title .icon) {
-  margin-left: -6px;
+  display: block;
   width: 18px;
   height: 18px;
-  display: block;
+  margin-left: -6px;
 }
 
 :global(html:not(.dark) .aside .el-menu-item:not(.is-active):hover),
@@ -98,15 +94,15 @@ const handleClickMenu = (subItem: Menu) => {
 }
 
 :global(.aside .el-menu-item.is-active) {
+  font-weight: 600;
   color: var(--app-text-active);
   background-color: rgba(var(--app-color-primary-rgb), 0.14);
-  font-weight: 600;
 }
 
 :global(.aside .el-sub-menu.is-active > .el-sub-menu__title) {
+  font-weight: 600;
   color: var(--app-text-active);
   background-color: rgba(var(--app-color-primary-rgb), 0.08);
-  font-weight: 600;
 }
 
 /* Aside Popup Menu Styles */
@@ -127,8 +123,8 @@ const handleClickMenu = (subItem: Menu) => {
 }
 
 :global(.aside-popup-menu .el-menu-item.is-active) {
+  font-weight: 600;
   color: var(--app-text-active);
   background-color: rgba(var(--app-color-primary-rgb), 0.14);
-  font-weight: 600;
 }
 </style>

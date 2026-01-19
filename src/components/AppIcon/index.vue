@@ -100,10 +100,10 @@ const iconComponent = computed(() => iconMap[props.name] ?? CircleHelp)
 
 <style scoped>
 .app-icon {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: relative;
 }
 </style>

@@ -108,16 +108,16 @@ onUnmounted(() => {
 
 <style scoped>
 .captcha-item {
-  border: 1px solid var(--el-border-color-light);
-  padding: 20px;
-  border-radius: 4px;
   width: 340px;
+  padding: 20px;
   background-color: var(--el-bg-color);
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 4px;
 
   .header {
+    margin-bottom: 15px;
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 15px;
     color: var(--el-text-color-primary);
   }
 
@@ -142,62 +142,62 @@ onUnmounted(() => {
 
   .puzzle-img {
     position: absolute;
+    z-index: 2;
     width: 50px; /* puzzleSize + tab + padding, roughly */
     height: 44px;
-    background-size: contain;
     background-repeat: no-repeat;
-    z-index: 2;
+    background-size: contain;
   }
 
   .slider-track {
+    position: relative;
     width: 300px;
     height: 40px;
     background: var(--el-fill-color);
     border: 1px solid var(--el-border-color);
     border-radius: 0 0 4px 4px;
-    position: relative;
 
     .slider-bar {
-      height: 100%;
-      background: var(--el-color-primary-light-9);
-      border-radius: 0 0 0 4px;
       position: absolute;
       top: 0;
       left: 0;
+      height: 100%;
+      background: var(--el-color-primary-light-9);
+      border-radius: 0 0 0 4px;
     }
 
     .slider-text {
       position: absolute;
-      width: 100%;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--el-text-color-secondary);
+      width: 100%;
+      height: 100%;
       font-size: 14px;
+      color: var(--el-text-color-secondary);
       user-select: none;
     }
 
     .slider-handle {
-      width: 40px;
-      height: 40px;
-      background: var(--el-bg-color);
-      border: 1px solid var(--el-border-color);
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
       position: absolute;
       top: -1px;
       left: 0;
-      cursor: grab;
+      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 40px;
+      height: 40px;
       color: var(--el-text-color-secondary);
-      z-index: 3;
+      cursor: grab;
+      background: var(--el-bg-color);
+      border: 1px solid var(--el-border-color);
+      box-shadow: 0 0 3px rgb(0 0 0 / 10%);
 
       &:active {
+        color: #ffffff;
         cursor: grabbing;
         background: #409eff;
-        color: #fff;
         border-color: #409eff;
       }
     }

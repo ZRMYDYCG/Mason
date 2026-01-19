@@ -57,9 +57,7 @@ const tabsActiveText = computed(() => {
   width: 100%;
   height: 100%;
   scrollbar-width: none;
-}
 
-.layout {
   :deep(.el-aside) {
     width: auto;
     background-color: var(--layout-topbar-bg, var(--app-bg-surface));
@@ -91,9 +89,11 @@ const tabsActiveText = computed(() => {
     height: 55px;
     padding: 0 15px;
     color: var(--layout-topbar-text, var(--app-text));
+
     --el-text-color-primary: var(--layout-topbar-text, var(--app-text));
     --el-text-color-regular: var(--layout-topbar-text, var(--app-text));
     --el-text-color-secondary: var(--layout-topbar-text-secondary, var(--app-text-secondary));
+
     background-color: var(--layout-topbar-bg, var(--app-bg-surface));
   }
 }

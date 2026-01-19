@@ -12,14 +12,14 @@ html {
   }
 
   &::view-transition-old(root) {
-    background-color: var(--vt-bg-old, transparent);
     z-index: 1;
+    background-color: var(--vt-bg-old, transparent);
   }
 
   &::view-transition-new(root) {
+    z-index: 9999;
     background-color: var(--vt-bg-new, transparent);
     animation: clip 0.5s ease-in;
-    z-index: 9999;
   }
 }
 

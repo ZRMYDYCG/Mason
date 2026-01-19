@@ -115,37 +115,40 @@ const indexRadioChange = (flag: boolean) => {
 <style scoped>
 .setting-title {
   font-size: 20px;
-  color: #000;
   font-weight: 900;
+  line-height: 1;
+  color: #000000;
   text-align: center;
-  line-height: 1;
 }
+
 .left_shu {
-  color: #000;
-  font-weight: 900;
   position: relative;
-  text-indent: 10px;
-  padding: 16px 0 10px 0;
+  padding: 16px 0 10px;
+  font-weight: 900;
   line-height: 1;
+  color: #000000;
+  text-indent: 10px;
+
   &::before {
-    display: block;
-    content: ' ';
-    height: 16px;
-    width: 4px;
-    border-radius: 2px;
-    background: #0072ff;
     position: absolute;
-    left: 0px;
+    left: 0;
+    display: block;
+    width: 4px;
+    height: 16px;
+    content: ' ';
+    background: #0072ff;
+    border-radius: 2px;
   }
 }
+
 .setting_item {
   font-size: 14px;
   line-height: 1.5;
 
-  // display: flex;
   .setting_label {
     color: #555454;
   }
+
   .setting_label_tip {
     font-size: 12px;
     color: #838282;

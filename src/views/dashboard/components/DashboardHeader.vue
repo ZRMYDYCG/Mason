@@ -115,7 +115,7 @@
                 @click="handleRefresh"
               >
                 <template #icon>
-                  <i class="iconfont icon-shuaxin" :class="{ spinning: loading }" />
+                  <AppIcon name="refresh-cw" :class="{ spinning: loading }" />
                 </template>
                 <span class="hidden-sm-and-down">刷新</span>
               </el-button>
@@ -282,29 +282,30 @@ function handleRefresh() {
   --header-border: var(--app-border-light);
   --header-shadow: var(--app-shadow-sm);
   --header-primary-rgb: var(--app-color-primary-rgb);
-  border: 1px solid var(--header-border);
+
   position: relative;
   overflow: hidden;
-  border-radius: calc(var(--header-radius) + 2px);
   background-color: var(--header-surface);
+  border: 1px solid var(--header-border);
+  border-radius: calc(var(--header-radius) + 2px);
   box-shadow: var(--header-shadow);
 }
 
 .page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--gap-md);
-  padding: 14px 14px;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-md);
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
 }
 
 .header-left {
   display: flex;
-  align-items: center;
   gap: var(--gap-sm);
+  align-items: center;
   min-width: 0;
 
   .avatar-wrap {
@@ -314,12 +315,12 @@ function handleRefresh() {
 
   .user-avatar {
     flex-shrink: 0;
-    border: 2px solid var(--app-bg-surface);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    background-color: var(--el-color-primary-light-9);
-    color: var(--el-color-primary);
-    font-weight: 600;
     font-size: 18px;
+    font-weight: 600;
+    color: var(--el-color-primary);
+    background-color: var(--el-color-primary-light-9);
+    border: 2px solid var(--app-bg-surface);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
   }
 
   .status-dot {
@@ -328,10 +329,10 @@ function handleRefresh() {
     bottom: -2px;
     width: 12px;
     height: 12px;
-    border-radius: 999px;
     background-color: var(--el-color-success);
     border: 2px solid var(--app-bg-surface);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
   }
 
   .header-info {
@@ -342,8 +343,8 @@ function handleRefresh() {
 
     .title-row {
       display: flex;
-      align-items: center;
       gap: 10px;
+      align-items: center;
       min-width: 0;
     }
 
@@ -356,14 +357,14 @@ function handleRefresh() {
     }
 
     .subtitle-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      min-width: 0;
       margin-top: 6px;
       font-size: 13px;
       line-height: 1.4;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      min-width: 0;
-      flex-wrap: wrap;
     }
 
     .dot-sep {
@@ -371,39 +372,39 @@ function handleRefresh() {
     }
 
     .meta-row {
-      margin-top: 10px;
       display: flex;
-      align-items: center;
-      gap: 8px;
       flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 10px;
     }
   }
 }
 
 .header-right {
   display: flex;
-  align-items: center;
-  gap: var(--gap-sm);
   flex-wrap: wrap;
+  gap: var(--gap-sm);
+  align-items: center;
   min-width: 0;
 
   .control-surface {
     display: flex;
-    align-items: center;
-    gap: var(--gap-sm);
     flex-wrap: wrap;
-    padding: 10px 10px;
-    border-radius: 12px;
+    gap: var(--gap-sm);
+    align-items: center;
+    max-width: 100%;
+    padding: 10px;
     background-color: var(--app-bg-overlay);
     border: 1px solid var(--app-border-light);
+    border-radius: 12px;
     box-shadow: var(--app-shadow-sm);
-    max-width: 100%;
   }
 
   .control-group {
     display: flex;
-    align-items: center;
     gap: var(--gap-xs);
+    align-items: center;
   }
 
   .preset-radio {
@@ -413,14 +414,14 @@ function handleRefresh() {
   .divider {
     width: 1px;
     height: 24px;
-    background-color: var(--el-border-color-lighter);
     margin: 0 4px;
+    background-color: var(--el-border-color-lighter);
   }
 
   .custom-range-wrapper {
     flex: 1 1 280px;
-    min-width: 260px;
     width: auto;
+    min-width: 260px;
     transition: all 0.3s ease;
   }
 
@@ -451,25 +452,26 @@ function handleRefresh() {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
   .page-header {
     flex-direction: column;
-    align-items: flex-start;
     gap: var(--gap-sm);
+    align-items: flex-start;
   }
 
   .header-right {
-    width: 100%;
     justify-content: space-between;
+    width: 100%;
 
     .control-surface {
-      width: 100%;
       justify-content: space-between;
+      width: 100%;
     }
 
     .control-group.date-controls {
@@ -481,9 +483,9 @@ function handleRefresh() {
       }
 
       .custom-range-wrapper {
+        order: 3;
         width: 100%;
         min-width: 0;
-        order: 3;
         margin-top: 8px;
       }
     }
@@ -498,7 +500,7 @@ function handleRefresh() {
   }
 }
 
-@media screen and (max-width: 390px) {
+@media screen and (width <= 390px) {
   .welcome-title {
     font-size: 18px !important;
   }

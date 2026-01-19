@@ -35,7 +35,7 @@ const { t } = useI18n({ useScope: 'global' })
       <ItemWrap
         class="contetn_left-bottom contetn_lr-item"
         :title="t('visualization.section.activityFeed')"
-        style="padding: 0 10px 16px 10px"
+        style="padding: 0 10px 16px"
       >
         <LeftBottom />
       </ItemWrap>
@@ -56,7 +56,7 @@ const { t } = useI18n({ useScope: 'global' })
       <ItemWrap
         class="contetn_left-bottom contetn_lr-item"
         :title="t('visualization.section.hotRank')"
-        style="padding: 0 10px 16px 10px"
+        style="padding: 0 10px 16px"
       >
         <RightCenter />
       </ItemWrap>
@@ -72,27 +72,30 @@ const { t } = useI18n({ useScope: 'global' })
 
 <style scoped>
 .index-box {
-  width: 100%;
   display: flex;
-  min-height: calc(100% - 64px);
   justify-content: space-between;
+  width: 100%;
+  min-height: calc(100% - 64px);
 }
+
 .contetn_left,
 .contetn_right {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   position: relative;
-  width: 540px;
   box-sizing: border-box;
-  flex-shrink: 0;
-}
-.contetn_center {
-  flex: 1;
-  margin: 0 54px;
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   justify-content: space-around;
+  width: 540px;
+}
+
+.contetn_center {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 54px;
+
   .contetn_center-bottom {
     height: 315px;
   }

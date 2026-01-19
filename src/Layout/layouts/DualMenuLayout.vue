@@ -143,13 +143,13 @@ defineProps({
 
 <style scoped>
 .dual-menu-left {
-  width: 100px;
-  height: 100%;
-  background-color: var(--layout-topbar-bg, var(--app-bg-surface));
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100px;
+  height: 100%;
   padding-top: 10px;
+  background-color: var(--layout-topbar-bg, var(--app-bg-surface));
 
   .logo {
     width: 40px;
@@ -165,8 +165,8 @@ defineProps({
   .item-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 10px;
+    align-items: center;
 
     .item {
       width: 100%;
@@ -175,12 +175,12 @@ defineProps({
       .item-content {
         display: flex;
         flex-direction: column;
-        align-items: center;
         gap: 3px;
+        align-items: center;
+        padding: 5px;
+        font-size: 13px;
         text-wrap: nowrap;
         border-radius: 5px;
-        font-size: 13px;
-        padding: 5px;
 
         &.is-active {
           background-color: var(--primary-color);
