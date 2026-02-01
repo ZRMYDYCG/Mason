@@ -61,10 +61,7 @@ const verifyAuth = async (ctx: Context, next: Next) => {
   // 1.获取请求头授权信息 token
   const authorization = ctx.headers.authorization
   console.log('Authorization header:', authorization)
-  const headerToken =
-    typeof authorization === 'string'
-      ? authorization.replace('Bearer ', '')
-      : ''
+  const headerToken = typeof authorization === 'string' ? authorization.replace('Bearer ', '') : ''
   const cookieToken = ctx.cookies.get(AUTH_COOKIE_NAME) || ''
   const token = headerToken || cookieToken
 
@@ -78,7 +75,7 @@ const verifyAuth = async (ctx: Context, next: Next) => {
   try {
     // token无效直接进入错误提醒
     const result = jwt.verify(token, PUBLIC_KEY, {
-      algorithms: ['RS256'],
+      algorithms: ['RS256']
     })
     ctx.user = result // {"id": 1,"username": "admin_test","iat": 1718075827, "exp": 1718162227 }
     await next()

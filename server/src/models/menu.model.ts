@@ -9,42 +9,42 @@ const model = sequelize.define(
       type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
+      autoIncrement: true
     },
     // 菜单名称
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     // 页面地址
     path: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     // 上一级菜单id
     parentId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
-      field: 'parent_id',
+      field: 'parent_id'
     },
     // 排序
     sort: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     // 具体名称
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     // 图标
     icon: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     // 是否链接 ：0否 1是path 为 https://xxx.com
     isLink: {
       type: DataTypes.TINYINT,
-      field: 'is_link',
+      field: 'is_link'
     },
     // 是否是全屏页面,不追加到 Layout 布局上
     // isFullScreen: {
@@ -54,35 +54,35 @@ const model = sequelize.define(
     // 是否启用：0否 1是
     isEnable: {
       type: DataTypes.TINYINT,
-      field: 'is_enable',
+      field: 'is_enable'
     },
     // 是否固定：0否 1是
     isAffix: {
       type: DataTypes.TINYINT,
-      field: 'is_affix',
+      field: 'is_affix'
     },
     // 是否缓存：0否 1是
     isKeepAlive: {
       type: DataTypes.TINYINT,
-      field: 'is_keep_alive',
+      field: 'is_keep_alive'
     },
     createdAt: {
       type: DataTypes.DATE,
-      field: 'created_at',
+      field: 'created_at'
     },
     updatedAt: {
       type: DataTypes.DATE,
-      field: 'updated_at',
+      field: 'updated_at'
     },
     deletedAt: {
       type: DataTypes.DATE,
-      field: 'deleted_at',
-    },
+      field: 'deleted_at'
+    }
   },
   {
     // 启用paranoid 删除
     paranoid: true,
-    freezeTableName: true,
+    freezeTableName: true
   }
 )
 

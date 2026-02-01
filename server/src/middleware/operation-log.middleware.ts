@@ -1,14 +1,7 @@
 import { Context, Next } from 'koa'
 import logService from '../modules/log/log.service'
 
-const SENSITIVE_KEYS = [
-  'password',
-  'pwd',
-  'token',
-  'authorization',
-  'accessToken',
-  'refreshToken',
-]
+const SENSITIVE_KEYS = ['password', 'pwd', 'token', 'authorization', 'accessToken', 'refreshToken']
 
 const MAX_PARAMS_LENGTH = 2000
 const MAX_STRING_LENGTH = 300
@@ -97,7 +90,7 @@ export const operationLogger = () => {
 
       const requestParams = {
         query: ctx.query || {},
-        body: sanitizeValue(ctx.request.body),
+        body: sanitizeValue(ctx.request.body)
       }
 
       const fallbackUsername = getBodyUsername(ctx.request.body)
@@ -111,7 +104,7 @@ export const operationLogger = () => {
         ip: ctx.ip,
         userAgent: ctx.headers['user-agent'] || '',
         requestParams: serializeParams(requestParams),
-        duration: Date.now() - startedAt,
+        duration: Date.now() - startedAt
       }
 
       logService.createLog(payload).catch((error) => {

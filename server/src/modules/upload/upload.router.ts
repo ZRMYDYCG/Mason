@@ -12,7 +12,7 @@ uploadRouter.post('/single', upload.single('file'), async (ctx, next) => {
   const avatarUrl = `http://localhost:3000/public/uploads/${ctx.req.file.filename}`
   ctx.body = {
     code: 200,
-    avatarUrl: avatarUrl,
+    avatarUrl: avatarUrl
   }
 })
 

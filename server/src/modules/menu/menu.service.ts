@@ -4,15 +4,12 @@ import { formatMenus } from '../../utils/index'
 import { MenuParams, UpdateMenuParams } from '../../types/index'
 
 class MenuService {
-  async getMenuListByRoleId(
-    roleId: number,
-    search: { title: string; isEnable: number }
-  ) {
+  async getMenuListByRoleId(roleId: number, search: { title: string; isEnable: number }) {
     try {
       const whereConditions: any = {
         title: {
-          [Op.like]: `%${search.title || ''}%`,
-        },
+          [Op.like]: `%${search.title || ''}%`
+        }
       }
       if (search.isEnable === 0 || search.isEnable === 1) {
         whereConditions.isEnable = search.isEnable
@@ -20,17 +17,17 @@ class MenuService {
 
       const roleWithMenus = await roleModel.findOne({
         where: {
-          id: roleId,
+          id: roleId
         },
         include: [
           {
             model: menuModel,
             attributes: {
-              exclude: ['updatedAt', 'deletedAt'],
+              exclude: ['updatedAt', 'deletedAt']
             },
-            where: whereConditions,
-          },
-        ],
+            where: whereConditions
+          }
+        ]
       })
       if (roleWithMenus != null) {
         const { sys_menus } = roleWithMenus as any
@@ -47,9 +44,9 @@ class MenuService {
     try {
       const menus = await menuModel.findAll({
         attributes: {
-          exclude: ['updatedAt', 'deletedAt'],
+          exclude: ['updatedAt', 'deletedAt']
         },
-        order: [['sort', 'ASC']],
+        order: [['sort', 'ASC']]
       })
       return formatMenus(menus)
     } catch (error) {
@@ -61,8 +58,8 @@ class MenuService {
     try {
       const res = await menuModel.findOne({
         where: {
-          name,
-        },
+          name
+        }
       })
       return res ? res.dataValues : null
     } catch (error) {
@@ -74,8 +71,8 @@ class MenuService {
     try {
       const res = await menuModel.findOne({
         where: {
-          id,
-        },
+          id
+        }
       })
       return res ? res.dataValues : null
     } catch (error) {
@@ -86,17 +83,17 @@ class MenuService {
   async addMenu(menu: MenuParams, roleId: number) {
     try {
       const newMenu = await menuModel.create({
-        ...menu,
+        ...menu
       })
       const res = await roleMenuModel.create({
         roleId,
-        menuId: newMenu.dataValues.id,
+        menuId: newMenu.dataValues.id
       })
       // 任何角色创建菜单都添加给管理员角色
       if (roleId !== 1) {
         await roleMenuModel.create({
           roleId: 1,
-          menuId: newMenu.dataValues.id,
+          menuId: newMenu.dataValues.id
         })
       }
       return 'ok'
@@ -110,12 +107,12 @@ class MenuService {
       const { id, ...rest } = menu
       await menuModel.update(
         {
-          ...rest,
+          ...rest
         },
         {
           where: {
-            id,
-          },
+            id
+          }
         }
       )
       return 'ok'
@@ -129,14 +126,14 @@ class MenuService {
     try {
       await menuModel.destroy({
         where: {
-          id,
-        },
+          id
+        }
       })
       // 删除角色菜单关联
       await roleMenuModel.destroy({
         where: {
-          menuId: id,
-        },
+          menuId: id
+        }
       })
       return 'ok'
     } catch (error) {

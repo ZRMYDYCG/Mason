@@ -8,8 +8,8 @@ class UserService {
     try {
       const result = await userModel.findOne({
         where: {
-          username: name,
-        },
+          username: name
+        }
       })
       return result ? result.dataValues : null
     } catch (error) {
@@ -21,17 +21,17 @@ class UserService {
     try {
       const user = await userModel.findOne({
         where: {
-          id,
+          id
         },
         include: [
           {
             model: roleModel, // 引入并关联 Role 模型
-            attributes: ['id', 'role', 'roleName', 'isSuper'],
-          },
+            attributes: ['id', 'role', 'roleName', 'isSuper']
+          }
         ],
         attributes: {
-          exclude: ['password', 'createdAt', 'updatedAt', 'deletedAt'],
-        },
+          exclude: ['password', 'createdAt', 'updatedAt', 'deletedAt']
+        }
       })
 
       return user
@@ -41,7 +41,7 @@ class UserService {
             role: user.dataValues.sys_roles[0].role,
             roleName: user.dataValues.sys_roles[0].roleName,
             isSuper: user.dataValues.sys_roles[0].isSuper,
-            sys_roles: undefined, // 去除 sys_roles 属性
+            sys_roles: undefined // 去除 sys_roles 属性
           }
         : null
     } catch (error) {
@@ -56,23 +56,23 @@ class UserService {
       const { count, rows } = await userModel.findAndCountAll({
         where: {
           username: {
-            [Op.like]: '%' + params.username + '%',
+            [Op.like]: '%' + params.username + '%'
           },
           deptId: {
-            [Op.in]: deptIds,
-          },
+            [Op.in]: deptIds
+          }
         },
         include: [
           {
             model: roleModel, // 引入并关联 Role 模型
-            attributes: ['id', 'role', 'roleName'],
-          },
+            attributes: ['id', 'role', 'roleName']
+          }
         ],
         attributes: {
-          exclude: ['password', 'updatedAt', 'deletedAt'],
+          exclude: ['password', 'updatedAt', 'deletedAt']
         },
         offset: params.pageSize * (params.pageNo - 1),
-        limit: params.pageSize,
+        limit: params.pageSize
       })
       const formatRows = rows.map((user) => {
         const userAny = user as any
@@ -81,12 +81,12 @@ class UserService {
           roleId: userAny.sys_roles[0].id,
           role: userAny.sys_roles[0].role,
           roleName: userAny.sys_roles[0].roleName,
-          sys_roles: undefined, // 去除 sys_roles 属性
+          sys_roles: undefined // 去除 sys_roles 属性
         }
       })
       return {
         count,
-        rows: formatRows,
+        rows: formatRows
       }
     } catch (error) {
       console.log(error)
@@ -104,14 +104,14 @@ class UserService {
             name: user.name || '',
             email: user.email || '',
             phone: user.phone || '',
-            remark: user.remark || '',
+            remark: user.remark || ''
           },
           { transaction: t }
         )
         await userRoleModel.create(
           {
             userId: newUser.dataValues.id,
-            roleId: user.roleId,
+            roleId: user.roleId
           },
           { transaction: t }
         )
@@ -132,22 +132,19 @@ class UserService {
             deptId: user.deptId,
             email: user.email,
             phone: user.phone,
-            remark: user.remark,
+            remark: user.remark
           },
           { where: { id: user.id } }
         )
         const userRole = await userRoleModel.findOne({
-          where: { userId: user.id },
+          where: { userId: user.id }
         })
         if (userRole) {
-          await userRoleModel.update(
-            { roleId: user.roleId },
-            { where: { userId: user.id } }
-          )
+          await userRoleModel.update({ roleId: user.roleId }, { where: { userId: user.id } })
         } else {
           await userRoleModel.create({
             userId: user.id,
-            roleId: user.roleId,
+            roleId: user.roleId
           })
         }
       })
@@ -163,20 +160,19 @@ class UserService {
         name: user.name,
         email: user.email,
         phone: user.phone,
-        remark: user.remark,
+        remark: user.remark
       }
-      
+
       if (user.avatar) {
         updateData.avatar = user.avatar
       }
 
       // Remove undefined keys
-      Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key])
-
-      await userModel.update(
-        updateData,
-        { where: { id: user.id } }
+      Object.keys(updateData).forEach(
+        (key) => updateData[key] === undefined && delete updateData[key]
       )
+
+      await userModel.update(updateData, { where: { id: user.id } })
       return 'ok'
     } catch (error) {
       console.log(error)
@@ -191,12 +187,12 @@ class UserService {
         await userModel.destroy({
           where: { id },
           force: true,
-          transaction: t,
+          transaction: t
         })
         await userRoleModel.destroy({
           where: { userId: id },
           force: true,
-          transaction: t,
+          transaction: t
         })
       })
       return 'ok'
@@ -220,8 +216,8 @@ async function getDeptIds(deptId: number): Promise<number[]> {
     const subDepts = await departmentModel.findAll({
       attributes: ['id'],
       where: {
-        parentId: id,
-      },
+        parentId: id
+      }
     })
 
     for (const subDept of subDepts) {

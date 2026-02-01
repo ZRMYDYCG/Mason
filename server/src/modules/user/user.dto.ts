@@ -4,7 +4,7 @@ export const userSearchSchema = Joi.object({
   username: Joi.string().allow('').empty(''),
   pageSize: Joi.number().required(),
   pageNo: Joi.number().required(),
-  deptId: Joi.number().allow(null).empty(1),
+  deptId: Joi.number().allow(null).empty(1)
 })
 
 export const userUpdateSchema = Joi.object({
@@ -15,7 +15,7 @@ export const userUpdateSchema = Joi.object({
   name: Joi.string().allow('').empty(''),
   email: Joi.string().allow('').empty(''),
   phone: Joi.string().allow('').empty(''),
-  remark: Joi.string().allow('').empty(''),
+  remark: Joi.string().allow('').empty('')
 })
 
 export const userCreateSchema = Joi.object({
@@ -26,5 +26,5 @@ export const userCreateSchema = Joi.object({
   name: Joi.string().allow('').empty(''),
   email: Joi.string().allow('').empty(''),
   phone: Joi.string().allow('').empty(''),
-  remark: Joi.string().allow('').empty(''),
+  remark: Joi.string().allow('').empty('')
 })

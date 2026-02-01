@@ -7,7 +7,7 @@ class CaptchaController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
@@ -16,7 +16,7 @@ class CaptchaController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
@@ -25,7 +25,7 @@ class CaptchaController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
@@ -34,7 +34,7 @@ class CaptchaController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
@@ -43,30 +43,30 @@ class CaptchaController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
   async verify(ctx: Context) {
     const { id, answer } = ctx.request.body as { id: string; answer: any }
     if (!id || answer === undefined) {
-        ctx.body = {
-            code: 400,
-            msg: '参数错误',
-        }
-        return
+      ctx.body = {
+        code: 400,
+        msg: '参数错误'
+      }
+      return
     }
 
     const isValid = await captchaService.verify(id, answer)
     if (isValid) {
       ctx.body = {
         code: 200,
-        msg: '验证通过',
+        msg: '验证通过'
       }
     } else {
       ctx.body = {
         code: 400,
-        msg: '验证失败',
+        msg: '验证失败'
       }
     }
   }

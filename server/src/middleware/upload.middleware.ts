@@ -19,14 +19,14 @@ const storage = multer.diskStorage({
     console.log(file)
     const fileFormat = file.originalname.split('.')
     cb(null, Date.now() + '.' + fileFormat[fileFormat.length - 1])
-  },
+  }
 })
 
 // 文件上传限制
 const limits = {
   fields: 10, // 非文件字段的数量
   fileSize: 12 * 500 * 1024, // 单位 b
-  files: 1, // 文件的数量
+  files: 1 // 文件的数量
 }
 
 // 加载配置

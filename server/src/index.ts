@@ -9,9 +9,7 @@ import { connectMysql } from './config/mysql'
 async function runServer() {
   const port = APP_PORT
   try {
-    await Promise.all([
-      connectMysql(),
-    ])
+    await Promise.all([connectMysql()])
 
     await new Promise((resolve) => {
       const server = createServer(app.callback())

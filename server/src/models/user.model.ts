@@ -9,58 +9,58 @@ const model = sequelize.define(
       type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
+      autoIncrement: true
     },
     // 昵称
     name: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(100)
     },
     // 登录名称
     username: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true,
+      unique: true
     },
     // 登录密码
     password: {
       type: DataTypes.STRING(400),
-      allowNull: false,
+      allowNull: false
     },
     deptId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,
-      field: 'dept_id',
+      field: 'dept_id'
     },
     email: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(100)
     },
     phone: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(200)
     },
     avatar: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(200)
     },
     remark: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(200)
     },
     createdAt: {
       type: DataTypes.DATE,
-      field: 'created_at',
+      field: 'created_at'
     },
     updatedAt: {
       type: DataTypes.DATE,
-      field: 'updated_at',
+      field: 'updated_at'
     },
     deletedAt: {
       type: DataTypes.DATE,
-      field: 'deleted_at',
-    },
+      field: 'deleted_at'
+    }
   },
   {
     // 启用 paranoid 删除
     paranoid: true,
-    freezeTableName: true,
+    freezeTableName: true
   }
 )
 

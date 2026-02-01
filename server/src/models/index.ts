@@ -8,31 +8,23 @@ import logModel from './log.model'
 
 roleModel.belongsToMany(menuModel, {
   through: roleMenuModel,
-  foreignKey: 'roleId',
+  foreignKey: 'roleId'
 })
 menuModel.belongsToMany(roleModel, {
   through: roleMenuModel,
-  foreignKey: 'menuId',
+  foreignKey: 'menuId'
 })
 
 userModel.belongsToMany(roleModel, {
   through: userRoleModel,
-  foreignKey: 'userId',
+  foreignKey: 'userId'
 })
 roleModel.belongsToMany(userModel, {
   through: userRoleModel,
-  foreignKey: 'roleId',
+  foreignKey: 'roleId'
 })
 
 userModel.belongsTo(departmentModel, { foreignKey: 'deptId' })
 departmentModel.hasMany(userModel, { foreignKey: 'deptId' })
 
-export {
-  menuModel,
-  roleModel,
-  userModel,
-  departmentModel,
-  roleMenuModel,
-  userRoleModel,
-  logModel,
-}
+export { menuModel, roleModel, userModel, departmentModel, roleMenuModel, userRoleModel, logModel }

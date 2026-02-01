@@ -9,56 +9,56 @@ const model = sequelize.define(
       type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
+      autoIncrement: true
     },
     userId: {
       type: DataTypes.BIGINT,
-      field: 'user_id',
+      field: 'user_id'
     },
     username: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(100)
     },
     method: {
       type: DataTypes.STRING(16),
-      allowNull: false,
+      allowNull: false
     },
     path: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     status: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     ip: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.STRING(64)
     },
     userAgent: {
       type: DataTypes.STRING(255),
-      field: 'user_agent',
+      field: 'user_agent'
     },
     requestParams: {
       type: DataTypes.TEXT,
-      field: 'request_params',
+      field: 'request_params'
     },
     duration: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     createdAt: {
       type: DataTypes.DATE,
-      field: 'created_at',
+      field: 'created_at'
     },
     updatedAt: {
       type: DataTypes.DATE,
-      field: 'updated_at',
+      field: 'updated_at'
     },
     deletedAt: {
       type: DataTypes.DATE,
-      field: 'deleted_at',
-    },
+      field: 'deleted_at'
+    }
   },
   {
     paranoid: true,
-    freezeTableName: true,
+    freezeTableName: true
   }
 )
 

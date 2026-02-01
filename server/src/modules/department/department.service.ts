@@ -8,9 +8,9 @@ class DepartmentService {
     try {
       const departments = await departmentModel.findAll({
         attributes: {
-          exclude: ['updatedAt', 'deletedAt'],
+          exclude: ['updatedAt', 'deletedAt']
         },
-        order: [['sort', 'ASC']],
+        order: [['sort', 'ASC']]
       })
       return buildTreeDepartment(departments)
     } catch (error) {
@@ -22,8 +22,8 @@ class DepartmentService {
     try {
       const res = await departmentModel.findOne({
         where: {
-          id,
-        },
+          id
+        }
       })
       return res ? res.dataValues : null
     } catch (error) {
@@ -34,7 +34,7 @@ class DepartmentService {
   async addDept(dept: DeptParams) {
     try {
       await departmentModel.create({
-        ...dept,
+        ...dept
       })
       return 'ok'
     } catch (error) {
@@ -47,12 +47,12 @@ class DepartmentService {
       const { id, ...rest } = dept
       await departmentModel.update(
         {
-          ...rest,
+          ...rest
         },
         {
           where: {
-            id,
-          },
+            id
+          }
         }
       )
       return 'ok'
@@ -66,8 +66,8 @@ class DepartmentService {
     try {
       const user = await userModel.findOne({
         where: {
-          deptId: id,
-        },
+          deptId: id
+        }
       })
       // 存在关联用户
       if (user) {
@@ -75,8 +75,8 @@ class DepartmentService {
       } else {
         await departmentModel.destroy({
           where: {
-            id,
-          },
+            id
+          }
         })
         return true
       }

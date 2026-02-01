@@ -16,7 +16,7 @@ class AuthController {
 
     const token = jwt.sign({ id, username }, PRIVATE_KEY, {
       expiresIn: expires,
-      algorithm: 'RS256',
+      algorithm: 'RS256'
     })
 
     ctx.cookies.set(AUTH_COOKIE_NAME, token, {
@@ -25,7 +25,7 @@ class AuthController {
       secure: process.env.NODE_ENV === 'production',
       maxAge,
       overwrite: true,
-      path: '/',
+      path: '/'
     })
 
     ctx.body = {
@@ -33,9 +33,9 @@ class AuthController {
       data: {
         id,
         username,
-        expires: getTimestamps(expires === '7d'),
+        expires: getTimestamps(expires === '7d')
       },
-      msg: '登录成功',
+      msg: '登录成功'
     }
   }
 
@@ -55,14 +55,14 @@ class AuthController {
       name: username,
       email: '',
       phone: '',
-      remark: '用户自行注册',
+      remark: '用户自行注册'
     }
 
     await userService.addNewUser(newUser as any)
 
     ctx.body = {
       code: 200,
-      msg: '注册成功',
+      msg: '注册成功'
     }
   }
 
@@ -71,7 +71,7 @@ class AuthController {
     ctx.body = {
       code: 200,
       data: user,
-      msg: '授权成功',
+      msg: '授权成功'
     }
   }
 
@@ -83,12 +83,12 @@ class AuthController {
       maxAge: 0,
       expires: new Date(0),
       overwrite: true,
-      path: '/',
+      path: '/'
     })
     ctx.body = {
       code: 200,
       data: null,
-      msg: '退出成功',
+      msg: '退出成功'
     }
   }
 }

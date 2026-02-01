@@ -34,9 +34,9 @@ export const formatMenus = (menus: any[]) => {
         isEnable: menu.isEnable === 1 ? true : false,
         isLink: menu.isLink === 1 ? true : false,
         isAffix: menu.isAffix === 1 ? true : false,
-        isKeepAlive: menu.isKeepAlive === 1 ? true : false,
+        isKeepAlive: menu.isKeepAlive === 1 ? true : false
       },
-      createdAt: menu.createdAt,
+      createdAt: menu.createdAt
     })
   })
   // 排序

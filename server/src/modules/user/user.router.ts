@@ -9,13 +9,7 @@ const userRouter = new Router({ prefix: '/user' })
 
 userRouter.post('/list', verifyAuth, userController.userList)
 
-userRouter.post(
-  '/add',
-  verifyAuth,
-  verifyUser,
-  handlePassword,
-  userController.addUser
-)
+userRouter.post('/add', verifyAuth, verifyUser, handlePassword, userController.addUser)
 
 userRouter.post(
   '/update-profile',

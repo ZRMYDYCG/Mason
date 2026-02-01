@@ -1,5 +1,6 @@
 import { ConfigEnv, UserConfig, defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'node:url'
 import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -19,6 +20,7 @@ import postcssImport from 'postcss-import'
 import postcssScss from 'postcss-scss'
 import postcssSimpleVars from 'postcss-simple-vars'
 import postcssSassyMixins from 'postcss-sassy-mixins'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
@@ -164,6 +166,12 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
         gifsicle: { optimizationLevel: 7 },
         optipng: { optimizationLevel: 7 },
         webp: { quality: 75 }
+      }),
+      // 配置 SVG 图标插件
+      createSvgIconsPlugin({
+        // SVG 图标目录
+        iconDirs: [fileURLToPath(new URL('./src/assets/svg', import.meta.url))], // 生成的 symbol ID 格式
+        symbolId: 'icon-[dir]-[name]'
       })
     ],
     optimizeDeps: {

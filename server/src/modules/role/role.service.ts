@@ -8,8 +8,8 @@ class RoleService {
     try {
       const result = await roleModel.findOne({
         where: {
-          id: id,
-        },
+          id: id
+        }
       })
       return result ? result.dataValues : null
     } catch (error) {
@@ -20,8 +20,8 @@ class RoleService {
     try {
       const result = await roleModel.findOne({
         where: {
-          role: name,
-        },
+          role: name
+        }
       })
       return result ? result.dataValues : null
     } catch (error) {
@@ -33,8 +33,8 @@ class RoleService {
     try {
       const result = await roleMenuModel.findAll({
         where: {
-          roleId: roleId,
-        },
+          roleId: roleId
+        }
       })
       return result ? result.map((item) => item.dataValues.menuId) : []
     } catch (error) {
@@ -45,8 +45,8 @@ class RoleService {
     try {
       const whereConditions: any = {
         role: {
-          [Op.like]: '%' + params.role + '%',
-        },
+          [Op.like]: '%' + params.role + '%'
+        }
       }
       if (params.isSuper === 0 || params.isSuper === 1) {
         whereConditions.isSuper = params.isSuper
@@ -54,14 +54,14 @@ class RoleService {
       const { count, rows } = await roleModel.findAndCountAll({
         where: whereConditions,
         attributes: {
-          exclude: ['updatedAt'],
+          exclude: ['updatedAt']
         },
         offset: params.pageSize * (params.pageNo - 1),
-        limit: params.pageSize,
+        limit: params.pageSize
       })
       return {
         count,
-        rows,
+        rows
       }
     } catch (error) {
       console.log(error)
@@ -72,8 +72,8 @@ class RoleService {
     try {
       const result = await roleModel.findAll({
         attributes: {
-          exclude: ['updatedAt'],
-        },
+          exclude: ['updatedAt']
+        }
       })
       return result
     } catch (error) {
@@ -88,12 +88,12 @@ class RoleService {
           role: params.role,
           roleName: params.roleName,
           isSuper: params.isSuper,
-          remark: params.remark,
+          remark: params.remark
         })
         const arr = params.menus.map((menuId: number) => {
           return {
             roleId: (newRole as any).id,
-            menuId: menuId,
+            menuId: menuId
           }
         })
         await roleMenuModel.bulkCreate(arr, { transaction: t })
@@ -113,26 +113,26 @@ class RoleService {
             role,
             roleName,
             isSuper,
-            remark,
+            remark
           },
           {
             where: {
-              id,
-            },
+              id
+            }
           }
         )
         // 先清除
         await roleMenuModel.destroy({
           where: {
-            roleId: id,
+            roleId: id
           },
           force: true,
-          transaction: t,
+          transaction: t
         })
         const arr = menus.map((menuId: number) => {
           return {
             roleId: id,
-            menuId: menuId,
+            menuId: menuId
           }
         })
         await roleMenuModel.bulkCreate(arr, { transaction: t })
@@ -147,8 +147,8 @@ class RoleService {
     try {
       await roleModel.destroy({
         where: {
-          id,
-        },
+          id
+        }
       })
       return 'ok'
     } catch (error) {
@@ -161,8 +161,8 @@ class RoleService {
       const userIds = await userRoleModel.findAll({
         attributes: ['userId'],
         where: {
-          roleId: roleId,
-        },
+          roleId: roleId
+        }
       })
       return userIds
     } catch (error) {

@@ -11,7 +11,7 @@ class DepartmentController {
     ctx.body = {
       code: 200,
       data: list,
-      msg: '获取部门列表成功',
+      msg: '获取部门列表成功'
     }
   }
 
@@ -21,7 +21,7 @@ class DepartmentController {
       name: Joi.string().required(),
       parentId: Joi.number().required(),
       sort: Joi.number().empty(1),
-      isEnable: Joi.number().valid(0, 1).empty(0),
+      isEnable: Joi.number().valid(0, 1).empty(0)
     })
     try {
       await schema.validateAsync(deptParam)
@@ -34,7 +34,7 @@ class DepartmentController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '添加部门成功',
+      msg: '添加部门成功'
     }
   }
 
@@ -45,7 +45,7 @@ class DepartmentController {
       name: Joi.string().required(),
       parentId: Joi.number().required(),
       sort: Joi.number().empty(1),
-      isEnable: Joi.number().valid(0, 1).empty(0),
+      isEnable: Joi.number().valid(0, 1).empty(0)
     })
     try {
       await schema.validateAsync(deptParam)
@@ -57,7 +57,7 @@ class DepartmentController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '更新部门成功',
+      msg: '更新部门成功'
     }
   }
 
@@ -65,7 +65,7 @@ class DepartmentController {
     const body = ctx.request.body as { id: number }
 
     const schema = Joi.object({
-      id: Joi.number().required(),
+      id: Joi.number().required()
     })
     try {
       await schema.validateAsync(body)
@@ -87,7 +87,7 @@ class DepartmentController {
     ctx.body = {
       code: 200,
       data: result ? 'ok' : 'fail',
-      msg: '删除部门成功',
+      msg: '删除部门成功'
     }
   }
 }

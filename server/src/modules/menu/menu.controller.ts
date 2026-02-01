@@ -11,7 +11,7 @@ class MenuController {
     const search = ctx.request.body as { title: string; isEnable: number }
     const schema = Joi.object({
       title: Joi.string().empty(''),
-      isEnable: Joi.number().valid(0, 1, 2),
+      isEnable: Joi.number().valid(0, 1, 2)
     })
     try {
       await schema.validateAsync(search)
@@ -27,7 +27,7 @@ class MenuController {
     ctx.body = {
       code: 200,
       data: list,
-      msg: '获取菜单列表成功',
+      msg: '获取菜单列表成功'
     }
   }
 
@@ -36,7 +36,7 @@ class MenuController {
     ctx.body = {
       code: 200,
       data: list,
-      msg: '获取菜单列表成功',
+      msg: '获取菜单列表成功'
     }
   }
 
@@ -52,7 +52,7 @@ class MenuController {
       isLink: Joi.number().valid(0, 1).empty(0),
       isEnable: Joi.number().valid(0, 1).empty(0),
       isAffix: Joi.number().valid(0, 1).empty(0),
-      isKeepAlive: Joi.number().valid(0, 1).empty(0),
+      isKeepAlive: Joi.number().valid(0, 1).empty(0)
     })
     try {
       await schema.validateAsync(menuParam)
@@ -73,7 +73,7 @@ class MenuController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '添加菜单成功',
+      msg: '添加菜单成功'
     }
   }
 
@@ -90,7 +90,7 @@ class MenuController {
       isLink: Joi.number().valid(0, 1).empty(0),
       isEnable: Joi.number().valid(0, 1).empty(0),
       isAffix: Joi.number().valid(0, 1).empty(0),
-      isKeepAlive: Joi.number().valid(0, 1).empty(0),
+      isKeepAlive: Joi.number().valid(0, 1).empty(0)
     })
     try {
       await schema.validateAsync(menuParam)
@@ -109,7 +109,7 @@ class MenuController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '更新菜单成功',
+      msg: '更新菜单成功'
     }
   }
 
@@ -117,7 +117,7 @@ class MenuController {
     const body = ctx.request.body as { id: number }
 
     const schema = Joi.object({
-      id: Joi.number().required(),
+      id: Joi.number().required()
     })
     try {
       await schema.validateAsync(body)
@@ -135,7 +135,7 @@ class MenuController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '删除菜单成功',
+      msg: '删除菜单成功'
     }
   }
 }

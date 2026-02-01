@@ -246,21 +246,21 @@ const removeTab = (fullPath: string) => {
       height: 18px;
       padding: 0;
       color: inherit;
+      pointer-events: none;
       cursor: pointer;
       background: transparent;
       border: none;
       border-radius: 999px;
-      transform: translateY(-50%);
       opacity: 0;
-      pointer-events: none;
       transition:
         opacity 0.2s ease,
         background-color 0.2s ease;
+      transform: translateY(-50%);
     }
 
     .tab-item:hover .tab-close {
-      opacity: 1;
       pointer-events: auto;
+      opacity: 1;
     }
 
     .tab-close:hover {

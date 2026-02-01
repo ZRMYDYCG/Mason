@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import { Context } from 'koa'
-import { RolePageParams, RoleParams, UpdateRoleParams } from '../../types/index'
+import { RolePageParams, UpdateRoleParams } from '../../types/index'
 import roleService from './role.service'
 import userService from '../user/user.service'
 import { ERROR_TYPES } from '../../constant'
@@ -12,7 +12,7 @@ class RoleController {
       role: Joi.string().empty(''),
       isSuper: Joi.number().valid(0, 1, 2),
       pageSize: Joi.number().required(),
-      pageNo: Joi.number().required(),
+      pageNo: Joi.number().required()
     })
     try {
       // 验证必要参数
@@ -25,7 +25,7 @@ class RoleController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
@@ -34,7 +34,7 @@ class RoleController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
@@ -44,7 +44,7 @@ class RoleController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '添加角色成功',
+      msg: '添加角色成功'
     }
   }
 
@@ -59,7 +59,7 @@ class RoleController {
       roleName: Joi.string().required(),
       isSuper: Joi.number().empty(0),
       remark: Joi.string().empty(''),
-      menus: Joi.array().items(Joi.number()),
+      menus: Joi.array().items(Joi.number())
     })
     try {
       await schema.validateAsync(roleParam)
@@ -98,7 +98,7 @@ class RoleController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '更新角色成功',
+      msg: '更新角色成功'
     }
   }
 
@@ -106,7 +106,7 @@ class RoleController {
     const body = ctx.request.body as { id: number }
     // 1.验证必要参数
     const schema = Joi.object({
-      id: Joi.number().required(),
+      id: Joi.number().required()
     })
     try {
       await schema.validateAsync(body)
@@ -140,7 +140,7 @@ class RoleController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '删除角色成功',
+      msg: '删除角色成功'
     }
   }
 
@@ -148,7 +148,7 @@ class RoleController {
     const body = ctx.request.body as { roleId: number }
     // 1.验证必要参数
     const schema = Joi.object({
-      roleId: Joi.number().required(),
+      roleId: Joi.number().required()
     })
     try {
       await schema.validateAsync(body)
@@ -159,7 +159,7 @@ class RoleController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 }

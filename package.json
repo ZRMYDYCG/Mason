@@ -160,6 +160,7 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-inspect": "^11.0.0",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vitepress": "^1.6.3",
     "vitest": "^3.0.9",
     "vue-eslint-parser": "^10.0.0",

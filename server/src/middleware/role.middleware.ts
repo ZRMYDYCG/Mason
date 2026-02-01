@@ -15,7 +15,7 @@ const verifyRole = async (ctx: Context, next: Next) => {
     roleName: Joi.string().required(),
     isSuper: Joi.number().required(),
     remark: Joi.string().empty(''),
-    menus: Joi.array().items(Joi.number()),
+    menus: Joi.array().items(Joi.number())
   })
   try {
     await schema.validateAsync(roleParam)

@@ -9,28 +9,28 @@ class UserController {
   async userInfo(ctx: Context) {
     const { userId } = ctx.params
     const result = await userService.getUserInfoById(Number(userId))
-    
+
     if (!result) {
       throw new Error(ERROR_TYPES.USER_NOT_EXISTS)
     }
-    
+
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
   async userList(ctx: Context) {
     const searchParams = ctx.request.body as UserPageParams
     await userSearchSchema.validateAsync(searchParams)
-    
+
     const result = await userService.getUserList(searchParams)
-    
+
     ctx.body = {
       code: 200,
       data: result,
-      msg: '获取成功',
+      msg: '获取成功'
     }
   }
 
@@ -40,7 +40,7 @@ class UserController {
     ctx.body = {
       code: 200,
       data: result,
-      msg: '添加用户成功',
+      msg: '添加用户成功'
     }
   }
 
@@ -57,7 +57,7 @@ class UserController {
     const updateData = {
       id,
       ...body,
-      ...(avatarUrl && { avatar: avatarUrl }),
+      ...(avatarUrl && { avatar: avatarUrl })
     }
 
     await userService.updateProfile(updateData)
@@ -82,7 +82,7 @@ class UserController {
 
     const loginUser = await userService.getUserInfoById(ctx.user.id)
     const editUser = await userService.getUserInfoById(user.id)
-    
+
     if (editUser && editUser.isSuper === 1 && loginUser?.isSuper === 0) {
       throw new Error(ERROR_TYPES.UNPERMISSION)
     }
@@ -96,19 +96,19 @@ class UserController {
 
     ctx.body = {
       code: 200,
-      msg: '修改成功',
+      msg: '修改成功'
     }
   }
 
   async deleteUser(ctx: Context) {
-     // 删除逻辑也应该迁移过来，这里为了演示简洁暂时保留
-     // 需要实现 userService.deleteUser(id)
-     const { id } = ctx.request.body as { id: number }
-     // 简单校验
-     if(!id) throw new Error('Id is required');
+    // 删除逻辑也应该迁移过来，这里为了演示简洁暂时保留
+    // 需要实现 userService.deleteUser(id)
+    const { id } = ctx.request.body as { id: number }
+    // 简单校验
+    if (!id) throw new Error('Id is required')
 
-     await userService.deleteUser(id);
-     ctx.body = { code: 200, msg: '删除成功' }
+    await userService.deleteUser(id)
+    ctx.body = { code: 200, msg: '删除成功' }
   }
 }
 

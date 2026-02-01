@@ -18,7 +18,7 @@ const verifyUser = async (ctx: Context, next: Next) => {
     name: Joi.string().empty(''),
     email: Joi.string().empty(''),
     phone: Joi.string().empty(''),
-    remark: Joi.string().empty(''),
+    remark: Joi.string().empty('')
   })
 
   // 1.验证必要参数
@@ -57,7 +57,7 @@ const handlePassword = async (ctx: Context, next: Next) => {
   const user = ctx.request.body as UserParams
   ctx.user = {
     ...user,
-    password: PasswordToHash(user.password),
+    password: PasswordToHash(user.password)
   }
   await next()
 }

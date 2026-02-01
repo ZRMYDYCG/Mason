@@ -9,25 +9,25 @@ const model = sequelize.define(
       type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
-      field: 'role_id',
+      field: 'role_id'
     },
     menuId: {
       type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
-      field: 'menu_id',
+      field: 'menu_id'
     },
     createdAt: {
       type: DataTypes.DATE,
-      field: 'created_at',
+      field: 'created_at'
     },
     updatedAt: {
       type: DataTypes.DATE,
-      field: 'updated_at',
-    },
+      field: 'updated_at'
+    }
   },
   {
-    freezeTableName: true,
+    freezeTableName: true
   }
 )
 

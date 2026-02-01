@@ -9,37 +9,37 @@ const model = sequelize.define(
       type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
-      autoIncrement: true,
+      autoIncrement: true
     },
     role: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: false
     },
     roleName: {
       type: DataTypes.STRING(50),
       allowNull: false,
-      field: 'role_name',
+      field: 'role_name'
     },
     isSuper: {
       type: DataTypes.TINYINT,
       allowNull: false,
       defaultValue: 0,
-      field: 'is_super',
+      field: 'is_super'
     },
     remark: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(200)
     },
     createdAt: {
       type: DataTypes.DATE,
-      field: 'created_at',
+      field: 'created_at'
     },
     updatedAt: {
       type: DataTypes.DATE,
-      field: 'updated_at',
-    },
+      field: 'updated_at'
+    }
   },
   {
-    freezeTableName: true,
+    freezeTableName: true
   }
 )
 
