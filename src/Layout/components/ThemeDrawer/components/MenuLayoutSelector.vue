@@ -112,13 +112,13 @@ const emit = defineEmits<{
   box-sizing: border-box;
   border: 2px solid $border-color;
   border-radius: 8px;
-  box-shadow: var(--sys-shadow);
+  box-shadow: var(--shadow-color);
 }
 
 .title {
   position: relative;
   font-size: 14px;
-  color: var(--sys-text-3);
+  color: var(--text-tertiary);
   text-align: center;
 
   &::before,
@@ -128,7 +128,7 @@ const emit = defineEmits<{
     width: 50px;
     margin: auto;
     content: '';
-    border-bottom: 1px solid var(--sys-border);
+    border-bottom: 1px solid var(--border-default);
   }
 
   &::before {
@@ -177,7 +177,7 @@ const emit = defineEmits<{
 
         height: 50px;
         cursor: pointer;
-        background-color: var(--sys-fill-light);
+        background-color: var(--fill-secondary);
 
         &.is-active {
           border: 2px solid var(--primary-color);
@@ -194,14 +194,14 @@ const emit = defineEmits<{
             padding: 0 3px;
             margin: 2px 0 0 2px;
             overflow: hidden;
-            background-color: var(--sys-border);
+            background-color: var(--border-default);
             border-radius: 2px;
 
             .line {
               width: 100%;
               height: 2px;
               margin-top: 4.4px;
-              background: var(--sys-bg-surface);
+              background: var(--bg-surface);
               border-radius: 1px;
             }
           }
@@ -215,7 +215,7 @@ const emit = defineEmits<{
             .header {
               height: 6px;
               margin: auto;
-              background-color: var(--sys-fill);
+              background-color: var(--fill-primary);
               border-radius: 2px;
             }
 
@@ -226,7 +226,7 @@ const emit = defineEmits<{
 
               div {
                 height: 12px;
-                background-color: var(--sys-fill);
+                background-color: var(--fill-primary);
                 border-radius: 2px;
 
                 &:first-of-type {
@@ -242,7 +242,7 @@ const emit = defineEmits<{
             .row2 {
               height: 12px;
               margin-top: 4px;
-              background-color: var(--sys-fill);
+              background-color: var(--fill-primary);
             }
           }
         }
@@ -258,14 +258,14 @@ const emit = defineEmits<{
             padding: 0 3px;
             margin: 2px auto;
             overflow: hidden;
-            background-color: var(--sys-border);
+            background-color: var(--border-default);
             border-radius: 2px;
 
             .line {
               width: 7px;
               height: 2px;
               margin-right: 2px;
-              background: var(--sys-bg-surface);
+              background: var(--bg-surface);
             }
           }
 
@@ -280,7 +280,7 @@ const emit = defineEmits<{
 
               div {
                 height: 12px;
-                background-color: var(--sys-fill);
+                background-color: var(--fill-primary);
                 border-radius: 2px;
 
                 &:first-of-type {
@@ -296,7 +296,7 @@ const emit = defineEmits<{
             .row2 {
               height: 12px;
               margin-top: 4px;
-              background-color: var(--sys-fill);
+              background-color: var(--fill-primary);
             }
           }
         }
@@ -309,14 +309,14 @@ const emit = defineEmits<{
           .tl-left {
             min-width: 10px;
             margin: 2px 0;
-            background-color: var(--sys-border);
+            background-color: var(--border-default);
             border-radius: 2px;
 
             > div {
               width: 4px;
               height: 2px;
               margin: 4px auto;
-              background: var(--sys-bg-surface);
+              background: var(--bg-surface);
             }
           }
 
@@ -331,14 +331,14 @@ const emit = defineEmits<{
               padding: 0 3px;
               margin: 2px auto;
               overflow: hidden;
-              background-color: var(--sys-border);
+              background-color: var(--border-default);
               border-radius: 2px;
 
               .line {
                 width: 7px;
                 height: 2px;
                 margin-right: 2px;
-                background: var(--sys-bg-surface);
+                background: var(--bg-surface);
               }
             }
 
@@ -353,7 +353,7 @@ const emit = defineEmits<{
 
                 div {
                   height: 12px;
-                  background-color: var(--sys-fill);
+                  background-color: var(--fill-primary);
                   border-radius: 2px;
 
                   &:first-of-type {
@@ -369,7 +369,7 @@ const emit = defineEmits<{
               .row2 {
                 height: 12px;
                 margin-top: 4px;
-                background-color: var(--sys-fill);
+                background-color: var(--fill-primary);
               }
             }
           }
@@ -384,14 +384,14 @@ const emit = defineEmits<{
             min-width: 6px;
             margin: 2px 0;
             margin-right: 2px;
-            background-color: var(--sys-fill);
+            background-color: var(--fill-primary);
             border-radius: 2px;
 
             > div {
               width: 4px;
               height: 2px;
               margin: 4px auto;
-              background: var(--sys-bg-surface);
+              background: var(--bg-surface);
             }
           }
 
@@ -399,14 +399,14 @@ const emit = defineEmits<{
             min-width: 10px;
             margin: 2px 0;
             margin-right: 4px;
-            background-color: var(--sys-border);
+            background-color: var(--border-default);
             border-radius: 2px;
 
             > div {
               width: 4px;
               height: 2px;
               margin: 4px auto;
-              background: var(--sys-bg-surface);
+              background: var(--bg-surface);
             }
           }
 
@@ -421,7 +421,7 @@ const emit = defineEmits<{
               padding: 0 3px;
               margin: 2px auto;
               overflow: hidden;
-              background-color: var(--sys-fill);
+              background-color: var(--fill-primary);
               border-radius: 2px;
             }
 
@@ -436,7 +436,7 @@ const emit = defineEmits<{
 
                 div {
                   height: 13px;
-                  background-color: var(--sys-fill);
+                  background-color: var(--fill-primary);
                   border-radius: 2px;
 
                   &:first-of-type {
@@ -452,7 +452,7 @@ const emit = defineEmits<{
               .row2 {
                 height: 13px;
                 margin-top: 4px;
-                background-color: var(--sys-fill);
+                background-color: var(--fill-primary);
               }
             }
           }

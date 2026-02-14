@@ -1,0 +1,20 @@
+/**
+ * Primitives - Z-Index Scale
+ */
+
+:root {
+  /* Base level */
+  --z-dropdown: 1000;
+--z-sticky: 1020;
+--z-fixed: 1030;
+--z-modal-backdrop: 1040;
+--z-modal: 1050;
+--z-popover: 1060;
+--z-tooltip: 1070;
+--z-notification: 1080;
+
+  /* Reserved ranges for future expansion */
+  --z-reserved-1: 100;
+  --z-reserved-2: 200;
+  --z-reserved-3: 300;
+}

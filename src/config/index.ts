@@ -233,16 +233,16 @@ export const ThemeList: MenuThemeType[] = [
 export const DarkMenuStyles: MenuThemeType[] = [
   {
     theme: MenuThemeEnum.DARK,
-    background: 'var(--sys-bg-overlay)',
-    systemNameColor: 'var(--sys-text)',
-    iconColor: 'var(--sys-text-2)',
-    textColor: 'var(--sys-text-2)',
-    textActiveColor: 'var(--sys-text-inverse)',
-    iconActiveColor: 'var(--sys-text-inverse)',
-    tabBarBackground: 'var(--sys-bg-surface)',
-    systemBackground: 'var(--sys-bg-page)',
-    leftLineColor: 'var(--sys-border)',
-    rightLineColor: 'var(--sys-border)'
+    background: 'var(--bg-overlay)',
+    systemNameColor: 'var(--text-primary)',
+    iconColor: 'var(--text-secondary)',
+    textColor: 'var(--text-secondary)',
+    textActiveColor: 'var(--text-inverse)',
+    iconActiveColor: 'var(--text-inverse)',
+    tabBarBackground: 'var(--bg-surface)',
+    systemBackground: 'var(--bg-page)',
+    leftLineColor: 'var(--border-default)',
+    rightLineColor: 'var(--border-default)'
   }
 ]
 

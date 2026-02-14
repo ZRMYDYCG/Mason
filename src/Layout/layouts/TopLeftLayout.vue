@@ -71,7 +71,7 @@ defineProps({
               :collapse="isCollapse"
               :unique-opened="uniqueOpened"
               :collapse-transition="false"
-              background-color="var(--layout-topbar-bg, var(--sys-bg-surface))"
+              background-color="var(--layout-topbar-bg, var(--bg-surface))"
               :active-text-color="menuTheme.textActiveColor"
               :text-color="menuTheme.textColor"
             >

@@ -1,0 +1,14 @@
+/**
+ * Reduced Motion Mode
+ * 减少动画模式（尊重用户的 prefers-reduced-motion 偏好）
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

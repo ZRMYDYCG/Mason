@@ -31,7 +31,7 @@ const emit = defineEmits<{
 .title {
   position: relative;
   font-size: 14px;
-  color: var(--sys-text-3);
+  color: var(--text-tertiary);
   text-align: center;
 
   &::before,
@@ -41,7 +41,7 @@ const emit = defineEmits<{
     width: 50px;
     margin: auto;
     content: '';
-    border-bottom: 1px solid var(--sys-border);
+    border-bottom: 1px solid var(--border-default);
   }
 
   &::before {
@@ -101,8 +101,8 @@ const emit = defineEmits<{
 
       &.active {
         box-shadow:
-          0 0 0 2px var(--sys-bg-surface),
-          0 0 0 4px rgba(var(--sys-brand-rgb), 0.45),
+          0 0 0 2px var(--bg-surface),
+          0 0 0 4px rgba(var(--color-primary-rgb), 0.45),
           0 14px 26px rgb(0 0 0 / 16%);
       }
 
@@ -112,7 +112,7 @@ const emit = defineEmits<{
 
       i {
         font-size: 14px;
-        color: var(--sys-text-inverse) !important;
+        color: var(--text-inverse) !important;
       }
     }
   }

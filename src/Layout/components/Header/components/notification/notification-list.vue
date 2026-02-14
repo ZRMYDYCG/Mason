@@ -105,7 +105,7 @@ const clickAction = (item: ActionOptions, index: number) => {
 <style scoped>
 .notification-panel {
   width: 100%;
-  background: var(--sys-bg-surface);
+  background: var(--bg-surface);
 }
 
 .panel-head {
@@ -118,12 +118,12 @@ const clickAction = (item: ActionOptions, index: number) => {
 .panel-title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--sys-text);
+  color: var(--text-primary);
 }
 
 .panel-subtitle {
   font-size: 12px;
-  color: var(--sys-text-2);
+  color: var(--text-secondary);
 }
 
 .panel-tabs {
@@ -133,18 +133,18 @@ const clickAction = (item: ActionOptions, index: number) => {
 
   :deep(.el-tabs__nav-wrap::after) {
     height: 1px;
-    background-color: var(--sys-border-light);
+    background-color: var(--border-light);
   }
 
   :deep(.el-tabs__item) {
     height: 40px;
     font-size: 13px;
-    color: var(--sys-text-2);
+    color: var(--text-secondary);
   }
 
   :deep(.el-tabs__item.is-active) {
     font-weight: 600;
-    color: var(--sys-brand);
+    color: var(--color-primary);
   }
 }
 
@@ -163,11 +163,11 @@ const clickAction = (item: ActionOptions, index: number) => {
 }
 
 .panel-item:hover {
-  background-color: var(--sys-fill-light);
+  background-color: var(--fill-secondary);
 }
 
 .panel-item:focus-visible {
-  outline: 2px solid rgba(var(--sys-brand-rgb), 0.35);
+  outline: 2px solid rgba(var(--color-primary-rgb), 0.35);
   outline-offset: 2px;
 }
 
@@ -177,8 +177,8 @@ const clickAction = (item: ActionOptions, index: number) => {
 }
 
 .avatar-fallback {
-  color: var(--sys-text-2);
-  background-color: var(--sys-fill);
+  color: var(--text-secondary);
+  background-color: var(--fill-primary);
 }
 
 .item-content {
@@ -199,7 +199,7 @@ const clickAction = (item: ActionOptions, index: number) => {
   overflow: hidden;
   font-size: 13px;
   font-weight: 600;
-  color: var(--sys-text);
+  color: var(--text-primary);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -208,7 +208,7 @@ const clickAction = (item: ActionOptions, index: number) => {
   margin-top: 4px;
   overflow: hidden;
   font-size: 12px;
-  color: var(--sys-text-2);
+  color: var(--text-secondary);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -216,7 +216,7 @@ const clickAction = (item: ActionOptions, index: number) => {
 .item-time {
   margin-top: 4px;
   font-size: 12px;
-  color: var(--sys-text-3);
+  color: var(--text-tertiary);
 }
 
 .panel-footer {
@@ -224,7 +224,7 @@ const clickAction = (item: ActionOptions, index: number) => {
   gap: 10px;
   justify-content: center;
   padding: 10px 12px;
-  border-top: 1px solid var(--sys-border-light);
+  border-top: 1px solid var(--border-light);
 }
 
 .footer-action {

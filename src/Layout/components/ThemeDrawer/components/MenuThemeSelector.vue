@@ -50,7 +50,7 @@ const emit = defineEmits<{
 .title {
   position: relative;
   font-size: 14px;
-  color: var(--sys-text-3);
+  color: var(--text-tertiary);
   text-align: center;
 
   &::before,
@@ -60,7 +60,7 @@ const emit = defineEmits<{
     width: 50px;
     margin: auto;
     content: '';
-    border-bottom: 1px solid var(--sys-border);
+    border-bottom: 1px solid var(--border-default);
   }
 
   &::before {
@@ -95,10 +95,10 @@ const emit = defineEmits<{
         height: 50px;
         overflow: hidden;
         cursor: pointer;
-        background: var(--sys-fill-light) !important;
+        background: var(--fill-secondary) !important;
         border: 2px solid var(--mason-grey-100);
         border-radius: 8px;
-        box-shadow: var(--sys-shadow);
+        box-shadow: var(--shadow-color);
         transition: box-shadow 0.1s;
 
         &.is-active {

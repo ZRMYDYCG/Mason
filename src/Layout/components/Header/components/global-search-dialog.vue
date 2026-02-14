@@ -173,7 +173,7 @@ watch(
 .result-item {
   width: 100%;
   padding: 10px 12px;
-  color: var(--sys-text);
+  color: var(--text-primary);
   text-align: left;
   cursor: pointer;
   background: transparent;
@@ -186,13 +186,13 @@ watch(
 }
 
 .result-item:hover {
-  color: var(--sys-text);
-  background-color: var(--sys-fill-light);
-  border-color: var(--sys-border-light);
+  color: var(--text-primary);
+  background-color: var(--fill-secondary);
+  border-color: var(--border-light);
 }
 
 .result-item:focus-visible {
-  outline: 2px solid rgba(var(--sys-brand-rgb), 0.35);
+  outline: 2px solid rgba(var(--color-primary-rgb), 0.35);
   outline-offset: 2px;
 }
 
@@ -204,7 +204,7 @@ watch(
 .result-path {
   margin-top: 4px;
   font-size: 12px;
-  color: var(--sys-text-2);
+  color: var(--text-secondary);
 }
 
 .results-empty {

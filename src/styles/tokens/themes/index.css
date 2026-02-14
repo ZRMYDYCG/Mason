@@ -1,0 +1,16 @@
+/**
+ * Themes - Theme Switching & Compatibility
+ * 1. 设置 color-scheme 属性，告诉浏览器页面的颜色方案
+ * 2. 影响浏览器原生 UI 元素的颜色（滚动条、表单控件、选择文本等）
+ * 3. 与 semantics/light.css 和 semantics/dark.css 配合实现主题切换
+ */
+
+:root {
+  color-scheme: light;
+}
+
+html.dark,
+.theme-dark,
+[data-theme='dark'] {
+  color-scheme: dark;
+}

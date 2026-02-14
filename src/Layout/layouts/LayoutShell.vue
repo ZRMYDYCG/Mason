@@ -9,7 +9,7 @@ const isSystemDark = computed(() => settingStore.isDark)
 const topbarBg = computed(() => menuTheme.value.tabBarBackground)
 const topbarTextColor = computed(() => {
   if (!isSystemDark.value && menuTheme.value.theme === MenuThemeEnum.DARK)
-    return 'var(--sys-text-inverse)'
+    return 'var(--text-inverse)'
   return menuTheme.value.textColor
 })
 const topbarTextSecondaryColor = computed(() => {
@@ -18,10 +18,10 @@ const topbarTextSecondaryColor = computed(() => {
   return menuTheme.value.systemNameColor
 })
 const tabsActiveBg = computed(() => {
-  return 'rgba(var(--sys-brand-rgb), 0.14)'
+  return 'rgba(var(--color-primary-rgb), 0.14)'
 })
 const tabsActiveText = computed(() => {
-  return 'var(--sys-brand)'
+  return 'var(--color-primary)'
 })
 </script>
 
@@ -60,7 +60,7 @@ const tabsActiveText = computed(() => {
 
   :deep(.el-aside) {
     width: auto;
-    background-color: var(--layout-topbar-bg, var(--sys-bg-surface));
+    background-color: var(--layout-topbar-bg, var(--bg-surface));
   }
 
   :deep(.el-aside .aside) {
@@ -88,13 +88,13 @@ const tabsActiveText = computed(() => {
     justify-content: space-between;
     height: 55px;
     padding: 0 15px;
-    color: var(--layout-topbar-text, var(--sys-text));
+    color: var(--layout-topbar-text, var(--text-primary));
 
-    --el-text-color-primary: var(--layout-topbar-text, var(--sys-text));
-    --el-text-color-regular: var(--layout-topbar-text, var(--sys-text));
-    --el-text-color-secondary: var(--layout-topbar-text-secondary, var(--sys-text-2));
+    --el-text-color-primary: var(--layout-topbar-text, var(--text-primary));
+    --el-text-color-regular: var(--layout-topbar-text, var(--text-primary));
+    --el-text-color-secondary: var(--layout-topbar-text-secondary, var(--text-secondary));
 
-    background-color: var(--layout-topbar-bg, var(--sys-bg-surface));
+    background-color: var(--layout-topbar-bg, var(--bg-surface));
   }
 }
 </style>

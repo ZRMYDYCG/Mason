@@ -277,11 +277,11 @@ function handleRefresh() {
   --gap-xs: 8px;
   --gap-sm: 16px;
   --gap-md: 24px;
-  --header-radius: var(--sys-radius);
-  --header-surface: var(--sys-bg-surface);
-  --header-border: var(--sys-border-light);
-  --header-shadow: var(--sys-shadow-sm);
-  --header-primary-rgb: var(--sys-brand-rgb);
+  --header-radius: var(--radius-md);
+  --header-surface: var(--bg-surface);
+  --header-border: var(--border-light);
+  --header-shadow: var(--shadow-sm);
+  --header-primary-rgb: var(--color-primary-rgb);
 
   position: relative;
   overflow: hidden;
@@ -318,7 +318,7 @@ function handleRefresh() {
     font-weight: 600;
     color: var(--el-color-primary);
     background-color: var(--el-color-primary-light-9);
-    border: 2px solid var(--sys-bg-surface);
+    border: 2px solid var(--bg-surface);
     box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
   }
 
@@ -329,7 +329,7 @@ function handleRefresh() {
     width: 12px;
     height: 12px;
     background-color: var(--el-color-success);
-    border: 2px solid var(--sys-bg-surface);
+    border: 2px solid var(--bg-surface);
     border-radius: 999px;
     box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
   }
@@ -394,10 +394,10 @@ function handleRefresh() {
     align-items: center;
     max-width: 100%;
     padding: 10px;
-    background-color: var(--sys-bg-overlay);
-    border: 1px solid var(--sys-border-light);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
     border-radius: 12px;
-    box-shadow: var(--sys-shadow-sm);
+    box-shadow: var(--shadow-sm);
   }
 
   .control-group {

@@ -1,0 +1,22 @@
+/**
+ * Shadow Utilities
+ * 阴影工具类（基于 Design Token）
+ * 使用 primitives/shadows.css 中定义的 --shadow-* 变量
+ */
+
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-none {
+  box-shadow: none;
+}
+

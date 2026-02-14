@@ -28,10 +28,10 @@ const emit = defineEmits<{
   align-items: center;
   height: 32px;
   padding: 0 10px;
-  color: var(--layout-topbar-text-secondary, var(--sys-text-2));
+  color: var(--layout-topbar-text-secondary, var(--text-secondary));
   cursor: pointer;
   background-color: rgb(255 255 255 / 8%);
-  border: 1px solid var(--sys-border-light);
+  border: 1px solid var(--border-light);
   border-radius: 8px;
   transition:
     background-color 0.15s ease,
@@ -40,13 +40,13 @@ const emit = defineEmits<{
 }
 
 .global-search-trigger:hover {
-  color: var(--layout-topbar-text, var(--sys-text));
-  background-color: rgba(var(--sys-brand-rgb), 0.08);
-  border-color: var(--sys-border);
+  color: var(--layout-topbar-text, var(--text-primary));
+  background-color: rgba(var(--color-primary-rgb), 0.08);
+  border-color: var(--border-default);
 }
 
 .global-search-trigger:focus-visible {
-  outline: 2px solid rgba(var(--sys-brand-rgb), 0.35);
+  outline: 2px solid rgba(var(--color-primary-rgb), 0.35);
   outline-offset: 2px;
 }
 
@@ -59,8 +59,8 @@ const emit = defineEmits<{
   padding: 2px 6px;
   font-size: 11px;
   line-height: 1;
-  color: var(--layout-topbar-text-secondary, var(--sys-text-2));
-  background-color: rgba(var(--sys-brand-rgb), 0.12);
+  color: var(--layout-topbar-text-secondary, var(--text-secondary));
+  background-color: rgba(var(--color-primary-rgb), 0.12);
   border-radius: 6px;
 }
 

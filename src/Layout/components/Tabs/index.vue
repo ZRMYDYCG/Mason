@@ -166,8 +166,8 @@ const removeTab = (fullPath: string) => {
 
 <style scoped>
 .tabs-box {
-  color: var(--layout-topbar-text, var(--sys-text));
-  background-color: var(--layout-topbar-bg, var(--sys-bg-surface));
+  color: var(--layout-topbar-text, var(--text-primary));
+  background-color: var(--layout-topbar-bg, var(--bg-surface));
 
   .tabs-menu {
     display: flex;
@@ -200,7 +200,7 @@ const removeTab = (fullPath: string) => {
       height: 30px;
       padding: 0 10px;
       font-size: 13px;
-      color: var(--layout-topbar-text-secondary, var(--sys-text-2));
+      color: var(--layout-topbar-text-secondary, var(--text-secondary));
       white-space: nowrap;
       cursor: pointer;
       user-select: none;
@@ -216,11 +216,11 @@ const removeTab = (fullPath: string) => {
     }
 
     .tab-item:hover {
-      color: var(--layout-tabs-active-text, var(--sys-brand));
+      color: var(--layout-tabs-active-text, var(--color-primary));
     }
 
     .tab-item.is-active {
-      color: var(--layout-tabs-active-text, var(--sys-brand));
+      color: var(--layout-tabs-active-text, var(--color-primary));
     }
 
     .tab-item.is-closable {
@@ -264,7 +264,7 @@ const removeTab = (fullPath: string) => {
     }
 
     .tab-close:hover {
-      background: var(--sys-fill);
+      background: var(--fill-primary);
     }
 
     :deep(.more-btn) {
@@ -279,8 +279,8 @@ const removeTab = (fullPath: string) => {
   &.tabs-style-card {
     .tab-item.is-active,
     .tab-item:hover {
-      background-color: var(--layout-tabs-active-bg, rgba(var(--sys-brand-rgb), 0.14));
-      border-color: rgba(var(--sys-brand-rgb), 0.35);
+      background-color: var(--layout-tabs-active-bg, rgba(var(--color-primary-rgb), 0.14));
+      border-color: rgba(var(--color-primary-rgb), 0.35);
       box-shadow: 0 6px 12px rgb(0 0 0 / 8%);
     }
   }
@@ -301,22 +301,22 @@ const removeTab = (fullPath: string) => {
 
     .tab-item.is-active,
     .tab-item:hover {
-      border-color: var(--layout-tabs-active-text, var(--sys-brand));
+      border-color: var(--layout-tabs-active-text, var(--color-primary));
       box-shadow: none;
     }
   }
 
   &.tabs-style-pill {
     .tab-item {
-      background-color: var(--sys-fill-light);
+      background-color: var(--fill-secondary);
       border-color: transparent;
       border-radius: 999px;
     }
 
     .tab-item.is-active,
     .tab-item:hover {
-      background-color: var(--layout-tabs-active-bg, rgba(var(--sys-brand-rgb), 0.14));
-      border-color: rgba(var(--sys-brand-rgb), 0.25);
+      background-color: var(--layout-tabs-active-bg, rgba(var(--color-primary-rgb), 0.14));
+      border-color: rgba(var(--color-primary-rgb), 0.25);
       box-shadow: 0 6px 12px rgb(0 0 0 / 8%);
     }
   }

@@ -1,221 +1,32 @@
-/* custom card */
-.card {
-  box-sizing: border-box;
-  padding: 18px;
-  overflow-x: hidden;
-  background-color: var(--el-bg-color);
-  border: 1px solid var(--el-border-color-light);
-  border-radius: 6px;
-  box-shadow: 0 0 12px rgb(0 0 0 / 5%);
-}
+/**
+ * Common Styles
+ * 全局样式入口文件
+ * 
+ * 此文件统一导入所有工具类、组件样式和特殊模式
+ * 
+ * 架构说明：
+ * - utilities/: 工具类（布局、文本、间距、颜色等）
+ * - components/: 通用组件样式
+ * - modes/: 特殊模式（色弱模式、减少动画等）
+ */
 
-/* flex */
-.flx-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* ========== Utilities ========== */
+@import './utilities/index.css';
 
-/* clearfix */
+/* ========== Components ========== */
+@import './components/index.css';
+
+/* ========== Modes ========== */
+@import './modes/index.css';
+
+/* ========== Animations ========== */
+@import './animations/index.css';
+
+/* ========== Utility Classes ========== */
 .clearfix::after {
   display: block;
   height: 0;
   overflow: hidden;
   clear: both;
   content: '';
-}
-
-/* 文字单行省略号 */
-.sle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* 文字多行省略号 */
-.mle {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-}
-
-/* 文字多了自动換行 */
-.break-word {
-  word-break: break-all;
-  word-wrap: break-word;
-}
-
-/* fade-transform */
-.fade-transform-leave-active,
-.fade-transform-enter-active {
-  transition: all 0.2s;
-}
-
-.fade-transform-enter-from {
-  opacity: 0;
-  transition: all 0.2s;
-  transform: translateX(-30px);
-}
-
-.fade-transform-leave-to {
-  pointer-events: none;
-  opacity: 0;
-  transition: all 0.2s;
-  transform: translateX(30px);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-  will-change: opacity;
-}
-
-.fade-enter-from {
-  opacity: 0;
-}
-
-.fade-enter-to {
-  opacity: 1;
-}
-
-.fade-leave-from {
-  opacity: 1;
-}
-
-.fade-leave-to {
-  opacity: 0;
-}
-
-/* slide-right 动画 */
-.slide-right-enter-active,
-.slide-right-leave-active {
-  transition:
-    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: opacity, transform;
-}
-
-.slide-right-enter-from {
-  opacity: 0;
-  transform: translate3d(-30px, 0, 0);
-}
-
-.slide-right-enter-to {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-.slide-right-leave-to {
-  opacity: 0;
-  transform: translate3d(30px, 0, 0);
-}
-
-/* slide-top 动画 */
-.slide-top-enter-active,
-.slide-top-leave-active {
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-  will-change: transform, opacity;
-}
-
-.slide-top-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.slide-top-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.slide-top-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-/* slide-bottom 动画 */
-.slide-bottom-enter-active,
-.slide-bottom-leave-active {
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-  will-change: transform, opacity;
-}
-
-.slide-bottom-enter-from {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.slide-bottom-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.slide-bottom-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* 滚动条 */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--el-border-color-darker);
-  border-radius: 20px;
-}
-
-/* nprogress */
-#nprogress .bar {
-  background: var(--el-color-primary) !important;
-}
-
-#nprogress .spinner-icon {
-  border-top-color: var(--el-color-primary) !important;
-  border-left-color: var(--el-color-primary) !important;
-}
-
-#nprogress .peg {
-  box-shadow:
-    0 0 10px var(--el-color-primary),
-    0 0 5px var(--el-color-primary) !important;
-}
-
-/* 外边距、内边距全局样式 */
-@for $i from 0 to 100 {
-  .mt$(i) {
-    margin-top: $(i)px !important;
-  }
-  .mr$(i) {
-    margin-right: $(i)px !important;
-  }
-  .mb$(i) {
-    margin-bottom: $(i)px !important;
-  }
-  .ml$(i) {
-    margin-left: $(i)px !important;
-  }
-  .pt$(i) {
-    padding-top: $(i)px !important;
-  }
-  .pr$(i) {
-    padding-right: $(i)px !important;
-  }
-  .pb$(i) {
-    padding-bottom: $(i)px !important;
-  }
-  .pl$(i) {
-    padding-left: $(i)px !important;
-  }
-}
-
-/* 色弱模式 */
-.color-weak {
-  filter: invert(80%);
 }

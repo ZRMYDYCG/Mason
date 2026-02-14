@@ -1,0 +1,30 @@
+/**
+ * Color Utilities
+ * 颜色工具类（基于 Design Token）
+ * 使用 semantics/light.css 和 semantics/dark.css 中定义的语义化 token
+ */
+
+.bg-primary {
+  background-color: var(--color-primary-bg-muted);
+}
+
+.bg-surface {
+  background-color: var(--bg-surface);
+}
+
+.bg-page {
+  background-color: var(--bg-page);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-tertiary);
+}
+

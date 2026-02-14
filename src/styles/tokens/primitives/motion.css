@@ -1,0 +1,30 @@
+/**
+ * Primitives - Motion / Animation
+ */
+
+:root {
+  /* Durations */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --duration-slower: 500ms;
+
+  /* Easing curves */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-elastic-out: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-back-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Common transition combinations */
+  --transition-fast: all var(--duration-fast) var(--ease-out);
+  --transition-normal: all var(--duration-normal) var(--ease-out);
+  --transition-slow: all var(--duration-slow) var(--ease-out);
+
+  /* Bounce effect */
+  --bounce-small: 0 2px 4px rgb(0 0 0 / 5%);
+  --bounce-medium: 0 4px 8px rgb(0 0 0 / 8%);
+  --bounce-large: 0 8px 16px rgb(0 0 0 / 10%);
+}

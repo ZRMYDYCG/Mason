@@ -77,54 +77,54 @@ const handleClickMenu = (subItem: Menu) => {
 
 :global(html:not(.dark) .aside .el-menu-item:not(.is-active):hover),
 :global(html:not(.dark) .aside .el-sub-menu__title:hover) {
-  color: var(--sys-brand);
-  background-color: rgba(var(--sys-brand-rgb), 0.08);
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.08);
 }
 
 :global(html.dark .aside .el-menu-item:not(.is-active):hover),
 :global(html.dark .aside .el-sub-menu__title:hover) {
-  color: var(--sys-brand);
-  background-color: rgba(var(--sys-brand-rgb), 0.16);
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.16);
 }
 
 :global(.aside .el-menu-item:not(.is-active):focus-visible),
 :global(.aside .el-sub-menu__title:focus-visible) {
-  outline: 2px solid rgba(var(--sys-brand-rgb), 0.35);
+  outline: 2px solid rgba(var(--color-primary-rgb), 0.35);
   outline-offset: -2px;
 }
 
 :global(.aside .el-menu-item.is-active) {
   font-weight: 600;
-  color: var(--sys-brand);
-  background-color: rgba(var(--sys-brand-rgb), 0.14);
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.14);
 }
 
 :global(.aside .el-sub-menu.is-active > .el-sub-menu__title) {
   font-weight: 600;
-  color: var(--sys-brand);
-  background-color: rgba(var(--sys-brand-rgb), 0.08);
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.08);
 }
 
 /* Aside Popup Menu Styles */
 :global(.aside-popup-menu.el-menu--popup) {
-  background-color: var(--sys-bg-surface) !important;
+  background-color: var(--bg-surface) !important;
 }
 
 :global(html:not(.dark) .aside-popup-menu .el-menu-item:not(.is-active):hover),
 :global(html:not(.dark) .aside-popup-menu .el-sub-menu__title:hover) {
-  color: var(--sys-brand);
-  background-color: rgba(var(--sys-brand-rgb), 0.08);
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.08);
 }
 
 :global(html.dark .aside-popup-menu .el-menu-item:not(.is-active):hover),
 :global(html.dark .aside-popup-menu .el-sub-menu__title:hover) {
-  color: var(--sys-brand);
-  background-color: rgba(var(--sys-brand-rgb), 0.16);
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.16);
 }
 
 :global(.aside-popup-menu .el-menu-item.is-active) {
   font-weight: 600;
-  color: var(--sys-brand);
-  background-color: rgba(var(--sys-brand-rgb), 0.14);
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.14);
 }
 </style>

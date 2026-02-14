@@ -37,7 +37,7 @@ const emit = defineEmits<{
 .title {
   position: relative;
   font-size: 14px;
-  color: var(--sys-text-3);
+  color: var(--text-tertiary);
   text-align: center;
 
   &::before,
@@ -47,7 +47,7 @@ const emit = defineEmits<{
     width: 50px;
     margin: auto;
     content: '';
-    border-bottom: 1px solid var(--sys-border);
+    border-bottom: 1px solid var(--border-default);
   }
 
   &::before {
@@ -72,7 +72,7 @@ const emit = defineEmits<{
     margin-right: 15px;
     margin-bottom: 15px;
     cursor: pointer;
-    border: 2px solid var(--sys-border-dark);
+    border: 2px solid var(--border-strong);
     border-radius: 10px;
 
     &:last-of-type {
@@ -83,7 +83,7 @@ const emit = defineEmits<{
       border-color: var(--primary-color);
 
       i {
-        color: var(--sys-text-3) !important;
+        color: var(--text-tertiary) !important;
       }
     }
 

@@ -1,0 +1,54 @@
+/**
+ * Element Plus Dark Mode Supplement
+ * 第三方组件的深色模式补充样式
+ */
+
+/* ========== wangEditor ========== */
+html.dark {
+  --w-e-toolbar-color: var(--text-primary);
+  --w-e-toolbar-bg-color: var(--bg-surface);
+  --w-e-textarea-bg-color: var(--bg-surface);
+  --w-e-textarea-color: var(--text-primary);
+  --w-e-toolbar-active-bg-color: var(--fill-tertiary);
+  --w-e-toolbar-border-color: var(--border-strong);
+
+  .w-e-bar-item button:hover,
+  .w-e-menu-tooltip-v5::before {
+    color: var(--text-primary);
+  }
+}
+
+/* ========== Login Page ========== */
+html.dark {
+  .login-container {
+    background-color: var(--bg-page) !important;
+
+    .login-box {
+      /* 使用半透明背景，模拟原来的 rgba(0, 0, 0, 0.80) 效果 */
+      background-color: rgba(var(--color-neutral-950-rgb), 0.8) !important;
+
+      .login-form {
+        box-shadow: var(--shadow-lg) !important;
+
+        .logo-text {
+          color: var(--text-primary) !important;
+        }
+      }
+    }
+  }
+}
+
+/* ========== Dropdown & Menu ========== */
+html.dark {
+  .el-dropdown-menu__item:hover,
+  .el-sub-menu__title:hover,
+  .el-menu-item:hover {
+    color: var(--color-primary);
+    background-color: var(--fill-primary);
+  }
+
+  .el-menu-item.is-active {
+    color: var(--text-inverse);
+    background-color: var(--color-primary);
+  }
+}

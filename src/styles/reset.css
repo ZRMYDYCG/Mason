@@ -1,38 +1,90 @@
-:root {
-  /* 系统主色 */
-  --main-color: var(--sys-brand);
-  --custom-radius: 0.75rem;
-  --app-color-primary: var(--sys-brand);
-  --app-color-primary-rgb: var(--sys-brand-rgb);
-  --app-text: var(--sys-text);
-  --app-text-secondary: var(--sys-text-2);
-  --app-text-tertiary: var(--sys-text-3);
-  --app-text-placeholder: var(--sys-text-placeholder);
-  --app-text-inverse: var(--sys-text-inverse);
-  --app-bg-page: var(--sys-bg-page);
-  --app-bg-surface: var(--sys-bg-surface);
-  --app-bg-overlay: var(--sys-bg-overlay);
-  --app-fill: var(--sys-fill);
-  --app-fill-light: var(--sys-fill-light);
-  --app-border: var(--sys-border);
-  --app-border-light: var(--sys-border-light);
-  --app-border-dark: var(--sys-border-dark);
-  --app-radius: var(--sys-radius);
-  --app-bg-active: var(--sys-brand);
-  --app-bg-active-light: var(--sys-primary-light-9);
-  --app-text-active: var(--sys-brand);
-  --app-surface-tint: var(--sys-surface-tint);
-  --app-surface-glow: var(--sys-surface-glow);
-  --app-border-soft: var(--sys-border-soft);
-  --app-border-strong: var(--sys-border-strong);
-  --app-shadow-xs: var(--sys-shadow-xs);
-  --app-shadow-sm: var(--sys-shadow-sm);
-  --app-shadow-md: var(--sys-shadow-md);
-  --app-shadow: var(--sys-shadow);
-  --app-shadow-lg: var(--sys-shadow-lg);
+/**
+ * Reset Styles
+ * CSS Reset based on modern best practices
+ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Reset style sheet */
+/* Remove default margins */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* Prevent font size inflation */
+html {
+  text-size-adjust: none;
+}
+
+/* Improve text rendering */
+body {
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Improve link defaults */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Improve button defaults */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Improve table defaults */
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+/* ========== Root Layout ========== */
 html,
 body,
 #app {
@@ -42,6 +94,7 @@ body,
   margin: 0;
 }
 
+/* Overflow handling */
 @supports not (overflow: clip) {
   html,
   body {
@@ -49,51 +102,13 @@ body,
   }
 }
 
-/* el-dialog 动画调整 */
-.dialog-fade-enter-active {
-  .el-dialog {
-    animation: dialog-open 0.3s cubic-bezier(0.32, 0.14, 0.15, 0.86);
-  }
+/* ========== Focus Styles ========== */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
 }
 
-.dialog-fade-leave-active {
-  animation: fade-out 0.2s linear;
-
-  .el-dialog {
-    animation: dialog-close 0.2s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-  }
-}
-
-@keyframes dialog-open {
-  0% {
-    opacity: 0;
-    transform: scale(0.2);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes dialog-close {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(0.2);
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
+/* Remove default focus styles for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
 }

@@ -1,0 +1,252 @@
+/**
+ * Theme Animation
+ * 主题切换动画和过渡效果
+ * 
+ * 此文件包含：
+ * - View Transition API 支持（主题切换动画）
+ * - Vue 过渡动画类（fade、slide 等）
+ * - Element Plus 组件动画（Dialog、Drawer）
+ * - 全局主题过渡效果
+ * 
+ * 使用的 Design Token：
+ * - primitives/motion.css: 动效时长和缓动曲线
+ * - semantics/light.css 和 semantics/dark.css: View Transition 背景色
+ */
+
+/* ========== View Transitions (Theme Switching) ========== */
+@supports (view-transition-name: none) {
+  html {
+    &::view-transition-old(*),
+    &::view-transition-new(*) {
+      mix-blend-mode: normal;
+      animation: none;
+    }
+
+    &::view-transition-old(root),
+    &::view-transition-new(root) {
+      will-change: clip-path;
+    }
+
+    &::view-transition-old(root) {
+      z-index: 1;
+      background-color: var(--vt-bg-old, transparent);
+    }
+
+    &::view-transition-new(root) {
+      z-index: 9999;
+      background-color: var(--vt-bg-new, transparent);
+      animation: clip-reveal var(--duration-slow) var(--ease-out);
+    }
+  }
+
+  @keyframes clip-reveal {
+    from {
+      clip-path: circle(0% at 50% 50%);
+    }
+
+    to {
+      clip-path: circle(150% at 50% 50%);
+    }
+  }
+}
+
+/* ========== Global Theme Transition ========== */
+
+/* 全局主题切换过渡效果 */
+html {
+  transition:
+    background-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out);
+}
+
+/* ========== Vue Transition Classes ========== */
+
+/* Fade 淡入淡出 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+/* Slide Right 从右侧滑入 */
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition:
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+/* Slide Left 从左侧滑入 */
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition:
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.slide-left-enter-from {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* Slide Top 从顶部滑入 */
+.slide-top-enter-active,
+.slide-top-leave-active {
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    opacity var(--duration-normal) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+.slide-top-enter-from {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.slide-top-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Slide Bottom 从底部滑入 */
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    opacity var(--duration-normal) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+.slide-bottom-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.slide-bottom-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Fade Transform 淡入淡出 + 位移 */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.fade-transform-enter-from {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+/* ========== Element Plus Component Animations ========== */
+
+/* Dialog 对话框动画 */
+.dialog-fade-enter-active .el-dialog {
+  animation: dialog-open var(--duration-normal) var(--ease-out);
+}
+
+.dialog-fade-leave-active .el-dialog {
+  animation: dialog-close var(--duration-slow) var(--ease-in);
+}
+
+@keyframes dialog-open {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes dialog-close {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Drawer 抽屉动画 */
+.drawer-fade-enter-active .el-drawer {
+  animation: drawer-open var(--duration-normal) var(--ease-out);
+}
+
+.drawer-fade-leave-active .el-drawer {
+  animation: drawer-close var(--duration-slow) var(--ease-in);
+}
+
+@keyframes drawer-open {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-close {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ========== Loading Spinner ========== */
+.el-loading-spinner {
+  --loading-color: var(--color-primary);
+}
+
+/* ========== Global Color Mode Transition ========== */
+
+/* 全局颜色模式切换过渡效果 */
+*,
+*::before,
+*::after {
+  transition:
+    background-color var(--duration-slow) var(--ease-out),
+    border-color var(--duration-slow) var(--ease-out),
+    color var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+}

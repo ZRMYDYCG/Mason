@@ -20,8 +20,8 @@
   justify-content: center;
   padding: 5px 0;
   font-size: 14px;
-  color: var(--sys-text-3);
-  background-color: var(--sys-bg-surface);
+  color: var(--text-tertiary);
+  background-color: var(--bg-surface);
 
   .footer-content {
     display: flex;
@@ -38,7 +38,7 @@
       .logo {
         width: 24px;
         height: 24px;
-        filter: drop-shadow(0 0 8px rgba(var(--sys-brand-rgb), 0.75));
+        filter: drop-shadow(0 0 8px rgba(var(--color-primary-rgb), 0.75));
         animation: glow 2s ease-in-out infinite alternate;
       }
     }
@@ -47,11 +47,11 @@
 
 @keyframes glow {
   from {
-    filter: drop-shadow(0 0 4px rgba(var(--sys-brand-rgb), 0.25));
+    filter: drop-shadow(0 0 4px rgba(var(--color-primary-rgb), 0.25));
   }
 
   to {
-    filter: drop-shadow(0 0 12px rgba(var(--sys-brand-rgb), 0.75));
+    filter: drop-shadow(0 0 12px rgba(var(--color-primary-rgb), 0.75));
   }
 }
 </style>
