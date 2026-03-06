@@ -1,9 +1,0 @@
-/**
- * Color Weak Mode
- * 色弱模式样式
- */
-
-.color-weak {
-  filter: invert(80%);
-}
-

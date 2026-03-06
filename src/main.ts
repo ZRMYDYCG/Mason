@@ -1,42 +1,16 @@
 import { createApp } from 'vue'
+
 import App from './App.vue'
+import { installRouter } from '@/router'
+import { installPinia } from './stores'
+import { installAssets } from './plugins/assets'
+import { installI18n } from './i18n'
 
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
-import './styles/tokens/index.css'
-import './styles/common.css'
-import './styles/reset.css'
-import './tailwind.css'
+const app = createApp(App)
 
-import { setupGlobDirectives } from '@/directives'
-import { mockXHR } from '@/mock/index.ts'
-import { registerEcharts } from '@/plugins/echarts.ts'
+installAssets()
+installRouter(app)
+installPinia(app)
+installI18n(app)
 
-import ElementPlus from 'element-plus'
-import PrintLogo from './print-logo.ts'
-import router from '@/router'
-import pinia from '@/store'
-// vue i18n
-import I18n from '@/language'
-
-// mock 开关
-mockXHR(true)
-
-async function bootstrap() {
-  const app = createApp(App)
-  app.use(router)
-  app.use(ElementPlus)
-  app.use(pinia)
-  app.use(I18n)
-
-  // 注册全局指令
-  setupGlobDirectives(app)
-  // vue-echarts 按需注册
-  registerEcharts(app)
-
-  PrintLogo()
-
-  app.mount('#app')
-}
-
-bootstrap()
+app.mount('#app')
