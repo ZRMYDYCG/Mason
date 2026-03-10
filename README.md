@@ -17,10 +17,6 @@
   <img src="https://img.shields.io/badge/Vitest-3.0.9-FCC72B.svg?style=flat-square&logo=vitest" />
 </p>
 
-<img src="/public/bg.png" alt="bg" />
-
-<img src="/public/bg-dark.png" alt="bg-dark" />
-
 ![image](http://mason.versakit.online/assets/58e3ab0766b0de0dceef36538324953a.HHSZJMqc.png)
 
 ![image](http://mason.versakit.online/assets/9de1355482ab4fa61bb7cfcc219d1d7d.CIK0cxKs.png)
