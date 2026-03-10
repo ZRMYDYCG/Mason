@@ -1,4 +1,9 @@
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import type {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  AxiosError,
+} from 'axios'
 import type { HttpPlugin } from './plugin.ts'
 
 /**
@@ -71,7 +76,7 @@ export class RequestCanceler implements HttpPlugin {
       },
       (error: AxiosError) => {
         return Promise.reject(error)
-      },
+      }
     )
 
     // 响应拦截器：从取消器中移除请求
@@ -85,7 +90,7 @@ export class RequestCanceler implements HttpPlugin {
           this.remove(error.config)
         }
         return Promise.reject(error)
-      },
+      }
     )
   }
 }

@@ -46,10 +46,7 @@ export class RequestRetry implements HttpPlugin {
     }
 
     // 检查状态码
-    if (
-      error.response?.status &&
-      this.config.retryableStatusCodes!.includes(error.response.status)
-    ) {
+    if (error.response?.status && this.config.retryableStatusCodes!.includes(error.response.status)) {
       return true
     }
 
@@ -85,7 +82,7 @@ export class RequestRetry implements HttpPlugin {
         const delay = this.getDelay(config._retryAttempts)
 
         // 延迟后重试
-        await new Promise((resolve) => setTimeout(resolve, delay))
+        await new Promise(resolve => setTimeout(resolve, delay))
 
         // 重新发送请求
         return instance(config)

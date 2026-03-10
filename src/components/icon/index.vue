@@ -25,7 +25,7 @@ const props = withDefaults(
     type: 'iconify',
     prefix: 'icon',
     fontFamily: 'iconfont',
-  },
+  }
 )
 
 onBeforeMount(() => {

@@ -34,7 +34,15 @@ export function useRequest<T>(
   requestFn: (config?: AxiosRequestConfig) => Promise<T>,
   options: UseRequestOptions<T> = {},
 ): UseRequestReturn<T> {
-  const { auto = true, deps = [], initialData, onBefore, onSuccess, onError, onFinally } = options
+  const {
+    auto = true,
+    deps = [],
+    initialData,
+    onBefore,
+    onSuccess,
+    onError,
+    onFinally,
+  } = options
 
   const data = shallowRef<T | undefined>(initialData)
   const loading = ref(false)

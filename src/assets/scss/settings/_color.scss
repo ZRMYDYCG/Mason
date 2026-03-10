@@ -1,4 +1,4 @@
-@use 'sass:color';
+@use "sass:color";
 
 // 品牌与状态色
 $color-primary: #1c9399;
@@ -25,16 +25,13 @@ $bg-color-base: #ffffff;
 // 默认主题 白天模式
 :root {
   // 品牌/状态色及其色阶
-  @each $type,
-    $color
-      in (
-        'primary': $color-primary,
-        'success': $color-success,
-        'danger': $color-danger,
-        'warning': $color-warning,
-        'info': $color-info
-      )
-  {
+  @each $type, $color in (
+    "primary": $color-primary,
+    "success": $color-success,
+    "danger": $color-danger,
+    "warning": $color-warning,
+    "info": $color-info
+  ) {
     --color-#{$type}: #{$color};
 
     // 生成浅色变体 (混合白色)
@@ -64,7 +61,7 @@ $bg-color-base: #ffffff;
 }
 
 // 深色主题覆盖
-[data-theme='dark'] {
+[data-theme="dark"] {
   --color-text-primary: rgba(255, 255, 255, 0.95);
   --color-text-regular: rgba(255, 255, 255, 0.75);
   --color-text-secondary: rgba(255, 255, 255, 0.55);
@@ -74,3 +71,4 @@ $bg-color-base: #ffffff;
   --bg-color-base: #1a1a1a;
   --border-color-base: rgba(255, 255, 255, 0.12);
 }
+

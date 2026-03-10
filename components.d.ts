@@ -20,7 +20,7 @@ declare module 'vue' {
 
 // For TSX support
 declare global {
-  const Icon: (typeof import('./src/components/icon/index.vue'))['default']
-  const RouterLink: (typeof import('vue-router'))['RouterLink']
-  const RouterView: (typeof import('vue-router'))['RouterView']
+  const Icon: typeof import('./src/components/icon/index.vue')['default']
+  const RouterLink: typeof import('vue-router')['RouterLink']
+  const RouterView: typeof import('vue-router')['RouterView']
 }

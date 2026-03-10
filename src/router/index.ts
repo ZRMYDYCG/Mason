@@ -9,7 +9,7 @@ import i18n from '@/i18n'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: setupLayouts(routes as RouteRecordRaw[]),
+  routes: setupLayouts(routes as RouteRecordRaw[])
 })
 
 async function loadRouteLocales(to: RouteLocationNormalized) {
@@ -17,15 +17,15 @@ async function loadRouteLocales(to: RouteLocationNormalized) {
 
   await loadLanguage(currentLang)
 
-  if (to.meta.locales) {
-    for (const locale of to.meta.locales as string[]) {
+  if(to.meta.locales) {
+    for(const locale of to.meta.locales as string[]) {
       try {
         await import(`@/i18n/locales/modules/${currentLang}/${locale}.ts`).then((messages) => {
           i18n.global.mergeLocaleMessage(currentLang, {
-            [locale]: messages.default,
+            [locale]: messages.default
           })
         })
-      } catch (e) {
+      } catch(e) {
         console.warn(`Failed to load locale ${locale} for route ${to.path} ${e}`)
       }
     }
