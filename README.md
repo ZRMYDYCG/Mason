@@ -34,21 +34,32 @@ RBAC 权限设计部分以及系统设置部分、日志管理、个人中心, �
 
 其余部分不进行前后端分离设计
 
-## Mason cli
+## 🚀 Mason CLI
 
-🚀 [Mason cli 使用](https://github.com/ZRMYDYCG/Mason/blob/main/cli/README.md)
+**Mason CLI** 是专为 **Mason Admin** 打造的工程化脚手架，旨在解决市面上后台管理模板封装过深、业务Hook过度抽象导致的开发痛点。
 
-## Mock开箱即用版本
+### 业务背景
 
-🚀 请移步该[仓库](https://github.com/ZRMYDYCG/Mason-Mock)
+1.  **拒绝过度封装**：市面上的后台管理模板往往封装太深，导致二次开发困难。Mason CLI 致力于提供一个轻量、灵活的初始化模板，避免过度抽象，让开发者能够更专注于业务逻辑。在 AI 辅助编程普及的今天，清晰直观的代码结构比复杂的黑盒封装更重要。
+2.  **最佳实践集成**：Vite 官方模板虽然简洁，但缺乏中后台业务所需的架构实践。Mason CLI 集成了经过验证的工程化配置和业务架构，填补了这一空白。
+
+### 核心亮点
+
+- **标准化工具链**：基于 **Lefthook**、**ESLint v9**、**Prettier**、**Stylelint**、**Commitlint**、**Commitizen**、**lint-staged**、**Plop** 构建，确保代码风格统一和提交规范。
+- **一键初始化**：快速生成标准化的 Vue 3 + TypeScript 项目结构。
+- **模块化生成**：支持快速创建组件、视图和 Store 模块，减少样板代码。
+
+👉 [查看 Mason CLI 文档]()
 
 ## 国际化版本
 
-🚀 请移步该[仓库]()
+项目底层业务架构正在迁移中到新的业务模板，迁移完成后会推出国际化版本。
+
+新业务模板分支：[Mason-Admin-Template](https://github.com/ZRMYDYCG/Mason/tree/template)
 
 ## 关于服务端
 
-目前正在重构为 nest, 如果需要 koa2 版本，可以联系下方微信。
+目前正在重构为 nest, Koa2 版本在当前 next 分支仓库中。
 
 ## ✨ 特性
 
@@ -60,6 +71,7 @@ RBAC 权限设计部分以及系统设置部分、日志管理、个人中心, �
 - 📊 **数据可视化**：集成Echarts图表解决方案
 - 🌍 **国际化**：支持多语言切换（简体中文/English）（该仓库并不支持，后续会单开一个仓库来提供一个国际化版本）
 - 🛠 **TypeScript**：完整的类型定义支持
+- ⚡ **全栈开发**：前端 Vue 3 + Vite + PostCSS，后端 Koa 2 + MySQL + Sequelize
 
 ## 🦄 功能
 
@@ -103,7 +115,7 @@ RBAC 权限设计部分以及系统设置部分、日志管理、个人中心, �
 - useClipboard: 复制到粘贴板
 - usePageTitle: 设置页面标题
 - useResizable: 可拖动调整大小
-  - 拖动过程中可以禁止页面文字选中 
+  - 拖动过程中可以禁止页面文字选中
 - useTable
   - 自动数据加载：通过 autoLoad 参数控制是否自动加载数据
   - 防抖控制：通过 debounce 参数设置请求防抖时间
