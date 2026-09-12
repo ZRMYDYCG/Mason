@@ -2,8 +2,11 @@
   <div class="landing-page">
     <header class="header">
       <div class="logo-container">
-        <img class="logo" src="@/assets/images/logo.png" alt="logo" />
-        <span class="app-name">Mason Admin</span>
+        <img
+          class="logo"
+          :src="isDark ? logoWordmarkOnDark : logoWordmark"
+          alt="Mason — Build A Better Tomorrow"
+        />
       </div>
       <div class="header-actions">
         <el-button text class="nav-btn" @click="openLogin">登录</el-button>
@@ -107,6 +110,8 @@ import { SystemThemeEnum } from '@/config'
 import { Moon, Sunny } from '@element-plus/icons-vue'
 import LoginImageDark from '@/assets/images/login/image-dark.png'
 import LoginImageLight from '@/assets/images/login/image-light.png'
+import logoWordmark from '@/assets/images/logo-wordmark.png'
+import logoWordmarkOnDark from '@/assets/images/logo-wordmark-on-dark.png'
 
 const loginVisible = ref(false)
 const registerVisible = ref(false)
@@ -182,20 +187,13 @@ const handleRegisterSuccess = () => {
 
   .logo-container {
     display: flex;
-    gap: 10px;
     align-items: center;
 
     .logo {
-      width: 32px;
-      height: 32px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .app-name {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--el-text-color-primary);
+      width: auto;
+      height: 40px;
+      object-fit: contain;
+      object-position: left center;
     }
   }
 

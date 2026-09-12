@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { MenuTypeEnum, HOME_URL } from '@/config'
+import { MenuTypeEnum, HOME_URL, MenuThemeEnum } from '@/config'
 import { useGlobalStore } from '@/store/modules/global'
 import { useSettingStore } from '@/store/modules/setting.ts'
 import { useRouter } from 'vue-router'
+import logoMark from '@/assets/images/logo.png'
+import logoWordmark from '@/assets/images/logo-wordmark.png'
+import logoWordmarkOnDark from '@/assets/images/logo-wordmark-on-dark.png'
 
 const globalStore = useGlobalStore()
 const settingStore = useSettingStore()
@@ -11,12 +14,19 @@ const router = useRouter()
 
 const isCollapse = computed(() => globalStore.isCollapse)
 const menuType = computed(() => settingStore.menuType)
+const isDark = computed(() => settingStore.isDark)
 const menuTheme = computed(() => settingStore.getMenuTheme)
 
-const showBrandText = computed(() => {
+/** Expanded sidebar / header: show full wordmark (icon + text) */
+const showWordmark = computed(() => {
   if (menuType.value === MenuTypeEnum.DUAL_MENU) return false
   if (menuType.value === MenuTypeEnum.TOP || menuType.value === MenuTypeEnum.TOP_LEFT) return true
   return !isCollapse.value
+})
+
+const wordmarkSrc = computed(() => {
+  const darkMenu = menuTheme.value.theme === MenuThemeEnum.DARK
+  return isDark.value || darkMenu ? logoWordmarkOnDark : logoWordmark
 })
 
 const goHome = () => {
@@ -25,14 +35,19 @@ const goHome = () => {
 </script>
 
 <template>
-  <button type="button" class="logo" :class="{ compact: !showBrandText }" @click="goHome">
-    <img class="logo-img" src="@/assets/images/logo.png" alt="Mason" />
-    <div v-if="showBrandText" class="logo-copy">
-      <span class="logo-name" :style="{ color: menuTheme.textColor }">Mason</span>
-      <span class="logo-tagline" :style="{ color: menuTheme.systemNameColor }">
-        Build A Better Tomorrow
-      </span>
-    </div>
+  <button
+    type="button"
+    class="logo"
+    :class="{ compact: !showWordmark, wordmark: showWordmark }"
+    @click="goHome"
+  >
+    <img
+      v-if="showWordmark"
+      class="logo-wordmark"
+      :src="wordmarkSrc"
+      alt="Mason — Build A Better Tomorrow"
+    />
+    <img v-else class="logo-mark" :src="logoMark" alt="Mason" />
   </button>
 </template>
 
@@ -41,12 +56,11 @@ const goHome = () => {
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
-  gap: 10px;
   align-items: center;
   width: auto;
   max-width: 100%;
   height: 64px;
-  padding: 0 16px;
+  padding: 0 14px;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -67,7 +81,7 @@ const goHome = () => {
   padding: 0;
 }
 
-.logo-img {
+.logo-mark {
   flex-shrink: 0;
   width: 32px;
   height: 32px;
@@ -75,28 +89,12 @@ const goHome = () => {
   border-radius: 8px;
 }
 
-.logo-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  align-items: flex-start;
-  min-width: 0;
-  text-align: left;
-}
-
-.logo-name {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.logo-tagline {
-  font-size: 9px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
+.logo-wordmark {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 36px;
+  object-fit: contain;
+  object-position: left center;
 }
 </style>
