@@ -11,7 +11,8 @@
   flex-direction: column;
 }
 
-.flex-center {
+.flex-center,
+.flx-center {
   display: flex;
   align-items: center;
   justify-content: center;

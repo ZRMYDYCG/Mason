@@ -4,7 +4,9 @@
  */
 
 .card {
+  box-sizing: border-box;
   padding: var(--space-5);
+  overflow-x: hidden;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);

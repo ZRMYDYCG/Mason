@@ -4,6 +4,37 @@
  * 使用 primitives/spacing.css 中定义的 --space-* 变量
  */
 
+/**
+ * Legacy px spacing utilities (mb10 / mt20 / mr4 ...)
+ * Kept for existing templates that still use the pre–Design Token class names.
+ */
+@for $i from 0 to 100 {
+  .mt$(i) {
+    margin-top: $(i)px !important;
+  }
+  .mr$(i) {
+    margin-right: $(i)px !important;
+  }
+  .mb$(i) {
+    margin-bottom: $(i)px !important;
+  }
+  .ml$(i) {
+    margin-left: $(i)px !important;
+  }
+  .pt$(i) {
+    padding-top: $(i)px !important;
+  }
+  .pr$(i) {
+    padding-right: $(i)px !important;
+  }
+  .pb$(i) {
+    padding-bottom: $(i)px !important;
+  }
+  .pl$(i) {
+    padding-left: $(i)px !important;
+  }
+}
+
 /* Margin utilities */
 .m-0 {
   margin: 0;
