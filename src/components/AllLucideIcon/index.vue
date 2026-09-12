@@ -57,6 +57,7 @@ const iconComponent = computed<Component>(() => {
 <style scoped>
 .menu-icon {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
 }

@@ -67,12 +67,33 @@ const handleClickMenu = (subItem: Menu) => {
     color 0.15s ease;
 }
 
+/* Collapsed: shrink side margins so 65px aside has room for icons */
+:global(.aside .el-menu--collapse > .el-menu-item),
+:global(.aside .el-menu--collapse > .el-sub-menu > .el-sub-menu__title) {
+  justify-content: center;
+  padding: 0;
+  margin: 6px 8px;
+}
+
+/* EP tooltip trigger pads 20px each side — zero it and center the icon */
+:global(.aside .el-menu--collapse .el-menu-tooltip__trigger) {
+  justify-content: center;
+  padding: 0;
+}
+
 :global(.aside .el-menu--collapse .el-menu-item .icon),
 :global(.aside .el-menu--collapse .el-sub-menu__title .icon) {
-  display: block;
+  display: inline-flex;
+  flex-shrink: 0;
   width: 18px;
   height: 18px;
-  margin-left: -6px;
+  margin: 0;
+}
+
+:global(.aside .el-menu--collapse .icon svg) {
+  flex-shrink: 0;
+  width: 18px !important;
+  height: 18px !important;
 }
 
 :global(html:not(.dark) .aside .el-menu-item:not(.is-active):hover),
