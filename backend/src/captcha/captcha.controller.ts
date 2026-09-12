@@ -1,5 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common'
+import { ZodBodyPipe } from '../common/zod-validation.pipe'
 import { CaptchaService } from './captcha.service'
+import { VerifyCaptchaBody, verifyCaptchaSchema } from './captcha.schemas'
 
 @Controller('captcha')
 export class CaptchaController {
@@ -31,8 +33,7 @@ export class CaptchaController {
   }
 
   @Post('verify')
-  async verify(@Body() body: any) {
-    if (!body.id || body.answer === undefined) return { code: 400, msg: '参数错误' }
+  async verify(@Body(new ZodBodyPipe(verifyCaptchaSchema)) body: VerifyCaptchaBody) {
     const isValid = await this.captchaService.verify(body.id, body.answer)
     return isValid ? { code: 200, msg: '验证通过' } : { code: 400, msg: '验证失败' }
   }

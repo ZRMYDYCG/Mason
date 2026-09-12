@@ -1,7 +1,14 @@
 import { Injectable } from '@nestjs/common'
+import { Prisma } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import { PrismaService } from '../prisma/prisma.service'
-import { serializeBigInt } from '../utils/format'
+import { serializeBigInt, omitKeys } from '../utils/format'
+import { UserCreateBody, UserListBody, UserProfileUpdateBody, UserUpdateBody } from './user.schemas'
+
+type UserProfilePayload = UserProfileUpdateBody & {
+  id: number
+  avatar?: string
+}
 
 @Injectable()
 export class UserService {
@@ -18,7 +25,7 @@ export class UserService {
     })
     if (!user) return null
     const role = user.userRoles[0]?.role
-    const { password, userRoles, updatedAt, deletedAt, ...rest } = user
+    const rest = omitKeys(user, ['password', 'userRoles', 'updatedAt', 'deletedAt'])
     return serializeBigInt({
       ...rest,
       roleId: role?.id,
@@ -28,9 +35,9 @@ export class UserService {
     })
   }
 
-  async getUserList(params: any) {
+  async getUserList(params: UserListBody) {
     const deptIds = await this.getDeptIds(params.deptId)
-    const where = {
+    const where: Prisma.SysUserWhereInput = {
       deletedAt: null,
       username: { contains: params.username || '' },
       deptId: { in: deptIds }
@@ -48,7 +55,7 @@ export class UserService {
       count,
       rows: rows.map((user) => {
         const role = user.userRoles[0]?.role
-        const { password, userRoles, updatedAt, deletedAt, ...rest } = user
+        const rest = omitKeys(user, ['password', 'userRoles', 'updatedAt', 'deletedAt'])
         return {
           ...rest,
           roleId: role?.id,
@@ -59,12 +66,14 @@ export class UserService {
     })
   }
 
-  async addNewUser(user: any) {
+  async addNewUser(user: UserCreateBody) {
     await this.prisma.$transaction(async (tx) => {
       const newUser = await tx.sysUser.create({
         data: {
           username: user.username,
-          password: user.password.startsWith('$2') ? user.password : bcrypt.hashSync(user.password, 10),
+          password: user.password.startsWith('$2')
+            ? user.password
+            : bcrypt.hashSync(user.password, 10),
           deptId: user.deptId || 1,
           name: user.name || '',
           email: user.email || '',
@@ -79,7 +88,7 @@ export class UserService {
     return 'ok'
   }
 
-  async updateUser(user: any) {
+  async updateUser(user: UserUpdateBody) {
     await this.prisma.$transaction(async (tx) => {
       await tx.sysUser.update({
         where: { id: BigInt(user.id) },
@@ -99,21 +108,21 @@ export class UserService {
           data: { roleId: BigInt(user.roleId), deletedAt: null }
         })
       } else {
-        await tx.sysUserRole.create({ data: { userId: BigInt(user.id), roleId: BigInt(user.roleId) } })
+        await tx.sysUserRole.create({
+          data: { userId: BigInt(user.id), roleId: BigInt(user.roleId) }
+        })
       }
     })
     return 'ok'
   }
 
-  async updateProfile(user: any) {
-    const data: any = {
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
-      remark: user.remark
-    }
-    if (user.avatar) data.avatar = user.avatar
-    Object.keys(data).forEach((key) => data[key] === undefined && delete data[key])
+  async updateProfile(user: UserProfilePayload) {
+    const data: Prisma.SysUserUpdateInput = {}
+    if (user.name !== undefined) data.name = user.name
+    if (user.email !== undefined) data.email = user.email
+    if (user.phone !== undefined) data.phone = user.phone
+    if (user.remark !== undefined) data.remark = user.remark
+    if (user.avatar !== undefined) data.avatar = user.avatar
     await this.prisma.sysUser.update({ where: { id: BigInt(user.id) }, data })
     return 'ok'
   }

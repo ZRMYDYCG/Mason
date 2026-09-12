@@ -156,7 +156,7 @@ export const optionHandle = (regionCode: string, list: object[], mapData: Mapdat
         data: mapData,
         type: 'effectScatter',
         coordinateSystem: 'geo',
-        symbolSize: function (val: any) {
+        symbolSize: function () {
           return 4
           // return val[2] / 50;
         },

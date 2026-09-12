@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { formatMenus } from '../utils/format'
+import { MenuCreateBody, MenuListBody, MenuUpdateBody } from './menu.schemas'
 
 @Injectable()
 export class MenuService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getMenuListByRoleId(roleId: number, search: any) {
+  async getMenuListByRoleId(roleId: number, search: MenuListBody) {
     const rows = await this.prisma.sysRoleMenu.findMany({
       where: { roleId: BigInt(roleId) },
       include: { menu: true }
@@ -16,7 +17,9 @@ export class MenuService {
       .map((row) => row.menu)
       .filter((menu) => !menu.deletedAt)
       .filter((menu) => menu.title.includes(title))
-      .filter((menu) => (search.isEnable === 0 || search.isEnable === 1 ? menu.isEnable === search.isEnable : true))
+      .filter((menu) =>
+        search.isEnable === 0 || search.isEnable === 1 ? menu.isEnable === search.isEnable : true
+      )
     return formatMenus(menus)
   }
 
@@ -36,7 +39,7 @@ export class MenuService {
     return this.prisma.sysMenu.findFirst({ where: { id: BigInt(id), deletedAt: null } })
   }
 
-  async addMenu(menu: any, roleId: number) {
+  async addMenu(menu: MenuCreateBody, roleId: number) {
     const newMenu = await this.prisma.sysMenu.create({ data: menu })
     await this.prisma.sysRoleMenu.create({ data: { roleId: BigInt(roleId), menuId: newMenu.id } })
     if (roleId !== 1) {
@@ -49,7 +52,7 @@ export class MenuService {
     return 'ok'
   }
 
-  async updateMenu(menu: any) {
+  async updateMenu(menu: MenuUpdateBody) {
     const { id, ...data } = menu
     await this.prisma.sysMenu.update({ where: { id: BigInt(id) }, data })
     return 'ok'

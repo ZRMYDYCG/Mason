@@ -8,7 +8,16 @@ import { ZodBodyPipe } from '../common/zod-validation.pipe'
 import { ERROR_TYPES } from '../config/constants'
 import { UserService } from '../user/user.service'
 import { MenuService } from './menu.service'
-import { idSchema, menuCreateSchema, menuListSchema, menuUpdateSchema } from './menu.schemas'
+import {
+  IdBody,
+  MenuCreateBody,
+  MenuListBody,
+  MenuUpdateBody,
+  idSchema,
+  menuCreateSchema,
+  menuListSchema,
+  menuUpdateSchema
+} from './menu.schemas'
 
 @Controller('menu')
 @UseGuards(AuthGuard)
@@ -20,10 +29,17 @@ export class MenuController {
 
   @Post('list')
   @CheckPermission(PERMISSION_CODES.MENU_LIST)
-  async menuListByRole(@Body(new ZodBodyPipe(menuListSchema)) body: any, @CurrentUser() current: any) {
+  async menuListByRole(
+    @Body(new ZodBodyPipe(menuListSchema)) body: MenuListBody,
+    @CurrentUser() current: CurrentUser
+  ) {
     const user = await this.userService.getUserInfoById(current.id)
     if (!user) throw new AppError(ERROR_TYPES.USER_NOT_EXISTS)
-    return { code: 200, data: await this.menuService.getMenuListByRoleId(Number(user.roleId), body), msg: '获取菜单列表成功' }
+    return {
+      code: 200,
+      data: await this.menuService.getMenuListByRoleId(Number(user.roleId), body),
+      msg: '获取菜单列表成功'
+    }
   }
 
   @Post('listAll')
@@ -34,25 +50,38 @@ export class MenuController {
 
   @Post('add')
   @CheckPermission(PERMISSION_CODES.MENU_ADD)
-  async addMenu(@Body(new ZodBodyPipe(menuCreateSchema)) body: any, @CurrentUser() current: any) {
-    if (await this.menuService.getMenuByName(body.name)) throw new AppError(ERROR_TYPES.MENU_ALREADY_EXISTS)
+  async addMenu(
+    @Body(new ZodBodyPipe(menuCreateSchema)) body: MenuCreateBody,
+    @CurrentUser() current: CurrentUser
+  ) {
+    if (await this.menuService.getMenuByName(body.name)) {
+      throw new AppError(ERROR_TYPES.MENU_ALREADY_EXISTS)
+    }
     const user = await this.userService.getUserInfoById(current.id)
     if (!user) throw new AppError(ERROR_TYPES.USER_NOT_EXISTS)
-    return { code: 200, data: await this.menuService.addMenu(body, Number(user.roleId)), msg: '添加菜单成功' }
+    return {
+      code: 200,
+      data: await this.menuService.addMenu(body, Number(user.roleId)),
+      msg: '添加菜单成功'
+    }
   }
 
   @Post('update')
   @CheckPermission(PERMISSION_CODES.MENU_UPDATE)
-  async updateMenu(@Body(new ZodBodyPipe(menuUpdateSchema)) body: any) {
+  async updateMenu(@Body(new ZodBodyPipe(menuUpdateSchema)) body: MenuUpdateBody) {
     const oldMenu = await this.menuService.getMenuByName(body.name)
-    if (oldMenu && Number(oldMenu.id) !== body.id) throw new AppError(ERROR_TYPES.MENU_ALREADY_EXISTS)
+    if (oldMenu && Number(oldMenu.id) !== body.id) {
+      throw new AppError(ERROR_TYPES.MENU_ALREADY_EXISTS)
+    }
     return { code: 200, data: await this.menuService.updateMenu(body), msg: '更新菜单成功' }
   }
 
   @Post('delete')
   @CheckPermission(PERMISSION_CODES.MENU_DELETE)
-  async deleteMenu(@Body(new ZodBodyPipe(idSchema)) body: any) {
-    if (!(await this.menuService.getMenuById(body.id))) throw new AppError(ERROR_TYPES.MENU_NOT_EXISTS)
+  async deleteMenu(@Body(new ZodBodyPipe(idSchema)) body: IdBody) {
+    if (!(await this.menuService.getMenuById(body.id))) {
+      throw new AppError(ERROR_TYPES.MENU_NOT_EXISTS)
+    }
     return { code: 200, data: await this.menuService.deleteMenu(body.id), msg: '删除菜单成功' }
   }
 }

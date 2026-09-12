@@ -8,7 +8,18 @@ import { ZodBodyPipe } from '../common/zod-validation.pipe'
 import { ERROR_TYPES } from '../config/constants'
 import { UserService } from '../user/user.service'
 import { RoleService } from './role.service'
-import { idSchema, roleCreateSchema, roleListSchema, roleUpdateSchema, useMenusSchema } from './role.schemas'
+import {
+  IdBody,
+  RoleCreateBody,
+  RoleListBody,
+  RoleUpdateBody,
+  UseMenusBody,
+  idSchema,
+  roleCreateSchema,
+  roleListSchema,
+  roleUpdateSchema,
+  useMenusSchema
+} from './role.schemas'
 
 @Controller('role')
 @UseGuards(AuthGuard)
@@ -20,7 +31,7 @@ export class RoleController {
 
   @Post('list')
   @CheckPermission(PERMISSION_CODES.ROLE_LIST)
-  async getRoleList(@Body(new ZodBodyPipe(roleListSchema)) body: any) {
+  async getRoleList(@Body(new ZodBodyPipe(roleListSchema)) body: RoleListBody) {
     return { code: 200, data: await this.roleService.getRoleList(body), msg: '获取成功' }
   }
 
@@ -32,30 +43,46 @@ export class RoleController {
 
   @Post('add')
   @CheckPermission(PERMISSION_CODES.ROLE_ADD)
-  async addRole(@Body(new ZodBodyPipe(roleCreateSchema)) body: any, @CurrentUser() current: any) {
+  async addRole(
+    @Body(new ZodBodyPipe(roleCreateSchema)) body: RoleCreateBody,
+    @CurrentUser() current: CurrentUser
+  ) {
     const loginUser = await this.userService.getUserInfoById(current.id)
     if (loginUser?.isSuper === 0) body.isSuper = 0
-    if (await this.roleService.getRoleByName(body.role)) throw new AppError(ERROR_TYPES.ROLE_ALREADY_EXISTS)
+    if (await this.roleService.getRoleByName(body.role)) {
+      throw new AppError(ERROR_TYPES.ROLE_ALREADY_EXISTS)
+    }
     return { code: 200, data: await this.roleService.addNewRole(body), msg: '添加角色成功' }
   }
 
   @Post('update')
   @CheckPermission(PERMISSION_CODES.ROLE_UPDATE)
-  async updateRole(@Body(new ZodBodyPipe(roleUpdateSchema)) body: any, @CurrentUser() current: any) {
+  async updateRole(
+    @Body(new ZodBodyPipe(roleUpdateSchema)) body: RoleUpdateBody,
+    @CurrentUser() current: CurrentUser
+  ) {
     if (body.id === 1) throw new AppError(ERROR_TYPES.INITIAL_ROLE_CANNOT_BE_MODIFIED)
     const loginUser = await this.userService.getUserInfoById(current.id)
-    if (loginUser?.isSuper === 0 && body.isSuper === 1) throw new AppError(ERROR_TYPES.UNPERMISSION)
+    if (loginUser?.isSuper === 0 && body.isSuper === 1) {
+      throw new AppError(ERROR_TYPES.UNPERMISSION)
+    }
     const editRole = await this.roleService.getRoleById(body.id)
-    if (editRole && editRole.isSuper === 1 && loginUser?.isSuper === 0) throw new AppError(ERROR_TYPES.UNPERMISSION)
+    if (editRole && editRole.isSuper === 1 && loginUser?.isSuper === 0) {
+      throw new AppError(ERROR_TYPES.UNPERMISSION)
+    }
     const oldRole = await this.roleService.getRoleByName(body.role)
-    if (oldRole && Number(oldRole.id) !== body.id) throw new AppError(ERROR_TYPES.ROLE_ALREADY_EXISTS)
+    if (oldRole && Number(oldRole.id) !== body.id) {
+      throw new AppError(ERROR_TYPES.ROLE_ALREADY_EXISTS)
+    }
     return { code: 200, data: await this.roleService.updateRole(body), msg: '更新角色成功' }
   }
 
   @Post('delete')
   @CheckPermission(PERMISSION_CODES.ROLE_DELETE)
-  async deleteRole(@Body(new ZodBodyPipe(idSchema)) body: any) {
-    if (body.id === 1 || body.id === 2) throw new AppError(ERROR_TYPES.INITIAL_ROLE_CANNOT_BE_DELETED)
+  async deleteRole(@Body(new ZodBodyPipe(idSchema)) body: IdBody) {
+    if (body.id === 1 || body.id === 2) {
+      throw new AppError(ERROR_TYPES.INITIAL_ROLE_CANNOT_BE_DELETED)
+    }
     const role = await this.roleService.getRoleById(body.id)
     if (!role) throw new AppError(ERROR_TYPES.ROLE_NOT_EXISTS)
     const users = await this.roleService.getUserByRoleId(body.id)
@@ -65,7 +92,11 @@ export class RoleController {
 
   @Post('useMenus')
   @CheckPermission(PERMISSION_CODES.ROLE_USE_MENUS)
-  async getUseMenus(@Body(new ZodBodyPipe(useMenusSchema)) body: any) {
-    return { code: 200, data: await this.roleService.getMenuIdsByRoleId(body.roleId), msg: '获取成功' }
+  async getUseMenus(@Body(new ZodBodyPipe(useMenusSchema)) body: UseMenusBody) {
+    return {
+      code: 200,
+      data: await this.roleService.getMenuIdsByRoleId(body.roleId),
+      msg: '获取成功'
+    }
   }
 }

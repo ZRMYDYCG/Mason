@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { buildTreeDepartment, serializeBigInt } from '../utils/format'
+import { DeptCreateBody, DeptUpdateBody } from './department.schemas'
 
 @Injectable()
 export class DepartmentService {
@@ -18,12 +19,12 @@ export class DepartmentService {
     return this.prisma.sysDepartment.findFirst({ where: { id, deletedAt: null } })
   }
 
-  async addDept(dept: any) {
+  async addDept(dept: DeptCreateBody) {
     await this.prisma.sysDepartment.create({ data: dept })
     return 'ok'
   }
 
-  async updateDept(dept: any) {
+  async updateDept(dept: DeptUpdateBody) {
     const { id, ...data } = dept
     await this.prisma.sysDepartment.update({ where: { id }, data })
     return 'ok'

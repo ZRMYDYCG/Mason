@@ -29,4 +29,17 @@ export const userUpdateSchema = z.object({
   remark: z.string().optional().default('')
 })
 
+export const userProfileUpdateSchema = z.object({
+  name: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  remark: z.string().optional()
+})
+
 export const idSchema = z.object({ id: z.coerce.number() })
+
+export type UserListBody = z.infer<typeof userListSchema>
+export type UserCreateBody = z.infer<typeof userCreateSchema>
+export type UserUpdateBody = z.infer<typeof userUpdateSchema>
+export type UserProfileUpdateBody = z.infer<typeof userProfileUpdateSchema>
+export type IdBody = z.infer<typeof idSchema>

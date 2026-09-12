@@ -20,3 +20,8 @@ export const menuCreateSchema = z.object({
 
 export const menuUpdateSchema = menuCreateSchema.extend({ id: z.coerce.number() })
 export const idSchema = z.object({ id: z.coerce.number() })
+
+export type MenuListBody = z.infer<typeof menuListSchema>
+export type MenuCreateBody = z.infer<typeof menuCreateSchema>
+export type MenuUpdateBody = z.infer<typeof menuUpdateSchema>
+export type IdBody = z.infer<typeof idSchema>

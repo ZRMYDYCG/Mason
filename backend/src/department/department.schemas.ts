@@ -9,3 +9,7 @@ export const deptCreateSchema = z.object({
 
 export const deptUpdateSchema = deptCreateSchema.extend({ id: z.coerce.number() })
 export const idSchema = z.object({ id: z.coerce.number() })
+
+export type DeptCreateBody = z.infer<typeof deptCreateSchema>
+export type DeptUpdateBody = z.infer<typeof deptUpdateSchema>
+export type IdBody = z.infer<typeof idSchema>

@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common'
+import { Prisma } from '@prisma/client'
 import { PrismaService } from '../prisma/prisma.service'
-import { serializeBigInt } from '../utils/format'
+import { omitKeys, serializeBigInt } from '../utils/format'
+import { LogListBody } from './log.schemas'
 
 export interface LogCreateParams {
   userId?: number | null
@@ -19,19 +21,26 @@ export class LogService {
   constructor(private readonly prisma: PrismaService) {}
 
   async createLog(payload: LogCreateParams) {
-    await this.prisma.sysLog.create({ data: { ...payload, userId: payload.userId ? BigInt(payload.userId) : null } })
+    await this.prisma.sysLog.create({
+      data: { ...payload, userId: payload.userId ? BigInt(payload.userId) : null }
+    })
     return 'ok'
   }
 
-  async getLogList(params: any) {
-    const where: any = { deletedAt: null }
+  async getLogList(params: LogListBody) {
+    const where: Prisma.SysLogWhereInput = { deletedAt: null }
     if (params.username) where.username = { contains: params.username }
     if (params.path) where.path = { contains: params.path }
     if (params.method) where.method = params.method.toUpperCase()
     if (typeof params.status === 'number') where.status = params.status
     const startTime = params.startTime ? new Date(params.startTime) : null
     const endTime = params.endTime ? new Date(params.endTime) : null
-    if (startTime && !Number.isNaN(startTime.getTime()) && endTime && !Number.isNaN(endTime.getTime())) {
+    if (
+      startTime &&
+      !Number.isNaN(startTime.getTime()) &&
+      endTime &&
+      !Number.isNaN(endTime.getTime())
+    ) {
       where.createdAt = { gte: startTime, lte: endTime }
     } else if (startTime && !Number.isNaN(startTime.getTime())) {
       where.createdAt = { gte: startTime }
@@ -47,7 +56,10 @@ export class LogService {
         take: params.pageSize
       })
     ])
-    return serializeBigInt({ count, rows: rows.map(({ updatedAt, deletedAt, ...row }) => row) })
+    return serializeBigInt({
+      count,
+      rows: rows.map((row) => omitKeys(row, ['updatedAt', 'deletedAt']))
+    })
   }
 
   async deleteLog(id: number) {

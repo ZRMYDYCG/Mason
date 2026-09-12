@@ -47,7 +47,10 @@ export class CaptchaService {
     const puzzleSize = 40
     const padding = 10
     const tabRadius = 6
-    const x = Math.floor(Math.random() * (width - puzzleSize - tabRadius - padding * 2)) + padding + puzzleSize
+    const x =
+      Math.floor(Math.random() * (width - puzzleSize - tabRadius - padding * 2)) +
+      padding +
+      puzzleSize
     const y = Math.floor(Math.random() * (height - puzzleSize - padding * 2)) + padding
     await this.storeCaptcha(id, x.toString(), 'slider')
     const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`
@@ -87,7 +90,13 @@ export class CaptchaService {
     const id = nanoid()
     const chars = ['A', 'B', 'C', 'D', 'E', 'F', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     const selected: string[] = []
-    const points: any[] = []
+    const points: Array<{
+      char: string
+      x: number
+      y: number
+      color: string
+      angle: number
+    }> = []
     for (let i = 0; i < 4; i++) {
       const char = chars[Math.floor(Math.random() * chars.length)]
       selected.push(char)
@@ -103,10 +112,16 @@ export class CaptchaService {
     const width = 300
     const height = 200
     const texts = points
-      .map((p) => `<text x="${p.x}" y="${p.y}" fill="${p.color}" font-size="30" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(${p.angle}, ${p.x}, ${p.y})">${p.char}</text>`)
+      .map(
+        (p) =>
+          `<text x="${p.x}" y="${p.y}" fill="${p.color}" font-size="30" font-weight="bold" text-anchor="middle" dominant-baseline="central" transform="rotate(${p.angle}, ${p.x}, ${p.y})">${p.char}</text>`
+      )
       .join('')
     const noise = Array.from({ length: 5 })
-      .map(() => `<line x1="${Math.random() * width}" y1="${Math.random() * height}" x2="${Math.random() * width}" y2="${Math.random() * height}" stroke="gray" opacity="0.3" />`)
+      .map(
+        () =>
+          `<line x1="${Math.random() * width}" y1="${Math.random() * height}" x2="${Math.random() * width}" y2="${Math.random() * height}" stroke="gray" opacity="0.3" />`
+      )
       .join('')
     const svg = `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" style="background-color: #f0f2f5;">${noise}${texts}</svg>`
     return {
@@ -116,20 +131,27 @@ export class CaptchaService {
     }
   }
 
-  async verify(id: string, answer: any) {
+  async verify(id: string, answer: string | number | Array<{ x: number; y: number }>) {
     const raw = await this.redis.client.get(`captcha:${id}`)
     if (!raw) return false
     await this.redis.client.del(`captcha:${id}`)
     const stored = JSON.parse(raw)
-    if (stored.type === 'slider') return Math.abs(parseInt(stored.text) - parseInt(answer)) < 5
-    if (stored.type === 'rotate') return Math.abs(parseInt(stored.text) - parseInt(answer)) < 10
+    if (stored.type === 'slider' || stored.type === 'rotate') {
+      const expected = Number(stored.text)
+      const actual = typeof answer === 'number' ? answer : Number(answer)
+      if (Number.isNaN(actual)) return false
+      const tolerance = stored.type === 'slider' ? 5 : 10
+      return Math.abs(expected - actual) < tolerance
+    }
     if (stored.type === 'click') {
       try {
-        const targetPoints = JSON.parse(stored.text)
+        const targetPoints = JSON.parse(stored.text) as Array<{ x: number; y: number }>
         if (!Array.isArray(answer) || answer.length !== targetPoints.length) return false
         return answer.every((point, index) => {
           const target = targetPoints[index]
-          const distance = Math.sqrt(Math.pow(point.x - target.x, 2) + Math.pow(point.y - target.y, 2))
+          const distance = Math.sqrt(
+            Math.pow(point.x - target.x, 2) + Math.pow(point.y - target.y, 2)
+          )
           return distance < 40
         })
       } catch {
@@ -140,6 +162,11 @@ export class CaptchaService {
   }
 
   private async storeCaptcha(id: string, text: string, type: string) {
-    await this.redis.client.set(`captcha:${id}`, JSON.stringify({ text, type }), 'EX', CAPTCHA_TTL_SECONDS)
+    await this.redis.client.set(
+      `captcha:${id}`,
+      JSON.stringify({ text, type }),
+      'EX',
+      CAPTCHA_TTL_SECONDS
+    )
   }
 }

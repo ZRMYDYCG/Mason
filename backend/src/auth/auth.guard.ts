@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
 
     try {
       request.user = jwt.verify(token, readPublicKey(), { algorithms: ['RS256'] })
-    } catch (error) {
+    } catch {
       throw new AppError(ERROR_TYPES.UNAUTHORIZATION, 401, 401)
     }
 

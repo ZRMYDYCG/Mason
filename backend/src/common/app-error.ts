@@ -1,7 +1,11 @@
 import { ERROR_TYPES } from '../config/constants'
 
 export class AppError extends Error {
-  constructor(message: string, public readonly bodyCode?: number, public readonly httpStatus = 200) {
+  constructor(
+    message: string,
+    public readonly bodyCode?: number,
+    public readonly httpStatus = 200
+  ) {
     super(message)
   }
 }

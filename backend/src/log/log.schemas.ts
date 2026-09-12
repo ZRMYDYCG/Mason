@@ -12,3 +12,6 @@ export const logListSchema = z.object({
 })
 
 export const idSchema = z.object({ id: z.coerce.number() })
+
+export type LogListBody = z.infer<typeof logListSchema>
+export type IdBody = z.infer<typeof idSchema>

@@ -5,12 +5,12 @@ import jwt from 'jsonwebtoken'
 import { z } from 'zod'
 import { CheckPermission } from '../casl/check-permission.decorator'
 import { PERMISSION_CODES } from '../casl/permissions'
-import { AuthGuard } from './auth.guard'
-import { CurrentUser } from './current-user.decorator'
 import { AppError } from '../common/app-error'
 import { ZodBodyPipe } from '../common/zod-validation.pipe'
 import { AUTH_COOKIE_NAME, ERROR_TYPES, readPrivateKey } from '../config/constants'
 import { UserService } from '../user/user.service'
+import { AuthGuard } from './auth.guard'
+import { CurrentUser } from './current-user.decorator'
 
 const loginSchema = z.object({
   username: z.string().min(1),
@@ -18,12 +18,17 @@ const loginSchema = z.object({
   expires7d: z.boolean().optional().default(false)
 })
 
+type LoginBody = z.infer<typeof loginSchema>
+
 @Controller()
 export class AuthController {
   constructor(private readonly userService: UserService) {}
 
   @Post('login')
-  async login(@Body(new ZodBodyPipe(loginSchema)) body: any, @Res({ passthrough: true }) res: Response) {
+  async login(
+    @Body(new ZodBodyPipe(loginSchema)) body: LoginBody,
+    @Res({ passthrough: true }) res: Response
+  ) {
     const user = await this.userService.getUserByName(body.username)
     if (!user) throw new AppError(ERROR_TYPES.USER_NOT_EXISTS)
     if (!bcrypt.compareSync(body.password, user.password)) {
@@ -54,7 +59,7 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body(new ZodBodyPipe(loginSchema)) body: any) {
+  async register(@Body(new ZodBodyPipe(loginSchema)) body: LoginBody) {
     const existing = await this.userService.getUserByName(body.username)
     if (existing) throw new AppError(ERROR_TYPES.USER_ALREADY_EXISTS)
     await this.userService.addNewUser({
@@ -73,7 +78,7 @@ export class AuthController {
   @Get('test')
   @UseGuards(AuthGuard)
   @CheckPermission(PERMISSION_CODES.AUTH_TEST)
-  success(@CurrentUser() user: any) {
+  success(@CurrentUser() user: CurrentUser) {
     return { code: 200, data: user, msg: '授权成功' }
   }
 

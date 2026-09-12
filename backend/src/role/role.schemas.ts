@@ -21,3 +21,9 @@ export const roleUpdateSchema = roleCreateSchema.extend({
 
 export const idSchema = z.object({ id: z.coerce.number() })
 export const useMenusSchema = z.object({ roleId: z.coerce.number() })
+
+export type RoleListBody = z.infer<typeof roleListSchema>
+export type RoleCreateBody = z.infer<typeof roleCreateSchema>
+export type RoleUpdateBody = z.infer<typeof roleUpdateSchema>
+export type IdBody = z.infer<typeof idSchema>
+export type UseMenusBody = z.infer<typeof useMenusSchema>

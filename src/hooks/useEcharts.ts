@@ -1,6 +1,6 @@
 import { unref, nextTick, onUnmounted } from 'vue'
 import type { Ref } from 'vue'
-import type { EChartOption } from 'echarts'
+import type { EChartsOption } from 'echarts'
 import * as echarts from 'echarts'
 import { debounce } from 'lodash-es'
 
@@ -75,7 +75,7 @@ export function useECharts(
   }
 
   // 配置选项
-  function setOptions(options: EChartOption | any) {
+  function setOptions(options: EChartsOption | any) {
     if (!options.grid) options.grid = defaultOptions.grid
     if (!options.tooltip) options.tooltip = defaultOptions.tooltip
 
