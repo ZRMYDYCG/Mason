@@ -4,7 +4,7 @@ import { random, times } from 'lodash-es'
 import { reactive, ref, onMounted } from 'vue'
 import { LazyImg, Waterfall } from 'vue-waterfall-plugin-next'
 import { getRandomImg } from '@/utils'
-import logo from '@/assets/images/logo.svg'
+import logo from '@/assets/images/logo.png'
 
 const waterFallRef = ref<HTMLElement>()
 const isMounted = ref(false)

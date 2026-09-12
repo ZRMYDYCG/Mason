@@ -5,7 +5,7 @@
     <div class="footer-content">
       <div class="footer-text">
         <span>一个好的设计产品</span>
-        <img class="logo" src="@/assets/images/logo.svg" alt="github" />
+        <img class="logo" src="@/assets/images/logo.png" alt="github" />
         <span>是不断迭代出来的</span>
       </div>
     </div>
@@ -38,6 +38,8 @@
       .logo {
         width: 24px;
         height: 24px;
+        object-fit: cover;
+        border-radius: 6px;
         filter: drop-shadow(0 0 8px rgba(var(--color-primary-rgb), 0.75));
         animation: glow 2s ease-in-out infinite alternate;
       }

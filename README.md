@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./src/assets/images/logo.svg" width="96" alt="Mason Logo" />
+  <img src="./src/assets/images/logo.png" width="96" alt="Mason Logo" />
 </p>
 
 <h1 align="center">Mason Admin</h1>

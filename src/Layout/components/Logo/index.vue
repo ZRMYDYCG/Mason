@@ -26,7 +26,7 @@ const goHome = () => {
 
 <template>
   <button type="button" class="logo" :class="{ compact: !showBrandText }" @click="goHome">
-    <img class="logo-img" src="@/assets/images/logo.svg" alt="Mason" />
+    <img class="logo-img" src="@/assets/images/logo.png" alt="Mason" />
     <div v-if="showBrandText" class="logo-copy">
       <span class="logo-name" :style="{ color: menuTheme.textColor }">Mason</span>
       <span class="logo-tagline" :style="{ color: menuTheme.systemNameColor }">
@@ -69,8 +69,10 @@ const goHome = () => {
 
 .logo-img {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .logo-copy {

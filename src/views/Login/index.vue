@@ -2,7 +2,7 @@
   <div class="landing-page">
     <header class="header">
       <div class="logo-container">
-        <img class="logo" src="@/assets/images/logo.svg" alt="logo" />
+        <img class="logo" src="@/assets/images/logo.png" alt="logo" />
         <span class="app-name">Mason Admin</span>
       </div>
       <div class="header-actions">
@@ -188,6 +188,8 @@ const handleRegisterSuccess = () => {
     .logo {
       width: 32px;
       height: 32px;
+      object-fit: cover;
+      border-radius: 8px;
     }
 
     .app-name {
