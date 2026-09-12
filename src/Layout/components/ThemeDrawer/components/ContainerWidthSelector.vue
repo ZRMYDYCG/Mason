@@ -80,7 +80,7 @@ const emit = defineEmits<{
     }
 
     &.is-active {
-      border-color: var(--primary-color);
+      border-color: var(--color-primary);
 
       i {
         color: var(--text-tertiary) !important;

@@ -96,13 +96,13 @@ const emit = defineEmits<{
         overflow: hidden;
         cursor: pointer;
         background: var(--fill-secondary) !important;
-        border: 2px solid var(--mason-grey-100);
+        border: 2px solid var(--border-default);
         border-radius: 8px;
         box-shadow: var(--shadow-color);
         transition: box-shadow 0.1s;
 
         &.is-active {
-          border: 2px solid var(--primary-color);
+          border: 2px solid var(--color-primary);
         }
 
         &:nth-child(even) {

@@ -33,6 +33,7 @@ const emit = defineEmits<{
             </div>
           </div>
           <span class="name">垂直</span>
+          <div class="active" :class="{ 'is-show': menuType === MenuTypeEnum.LEFT }"></div>
         </div>
 
         <div class="item">
@@ -52,6 +53,7 @@ const emit = defineEmits<{
             </div>
           </div>
           <span class="name">水平</span>
+          <div class="active" :class="{ 'is-show': menuType === MenuTypeEnum.TOP }"></div>
         </div>
 
         <div class="item">
@@ -76,22 +78,23 @@ const emit = defineEmits<{
             </div>
           </div>
           <span class="name">混合</span>
+          <div class="active" :class="{ 'is-show': menuType === MenuTypeEnum.TOP_LEFT }"></div>
         </div>
 
-        <div class="item" style="padding-right: 7px">
+        <div class="item">
           <div
             class="box dl"
             :class="{ 'is-active': menuType === MenuTypeEnum.DUAL_MENU }"
             @click="emit('select', MenuTypeEnum.DUAL_MENU)"
           >
-            <div class="tl1-left" style="width: 8px !important">
+            <div class="tl1-left">
               <div class="line" v-for="i in 1" :key="i"></div>
             </div>
             <div class="tl2-left">
               <div class="line" v-for="i in 6" :key="i"></div>
             </div>
             <div class="tl-right">
-              <div class="bt-menu"></div>
+              <div class="header"></div>
               <div class="bl-content">
                 <div class="row1">
                   <div v-for="i in 2" :key="i"></div>
@@ -101,6 +104,7 @@ const emit = defineEmits<{
             </div>
           </div>
           <span class="name">双列</span>
+          <div class="active" :class="{ 'is-show': menuType === MenuTypeEnum.DUAL_MENU }"></div>
         </div>
       </div>
     </div>
@@ -155,7 +159,7 @@ const emit = defineEmits<{
   .menu-type-wrap {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     width: calc(100% + 15px);
     padding-bottom: 10px;
 
@@ -173,14 +177,16 @@ const emit = defineEmits<{
       }
 
       .box {
-        @include preview-shell(transparent);
+        @include preview-shell(var(--border-default));
 
+        position: relative;
         height: 50px;
+        overflow: hidden;
         cursor: pointer;
         background-color: var(--fill-secondary);
 
         &.is-active {
-          border: 2px solid var(--primary-color);
+          border: 2px solid var(--color-primary);
         }
 
         &.bl {
@@ -381,10 +387,12 @@ const emit = defineEmits<{
           padding: 0 5px;
 
           .tl1-left {
-            min-width: 6px;
-            margin: 2px 0;
-            margin-right: 2px;
-            background-color: var(--fill-primary);
+            box-sizing: border-box;
+            width: 8px;
+            min-width: 8px;
+            margin: 2px 2px 2px 0;
+            overflow: hidden;
+            background-color: var(--border-default);
             border-radius: 2px;
 
             > div {
@@ -396,9 +404,11 @@ const emit = defineEmits<{
           }
 
           .tl2-left {
+            box-sizing: border-box;
+            width: 10px;
             min-width: 10px;
-            margin: 2px 0;
-            margin-right: 4px;
+            margin: 2px 4px 2px 0;
+            overflow: hidden;
             background-color: var(--border-default);
             border-radius: 2px;
 
@@ -411,16 +421,12 @@ const emit = defineEmits<{
           }
 
           .tl-right {
-            width: calc(100% - 22px);
+            width: calc(100% - 24px);
+            padding-top: 2px;
 
-            .bt-menu {
-              box-sizing: border-box;
-              display: flex;
-              align-items: center;
+            .header {
               height: 6px;
-              padding: 0 3px;
-              margin: 2px auto;
-              overflow: hidden;
+              margin: auto;
               background-color: var(--fill-primary);
               border-radius: 2px;
             }
@@ -435,7 +441,7 @@ const emit = defineEmits<{
                 margin-top: 4px;
 
                 div {
-                  height: 13px;
+                  height: 12px;
                   background-color: var(--fill-primary);
                   border-radius: 2px;
 
@@ -450,7 +456,7 @@ const emit = defineEmits<{
               }
 
               .row2 {
-                height: 13px;
+                height: 12px;
                 margin-top: 4px;
                 background-color: var(--fill-primary);
               }
@@ -464,7 +470,20 @@ const emit = defineEmits<{
         margin-top: 8px;
         font-size: 13px;
         line-height: 1;
-        color: var(--mason-grey-700);
+        color: var(--text-tertiary);
+      }
+
+      .active {
+        width: 6px;
+        height: 6px;
+        margin: 8px auto 0;
+        background: var(--el-color-success);
+        border-radius: 50%;
+        opacity: 0;
+
+        &.is-show {
+          opacity: 1;
+        }
       }
     }
   }
