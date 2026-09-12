@@ -3,12 +3,13 @@ import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import mittBus from '@/utils/mittBus'
 import { SettingThemeList, ThemeList, SystemMainColor } from '@/config'
-import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum, TabsStyleEnum } from '@/config'
+import { MenuTypeEnum, ContainerWidthEnum, MenuThemeEnum, TabsStyleEnum, HeaderChromeEnum } from '@/config'
 import type { MenuThemeType, SystemThemeEnum } from '@/config'
 import { useSettingStore } from '@/store/modules/setting.ts'
 import { ElMessage } from 'element-plus'
 import ThemeModeSelector from './components/ThemeModeSelector.vue'
 import MenuLayoutSelector from './components/MenuLayoutSelector.vue'
+import HeaderChromeSelector from './components/HeaderChromeSelector.vue'
 import MenuThemeSelector from './components/MenuThemeSelector.vue'
 import MainColorSelector from './components/MainColorSelector.vue'
 import BoxStyleSelector from './components/BoxStyleSelector.vue'
@@ -28,6 +29,9 @@ const currentMenuTheme = computed(() => store.menuThemeType)
 const systemThemeColor = computed(() => store.systemThemeColor)
 const boxBorderMode = computed(() => store.boxBorderMode)
 const menuType = computed(() => store.menuType)
+const headerChrome = computed(
+  () => store.headerChrome || HeaderChromeEnum.ATMOSPHERE
+)
 const containerWidth = computed(() => store.containerWidth)
 const isMenuThemeDisabled = computed(
   () => menuType.value === MenuTypeEnum.TOP || isDark.value
@@ -150,6 +154,10 @@ const setMenuType = (type: MenuTypeEnum) => {
   store.setMenuType(next)
 }
 
+const setHeaderChrome = (chrome: HeaderChromeEnum) => {
+  store.setHeaderChrome(chrome)
+}
+
 // 设置菜单主图
 const setMenuTheme = (item: MenuThemeType) => {
   if (isMenuThemeDisabled.value) {
@@ -206,6 +214,8 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
         <ThemeModeSelector :list="SettingThemeList" :active="systemThemeMode" @select="setTheme" />
 
         <MenuLayoutSelector :menu-type="menuType" @select="setMenuType" />
+
+        <HeaderChromeSelector :header-chrome="headerChrome" @select="setHeaderChrome" />
 
         <MenuThemeSelector
           :list="menuThemeList"

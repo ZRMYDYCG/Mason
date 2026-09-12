@@ -280,8 +280,8 @@ const removeTab = (fullPath: string) => {
     .tab-item.is-active,
     .tab-item:hover {
       background-color: var(--layout-tabs-active-bg, rgba(var(--color-primary-rgb), 0.14));
-      border-color: rgba(var(--color-primary-rgb), 0.35);
-      box-shadow: 0 6px 12px rgb(0 0 0 / 8%);
+      border-color: rgba(var(--color-primary-rgb), 0.22);
+      box-shadow: 0 4px 12px rgb(28 25 23 / 6%);
     }
   }
 
@@ -308,7 +308,7 @@ const removeTab = (fullPath: string) => {
 
   &.tabs-style-pill {
     .tab-item {
-      background-color: var(--fill-secondary);
+      background-color: var(--fill-secondary, var(--fill-primary));
       border-color: transparent;
       border-radius: 999px;
     }
@@ -316,8 +316,8 @@ const removeTab = (fullPath: string) => {
     .tab-item.is-active,
     .tab-item:hover {
       background-color: var(--layout-tabs-active-bg, rgba(var(--color-primary-rgb), 0.14));
-      border-color: rgba(var(--color-primary-rgb), 0.25);
-      box-shadow: 0 6px 12px rgb(0 0 0 / 8%);
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgb(28 25 23 / 6%);
     }
   }
 }

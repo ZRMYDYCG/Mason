@@ -9,6 +9,7 @@
         <span class="hello">Hello,</span>
         <span class="name">{{ username }}</span>
       </div>
+      <AppIcon name="chevron-down" :size="14" class="user-chevron" />
     </div>
     <template #dropdown>
       <el-dropdown-menu>
@@ -81,7 +82,7 @@ const logout = () => {
   display: flex;
   gap: 10px;
   align-items: center;
-  padding: 4px 6px 4px 4px;
+  padding: 4px 8px 4px 4px;
   cursor: pointer;
   border-radius: var(--radius-full);
   transition: background-color 0.15s ease;
@@ -108,8 +109,15 @@ const logout = () => {
   color: var(--layout-topbar-text, var(--text-primary));
 }
 
+.user-chevron {
+  flex-shrink: 0;
+  color: var(--layout-topbar-text-secondary, var(--text-tertiary));
+  opacity: 0.75;
+}
+
 @media screen and (width <= 768px) {
-  .user-meta {
+  .user-meta,
+  .user-chevron {
     display: none;
   }
 }

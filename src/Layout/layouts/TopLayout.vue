@@ -3,6 +3,7 @@ import type { PropType } from 'vue'
 import type { MenuListType, MenuThemeType } from '@/config'
 import ToolBarLeft from '@/Layout/components/Header/tool-bar-left.vue'
 import ToolBarRight from '@/Layout/components/Header/tool-bar-right.vue'
+import GlobalSearch from '@/Layout/components/Header/components/global-search.vue'
 import MenuTop from '@/Layout/components/MenuTop/index.vue'
 import Main from '@/Layout/components/Main/index.vue'
 import Footer from '@/Layout/components/Footer/index.vue'
@@ -56,9 +57,16 @@ defineProps({
 <template>
   <LayoutShell>
     <template #headerLeft>
-      <Logo />
-      <ToolBarLeft />
-      <MenuTop />
+      <div class="top-brand-nav">
+        <Logo />
+        <span class="top-brand-nav__rule" aria-hidden="true" />
+        <ToolBarLeft />
+        <MenuTop />
+      </div>
+    </template>
+
+    <template #headerCenter>
+      <GlobalSearch />
     </template>
 
     <template #headerRight>
@@ -74,3 +82,21 @@ defineProps({
     </template>
   </LayoutShell>
 </template>
+
+<style scoped>
+.top-brand-nav {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 4px;
+  align-items: center;
+  min-width: 0;
+}
+
+.top-brand-nav__rule {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 22px;
+  margin: 0 10px 0 6px;
+  background: var(--border-subtle);
+}
+</style>

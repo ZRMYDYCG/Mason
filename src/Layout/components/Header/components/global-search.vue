@@ -37,7 +37,8 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .global-search {
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   align-items: center;
 }
 </style>

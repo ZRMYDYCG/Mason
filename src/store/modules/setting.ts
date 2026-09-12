@@ -8,7 +8,8 @@ import {
   MenuThemeEnum,
   MenuTypeEnum,
   ContainerWidthEnum,
-  TabsStyleEnum
+  TabsStyleEnum,
+  HeaderChromeEnum
 } from '@/config'
 
 const { defaultMenuWidth, defaultCustomRadius } = SystemSetting
@@ -22,6 +23,7 @@ export interface SettingState {
   systemThemeColor: string // 系统主题颜色
   boxBorderMode: boolean // 盒子模式 border | shadow
   tabsStyle: TabsStyleEnum // tabs style
+  headerChrome: HeaderChromeEnum // header + tabs chrome style
   uniqueOpened: boolean // 是否开启手风琴模式
   showMenuButton: boolean // 是否显示菜单展开按钮
   showRefreshButton: boolean // 是否显示页面刷新按钮
@@ -53,6 +55,7 @@ export const useSettingStore = defineStore({
     menuThemeType: MenuThemeEnum.DESIGN,
     boxBorderMode: true,
     tabsStyle: TabsStyleEnum.CARD,
+    headerChrome: HeaderChromeEnum.ATMOSPHERE,
     uniqueOpened: true,
     systemThemeColor: ElementPlusTheme.primary,
     showMenuButton: true,
@@ -116,6 +119,9 @@ export const useSettingStore = defineStore({
     // 设置容器宽度
     setContainerWidth(width: ContainerWidthEnum) {
       this.containerWidth = width
+    },
+    setHeaderChrome(chrome: HeaderChromeEnum) {
+      this.headerChrome = chrome
     },
     // 设置菜单是否展开
     setMenuOpen(open: boolean) {

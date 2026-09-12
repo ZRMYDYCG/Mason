@@ -130,6 +130,14 @@ export enum TabsStyleEnum {
   PILL = 'pill'
 }
 
+// Header chrome (top bar + tabs visual language)
+export enum HeaderChromeEnum {
+  /** Atmosphere hero: right-side photo, wide search, tabs in same layer */
+  ATMOSPHERE = 'atmosphere',
+  /** Modern soft: denser single chrome, soft pill materials */
+  SOFT = 'soft'
+}
+
 // Background color enum
 export enum BgColorEnum {
   PRIMARY = 'bg-primary',

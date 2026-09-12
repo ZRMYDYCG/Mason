@@ -4,6 +4,7 @@ import type { MenuListType, MenuThemeType } from '@/config'
 import SubMenu from '@/Layout/components/SubMenu/sub-menu.vue'
 import ToolBarLeft from '@/Layout/components/Header/tool-bar-left.vue'
 import ToolBarRight from '@/Layout/components/Header/tool-bar-right.vue'
+import GlobalSearch from '@/Layout/components/Header/components/global-search.vue'
 import Main from '@/Layout/components/Main/index.vue'
 import Footer from '@/Layout/components/Footer/index.vue'
 import Logo from '@/Layout/components/Logo/index.vue'
@@ -83,6 +84,10 @@ defineProps({
     <template #headerLeft>
       <Logo />
       <ToolBarLeft />
+    </template>
+
+    <template #headerCenter>
+      <GlobalSearch />
     </template>
 
     <template #headerRight>

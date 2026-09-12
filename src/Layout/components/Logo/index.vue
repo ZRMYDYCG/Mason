@@ -86,9 +86,21 @@ const goHome = () => {
 }
 
 .logo.compact {
-  width: auto;
   justify-content: center;
+  width: auto;
   padding: 0;
+}
+
+/* Header wordmark (top / hybrid): shrink-wrap, never stretch the bar */
+.logo.wordmark:not(.aside-brand) {
+  width: auto;
+  max-width: 140px;
+  height: 48px;
+  padding: 0 4px 0 0;
+}
+
+.logo.wordmark:not(.aside-brand) .logo-wordmark {
+  height: 26px;
 }
 
 /* Classic sidebar: airy brand zone matching the design board */

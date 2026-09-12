@@ -1,12 +1,14 @@
 <template>
   <div class="tool-bar-rt">
-    <GlobalSearch />
-    <Notificate />
-    <ThemeSetting v-if="showHeaderThemeSetting" />
-    <Translate v-if="showLanguage" />
-    <Flushed v-if="showRefreshButton" />
-    <FullScreen class="tb-item" />
-    <ThemeSwitch class="tb-item" />
+    <div class="tool-actions">
+      <Notificate />
+      <ThemeSetting v-if="showHeaderThemeSetting" />
+      <Translate v-if="showLanguage" />
+      <Flushed v-if="showRefreshButton" />
+      <FullScreen class="tb-item" />
+      <ThemeSwitch class="tb-item" />
+    </div>
+    <span class="tool-rule" aria-hidden="true" />
     <Avatar />
   </div>
 </template>
@@ -23,7 +25,6 @@ import ThemeSwitch from './components/theme-switch.vue'
 import Notificate from './components/notificate.vue'
 import Translate from './components/translate.vue'
 import Flushed from './components/flushed.vue'
-import GlobalSearch from './components/global-search.vue'
 
 const settingStore = useSettingStore()
 const { showLanguage, showRefreshButton, menuType } = storeToRefs(settingStore)
@@ -35,8 +36,23 @@ const showHeaderThemeSetting = computed(() => menuType.value !== MenuTypeEnum.LE
 <style scoped>
 .tool-bar-rt {
   display: flex;
+  flex-shrink: 0;
   gap: 14px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+}
+
+.tool-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 12px;
+  align-items: center;
+}
+
+.tool-rule {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 22px;
+  background: var(--border-subtle);
 }
 </style>

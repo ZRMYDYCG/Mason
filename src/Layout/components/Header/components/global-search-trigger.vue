@@ -26,8 +26,9 @@ const emit = defineEmits<{
   display: inline-flex;
   gap: 10px;
   align-items: center;
-  min-width: 220px;
-  height: 36px;
+  width: 100%;
+  min-width: 0;
+  height: 38px;
   padding: 0 14px;
   color: var(--layout-topbar-text-secondary, var(--text-secondary));
   cursor: pointer;
