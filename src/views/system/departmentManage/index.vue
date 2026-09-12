@@ -2,7 +2,7 @@
   <div class="card department-manage">
     <div class="table-btns mb18">
       <el-button type="primary" class="table-button" @click="handleNew">
-        <i class="btn-icon mr4 iconfont icon-quanjia" /><span>新增部门</span>
+        <AppIcon name="plus" class="btn-icon mr4" /><span>新增部门</span>
       </el-button>
     </div>
     <el-table
@@ -25,7 +25,7 @@
       <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
         <template #default="{ row }">
           <el-button link type="primary" size="small" @click="handleEdit(row)">
-            <i class="btn-icon mr4 iconfont icon-xiugai"></i> <span>编辑</span>
+            <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
           </el-button>
           <el-popconfirm
             @confirm="handleDelete(row.id)"
@@ -35,7 +35,7 @@
           >
             <template #reference>
               <el-button link type="primary" size="small">
-                <i class="btn-icon mr4 iconfont icon-shanchu"></i><span>删除</span>
+                <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
               </el-button>
             </template>
           </el-popconfirm>

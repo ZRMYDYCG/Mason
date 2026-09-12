@@ -22,7 +22,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSearch">
-              <i class="btn-icon mr4 iconfont icon-sousuo" /><span>搜索</span>
+              <AppIcon name="search" class="btn-icon mr4" /><span>搜索</span>
             </el-button>
           </el-form-item>
         </el-form>
@@ -30,7 +30,7 @@
       <div class="table-container">
         <div class="table-btns mb18">
           <el-button type="primary" class="table-button" @click="handleNew">
-            <i class="btn-icon mr4 iconfont icon-quanjia" /><span>新增用户</span>
+            <AppIcon name="plus" class="btn-icon mr4" /><span>新增用户</span>
           </el-button>
         </div>
         <el-table class="table-content" :data="tableData" style="width: 100%">
@@ -51,7 +51,7 @@
           <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
             <template #default="{ row }">
               <el-button link type="primary" size="small" @click="handleEdit(row)">
-                <i class="btn-icon mr4 iconfont icon-xiugai"></i> <span>编辑</span>
+                <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
               </el-button>
               <el-popconfirm
                 @confirm="handleDelete(row.id)"
@@ -61,7 +61,7 @@
               >
                 <template #reference>
                   <el-button link type="primary" size="small">
-                    <i class="btn-icon mr4 iconfont icon-shanchu"></i><span>删除</span>
+                    <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
                   </el-button>
                 </template>
               </el-popconfirm>

@@ -21,7 +21,7 @@ const emit = defineEmits<{
         :style="{ backgroundColor: color }"
         @click="emit('select', color)"
       >
-        <i class="iconfont icon-dagou1" v-show="color == active"></i>
+        <AppIcon name="check" v-show="color == active" color="#fff" :size="14" />
       </div>
     </div>
   </div>

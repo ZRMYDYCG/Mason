@@ -1,56 +1,10 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
-import { computed } from 'vue'
-import {
-  Bell,
-  ChevronDown,
-  ChevronsLeft,
-  ChevronsRight,
-  CircleHelp,
-  Ellipsis,
-  Languages,
-  LogOut,
-  Maximize2,
-  Minimize2,
-  PanelLeftClose,
-  PanelLeftOpen,
-  RefreshCw,
-  Settings,
-  SwatchBook,
-  Sun,
-  Moon,
-  Trash2,
-  User,
-  Search,
-  X,
-  XCircle
-} from 'lucide-vue-next'
-
-type IconName =
-  | 'bell'
-  | 'chevron-down'
-  | 'chevrons-left'
-  | 'chevrons-right'
-  | 'ellipsis'
-  | 'languages'
-  | 'log-out'
-  | 'maximize-2'
-  | 'minimize-2'
-  | 'panel-left-close'
-  | 'panel-left-open'
-  | 'refresh-cw'
-  | 'settings'
-  | 'swatch-book'
-  | 'sun'
-  | 'moon'
-  | 'search'
-  | 'trash-2'
-  | 'user'
-  | 'x'
-  | 'x-circle'
+import { computed, defineAsyncComponent, useAttrs } from 'vue'
+import { CircleHelp } from 'lucide-vue-next'
 
 interface Props {
-  name: IconName | (string & {})
+  name?: string
   size?: number | string
   strokeWidth?: number
   color?: string
@@ -62,35 +16,34 @@ const props = withDefaults(defineProps<Props>(), {
   color: 'currentColor'
 })
 
-const iconMap: Record<string, Component> = {
-  bell: Bell,
-  'chevron-down': ChevronDown,
-  'chevrons-left': ChevronsLeft,
-  'chevrons-right': ChevronsRight,
-  ellipsis: Ellipsis,
-  languages: Languages,
-  'log-out': LogOut,
-  'maximize-2': Maximize2,
-  'minimize-2': Minimize2,
-  'panel-left-close': PanelLeftClose,
-  'panel-left-open': PanelLeftOpen,
-  'refresh-cw': RefreshCw,
-  settings: Settings,
-  'swatch-book': SwatchBook,
-  sun: Sun,
-  moon: Moon,
-  search: Search,
-  'trash-2': Trash2,
-  user: User,
-  x: X,
-  'x-circle': XCircle
-}
+const iconModules = import.meta.glob('/node_modules/lucide-vue-next/dist/esm/icons/*.js')
+const componentCache = new Map<string, Component>()
+const attrs = useAttrs()
 
-const iconComponent = computed(() => iconMap[props.name] ?? CircleHelp)
+const iconComponent = computed<Component>(() => {
+  if (!props.name) return CircleHelp
+  const cached = componentCache.get(props.name)
+  if (cached) return cached
+
+  const path = `/node_modules/lucide-vue-next/dist/esm/icons/${props.name}.js`
+  const loader = iconModules[path]
+  const asyncComponent = defineAsyncComponent(async () => {
+    try {
+      if (!loader) return CircleHelp
+      const mod: any = await loader()
+      return mod?.default ?? mod
+    } catch {
+      return CircleHelp
+    }
+  })
+
+  componentCache.set(props.name, asyncComponent as unknown as Component)
+  return asyncComponent as unknown as Component
+})
 </script>
 
 <template>
-  <span class="app-icon">
+  <span class="app-icon" v-bind="attrs">
     <component
       :is="iconComponent"
       :size="props.size"

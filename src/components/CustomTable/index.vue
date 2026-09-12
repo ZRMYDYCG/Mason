@@ -64,7 +64,7 @@ watch(
         <template #reference>
           <el-button circle>
             <template #icon>
-              <i class="iconfont icon-biaoge"></i>
+              <AppIcon name="table-2" />
             </template>
           </el-button>
         </template>
@@ -74,7 +74,7 @@ watch(
         <template #reference>
           <el-button circle>
             <template #icon>
-              <i class="iconfont icon-film"></i>
+              <AppIcon name="columns-3" />
             </template>
           </el-button>
         </template>

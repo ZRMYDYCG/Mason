@@ -99,12 +99,12 @@ const containerWidthList = [
   {
     value: ContainerWidthEnum.FULL,
     label: '铺满',
-    icon: 'icon-dengbigaodupumankegundong--xianxing'
+    icon: 'maximize'
   },
   {
     value: ContainerWidthEnum.BOXED,
     label: '定宽',
-    icon: 'icon-gudingkuandu'
+    icon: 'panel-top'
   }
 ]
 

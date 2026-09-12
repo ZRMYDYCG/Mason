@@ -14,10 +14,7 @@ const props = withDefaults(
   }
 )
 
-const iconName = computed(() => {
-  if (props.icon === 'icon-email') return 'bell'
-  return props.icon
-})
+const iconName = computed(() => props.icon)
 </script>
 
 <template>

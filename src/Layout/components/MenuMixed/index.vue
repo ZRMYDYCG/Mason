@@ -75,7 +75,7 @@ onMounted(() => {
 
 <template>
   <div class="mixed-top-menu">
-    <i @click="scroll('left')" class="iconfont icon-xiangzuo scroll-btn left" />
+    <AppIcon name="chevron-left" @click="scroll('left')" class="scroll-btn left" />
     <el-scrollbar
       ref="scrollbarRef"
       wrap-class="scrollbar-wrapper"
@@ -96,7 +96,7 @@ onMounted(() => {
         </template>
       </div>
     </el-scrollbar>
-    <i class="iconfont icon-xiangyou scroll-btn right" @click="scroll('right')" />
+    <AppIcon name="chevron-right" class="scroll-btn right" @click="scroll('right')" />
   </div>
 </template>
 

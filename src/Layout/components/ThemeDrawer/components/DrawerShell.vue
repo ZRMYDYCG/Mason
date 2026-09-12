@@ -7,7 +7,7 @@ const emit = defineEmits<{
 <template>
   <div class="drawer-con">
     <div class="close-wrap" @click="emit('close')">
-      <i class="iconfont icon-cha" />
+      <AppIcon name="x" />
     </div>
     <slot></slot>
   </div>
@@ -21,7 +21,7 @@ const emit = defineEmits<{
     display: flex;
     justify-content: flex-end;
 
-    i {
+    .app-icon {
       display: block;
       padding: 8px;
       font-size: 15px;

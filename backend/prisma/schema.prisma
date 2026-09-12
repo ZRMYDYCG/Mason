@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model SysUser {
+  id        BigInt    @id @default(autoincrement())
+  name      String?   @db.VarChar(100)
+  username  String    @unique @db.VarChar(100)
+  password  String    @db.VarChar(400)
+  deptId    Int       @default(1) @map("dept_id")
+  email     String?   @db.VarChar(100)
+  phone     String?   @db.VarChar(200)
+  avatar    String?   @db.VarChar(200)
+  remark    String?   @db.VarChar(200)
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  department SysDepartment @relation(fields: [deptId], references: [id])
+  userRoles  SysUserRole[]
+
+  @@map("sys_user")
+}
+
+model SysRole {
+  id        BigInt    @id @default(autoincrement())
+  role      String    @db.VarChar(50)
+  roleName  String    @map("role_name") @db.VarChar(50)
+  isSuper   Int       @default(0) @map("is_super") @db.TinyInt
+  remark    String?   @db.VarChar(200)
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  userRoles       SysUserRole[]
+  roleMenus       SysRoleMenu[]
+  rolePermissions SysRolePermission[]
+
+  @@map("sys_role")
+}
+
+model SysUserRole {
+  userId    BigInt    @map("user_id")
+  roleId    BigInt    @map("role_id")
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  user SysUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role SysRole @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@map("sys_user_role")
+}
+
+model SysMenu {
+  id          BigInt    @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  path        String    @db.VarChar(255)
+  parentId    Int       @default(0) @map("parent_id")
+  sort        Int?
+  title       String    @db.VarChar(255)
+  icon        String?   @db.VarChar(255)
+  isLink      Int?      @map("is_link") @db.TinyInt
+  isEnable    Int?      @map("is_enable") @db.TinyInt
+  isAffix     Int?      @map("is_affix") @db.TinyInt
+  isKeepAlive Int?      @map("is_keep_alive") @db.TinyInt
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  roleMenus SysRoleMenu[]
+
+  @@map("sys_menu")
+}
+
+model SysRoleMenu {
+  roleId    BigInt    @map("role_id")
+  menuId    BigInt    @map("menu_id")
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  role SysRole @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  menu SysMenu @relation(fields: [menuId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, menuId])
+  @@map("sys_role_menu")
+}
+
+model SysDepartment {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255)
+  parentId  Int       @default(0) @map("parent_id")
+  sort      Int?
+  isEnable  Int?      @default(1) @map("is_enable") @db.TinyInt
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  users SysUser[]
+
+  @@map("sys_department")
+}
+
+model SysLog {
+  id            BigInt    @id @default(autoincrement())
+  userId        BigInt?   @map("user_id")
+  username      String?   @db.VarChar(100)
+  method        String    @db.VarChar(16)
+  path          String    @db.VarChar(255)
+  status        Int?
+  ip            String?   @db.VarChar(64)
+  userAgent     String?   @map("user_agent") @db.VarChar(255)
+  requestParams String?   @map("request_params") @db.Text
+  duration      Int?
+  createdAt     DateTime? @default(now()) @map("created_at")
+  updatedAt     DateTime? @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  @@map("sys_log")
+}
+
+model SysPermission {
+  id        BigInt    @id @default(autoincrement())
+  code      String    @unique @db.VarChar(100)
+  name      String    @db.VarChar(100)
+  resource  String    @db.VarChar(50)
+  action    String    @db.VarChar(50)
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  rolePermissions SysRolePermission[]
+
+  @@map("sys_permission")
+}
+
+model SysRolePermission {
+  roleId       BigInt    @map("role_id")
+  permissionId BigInt    @map("permission_id")
+  createdAt    DateTime? @default(now()) @map("created_at")
+  updatedAt    DateTime? @updatedAt @map("updated_at")
+
+  role       SysRole       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission SysPermission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("sys_role_permission")
+}

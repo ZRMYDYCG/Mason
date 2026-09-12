@@ -2,12 +2,12 @@
   <el-form ref="loginFormRef" :model="account" :rules="rules">
     <el-form-item prop="username">
       <el-input v-model="account.username" placeholder="用户名">
-        <template #prefix> <i class="iconfont icon-user"></i> </template>
+        <template #prefix><AppIcon name="user" /></template>
       </el-input>
     </el-form-item>
     <el-form-item prop="password">
       <el-input v-model="account.password" type="password" show-password placeholder="密码">
-        <template #prefix> <i class="iconfont icon-lock"></i> </template>
+        <template #prefix><AppIcon name="lock-keyhole" /></template>
       </el-input>
     </el-form-item>
     <el-form-item prop="expires7d">
@@ -48,14 +48,7 @@ const rules = {
     { required: true, message: '请输入账号名称', trigger: 'blur' },
     { min: 2, max: 10, message: '账号名称长度为2-10个字符', trigger: 'blur' }
   ],
-  password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    {
-      pattern: /^[a-z0-9]{6,}$/,
-      message: '密码必须是6位以上的字母或数字',
-      trigger: 'blur'
-    }
-  ]
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 }
 
 const loginFormRef = ref<FormInstance>()

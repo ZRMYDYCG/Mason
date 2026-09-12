@@ -27,7 +27,7 @@ const emit = defineEmits<{
       :key="item.value"
       @click="emit('select', item)"
     >
-      <i class="iconfont" :class="item.icon"></i>
+      <AppIcon :name="item.icon" :size="22" />
       <span>{{ item.label }}</span>
     </div>
   </div>
@@ -87,10 +87,9 @@ const emit = defineEmits<{
       }
     }
 
-    i {
-      margin-right: 10px;
-      font-size: 22px;
-    }
+      .app-icon {
+        margin-right: 10px;
+      }
 
     span {
       font-size: 14px;
