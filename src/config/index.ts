@@ -259,6 +259,6 @@ export const SystemMainColor = [
 
 // 系统设置中心配置
 export const SystemSetting = {
-  defaultMenuWidth: 210, // 菜单展开宽度默认值
+  defaultMenuWidth: 240, // 菜单展开宽度默认值（给 wordmark 更松的横向呼吸感）
   defaultCustomRadius: '0.75' // 圆角默认值
 }

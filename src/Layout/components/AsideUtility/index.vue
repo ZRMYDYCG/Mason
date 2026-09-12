@@ -38,7 +38,7 @@ const openHelp = () => {
 
 .divider {
   height: 1px;
-  margin: 4px 16px 10px;
+  margin: 4px 18px 10px;
   background: var(--border-subtle);
 }
 
@@ -46,10 +46,10 @@ const openHelp = () => {
   display: flex;
   gap: 10px;
   align-items: center;
-  width: calc(100% - 20px);
-  height: 42px;
+  width: calc(100% - 24px);
+  height: 44px;
   padding: 0 14px;
-  margin: 4px 10px;
+  margin: 3px 12px;
   font-size: 14px;
   color: inherit;
   cursor: pointer;

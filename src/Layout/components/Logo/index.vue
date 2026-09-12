@@ -24,6 +24,11 @@ const showWordmark = computed(() => {
   return !isCollapse.value
 })
 
+/** Classic sidebar gets a roomier brand block */
+const isAsideBrand = computed(
+  () => menuType.value === MenuTypeEnum.LEFT && showWordmark.value
+)
+
 const wordmarkSrc = computed(() => {
   const darkMenu = menuTheme.value.theme === MenuThemeEnum.DARK
   return isDark.value || darkMenu ? logoWordmarkOnDark : logoWordmark
@@ -38,7 +43,11 @@ const goHome = () => {
   <button
     type="button"
     class="logo"
-    :class="{ compact: !showWordmark, wordmark: showWordmark }"
+    :class="{
+      compact: !showWordmark,
+      wordmark: showWordmark,
+      'aside-brand': isAsideBrand
+    }"
     @click="goHome"
   >
     <img
@@ -57,10 +66,10 @@ const goHome = () => {
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  width: auto;
+  width: 100%;
   max-width: 100%;
   height: 64px;
-  padding: 0 14px;
+  padding: 0 16px;
   cursor: pointer;
   background: transparent;
   border: none;
@@ -77,8 +86,16 @@ const goHome = () => {
 }
 
 .logo.compact {
+  width: auto;
   justify-content: center;
   padding: 0;
+}
+
+/* Classic sidebar: airy brand zone matching the design board */
+.logo.aside-brand {
+  height: auto;
+  min-height: 92px;
+  padding: 32px 22px 20px;
 }
 
 .logo-mark {
@@ -96,5 +113,9 @@ const goHome = () => {
   height: 36px;
   object-fit: contain;
   object-position: left center;
+}
+
+.logo.aside-brand .logo-wordmark {
+  height: 44px;
 }
 </style>
