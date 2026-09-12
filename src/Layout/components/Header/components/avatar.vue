@@ -5,7 +5,10 @@
         :src="avatar || 'https://pic1.imgdb.cn/item/67d105e6066befcec6e39e31.jpgg'"
         size="small"
       ></el-avatar>
-      <!-- <el-text class="name" type="info" size="small">{{ username }}</el-text> -->
+      <div v-if="username" class="user-meta">
+        <span class="hello">Hello,</span>
+        <span class="name">{{ username }}</span>
+      </div>
     </div>
     <template #dropdown>
       <el-dropdown-menu>
@@ -76,8 +79,38 @@ const logout = () => {
 <style scoped>
 .user-trigger {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
+  padding: 4px 6px 4px 4px;
   cursor: pointer;
+  border-radius: var(--radius-full);
+  transition: background-color 0.15s ease;
+}
+
+.user-trigger:hover {
+  background-color: var(--fill-primary);
+}
+
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.hello {
+  font-size: 11px;
+  color: var(--layout-topbar-text-secondary, var(--text-tertiary));
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--layout-topbar-text, var(--text-primary));
+}
+
+@media screen and (width <= 768px) {
+  .user-meta {
+    display: none;
+  }
 }
 </style>

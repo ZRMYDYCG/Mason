@@ -6,6 +6,7 @@ import ToolBarLeft from '@/Layout/components/Header/tool-bar-left.vue'
 import ToolBarRight from '@/Layout/components/Header/tool-bar-right.vue'
 import Main from '@/Layout/components/Main/index.vue'
 import Footer from '@/Layout/components/Footer/index.vue'
+import BrandCard from '@/Layout/components/BrandCard/index.vue'
 import Logo from '@/Layout/components/Logo/index.vue'
 import LayoutShell from './LayoutShell.vue'
 
@@ -61,10 +62,8 @@ defineProps({
   <LayoutShell>
     <template #beforeAside>
       <div class="dual-menu-left">
-        <!-- <div class="logo">
-          <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
-        </div> -->
-        <el-scrollbar style="height: calc(100% - 10px)">
+        <Logo />
+        <el-scrollbar>
           <ul class="item-wrapper">
             <li
               class="item"
@@ -119,6 +118,7 @@ defineProps({
               v-if="!isCollapse"
             ></div>
           </el-scrollbar>
+          <BrandCard />
         </div>
       </el-aside>
     </template>
@@ -148,18 +148,19 @@ defineProps({
   align-items: center;
   width: 100px;
   height: 100%;
-  padding-top: 10px;
   background-color: var(--layout-topbar-bg, var(--bg-surface));
+  border-right: 1px solid var(--border-subtle);
 
-  .logo {
-    width: 40px;
-    height: 40px;
-    margin: 10px 0;
+  :deep(.logo) {
+    width: 100%;
+    height: 64px;
+    padding: 0;
+  }
 
-    .logo-img {
-      width: 100%;
-      height: 100%;
-    }
+  :deep(.el-scrollbar) {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
   }
 
   .item-wrapper {
@@ -167,6 +168,7 @@ defineProps({
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    padding: 4px 0 12px;
 
     .item {
       width: 100%;
@@ -177,13 +179,14 @@ defineProps({
         flex-direction: column;
         gap: 3px;
         align-items: center;
-        padding: 5px;
-        font-size: 13px;
+        padding: 8px 5px;
+        font-size: 12px;
         text-wrap: nowrap;
-        border-radius: 5px;
+        border-radius: 10px;
 
         &.is-active {
-          background-color: var(--primary-color);
+          color: var(--color-primary);
+          background-color: rgba(var(--color-primary-rgb), 0.14);
         }
       }
     }

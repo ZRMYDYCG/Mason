@@ -51,17 +51,18 @@ const handleClickMenu = (subItem: Menu) => {
 }
 
 :global(.aside .el-menu) {
-  padding: 6px 0;
+  padding: 8px 0 12px;
   border-right: 0;
 }
 
 :global(.aside .el-menu-item),
 :global(.aside .el-sub-menu__title) {
   position: relative;
-  height: 40px;
-  margin: 6px 10px;
-  line-height: 40px;
-  border-radius: 10px;
+  height: 42px;
+  margin: 4px 10px;
+  font-size: 14px;
+  line-height: 42px;
+  border-radius: 12px;
   transition:
     background-color 0.15s ease,
     color 0.15s ease;

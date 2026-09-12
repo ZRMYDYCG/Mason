@@ -61,6 +61,7 @@ const tabsActiveText = computed(() => {
   :deep(.el-aside) {
     width: auto;
     background-color: var(--layout-topbar-bg, var(--bg-surface));
+    border-right: 1px solid var(--border-subtle);
   }
 
   :deep(.el-aside .aside) {
@@ -72,7 +73,8 @@ const tabsActiveText = computed(() => {
 
   :deep(.el-aside .aside .el-scrollbar) {
     position: relative;
-    height: calc(100% - 55px);
+    flex: 1 1 auto;
+    min-height: 0;
   }
 
   :deep(.el-aside .aside .el-scrollbar .el-menu) {
@@ -86,8 +88,8 @@ const tabsActiveText = computed(() => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 55px;
-    padding: 0 15px;
+    height: 58px;
+    padding: 0 18px;
     color: var(--layout-topbar-text, var(--text-primary));
 
     --el-text-color-primary: var(--layout-topbar-text, var(--text-primary));
@@ -95,6 +97,7 @@ const tabsActiveText = computed(() => {
     --el-text-color-secondary: var(--layout-topbar-text-secondary, var(--text-secondary));
 
     background-color: var(--layout-topbar-bg, var(--bg-surface));
+    border-bottom: 1px solid var(--border-subtle);
   }
 }
 </style>

@@ -24,25 +24,28 @@ const emit = defineEmits<{
 <style scoped>
 .global-search-trigger {
   display: inline-flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
-  height: 32px;
-  padding: 0 10px;
+  min-width: 220px;
+  height: 36px;
+  padding: 0 14px;
   color: var(--layout-topbar-text-secondary, var(--text-secondary));
   cursor: pointer;
-  background-color: rgb(255 255 255 / 8%);
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
+  background-color: var(--fill-primary-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
   transition:
     background-color 0.15s ease,
     border-color 0.15s ease,
-    color 0.15s ease;
+    color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .global-search-trigger:hover {
   color: var(--layout-topbar-text, var(--text-primary));
-  background-color: rgba(var(--color-primary-rgb), 0.08);
-  border-color: var(--border-default);
+  background-color: var(--fill-primary);
+  border-color: var(--border-light);
+  box-shadow: var(--shadow-xs);
 }
 
 .global-search-trigger:focus-visible {
@@ -51,20 +54,27 @@ const emit = defineEmits<{
 }
 
 .placeholder {
+  flex: 1;
   font-size: 13px;
+  text-align: left;
   white-space: nowrap;
 }
 
 .shortcut {
-  padding: 2px 6px;
+  padding: 3px 7px;
   font-size: 11px;
   line-height: 1;
   color: var(--layout-topbar-text-secondary, var(--text-secondary));
-  background-color: rgba(var(--color-primary-rgb), 0.12);
-  border-radius: 6px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
 }
 
 @media screen and (width <= 1200px) {
+  .global-search-trigger {
+    min-width: 0;
+  }
+
   .placeholder {
     display: none;
   }

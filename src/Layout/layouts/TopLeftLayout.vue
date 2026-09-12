@@ -7,6 +7,7 @@ import ToolBarRight from '@/Layout/components/Header/tool-bar-right.vue'
 import MenuMixed from '@/Layout/components/MenuMixed/index.vue'
 import Main from '@/Layout/components/Main/index.vue'
 import Footer from '@/Layout/components/Footer/index.vue'
+import BrandCard from '@/Layout/components/BrandCard/index.vue'
 import Logo from '@/Layout/components/Logo/index.vue'
 import LayoutShell from './LayoutShell.vue'
 
@@ -63,7 +64,7 @@ defineProps({
     <template #aside>
       <el-aside :style="{ color: menuTheme.textColor }">
         <div class="aside" :style="{ width: isCollapse ? '65px' : `${menuOpenWidth}px` }">
-          <!-- <Logo /> -->
+          <Logo />
           <el-scrollbar>
             <el-menu
               :router="false"
@@ -83,6 +84,7 @@ defineProps({
               v-if="!isCollapse"
             ></div>
           </el-scrollbar>
+          <BrandCard />
         </div>
       </el-aside>
     </template>
