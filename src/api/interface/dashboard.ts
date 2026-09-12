@@ -20,6 +20,7 @@ export interface TrendPoint {
   date: string
   visits: number
   activeUsers: number
+  label?: string
 }
 
 export type TodoPriority = 'high' | 'medium' | 'low'
