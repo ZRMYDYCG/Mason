@@ -8,6 +8,7 @@ import Main from '@/Layout/components/Main/index.vue'
 import Footer from '@/Layout/components/Footer/index.vue'
 import BrandCard from '@/Layout/components/BrandCard/index.vue'
 import Logo from '@/Layout/components/Logo/index.vue'
+import AsideUtility from '@/Layout/components/AsideUtility/index.vue'
 import LayoutShell from './LayoutShell.vue'
 
 defineProps({
@@ -83,6 +84,7 @@ defineProps({
               v-if="!isCollapse"
             ></div>
           </el-scrollbar>
+          <AsideUtility />
           <BrandCard />
         </div>
       </el-aside>

@@ -2,7 +2,7 @@
   <div class="tool-bar-rt">
     <GlobalSearch />
     <Notificate />
-    <ThemeSetting></ThemeSetting>
+    <ThemeSetting v-if="showHeaderThemeSetting" />
     <Translate v-if="showLanguage" />
     <Flushed v-if="showRefreshButton" />
     <FullScreen class="tb-item" />
@@ -12,7 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
+import { MenuTypeEnum } from '@/config'
 import { useSettingStore } from '@/store/modules/setting'
 import FullScreen from './components/fullscreen.vue'
 import Avatar from './components/avatar.vue'
@@ -24,7 +26,10 @@ import Flushed from './components/flushed.vue'
 import GlobalSearch from './components/global-search.vue'
 
 const settingStore = useSettingStore()
-const { showLanguage, showRefreshButton } = storeToRefs(settingStore)
+const { showLanguage, showRefreshButton, menuType } = storeToRefs(settingStore)
+
+/** Classic sidebar already exposes Settings in the aside utility strip */
+const showHeaderThemeSetting = computed(() => menuType.value !== MenuTypeEnum.LEFT)
 </script>
 
 <style scoped>
