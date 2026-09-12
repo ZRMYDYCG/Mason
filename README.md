@@ -1,6 +1,6 @@
 # Mason Admin
 
-基于 **Vue 3**、**TypeScript**、**Element Plus** 的中后台管理系统，配套 **NestJS** 后端，开箱即用。
+基于 **Vue 3**、**TypeScript**、**Element Plus** 的现代化中后台管理系统，配套 **NestJS** 后端，打通前后端开发流程，开箱即用。
 
 <p align="center">
   <img src="https://img.shields.io/badge/Vue-3.4-42b883?style=flat-square&logo=vue.js" />
@@ -9,9 +9,16 @@
   <img src="https://img.shields.io/badge/Element_Plus-2.7-409EFF?style=flat-square" />
   <img src="https://img.shields.io/badge/NestJS-10-E0234E?style=flat-square&logo=nestjs" />
   <img src="https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square" />
+  <img src="https://img.shields.io/badge/version-1.0.9-blue?style=flat-square" />
 </p>
 
-在线预览：[mason.versakit.online](http://mason.versakit.online)
+| 资源 | 地址 |
+| --- | --- |
+| 文档 | [https://mason.versakit.online](https://mason.versakit.online) |
+| 在线预览（Mock） | [http://admin.dev.versakit.online/login](http://admin.dev.versakit.online/login) |
+| 源码 | [github.com/ZRMYDYCG/Mason](https://github.com/ZRMYDYCG/Mason) |
+
+预览账号：`Mason` / `123456`（超级管理员）、`Coder` / `123456`（普通用户）
 
 ---
 
@@ -19,7 +26,7 @@
 
 | 层 | 技术 |
 | --- | --- |
-| 前端 | Vue 3 · Vite 6 · TypeScript · Element Plus · Pinia · Vue Router · Tailwind CSS 4 · Sass |
+| 前端 | Vue 3 · Vite 6 · TypeScript · Element Plus · Pinia · Vue Router · Tailwind CSS 4 · PostCSS |
 | 后端 | NestJS · Prisma · MySQL · Redis · JWT（RSA）· CASL |
 | 工程化 | ESLint 9 · Prettier · Stylelint · Lefthook · Commitlint · Commitizen · Plop · Vitest |
 
@@ -27,13 +34,15 @@
 
 ## 功能概览
 
-- **RBAC 权限**：账号 / 角色 / 菜单 / 部门，前后端分离鉴权
+- **RBAC 权限**：账号 / 角色 / 菜单 / 部门，前后端分离鉴权，细粒度到菜单与按钮
 - **布局与主题**：多标签页、可折叠侧边栏、亮色 / 暗色主题、动态路由与多级菜单
 - **业务能力**：登录加密、七天登录、操作日志、个人中心、内嵌页面、页面重载
 - **可视化**：数据大屏（vue-echarts）、`useEcharts` 封装
 - **组件与工具**：表格 / 表单、富文本、流程图、图片裁剪、水印、Toast / Dialog 等
 - **国际化**：vue-i18n（简体中文 / English）
 - **代码生成**：基于 Plop 的组件 / 视图 / Store 模板
+
+更多说明见 [在线文档](https://mason.versakit.online)。
 
 ---
 
@@ -132,7 +141,7 @@ Mason/
 
 ## 设计说明
 
-系统设置相关模块（账号、角色、菜单、部门）与权限走前后端分离；其余演示页可按本地 / Mock 方式扩展。
+系统设置相关模块（账号、角色、菜单、部门）与权限走前后端分离；其余演示页可按本地 / Mock 方式扩展。线上 [Mock 预览](http://admin.dev.versakit.online/login) 便于快速体验界面与交互。
 
 新业务模板分支：[template](https://github.com/ZRMYDYCG/Mason/tree/template)
 
@@ -143,6 +152,8 @@ Mason/
 1. Fork 并创建分支
 2. `pnpm install` → `pnpm dev`
 3. 提交 PR（建议使用 `pnpm commit` 规范提交信息）
+
+问题与建议欢迎提 [Issue](https://github.com/ZRMYDYCG/Mason/issues)。
 
 ---
 
