@@ -1,7 +1,7 @@
 # Mason Backend：Koa → Nest 1:1 迁移开发规范
 
-> 本文档由产品/架构 grilling 决策固化，供实现 agent **严格执行**。  
-> 目标目录：`/backend`（当前为空）。对照实现：`/server`（Koa，迁移完成前保留）。  
+> 本文档由产品/架构 grilling 决策固化，记录迁移期约定。  
+> **状态（2026-09-12）**：Nest 已落地于 `/backend`；旧 Koa `/server` 已移除。  
 > 工作分支：`nest`。
 
 ---
@@ -23,7 +23,7 @@
 | Q5 | Redis | **A** | 首用：验证码存储（替换内存 Map） |
 | Q6 | 授权库 | **A** | **CASL**（`@casl/ability` + `@casl/prisma`） |
 | Q7 | 权限表达 | **B** | 每 API 预置权限码；种子里非超管授「与现网相同」的宽权限；超管全开 |
-| Q8 | 旧 Koa | **A** | 迁移期保留 `server/` 作对照 |
+| Q8 | 旧 Koa | **A → 已完成** | 迁移期曾保留 `server/`；迁移完成后已删除 |
 | Q9 | Zod | **A** | `nestjs-zod`（或等价）：DTO=Zod，Pipe 校验，错误映射进现有信封 |
 | Q10 | Docker | **A** | Compose：**MySQL + Redis**；Nest 本机跑 |
 | Q11 | 包形态 | **C** | `backend` **独立** `package.json`；暂不进根 pnpm workspace |
@@ -83,18 +83,17 @@ TEST_NAME=TestUser
 
 ```
 Mason/
-├── backend/                 # Nest 新后端（本规范实现处）
+├── backend/                 # Nest 后端（唯一后端）
 │   ├── docker-compose.yml   # mysql + redis
 │   ├── prisma/
 │   ├── src/
 │   ├── package.json         # 独立包
 │   └── DEVELOPMENT_SPEC.md  # 本文件
-├── server/                  # Koa 对照，迁移期只读/对照，勿删
 └── src/                     # Vue 前端；代理 http://localhost:8000
 ```
 
-- **禁止**把 Nest 写进 `server/` 覆盖 Koa。  
-- **禁止**为迁移去改前端 API 路径/信封（除非发现前端 bug 并单独说明）。  
+- 旧 `server/`（Koa）已删除，勿再恢复为双后端。  
+- **禁止**为迁就后端去改前端 API 路径/信封（除非发现前端 bug 并单独说明）。  
 - 根目录 `pnpm-workspace.yaml` 当前主要用于 `allowBuilds`；**不要**强行把 frontend/backend 合成复杂 monorepo，除非另开决策。
 
 ---
@@ -225,7 +224,7 @@ Mason/
 
 `backend/docker-compose.yml` 最小集：
 
-- `mysql`：端口映射 `3306`，初始化可挂载 `../server/init.sql` 或 `backend/docker/init/...`（含 log/permission 补丁）。  
+- `mysql`：端口映射 `3306`，初始化挂载 `backend/docker/init/...`。  
 - `redis`：`6379`。  
 - **不含** Nest 容器（本机 `pnpm dev`）。
 
@@ -309,7 +308,7 @@ Agent 应按下列顺序推进，但 **联调前必须全部完成**：
 
 1. **先读**本规范与 `server` 对应模块，再写代码；行为以 `server` 为准，规范冲突时：**契约 1:1 > 规范笔误**，并注明。  
 2. 不要手搓 RBAC；权限必须走 CASL + 码表。  
-3. 不要删除或「顺便重构」`server/`。  
+3. 旧 `server/` 已删除；唯一后端为 `backend/`。  
 4. 不要改前端业务代码来迁就后端（上传需登录除外，前端若匿名上传需适应 401——若发现前端依赖匿名上传，在 PR 说明并最小改前端或提 blocker）。  
 5. 完成时在 `backend/README.md` 给出：安装、compose up、migrate、seed、dev、偏差表。  
 
