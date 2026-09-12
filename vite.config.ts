@@ -185,7 +185,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
       }
     },
     esbuild: {
-      pure: viteEnv.VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
+      pure: viteEnv.VITE_DROP_CONSOLE ? ['console.log'] : [],
       drop: isProduction ? ['console', 'debugger'] : [],
       target: 'es2020',
       legalComments: 'none' // 移除法律注释

@@ -1,12 +1,13 @@
 import Mock from 'mockjs'
 import Visualization from './modules/visualization.ts'
 import Dashboard from './modules/dashboard.ts'
+import System from './modules/system.ts'
 
 Mock.setup({
   timeout: '300'
 })
 
-const mocks = [...Visualization, ...Dashboard]
+const mocks = [...Visualization, ...Dashboard, ...System]
 
 export function mockXHR(enableMock: boolean) {
   if (!enableMock) {

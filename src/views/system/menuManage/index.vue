@@ -6,6 +6,8 @@ import { deleteMenu, getMenuList } from '@/api/modules/system'
 import { Menu } from '@/api/interface/system'
 import AllLucideIcon from '@/components/AllLucideIcon/index.vue'
 
+const isMockMode = import.meta.env.VITE_MOCK === 'true'
+
 onMounted(() => {
   onSearch()
 })
@@ -50,9 +52,11 @@ const handleDelete = async (id: number) => {
 
 const menuDialogRef = ref<InstanceType<typeof MenuDialog>>()
 const handleNew = () => {
+  if (isMockMode) return
   menuDialogRef.value?.handleNew()
 }
 const handleEdit = (row: Menu) => {
+  if (isMockMode) return
   menuDialogRef.value?.handleEdit(row)
 }
 </script>
@@ -83,7 +87,13 @@ const handleEdit = (row: Menu) => {
     </div>
     <div class="card table-container">
       <div class="table-btns mb18">
-        <el-button type="primary" class="table-button" @click="handleNew" v-ripple>
+        <el-button
+          type="primary"
+          class="table-button"
+          :disabled="isMockMode"
+          @click="handleNew"
+          v-ripple
+        >
           <AppIcon name="plus" class="btn-icon mr4" /><span>新增菜单</span>
         </el-button>
       </div>
@@ -125,7 +135,7 @@ const handleEdit = (row: Menu) => {
         </el-table-column>
         <el-table-column fixed="right" prop="operation" label="操作" align="center">
           <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
+            <el-button link type="primary" size="small" :disabled="isMockMode" @click="handleEdit(row)">
               <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
             </el-button>
             <el-popconfirm
@@ -135,7 +145,7 @@ const handleEdit = (row: Menu) => {
               title="确认删除该菜单?"
             >
               <template #reference>
-                <el-button link type="primary" size="small">
+                <el-button link type="primary" size="small" :disabled="isMockMode">
                   <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
                 </el-button>
               </template>

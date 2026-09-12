@@ -19,8 +19,8 @@ import pinia from '@/store'
 // vue i18n
 import I18n from '@/language'
 
-// mock 开关
-mockXHR(true)
+// mock 开关：Vercel 演示部署可配置 VITE_MOCK=true
+mockXHR(import.meta.env.VITE_MOCK === 'true')
 
 async function bootstrap() {
   const app = createApp(App)

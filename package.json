@@ -6,7 +6,7 @@
   "homepage": "",
   "scripts": {
     "dev": "vite",
-    "build": "vite src/build",
+    "build": "vite build",
     "preview": "vite preview",
     "prepare": "lefthook install",
     "commit": "cz",
