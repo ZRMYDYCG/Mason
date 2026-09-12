@@ -19,6 +19,10 @@ const props = withDefaults(defineProps<Props>(), {
 const iconModules = import.meta.glob('/node_modules/lucide-vue-next/dist/esm/icons/*.js')
 const componentCache = new Map<string, Component>()
 const attrs = useAttrs()
+const iconStyle = computed(() => ({
+  color: props.color,
+  '--app-icon-color': props.color
+}))
 
 const iconComponent = computed<Component>(() => {
   if (!props.name) return CircleHelp
@@ -43,7 +47,7 @@ const iconComponent = computed<Component>(() => {
 </script>
 
 <template>
-  <span class="app-icon" v-bind="attrs">
+  <span class="app-icon" v-bind="attrs" :style="iconStyle">
     <component
       :is="iconComponent"
       :size="props.size"
@@ -60,6 +64,12 @@ const iconComponent = computed<Component>(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: var(--app-icon-color);
   cursor: pointer;
+}
+
+.app-icon :deep(svg) {
+  color: var(--app-icon-color);
+  stroke: var(--app-icon-color);
 }
 </style>
