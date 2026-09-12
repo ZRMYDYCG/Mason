@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
-const isScaleRadio = ref(false)
+const isScaleRadio = ref(true)
 const leftBottomRadio = ref(true)
 const rightBottomRadio = ref(true)
 const viewStore = useViewStore()
@@ -117,7 +117,7 @@ const indexRadioChange = (flag: boolean) => {
   font-size: 20px;
   font-weight: 900;
   line-height: 1;
-  color: #000000;
+  color: var(--text-primary);
   text-align: center;
 }
 
@@ -126,7 +126,7 @@ const indexRadioChange = (flag: boolean) => {
   padding: 16px 0 10px;
   font-weight: 900;
   line-height: 1;
-  color: #000000;
+  color: var(--text-primary);
   text-indent: 10px;
 
   &::before {
@@ -136,7 +136,7 @@ const indexRadioChange = (flag: boolean) => {
     width: 4px;
     height: 16px;
     content: ' ';
-    background: #0072ff;
+    background: var(--el-color-primary);
     border-radius: 2px;
   }
 }
@@ -146,12 +146,12 @@ const indexRadioChange = (flag: boolean) => {
   line-height: 1.5;
 
   .setting_label {
-    color: #555454;
+    color: var(--text-secondary);
   }
 
   .setting_label_tip {
     font-size: 12px;
-    color: #838282;
+    color: var(--text-tertiary);
   }
 }
 </style>
