@@ -1,6 +1,12 @@
-# Mason Admin
+<p align="center">
+  <img src="./src/assets/images/logo.svg" width="96" alt="Mason Logo" />
+</p>
 
-基于 **Vue 3**、**TypeScript**、**Element Plus** 的现代化中后台管理系统，配套 **NestJS** 后端，打通前后端开发流程，开箱即用。
+<h1 align="center">Mason Admin</h1>
+
+<p align="center">
+  基于 <b>Vue 3</b>、<b>TypeScript</b>、<b>Element Plus</b> 的现代化中后台管理系统，配套 <b>NestJS</b> 后端，打通前后端开发流程，开箱即用。
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Vue-3.4-42b883?style=flat-square&logo=vue.js" />
