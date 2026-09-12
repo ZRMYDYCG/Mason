@@ -30,9 +30,9 @@ const boxBorderMode = computed(() => store.boxBorderMode)
 const menuType = computed(() => store.menuType)
 const containerWidth = computed(() => store.containerWidth)
 const isMenuThemeDisabled = computed(
-  () =>
-    menuType.value === MenuTypeEnum.DUAL_MENU || menuType.value === MenuTypeEnum.TOP || isDark.value
+  () => menuType.value === MenuTypeEnum.TOP || isDark.value
 )
+
 const pageTransitionOps = [
   {
     value: '',
@@ -144,12 +144,10 @@ const basicModels = {
 
 // 设置菜单布局
 const setMenuType = (type: MenuTypeEnum) => {
-  if (type === MenuTypeEnum.LEFT || type === MenuTypeEnum.TOP_LEFT) store.setMenuOpen(true)
-  store.setMenuType(type)
-  if (type === MenuTypeEnum.DUAL_MENU) {
-    store.setMenuTheme(MenuThemeEnum.DESIGN)
-    store.setMenuOpen(true)
-  }
+  // Legacy dual → hybrid
+  const next = type === MenuTypeEnum.DUAL_MENU ? MenuTypeEnum.TOP_LEFT : type
+  if (next === MenuTypeEnum.LEFT) store.setMenuOpen(true)
+  store.setMenuType(next)
 }
 
 // 设置菜单主图
@@ -198,7 +196,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 <template>
   <div class="setting">
     <el-drawer
-      size="300px"
+      size="340px"
       v-model="drawerVisible"
       :lock-scroll="false"
       :with-header="false"

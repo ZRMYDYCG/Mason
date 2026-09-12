@@ -9,7 +9,7 @@
       v-show="showMenuButton"
     />
     <BreadCrumb
-      v-if="menuType !== MenuTypeEnum.TOP && menuType !== MenuTypeEnum.TOP_LEFT && showCrumbs"
+      v-if="menuType !== MenuTypeEnum.TOP && showCrumbs"
       v-show="globalStore.breadcrumb"
     />
   </div>

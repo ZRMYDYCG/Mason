@@ -4,10 +4,8 @@ import type { MenuListType, MenuThemeType } from '@/config'
 import SubMenu from '@/Layout/components/SubMenu/sub-menu.vue'
 import ToolBarLeft from '@/Layout/components/Header/tool-bar-left.vue'
 import ToolBarRight from '@/Layout/components/Header/tool-bar-right.vue'
-import MenuMixed from '@/Layout/components/MenuMixed/index.vue'
 import Main from '@/Layout/components/Main/index.vue'
 import Footer from '@/Layout/components/Footer/index.vue'
-import BrandCard from '@/Layout/components/BrandCard/index.vue'
 import Logo from '@/Layout/components/Logo/index.vue'
 import LayoutShell from './LayoutShell.vue'
 
@@ -62,36 +60,29 @@ defineProps({
 <template>
   <LayoutShell>
     <template #aside>
-      <el-aside :style="{ color: menuTheme.textColor }">
-        <div class="aside" :style="{ width: isCollapse ? '65px' : `${menuOpenWidth}px` }">
-          <Logo />
+      <el-aside class="hybrid-aside" :style="{ color: menuTheme.textColor }">
+        <div class="aside hybrid-rail">
           <el-scrollbar>
             <el-menu
               :router="false"
               :default-active="activeMenu"
-              :collapse="isCollapse"
+              :collapse="true"
               :unique-opened="uniqueOpened"
               :collapse-transition="false"
-              background-color="var(--layout-topbar-bg, var(--bg-surface))"
-              :active-text-color="menuTheme.textActiveColor"
-              :text-color="menuTheme.textColor"
+              background-color="transparent"
+              active-text-color="#ffffff"
+              text-color="rgba(255, 255, 255, 0.72)"
             >
               <SubMenu :menu-list="menuList" popper-class="aside-popup-menu" />
             </el-menu>
-            <div
-              class="absolute right-0 top-0 w-1 h-full cursor-ew-resize bg-transparent"
-              @mousedown="handleMouseDown"
-              v-if="!isCollapse"
-            ></div>
           </el-scrollbar>
-          <BrandCard />
         </div>
       </el-aside>
     </template>
 
     <template #headerLeft>
+      <Logo />
       <ToolBarLeft />
-      <MenuMixed :list="fatherMenuList" />
     </template>
 
     <template #headerRight>
@@ -107,3 +98,36 @@ defineProps({
     </template>
   </LayoutShell>
 </template>
+
+<style scoped>
+.hybrid-aside {
+  :deep(.aside.hybrid-rail) {
+    width: 72px !important;
+    background: #171a22;
+  }
+
+  :deep(.el-scrollbar) {
+    height: 100%;
+  }
+
+  :deep(.el-menu) {
+    --el-menu-bg-color: transparent;
+    --el-menu-hover-bg-color: rgb(255 255 255 / 8%);
+
+    padding-top: 12px;
+    background: transparent;
+  }
+
+  :deep(.el-menu-item.is-active),
+  :deep(.el-sub-menu.is-active > .el-sub-menu__title) {
+    color: #fff !important;
+    background-color: rgb(255 255 255 / 12%) !important;
+  }
+
+  :deep(.el-menu-item:hover),
+  :deep(.el-sub-menu__title:hover) {
+    color: #fff !important;
+    background-color: rgb(255 255 255 / 8%) !important;
+  }
+}
+</style>

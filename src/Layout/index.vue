@@ -32,7 +32,6 @@ import { useI18n } from 'vue-i18n'
 import LeftLayout from '@/Layout/layouts/LeftLayout.vue'
 import TopLayout from '@/Layout/layouts/TopLayout.vue'
 import TopLeftLayout from '@/Layout/layouts/TopLeftLayout.vue'
-import DualMenuLayout from '@/Layout/layouts/DualMenuLayout.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -54,6 +53,17 @@ const menuTheme = computed(() => settingStore.getMenuTheme)
 const isFooter = computed(() => settingStore.isFooter)
 const { menuOpenWidth } = storeToRefs(settingStore)
 
+// Persist migration: old dual-menu → hybrid
+watch(
+  menuType,
+  (type) => {
+    if (type === MenuTypeEnum.DUAL_MENU) {
+      settingStore.setMenuType(MenuTypeEnum.TOP_LEFT)
+    }
+  },
+  { immediate: true }
+)
+
 const options = {
   minWidth: 200,
   maxWidth: 400,
@@ -73,7 +83,8 @@ watch(width, (val) => {
 const menuList = computed(() => {
   const list = authStore.showMenuListGet || []
 
-  if (menuType.value === MenuTypeEnum.DUAL_MENU || menuType.value === MenuTypeEnum.TOP_LEFT) {
+  // Dual kept for legacy settings; hybrid (TOP_LEFT) uses full icon rail
+  if (menuType.value === MenuTypeEnum.DUAL_MENU) {
     const currentTopPath = `/${route.path.split('/')[1]}`
     const currentMenu = list.find((menu) => menu.path === currentTopPath)
 
@@ -99,9 +110,9 @@ const layoutComponent = computed(() => {
     case MenuTypeEnum.TOP:
       return TopLayout
     case MenuTypeEnum.TOP_LEFT:
-      return TopLeftLayout
     case MenuTypeEnum.DUAL_MENU:
-      return DualMenuLayout
+      // Dual maps to hybrid experience (icon rail)
+      return TopLeftLayout
     case MenuTypeEnum.LEFT:
     default:
       return LeftLayout

@@ -8,119 +8,112 @@ defineProps<{
 const emit = defineEmits<{
   (e: 'select', type: MenuTypeEnum): void
 }>()
+
+const layouts = [
+  {
+    type: MenuTypeEnum.LEFT,
+    name: '经典侧栏',
+    tag: '推荐方案',
+    tagTone: 'recommend',
+    desc: '完整侧栏 + 品牌卡，适合复杂中后台。',
+    preview: 'classic'
+  },
+  {
+    type: MenuTypeEnum.TOP,
+    name: '顶部导航',
+    tag: '简洁现代',
+    tagTone: 'modern',
+    desc: '全宽顶栏导航，内容视野更开阔。',
+    preview: 'top'
+  },
+  {
+    type: MenuTypeEnum.TOP_LEFT,
+    name: '混合布局',
+    tag: '灵活高效',
+    tagTone: 'hybrid',
+    desc: '图标侧轨 + 顶栏，平衡功能与空间。',
+    preview: 'hybrid'
+  }
+] as const
 </script>
 
 <template>
-  <div>
-    <p class="title" style="margin-top: 30px">菜单布局</p>
-    <div class="menu-type">
-      <div class="menu-type-wrap">
-        <div class="item">
-          <div
-            class="box bl"
-            :class="{ 'is-active': menuType === MenuTypeEnum.LEFT }"
-            @click="emit('select', MenuTypeEnum.LEFT)"
-          >
-            <div class="bl-menu">
-              <div class="line" v-for="i in 6" :key="i"></div>
-            </div>
-            <div class="bl-content">
-              <div class="header"></div>
-              <div class="row1">
-                <div v-for="i in 2" :key="i"></div>
-              </div>
-              <div class="row2"></div>
-            </div>
-          </div>
-          <span class="name">垂直</span>
-          <div class="active" :class="{ 'is-show': menuType === MenuTypeEnum.LEFT }"></div>
-        </div>
+  <div class="layout-picker">
+    <p class="title">灵动布局</p>
+    <p class="subtitle">One product. Multiple experiences.</p>
 
-        <div class="item">
-          <div
-            class="box bt"
-            :class="{ 'is-active': menuType === MenuTypeEnum.TOP }"
-            @click="emit('select', MenuTypeEnum.TOP)"
-          >
-            <div class="bt-menu">
-              <div class="line" v-for="i in 6" :key="i"></div>
-            </div>
-            <div class="bl-content">
-              <div class="row1">
-                <div v-for="i in 2" :key="i"></div>
-              </div>
-              <div class="row2"></div>
-            </div>
+    <button
+      v-for="item in layouts"
+      :key="item.type"
+      type="button"
+      class="layout-card"
+      :class="{ 'is-active': menuType === item.type }"
+      @click="emit('select', item.type)"
+    >
+      <div class="preview" :data-preview="item.preview" aria-hidden="true">
+        <!-- classic: sidebar + header + content -->
+        <template v-if="item.preview === 'classic'">
+          <div class="pv-side">
+            <i /><i /><i /><i />
+            <span class="pv-card" />
           </div>
-          <span class="name">水平</span>
-          <div class="active" :class="{ 'is-show': menuType === MenuTypeEnum.TOP }"></div>
-        </div>
+          <div class="pv-main">
+            <div class="pv-head" />
+            <div class="pv-grid">
+              <span /><span /><span /><span />
+            </div>
+            <div class="pv-block" />
+          </div>
+        </template>
 
-        <div class="item">
-          <div
-            class="box tl"
-            :class="{ 'is-active': menuType === MenuTypeEnum.TOP_LEFT }"
-            @click="emit('select', MenuTypeEnum.TOP_LEFT)"
-          >
-            <div class="tl-left">
-              <div class="line" v-for="i in 6" :key="i"></div>
-            </div>
-            <div class="tl-right">
-              <div class="bt-menu">
-                <div class="line" v-for="i in 6" :key="i"></div>
-              </div>
-              <div class="bl-content">
-                <div class="row1">
-                  <div v-for="i in 2" :key="i"></div>
-                </div>
-                <div class="row2"></div>
-              </div>
+        <!-- top: header menu + full content -->
+        <template v-else-if="item.preview === 'top'">
+          <div class="pv-topbar">
+            <b /><i /><i /><i /><i />
+          </div>
+          <div class="pv-main full">
+            <div class="pv-hero" />
+            <div class="pv-grid">
+              <span /><span /><span /><span />
             </div>
           </div>
-          <span class="name">混合</span>
-          <div class="active" :class="{ 'is-show': menuType === MenuTypeEnum.TOP_LEFT }"></div>
-        </div>
+        </template>
 
-        <div class="item">
-          <div
-            class="box dl"
-            :class="{ 'is-active': menuType === MenuTypeEnum.DUAL_MENU }"
-            @click="emit('select', MenuTypeEnum.DUAL_MENU)"
-          >
-            <div class="tl1-left">
-              <div class="line" v-for="i in 1" :key="i"></div>
-            </div>
-            <div class="tl2-left">
-              <div class="line" v-for="i in 6" :key="i"></div>
-            </div>
-            <div class="tl-right">
-              <div class="header"></div>
-              <div class="bl-content">
-                <div class="row1">
-                  <div v-for="i in 2" :key="i"></div>
-                </div>
-                <div class="row2"></div>
-              </div>
-            </div>
+        <!-- hybrid: slim icon rail + header -->
+        <template v-else>
+          <div class="pv-rail">
+            <i /><i /><i /><i /><i />
           </div>
-          <span class="name">双列</span>
-          <div class="active" :class="{ 'is-show': menuType === MenuTypeEnum.DUAL_MENU }"></div>
-        </div>
+          <div class="pv-main">
+            <div class="pv-head wide" />
+            <div class="pv-grid">
+              <span /><span /><span />
+            </div>
+            <div class="pv-block" />
+          </div>
+        </template>
       </div>
-    </div>
+
+      <div class="meta">
+        <div class="meta-row">
+          <strong>{{ item.name }}</strong>
+          <span class="tag" :data-tone="item.tagTone">{{ item.tag }}</span>
+        </div>
+        <p>{{ item.desc }}</p>
+      </div>
+    </button>
   </div>
 </template>
 
 <style scoped>
-@mixin preview-shell($border-color) {
-  box-sizing: border-box;
-  border: 2px solid $border-color;
-  border-radius: 8px;
-  box-shadow: var(--shadow-color);
+.layout-picker {
+  padding-bottom: 8px;
+  margin-top: 24px;
 }
 
 .title {
   position: relative;
+  margin: 0;
   font-size: 14px;
   color: var(--text-tertiary);
   text-align: center;
@@ -129,8 +122,7 @@ const emit = defineEmits<{
   &::after {
     position: absolute;
     top: 10px;
-    width: 50px;
-    margin: auto;
+    width: 40px;
     content: '';
     border-bottom: 1px solid var(--border-default);
   }
@@ -144,348 +136,226 @@ const emit = defineEmits<{
   }
 }
 
-.menu-type {
-  padding-bottom: 20px;
-  margin-top: 20px;
+.subtitle {
+  margin: 8px 0 16px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-placeholder);
+  text-align: center;
+  text-transform: uppercase;
+}
 
-  :deep(.el-scrollbar__bar.is-vertical) {
-    display: none;
-  }
+.layout-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  text-align: left;
+  cursor: pointer;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
 
-  :deep(.el-scrollbar__bar.is-horizontal) {
+.layout-card:hover {
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.layout-card.is-active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-primary) 35%, transparent);
+}
+
+.preview {
+  display: flex;
+  height: 72px;
+  overflow: hidden;
+  background: var(--fill-primary-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.pv-side {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 28px;
+  padding: 6px 5px;
+  background: var(--border-default);
+
+  i {
+    display: block;
     height: 3px;
+    background: var(--bg-surface);
+    border-radius: 1px;
+    opacity: 0.85;
   }
 
-  .menu-type-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    width: calc(100% + 15px);
-    padding-bottom: 10px;
-
-    .item {
-      width: calc(33.333% - 15px);
-      margin-right: 15px;
-      text-align: center;
-
-      &:nth-child(3n) {
-        margin-right: 0;
-      }
-
-      &:nth-child(4n) {
-        margin-top: 20px;
-      }
-
-      .box {
-        @include preview-shell(var(--border-default));
-
-        position: relative;
-        height: 50px;
-        overflow: hidden;
-        cursor: pointer;
-        background-color: var(--fill-secondary);
-
-        &.is-active {
-          border: 2px solid var(--color-primary);
-        }
-
-        &.bl {
-          display: flex;
-          justify-content: space-between;
-
-          .bl-menu {
-            box-sizing: border-box;
-            width: 16px;
-            height: calc(100% - 4px);
-            padding: 0 3px;
-            margin: 2px 0 0 2px;
-            overflow: hidden;
-            background-color: var(--border-default);
-            border-radius: 2px;
-
-            .line {
-              width: 100%;
-              height: 2px;
-              margin-top: 4.4px;
-              background: var(--bg-surface);
-              border-radius: 1px;
-            }
-          }
-
-          .bl-content {
-            box-sizing: border-box;
-            width: calc(100% - 16px);
-            height: 100%;
-            padding: 4px 5px;
-
-            .header {
-              height: 6px;
-              margin: auto;
-              background-color: var(--fill-primary);
-              border-radius: 2px;
-            }
-
-            .row1 {
-              display: flex;
-              justify-content: space-between;
-              margin-top: 4px;
-
-              div {
-                height: 12px;
-                background-color: var(--fill-primary);
-                border-radius: 2px;
-
-                &:first-of-type {
-                  width: 35%;
-                }
-
-                &:last-of-type {
-                  width: 55%;
-                }
-              }
-            }
-
-            .row2 {
-              height: 12px;
-              margin-top: 4px;
-              background-color: var(--fill-primary);
-            }
-          }
-        }
-
-        &.bt {
-          padding: 0 5px;
-
-          .bt-menu {
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            height: 10px;
-            padding: 0 3px;
-            margin: 2px auto;
-            overflow: hidden;
-            background-color: var(--border-default);
-            border-radius: 2px;
-
-            .line {
-              width: 7px;
-              height: 2px;
-              margin-right: 2px;
-              background: var(--bg-surface);
-            }
-          }
-
-          .bl-content {
-            box-sizing: border-box;
-            height: 100%;
-
-            .row1 {
-              display: flex;
-              justify-content: space-between;
-              margin-top: 4px;
-
-              div {
-                height: 12px;
-                background-color: var(--fill-primary);
-                border-radius: 2px;
-
-                &:first-of-type {
-                  width: 37%;
-                }
-
-                &:last-of-type {
-                  width: 55%;
-                }
-              }
-            }
-
-            .row2 {
-              height: 12px;
-              margin-top: 4px;
-              background-color: var(--fill-primary);
-            }
-          }
-        }
-
-        &.tl {
-          display: flex;
-          justify-content: space-between;
-          padding: 0 5px;
-
-          .tl-left {
-            min-width: 10px;
-            margin: 2px 0;
-            background-color: var(--border-default);
-            border-radius: 2px;
-
-            > div {
-              width: 4px;
-              height: 2px;
-              margin: 4px auto;
-              background: var(--bg-surface);
-            }
-          }
-
-          .tl-right {
-            width: calc(100% - 14px);
-
-            .bt-menu {
-              box-sizing: border-box;
-              display: flex;
-              align-items: center;
-              height: 10px;
-              padding: 0 3px;
-              margin: 2px auto;
-              overflow: hidden;
-              background-color: var(--border-default);
-              border-radius: 2px;
-
-              .line {
-                width: 7px;
-                height: 2px;
-                margin-right: 2px;
-                background: var(--bg-surface);
-              }
-            }
-
-            .bl-content {
-              box-sizing: border-box;
-              height: 100%;
-
-              .row1 {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 4px;
-
-                div {
-                  height: 12px;
-                  background-color: var(--fill-primary);
-                  border-radius: 2px;
-
-                  &:first-of-type {
-                    width: 37%;
-                  }
-
-                  &:last-of-type {
-                    width: 55%;
-                  }
-                }
-              }
-
-              .row2 {
-                height: 12px;
-                margin-top: 4px;
-                background-color: var(--fill-primary);
-              }
-            }
-          }
-        }
-
-        &.dl {
-          display: flex;
-          justify-content: space-between;
-          padding: 0 5px;
-
-          .tl1-left {
-            box-sizing: border-box;
-            width: 8px;
-            min-width: 8px;
-            margin: 2px 2px 2px 0;
-            overflow: hidden;
-            background-color: var(--border-default);
-            border-radius: 2px;
-
-            > div {
-              width: 4px;
-              height: 2px;
-              margin: 4px auto;
-              background: var(--bg-surface);
-            }
-          }
-
-          .tl2-left {
-            box-sizing: border-box;
-            width: 10px;
-            min-width: 10px;
-            margin: 2px 4px 2px 0;
-            overflow: hidden;
-            background-color: var(--border-default);
-            border-radius: 2px;
-
-            > div {
-              width: 4px;
-              height: 2px;
-              margin: 4px auto;
-              background: var(--bg-surface);
-            }
-          }
-
-          .tl-right {
-            width: calc(100% - 24px);
-            padding-top: 2px;
-
-            .header {
-              height: 6px;
-              margin: auto;
-              background-color: var(--fill-primary);
-              border-radius: 2px;
-            }
-
-            .bl-content {
-              box-sizing: border-box;
-              height: 100%;
-
-              .row1 {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 4px;
-
-                div {
-                  height: 12px;
-                  background-color: var(--fill-primary);
-                  border-radius: 2px;
-
-                  &:first-of-type {
-                    width: 37%;
-                  }
-
-                  &:last-of-type {
-                    width: 55%;
-                  }
-                }
-              }
-
-              .row2 {
-                height: 12px;
-                margin-top: 4px;
-                background-color: var(--fill-primary);
-              }
-            }
-          }
-        }
-      }
-
-      .name {
-        display: block;
-        margin-top: 8px;
-        font-size: 13px;
-        line-height: 1;
-        color: var(--text-tertiary);
-      }
-
-      .active {
-        width: 6px;
-        height: 6px;
-        margin: 8px auto 0;
-        background: var(--el-color-success);
-        border-radius: 50%;
-        opacity: 0;
-
-        &.is-show {
-          opacity: 1;
-        }
-      }
-    }
+  .pv-card {
+    flex: 1;
+    margin-top: 4px;
+    background: color-mix(in srgb, var(--bg-surface) 70%, transparent);
+    border-radius: 3px;
   }
+}
+
+.pv-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  width: 14px;
+  padding: 8px 0;
+  background: #1f2430;
+
+  i {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: rgb(255 255 255 / 55%);
+    border-radius: 50%;
+  }
+}
+
+.pv-topbar {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  width: 100%;
+  height: 14px;
+  padding: 0 6px;
+  background: var(--border-default);
+
+  b {
+    width: 10px;
+    height: 6px;
+    background: var(--bg-surface);
+    border-radius: 1px;
+  }
+
+  i {
+    width: 8px;
+    height: 3px;
+    background: rgb(255 255 255 / 55%);
+    border-radius: 1px;
+  }
+}
+
+.preview[data-preview='top'] {
+  flex-direction: column;
+}
+
+.pv-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+}
+
+.pv-main.full {
+  min-height: 0;
+}
+
+.pv-head {
+  height: 8px;
+  background: var(--fill-secondary);
+  border-radius: 2px;
+}
+
+.pv-head.wide {
+  height: 10px;
+}
+
+.pv-hero {
+  height: 18px;
+  background: color-mix(in srgb, var(--color-primary) 18%, var(--fill-secondary));
+  border-radius: 3px;
+}
+
+.pv-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+
+  span {
+    height: 12px;
+    background: var(--fill-secondary);
+    border-radius: 2px;
+  }
+}
+
+.preview[data-preview='hybrid'] .pv-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pv-block {
+  flex: 1;
+  background: var(--fill-secondary);
+  border-radius: 2px;
+}
+
+.meta-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meta strong {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text-primary);
+}
+
+.meta p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-tertiary);
+}
+
+.tag {
+  flex-shrink: 0;
+  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+}
+
+.tag[data-tone='recommend'] {
+  color: #2f7a3e;
+  background: color-mix(in srgb, #7ac943 20%, transparent);
+}
+
+.tag[data-tone='modern'] {
+  color: #3d6fd8;
+  background: color-mix(in srgb, #5b8def 18%, transparent);
+}
+
+.tag[data-tone='hybrid'] {
+  color: #6b5bd6;
+  background: color-mix(in srgb, #8b7cf6 18%, transparent);
+}
+
+html.dark .tag[data-tone='recommend'] {
+  color: #9be0a5;
+}
+
+html.dark .tag[data-tone='modern'] {
+  color: #9bb6f5;
+}
+
+html.dark .tag[data-tone='hybrid'] {
+  color: #c4b8ff;
 }
 </style>

@@ -15,7 +15,7 @@ const menuTheme = computed(() => settingStore.getMenuTheme)
 
 const showBrandText = computed(() => {
   if (menuType.value === MenuTypeEnum.DUAL_MENU) return false
-  if (menuType.value === MenuTypeEnum.TOP) return true
+  if (menuType.value === MenuTypeEnum.TOP || menuType.value === MenuTypeEnum.TOP_LEFT) return true
   return !isCollapse.value
 })
 
