@@ -30,9 +30,9 @@ const explore = () => {
   min-height: 280px;
   overflow: hidden;
   background: var(--bg-surface);
-  border: 1px solid var(--border-light);
+  border: var(--box-border);
   border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--box-shadow);
 }
 
 .hero-copy {

@@ -33,7 +33,8 @@ const watchStory = () => {
   background-position: center;
   background-size: cover;
   border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-sm);
+  border: var(--box-border);
+  box-shadow: var(--box-shadow);
 }
 
 .veil {

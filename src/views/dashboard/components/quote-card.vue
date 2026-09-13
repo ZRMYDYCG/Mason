@@ -23,7 +23,8 @@ import rockImg from '@/assets/images/dashboard/mason-rock-quote.jpg'
   background-position: center;
   background-size: cover;
   border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-sm);
+  border: var(--box-border);
+  box-shadow: var(--box-shadow);
 }
 
 .veil {

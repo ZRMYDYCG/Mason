@@ -52,9 +52,9 @@ const doneCount = computed(() => localTodos.value.filter((t) => t.status === 'do
   height: 100%;
   padding: 22px;
   background: var(--bg-surface);
-  border: 1px solid var(--border-light);
+  border: var(--box-border);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--box-shadow);
 }
 
 .panel-head {

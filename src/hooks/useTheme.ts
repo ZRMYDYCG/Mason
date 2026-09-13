@@ -7,7 +7,7 @@ import { SystemThemeEnum } from '@/config'
 
 export const useTheme = () => {
   const settingStore = useSettingStore()
-  const { isDark, systemThemeColor, systemThemeMode, colorWeak, customRadius } =
+  const { isDark, systemThemeColor, systemThemeMode, colorWeak, customRadius, boxBorderMode } =
     storeToRefs(settingStore)
 
   const root = () => document.documentElement as HTMLElement
@@ -40,6 +40,11 @@ export const useTheme = () => {
     root().style.setProperty('--custom-radius', `${radius}rem`)
   }
 
+  /** true = border boxes, false = shadow boxes */
+  const applyBoxStyle = () => {
+    applyRootClass('box-style-shadow', !boxBorderMode.value)
+  }
+
   const hexToRgbNums = (hex: string): [number, number, number] | null => {
     const normalized = hex.trim().toLowerCase()
     const match = normalized.match(/^#?([0-9a-f]{6})$/)
@@ -57,6 +62,7 @@ export const useTheme = () => {
     changePrimary(systemThemeColor.value)
     applyColorWeak()
     applyCustomRadius()
+    applyBoxStyle()
   }
 
   // 修改主题颜色
@@ -85,10 +91,13 @@ export const useTheme = () => {
       applyThemeMode()
       applyColorWeak()
       applyCustomRadius()
+      applyBoxStyle()
       changePrimary(systemThemeColor.value)
     }
 
-    watch([systemThemeMode, systemThemeColor, colorWeak, customRadius], sync, { immediate: true })
+    watch([systemThemeMode, systemThemeColor, colorWeak, customRadius, boxBorderMode], sync, {
+      immediate: true
+    })
 
     const mq = window.matchMedia?.('(prefers-color-scheme: dark)')
     mq?.addEventListener?.('change', () => {

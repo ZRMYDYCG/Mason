@@ -1,0 +1,14 @@
+/**
+ * Box style mode — content cards use either border or shadow (not both)
+ * Default: border. Toggle via html.box-style-shadow
+ */
+
+:root {
+  --box-border: 1px solid var(--border-light);
+  --box-shadow: none;
+}
+
+html.box-style-shadow {
+  --box-border: 1px solid transparent;
+  --box-shadow: var(--shadow-sm);
+}

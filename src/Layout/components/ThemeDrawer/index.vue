@@ -181,6 +181,10 @@ const setContainerWidth = (item: { value: ContainerWidthEnum }) => {
   store.setContainerWidth(item.value)
 }
 
+const setBoxBorderMode = (mode: boolean) => {
+  store.setBoxBorderMode(mode)
+}
+
 // 复制配置
 const copyConfig = () => {
   const config = localStorage.getItem('setting')
@@ -230,7 +234,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
           @select="setSystemThemeColor"
         />
 
-        <BoxStyleSelector :box-border-mode="boxBorderMode" />
+        <BoxStyleSelector :box-border-mode="boxBorderMode" @select="setBoxBorderMode" />
 
         <ContainerWidthSelector
           :list="containerWidthList"

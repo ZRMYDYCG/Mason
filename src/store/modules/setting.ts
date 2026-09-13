@@ -123,6 +123,9 @@ export const useSettingStore = defineStore({
     setHeaderChrome(chrome: HeaderChromeEnum) {
       this.headerChrome = chrome
     },
+    setBoxBorderMode(mode: boolean) {
+      this.boxBorderMode = mode
+    },
     // 设置菜单是否展开
     setMenuOpen(open: boolean) {
       this.menuOpen = open

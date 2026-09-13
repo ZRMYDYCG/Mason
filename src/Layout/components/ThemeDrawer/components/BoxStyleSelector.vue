@@ -2,14 +2,21 @@
 defineProps<{
   boxBorderMode: boolean
 }>()
+
+const emit = defineEmits<{
+  (e: 'select', mode: boolean): void
+}>()
 </script>
 
 <template>
   <p class="title" style="margin-top: 40px">盒子样式</p>
   <div class="box-style">
-    <div v-if="false">{{ boxBorderMode }}</div>
-    <div class="button" :class="{ 'is-active': boxBorderMode }">边框</div>
-    <div class="button" :class="{ 'is-active': !boxBorderMode }">阴影</div>
+    <div class="button" :class="{ 'is-active': boxBorderMode }" @click="emit('select', true)">
+      边框
+    </div>
+    <div class="button" :class="{ 'is-active': !boxBorderMode }" @click="emit('select', false)">
+      阴影
+    </div>
   </div>
 </template>
 
@@ -54,6 +61,7 @@ defineProps<{
     height: 34px;
     font-size: 14px;
     line-height: 34px;
+    color: var(--text-secondary);
     text-align: center;
     cursor: pointer;
     user-select: none;
@@ -63,6 +71,7 @@ defineProps<{
     &.is-active {
       color: var(--text-primary);
       background-color: var(--bg-surface);
+      box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
     }
 
     &:hover:not(.is-active) {
