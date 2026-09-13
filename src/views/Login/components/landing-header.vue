@@ -3,7 +3,30 @@ import logoWordmark from '@/assets/images/logo-wordmark.png'
 import logoWordmarkOnDark from '@/assets/images/logo-wordmark-on-dark.png'
 import { themeAnimation } from '@/utils/animation.ts'
 import { useSettingStore } from '@/store/modules/setting.ts'
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+
+type NavLink = {
+  label: string
+  href: string
+}
+
+const props = withDefaults(
+  defineProps<{
+    activeHref?: string
+    brandHref?: string
+    navLinks?: NavLink[]
+  }>(),
+  {
+    activeHref: '',
+    brandHref: '#top',
+    navLinks: () => [
+      { label: '文档', href: '/docs' },
+      { label: '组件', href: '#components' },
+      { label: '更新日志', href: '#changelog' },
+      { label: '关于', href: '#about' }
+    ]
+  }
+)
 
 defineEmits<{
   (e: 'use-now'): void
@@ -12,29 +35,44 @@ defineEmits<{
 const settingStore = useSettingStore()
 const isDark = computed(() => settingStore.isDark)
 const brandSrc = computed(() => (isDark.value ? logoWordmarkOnDark : logoWordmark))
+const scrolled = ref(false)
 
-const navLinks = [
-  { label: '文档', href: '#docs' },
-  { label: '组件', href: '#components' },
-  { label: '更新日志', href: '#changelog' },
-  { label: '关于', href: '#about' }
-]
+const isActive = (href: string) => props.activeHref === href
 
 const openGithub = () => {
   window.open('https://github.com', '_blank', 'noopener,noreferrer')
 }
+
+const onScroll = () => {
+  scrolled.value = window.scrollY > 16
+}
+
+onMounted(() => {
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'is-scrolled': scrolled }">
     <div class="header-inner">
       <div class="left">
-        <a class="brand" href="#top" aria-label="Mason">
+        <a class="brand" :href="brandHref" aria-label="Mason">
           <img class="brand-wordmark" :src="brandSrc" alt="Mason — Build A Better Tomorrow" />
         </a>
 
         <nav class="nav" aria-label="主导航">
-          <a v-for="link in navLinks" :key="link.href" class="nav-link" :href="link.href">
+          <a
+            v-for="link in props.navLinks"
+            :key="link.href"
+            class="nav-link"
+            :class="{ active: isActive(link.href) }"
+            :href="link.href"
+          >
             {{ link.label }}
           </a>
         </nav>
@@ -58,8 +96,19 @@ const openGithub = () => {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border-subtle);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    backdrop-filter 0.2s ease;
+}
+
+.header.is-scrolled {
+  background: color-mix(in srgb, var(--bg-surface) 78%, transparent);
+  border-bottom-color: var(--border-subtle);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .header-inner {
@@ -112,6 +161,10 @@ const openGithub = () => {
 
 .nav-link:hover {
   color: var(--text-primary);
+}
+
+.nav-link.active {
+  color: var(--color-primary);
 }
 
 .actions {

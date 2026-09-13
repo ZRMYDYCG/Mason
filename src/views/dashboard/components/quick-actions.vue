@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import AppIcon from '@/components/AppIcon/index.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const actions = [
   { key: 'project', label: 'New Project', icon: 'plus' },
   { key: 'upload', label: 'Upload Asset', icon: 'upload' },
   { key: 'invite', label: 'Invite Member', icon: 'user-plus' },
-  { key: 'docs', label: 'View Docs', icon: 'file-text', href: 'https://mason.versakit.online' }
+  { key: 'docs', label: 'View Docs', icon: 'file-text', route: '/docs' }
 ]
 
 const onClick = (action: (typeof actions)[number]) => {
-  if (action.href) window.open(action.href, '_blank')
+  if (action.route) router.push(action.route)
 }
 </script>
 

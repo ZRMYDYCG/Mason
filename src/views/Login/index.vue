@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import LandingStage from './components/landing-stage.vue'
 import LandingHeader from './components/landing-header.vue'
 import LandingHero from './components/landing-hero.vue'
 import LandingTech from './components/landing-tech.vue'
@@ -17,9 +18,11 @@ const openLogin = () => {
 
 <template>
   <div class="landing">
-    <LandingHeader @use-now="openLogin" />
-    <main>
+    <LandingStage>
+      <LandingHeader @use-now="openLogin" />
       <LandingHero @use-now="openLogin" />
+    </LandingStage>
+    <main>
       <LandingTech />
       <LandingDetails />
       <LandingOpensource />
@@ -37,4 +40,5 @@ const openLogin = () => {
   background: var(--bg-surface);
   font-family: var(--font-family-sans);
 }
+
 </style>

@@ -27,7 +27,7 @@ const openGithub = () => {
             GitHub
             <AppIcon name="arrow-right" :size="16" />
           </button>
-          <a class="btn-secondary" href="#docs">查看文档</a>
+          <a class="btn-secondary" href="/docs">查看文档</a>
         </div>
       </div>
 

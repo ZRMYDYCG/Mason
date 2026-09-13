@@ -139,13 +139,17 @@ let menus: RawMenu[] = [
   }),
   makeMenu(31, 'local-svg', '图标展示', '/local-svg', 0, 'badge', 6),
   makeMenu(32, 'vue-directive', '自定义指令', '/vue-directive', 0, 'mouse-pointer-click', 7),
-  makeMenu(33, 'jump-confirmation', '跳转确认', '/jump-confirmation', 0, 'route', 8)
+  makeMenu(33, 'jump-confirmation', '跳转确认', '/jump-confirmation', 0, 'route', 8),
+  {
+    ...makeMenu(34, 'docs', '文档中心', '/docs', 0, 'book-open-text', 9),
+    component: '/document/index'
+  }
 ]
 
 let roleMenus: Record<number, number[]> = {
   1: menus.map((menu) => menu.id),
-  2: [1, 10, 11, 12, 13, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33],
-  3: [1, 7, 30]
+  2: [1, 10, 11, 12, 13, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34],
+  3: [1, 7, 30, 34]
 }
 
 let roles: Role[] = [

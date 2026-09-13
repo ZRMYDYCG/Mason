@@ -25,6 +25,15 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/docs',
+    name: 'docs',
+    component: () => import('@/views/document/index.vue'),
+    meta: {
+      title: '文档中心',
+      isPublic: true
+    }
+  },
+  {
     path: '/layout',
     redirect: HOME_URL, // 重定向主页
     name: 'layout',
@@ -99,6 +108,8 @@ router.beforeEach(async (to, from, next) => {
     resetRouter()
     return next()
   }
+
+  if (to.meta?.isPublic) return next()
 
   if (!hasSession) return next({ path: LOGIN_URL, replace: true })
 

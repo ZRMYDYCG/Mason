@@ -23,7 +23,7 @@ defineEmits<{
             立即使用
             <AppIcon name="arrow-right" :size="16" />
           </button>
-          <a class="btn-secondary" href="#docs">查看文档</a>
+          <a class="btn-secondary" href="/docs">查看文档</a>
         </div>
         <p class="meta">开源免费 · 持续迭代 · 社区驱动</p>
       </div>
@@ -39,14 +39,7 @@ defineEmits<{
 
 <style scoped>
 .hero {
-  padding: 72px 40px 56px;
-  background:
-    radial-gradient(
-      ellipse 80% 60% at 70% 20%,
-      rgba(var(--color-primary-rgb), 0.08),
-      transparent 60%
-    ),
-    var(--bg-surface);
+  padding: 48px 40px 56px;
 }
 
 .hero-inner {

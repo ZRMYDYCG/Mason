@@ -1,5 +1,7 @@
 import { ConfigEnv, UserConfig, defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import mdx from '@mdx-js/rollup'
 import { fileURLToPath, URL } from 'node:url'
 import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -38,7 +40,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js', // 避免i18n警告
         canvas: resolve(__dirname, './src/mock/canvas.ts') // 修复 mockjs 依赖 canvas 的问题
       },
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'] // 导入时省略的扩展名列表
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mdx'] // 导入时省略的扩展名列表
     },
     server: {
       host: '0.0.0.0',
@@ -98,11 +100,16 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
       }
     },
     plugins: [
+      mdx({
+        jsxImportSource: 'vue',
+        providerImportSource: '@mdx-js/vue'
+      }),
       vue({
         script: {
           defineModel: true // 启用实验性 defineModel
         }
       }),
+      vueJsx(),
       codeInspectorPlugin({
         bundler: 'vite',
         editor: 'code'

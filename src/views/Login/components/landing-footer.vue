@@ -5,16 +5,33 @@ import { themeAnimation } from '@/utils/animation.ts'
 import { useSettingStore } from '@/store/modules/setting.ts'
 import { computed } from 'vue'
 
+type NavLink = {
+  label: string
+  href: string
+}
+
+const props = withDefaults(
+  defineProps<{
+    navLinks?: NavLink[]
+  }>(),
+  {
+    navLinks: () => [
+      { label: '文档', href: '/docs' },
+      { label: '组件', href: '#components' },
+      { label: '更新日志', href: '#changelog' },
+      { label: '关于', href: '#about' }
+    ]
+  }
+)
+
 const settingStore = useSettingStore()
 const isDark = computed(() => settingStore.isDark)
 const brandSrc = computed(() => (isDark.value ? logoWordmarkOnDark : logoWordmark))
 
-const navLinks = [
-  { label: '文档', href: '#docs' },
-  { label: '组件', href: '#components' },
-  { label: '更新日志', href: '#changelog' },
-  { label: '关于', href: '#about' }
-]
+/** 立项日：2024-10-01 */
+const FOUNDED_AT = '2024.10.01'
+const CURRENT_YEAR = new Date().getFullYear()
+const copyrightText = `© ${FOUNDED_AT} - ${CURRENT_YEAR} Mason. All rights reserved.`
 
 const openGithub = () => {
   window.open('https://github.com', '_blank', 'noopener,noreferrer')
@@ -31,7 +48,7 @@ const openGithub = () => {
 
         <div class="top-right">
           <nav class="nav" aria-label="页脚导航">
-            <a v-for="link in navLinks" :key="link.href" class="nav-link" :href="link.href">
+            <a v-for="link in props.navLinks" :key="link.href" class="nav-link" :href="link.href">
               {{ link.label }}
             </a>
           </nav>
@@ -47,7 +64,7 @@ const openGithub = () => {
       </div>
 
       <div class="bottom">
-        <p class="copy">© 2024 Mason. All rights reserved.</p>
+        <p class="copy">{{ copyrightText }}</p>
       </div>
     </div>
   </footer>
