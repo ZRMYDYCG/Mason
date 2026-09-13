@@ -44,7 +44,7 @@ const account: Login.ReqLoginForm = reactive({
 })
 
 const rules = {
-  name: [
+  username: [
     { required: true, message: '请输入账号名称', trigger: 'blur' },
     { min: 2, max: 10, message: '账号名称长度为2-10个字符', trigger: 'blur' }
   ],
