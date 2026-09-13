@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Element_Plus-2.7-409EFF?style=flat-square" />
   <img src="https://img.shields.io/badge/NestJS-10-E0234E?style=flat-square&logo=nestjs" />
   <img src="https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square" />
-  <img src="https://img.shields.io/badge/version-1.0.9-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/version-2.0.0-blue?style=flat-square" />
 </p>
 
 <p align="center">
