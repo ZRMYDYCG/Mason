@@ -98,8 +98,8 @@ const useNow = () => {
 <style scoped>
 .legal-site {
   min-height: 100vh;
-  background: var(--bg-page);
   color: var(--text-primary);
+  background: var(--bg-page);
 }
 
 .legal-hero {
@@ -110,8 +110,8 @@ const useNow = () => {
   display: grid;
   gap: 28px;
   max-width: 1120px;
-  margin: 72px auto 0;
   padding: 0 40px;
+  margin: 72px auto 0;
 }
 
 .eyebrow {
@@ -172,17 +172,17 @@ const useNow = () => {
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 40px;
   max-width: 1120px;
-  margin: 0 auto;
   padding: 40px 40px 96px;
+  margin: 0 auto;
 }
 
 .legal-sidebar {
   position: sticky;
   top: 96px;
-  align-self: start;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-self: start;
 }
 
 .side-label {

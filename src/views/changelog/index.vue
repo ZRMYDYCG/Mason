@@ -103,7 +103,9 @@ onMounted(async () => {
         <div class="hero-copy">
           <p class="eyebrow">- CHANGELOG</p>
           <h1>更新日志</h1>
-          <p>同步渲染项目根目录的 `CHANGELOG.md`，用于记录版本变化、功能新增、问题修复和后续迭代。</p>
+          <p>
+            同步渲染项目根目录的 `CHANGELOG.md`，用于记录版本变化、功能新增、问题修复和后续迭代。
+          </p>
         </div>
         <div class="search-box">
           <AppIcon name="search" :size="16" />
@@ -177,9 +179,9 @@ onMounted(async () => {
 <style scoped>
 .changelog-site {
   min-height: 100vh;
+  font-family: var(--font-family-sans);
   color: var(--text-primary);
   background: var(--bg-surface);
-  font-family: var(--font-family-sans);
 }
 
 .changelog-hero {
@@ -205,8 +207,8 @@ onMounted(async () => {
   margin: 0 0 16px;
   font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.02em;
   color: var(--text-tertiary);
+  letter-spacing: 0.02em;
 }
 
 .hero-copy h1 {
@@ -234,14 +236,13 @@ onMounted(async () => {
   height: 40px;
   padding: 0 10px 0 14px;
   margin-top: 4px;
-  color: var(--text-tertiary);
   font-size: 13px;
+  color: var(--text-tertiary);
   background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   box-shadow: 0 12px 32px color-mix(in srgb, var(--shadow-color) 60%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
 .search-box kbd {
@@ -351,8 +352,8 @@ onMounted(async () => {
 }
 
 .breadcrumb strong {
-  color: var(--color-primary);
   font-weight: 650;
+  color: var(--color-primary);
 }
 
 .markdown-body {

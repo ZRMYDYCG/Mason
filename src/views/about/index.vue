@@ -62,7 +62,8 @@ const useNow = () => {
           <p class="eyebrow">- ABOUT MASON</p>
           <h1>关于 Mason</h1>
           <p>
-            Mason 是面向中后台场景的开源基础工程，目标是把登录、权限、菜单、表格、主题等通用能力整理清楚，
+            Mason
+            是面向中后台场景的开源基础工程，目标是把登录、权限、菜单、表格、主题等通用能力整理清楚，
             让业务开发可以直接复用。
           </p>
         </div>
@@ -107,12 +108,11 @@ const useNow = () => {
           <p class="section-kicker">Overview</p>
           <h2>简介</h2>
           <p>
-            Mason 面向中后台开发中的高频重复工作：登录、菜单、权限、表格、表单、主题、布局与接口规范。
+            Mason
+            面向中后台开发中的高频重复工作：登录、菜单、权限、表格、表单、主题、布局与接口规范。
             项目基于 Vue 3 + TypeScript，并配套 NestJS 后端能力。
           </p>
-          <p>
-            设计重点是结构清晰、边界明确、便于扩展，而不是堆砌演示功能。
-          </p>
+          <p>设计重点是结构清晰、边界明确、便于扩展，而不是堆砌演示功能。</p>
         </section>
 
         <section id="origin" class="content-section">
@@ -122,7 +122,8 @@ const useNow = () => {
             管理端项目几乎都会重复搭建同一套基础设施。每次从零开始成本高，也容易导致目录、权限与样式约定不一致。
           </p>
           <p>
-            Mason 想提供一套可直接落地的基础方案：前端工程结构稳定，后端认证权限可用，文档能跟着功能更新。
+            Mason
+            想提供一套可直接落地的基础方案：前端工程结构稳定，后端认证权限可用，文档能跟着功能更新。
           </p>
         </section>
 
@@ -170,9 +171,9 @@ const useNow = () => {
 <style scoped>
 .about-site {
   min-height: 100vh;
+  font-family: var(--font-family-sans);
   color: var(--text-primary);
   background: var(--bg-surface);
-  font-family: var(--font-family-sans);
 }
 
 .about-hero {
@@ -199,8 +200,8 @@ const useNow = () => {
   margin: 0 0 16px;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.02em;
   color: var(--text-tertiary);
+  letter-spacing: 0.02em;
 }
 
 .hero-copy h1 {
@@ -227,11 +228,10 @@ const useNow = () => {
   padding: 22px;
   color: var(--text-secondary);
   background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   box-shadow: 0 14px 34px color-mix(in srgb, var(--shadow-color) 54%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
 .hero-note p {
@@ -321,13 +321,13 @@ const useNow = () => {
 }
 
 .breadcrumb strong {
-  color: var(--color-primary);
   font-weight: 650;
+  color: var(--color-primary);
 }
 
 .content-section {
-  scroll-margin-top: 92px;
   padding-bottom: 44px;
+  scroll-margin-top: 92px;
 }
 
 .content-section h2 {
