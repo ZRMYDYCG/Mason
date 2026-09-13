@@ -16,17 +16,11 @@
   <img src="https://img.shields.io/badge/version-1.0.9-blue?style=flat-square" />
 </p>
 
-<p align="center">
-| 资源 | 地址 |
-| --- | --- |
-| 文档 | [https://mason.versakit.online](https://mason.versakit.online) |
-| 在线预览（Mock） | [http://admin.dev.versakit.online/login](http://admin.dev.versakit.online/login) |
-| 源码 | [github.com/ZRMYDYCG/Mason](https://github.com/ZRMYDYCG/Mason) |
 
-预览账号：`Mason` / `123456`（超级管理员）、`Coder` / `123456`（普通用户）
-</p>
+文档 https://mason.versakit.online](https://mason.versakit.online
 
----
+在线预览（Mock）http://admin.dev.versakit.online/login](http://admin.dev.versakit.online/login
+
 
 ## 技术栈
 
