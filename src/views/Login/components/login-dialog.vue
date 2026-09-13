@@ -435,9 +435,9 @@ const primaryLabel = computed(() => {
               <el-form-item>
                 <el-checkbox v-model="phoneForm.agreed">
                   我已阅读并同意
-                  <a href="javascript:void(0)">《用户协议》</a>
+                  <a href="/terms" target="_blank" rel="noopener noreferrer" @click.stop>《用户协议》</a>
                   和
-                  <a href="javascript:void(0)">《隐私政策》</a>
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" @click.stop>《隐私政策》</a>
                 </el-checkbox>
               </el-form-item>
             </el-form>
@@ -484,9 +484,9 @@ const primaryLabel = computed(() => {
               <el-form-item>
                 <el-checkbox v-model="registerForm.agreed">
                   我已阅读并同意
-                  <a href="javascript:void(0)">《用户协议》</a>
+                  <a href="/terms" target="_blank" rel="noopener noreferrer" @click.stop>《用户协议》</a>
                   和
-                  <a href="javascript:void(0)">《隐私政策》</a>
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" @click.stop>《隐私政策》</a>
                 </el-checkbox>
               </el-form-item>
             </el-form>
@@ -791,6 +791,10 @@ const primaryLabel = computed(() => {
 .auth-form :deep(.el-checkbox__label a) {
   color: var(--color-primary);
   text-decoration: none;
+}
+
+.auth-form :deep(.el-checkbox__label a:hover) {
+  text-decoration: underline;
 }
 
 .auth-form :deep(.el-checkbox__inner) {

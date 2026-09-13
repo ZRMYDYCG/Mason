@@ -61,6 +61,26 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/terms',
+    name: 'terms',
+    component: () => import('@/views/legal/index.vue'),
+    meta: {
+      title: '用户协议',
+      isPublic: true,
+      legalKey: 'terms'
+    }
+  },
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component: () => import('@/views/legal/index.vue'),
+    meta: {
+      title: '隐私政策',
+      isPublic: true,
+      legalKey: 'privacy'
+    }
+  },
+  {
     path: '/layout',
     redirect: HOME_URL, // 重定向主页
     name: 'layout',
