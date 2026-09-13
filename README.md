@@ -14,10 +14,7 @@
 
 ## 预览
 
-文档 https://mason.versakit.online](https://mason.versakit.online
-
-在线预览（Mock）http://admin.dev.versakit.online/login](http://admin.dev.versakit.online/login
-
+在线预览（Mock）https://admin.dev.versakit.online/login
 
 ## 快速开始
 
