@@ -147,13 +147,21 @@ let menus: RawMenu[] = [
   {
     ...makeMenu(35, 'components', '组件展示', '/components', 0, 'component', 10),
     component: '/components/index'
+  },
+  {
+    ...makeMenu(36, 'changelog', '更新日志', '/changelog', 0, 'history', 11),
+    component: '/changelog/index'
+  },
+  {
+    ...makeMenu(37, 'about', '关于 Mason', '/about', 0, 'user-round', 12),
+    component: '/about/index'
   }
 ]
 
 let roleMenus: Record<number, number[]> = {
   1: menus.map((menu) => menu.id),
-  2: [1, 10, 11, 12, 13, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35],
-  3: [1, 7, 30, 34, 35]
+  2: [1, 10, 11, 12, 13, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37],
+  3: [1, 7, 30, 34, 35, 36, 37]
 }
 
 let roles: Role[] = [

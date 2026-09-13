@@ -43,6 +43,24 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/changelog',
+    name: 'changelog',
+    component: () => import('@/views/changelog/index.vue'),
+    meta: {
+      title: '更新日志',
+      isPublic: true
+    }
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/about/index.vue'),
+    meta: {
+      title: '关于',
+      isPublic: true
+    }
+  },
+  {
     path: '/layout',
     redirect: HOME_URL, // 重定向主页
     name: 'layout',

@@ -26,8 +26,8 @@ type ComponentDoc = {
 const navLinks = [
   { label: '文档', href: '/docs' },
   { label: '组件', href: '/components' },
-  { label: '更新日志', href: '/login#changelog' },
-  { label: '关于', href: '/login#about' }
+  { label: '更新日志', href: '/changelog' },
+  { label: '关于', href: '/about' }
 ]
 
 const componentDocs: ComponentDoc[] = [

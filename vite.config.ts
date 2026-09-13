@@ -101,6 +101,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
     },
     plugins: [
       mdx({
+        include: ['**/*.mdx'],
         jsxImportSource: 'vue',
         providerImportSource: '@mdx-js/vue'
       }),
