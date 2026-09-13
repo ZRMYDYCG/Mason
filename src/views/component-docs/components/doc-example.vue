@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import AppIcon from '@/components/AppIcon/index.vue'
+import AppIcon from '@/components/app-icon/index.vue'
 
 defineProps<{
   title: string

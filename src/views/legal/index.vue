@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import AppIcon from '@/components/AppIcon/index.vue'
-import LandingFooter from '@/views/Login/components/landing-footer.vue'
-import LandingHeader from '@/views/Login/components/landing-header.vue'
-import LandingStage from '@/views/Login/components/landing-stage.vue'
+import AppIcon from '@/components/app-icon/index.vue'
+import LandingFooter from '@/views/login/components/landing-footer.vue'
+import LandingHeader from '@/views/login/components/landing-header.vue'
+import LandingStage from '@/views/login/components/landing-stage.vue'
 import { legalDocs, type LegalDocKey } from './content'
 
 const route = useRoute()

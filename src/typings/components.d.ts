@@ -8,12 +8,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    403: typeof import('./../components/ErrorMessage/403.vue')['default']
-    404: typeof import('./../components/ErrorMessage/404.vue')['default']
-    500: typeof import('./../components/ErrorMessage/500.vue')['default']
-    AppIcon: typeof import('./../components/AppIcon/index.vue')['default']
-    ColumnSetting: typeof import('./../components/CustomTable/column-setting.vue')['default']
-    CustomTable: typeof import('./../components/CustomTable/index.vue')['default']
+    403: typeof import('./../components/error-message/403.vue')['default']
+    404: typeof import('./../components/error-message/404.vue')['default']
+    500: typeof import('./../components/error-message/500.vue')['default']
+    AppIcon: typeof import('./../components/app-icon/index.vue')['default']
+    ColumnSetting: typeof import('./../components/custom-table/column-setting.vue')['default']
+    CustomTable: typeof import('./../components/custom-table/index.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -71,7 +71,7 @@ declare module 'vue' {
     ElWatermark: typeof import('element-plus/es')['ElWatermark']
     FullLoading: typeof import('./../components/Loading/full-loading.vue')['default']
     Lottie: typeof import('./../components/Lottie/index.vue')['default']
-    StyleSetting: typeof import('./../components/CustomTable/style-setting.vue')['default']
+    StyleSetting: typeof import('./../components/custom-table/style-setting.vue')['default']
     Table: typeof import('./../components/Table/index.vue')['default']
     Watermark: typeof import('./../components/Watermark/index.vue')['default']
   }

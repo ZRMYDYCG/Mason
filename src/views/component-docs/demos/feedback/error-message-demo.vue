@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import Error403 from '@/components/ErrorMessage/403.vue'
-import Error404 from '@/components/ErrorMessage/404.vue'
-import Error500 from '@/components/ErrorMessage/500.vue'
+import Error403 from '@/components/error-message/403.vue'
+import Error404 from '@/components/error-message/404.vue'
+import Error500 from '@/components/error-message/500.vue'
 import DocExample from '../../components/doc-example.vue'
 
 const activeTab = ref<'403' | '404' | '500'>('404')
@@ -19,7 +19,7 @@ const activeComponent = computed(() => previewMap[activeTab.value])
 const previewCode = computed(
   () => `<!-- 直接挂载真实错误页组件 -->
 <script setup>
-import Error${activeTab.value} from '@/components/ErrorMessage/${activeTab.value}.vue'
+import Error${activeTab.value} from '@/components/error-message/${activeTab.value}.vue'
 <\/script>
 
 <template>
@@ -30,20 +30,20 @@ import Error${activeTab.value} from '@/components/ErrorMessage/${activeTab.value
 const routeCode = `// router 配置
 {
   path: '/403',
-  component: () => import('@/components/ErrorMessage/403.vue')
+  component: () => import('@/components/error-message/403.vue')
 },
 {
   path: '/404',
-  component: () => import('@/components/ErrorMessage/404.vue')
+  component: () => import('@/components/error-message/404.vue')
 },
 {
   path: '/500',
-  component: () => import('@/components/ErrorMessage/500.vue')
+  component: () => import('@/components/error-message/500.vue')
 },
 // 兜底路由
 {
   path: '/:pathMatch(.*)*',
-  component: () => import('@/components/ErrorMessage/404.vue')
+  component: () => import('@/components/error-message/404.vue')
 }`
 </script>
 

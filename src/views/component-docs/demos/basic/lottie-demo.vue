@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import Lottie from '@/components/Lottie/index.vue'
+import Lottie from '@/components/lottie/index.vue'
 import DocExample from '../../components/doc-example.vue'
 
 const animRef = ref<any>(null)
@@ -75,7 +75,7 @@ const rendererModes = ['svg', 'canvas', 'html'] as const
 const basicCode = computed(
   () => `<script setup>
 import { ref } from 'vue'
-import Lottie from '@/components/Lottie/index.vue'
+import Lottie from '@/components/lottie/index.vue'
 import animationData from './loading.json'
 
 const anim = ref(null)

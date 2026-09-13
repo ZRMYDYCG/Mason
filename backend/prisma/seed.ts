@@ -57,10 +57,10 @@ type MenuSeed = {
 const menus: MenuSeed[] = [
   { id: 1n, name: 'dashboard', path: '/dashboard', parentId: 0, sort: 1, title: '仪表盘', icon: 'chart-bar', isAffix: 1 },
   { id: 2n, name: 'system', path: '/system', parentId: 0, sort: 2, title: '系统管理', icon: 'settings' },
-  { id: 3n, name: 'accountManage', path: '/system/accountManage', parentId: 2, sort: 1, title: '账号管理', icon: 'users' },
-  { id: 4n, name: 'roleManage', path: '/system/roleManage', parentId: 2, sort: 2, title: '角色管理', icon: 'shield-check' },
-  { id: 5n, name: 'menuManage', path: '/system/menuManage', parentId: 2, sort: 3, title: '菜单管理', icon: 'menu' },
-  { id: 6n, name: 'departmentManage', path: '/system/departmentManage', parentId: 2, sort: 4, title: '部门管理', icon: 'network' },
+  { id: 3n, name: 'account-manage', path: '/system/account-manage', parentId: 2, sort: 1, title: '账号管理', icon: 'users' },
+  { id: 4n, name: 'role-manage', path: '/system/role-manage', parentId: 2, sort: 2, title: '角色管理', icon: 'shield-check' },
+  { id: 5n, name: 'menu-manage', path: '/system/menu-manage', parentId: 2, sort: 3, title: '菜单管理', icon: 'menu' },
+  { id: 6n, name: 'department-manage', path: '/system/department-manage', parentId: 2, sort: 4, title: '部门管理', icon: 'network' },
   { id: 7n, name: 'log', path: '/system/log', parentId: 2, sort: 5, title: '操作日志', icon: 'scroll-text' },
 
   { id: 10n, name: 'features', path: '/features', parentId: 0, sort: 3, title: '功能示例', icon: 'panels-top-left' },

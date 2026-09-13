@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppIcon from '@/components/AppIcon/index.vue'
+import AppIcon from '@/components/app-icon/index.vue'
 import storyImg from '@/assets/images/dashboard/mason-interior-story.jpg'
 
 const watchStory = () => {

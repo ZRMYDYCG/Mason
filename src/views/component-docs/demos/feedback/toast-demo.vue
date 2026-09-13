@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AppIcon from '@/components/AppIcon/index.vue'
-import { useMessage, useMessageBox, useNotify } from '@/components/Toast'
+import AppIcon from '@/components/app-icon/index.vue'
+import { useMessage, useMessageBox, useNotify } from '@/components/toast'
 import DocExample from '../../components/doc-example.vue'
 
 const message = useMessage()
@@ -49,7 +49,7 @@ const showNotify = (type: 'info' | 'success' | 'warning' | 'error') => {
   notify[type](msgs[type])
 }
 
-const messageCode = `import { useMessage } from '@/components/Toast'
+const messageCode = `import { useMessage } from '@/components/toast'
 
 const message = useMessage()
 
@@ -58,7 +58,7 @@ message.success('操作成功！数据已保存')
 message.warning('请注意，该操作不可逆')
 message.error('请求失败，请检查网络连接')`
 
-const boxCode = `import { useMessage, useMessageBox } from '@/components/Toast'
+const boxCode = `import { useMessage, useMessageBox } from '@/components/toast'
 
 const message = useMessage()
 const box = useMessageBox()
@@ -80,7 +80,7 @@ try {
   message.info('已取消修改')
 }`
 
-const notifyCode = `import { useNotify } from '@/components/Toast'
+const notifyCode = `import { useNotify } from '@/components/toast'
 
 const notify = useNotify()
 

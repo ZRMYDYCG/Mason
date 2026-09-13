@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import CustomTable from '@/components/CustomTable/index.vue'
+import CustomTable from '@/components/custom-table/index.vue'
 import DocExample from '../../components/doc-example.vue'
 
 const tableData = ref([
@@ -24,7 +24,7 @@ const columns = ref([
 
 const basicCode = `<script setup>
 import { ref } from 'vue'
-import CustomTable from '@/components/CustomTable/index.vue'
+import CustomTable from '@/components/custom-table/index.vue'
 
 const tableData = ref([
   { id: 1, name: '张三', role: '管理员', department: '技术部', status: '在职', salary: 25000, joinDate: '2023-01-15' },

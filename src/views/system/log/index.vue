@@ -104,7 +104,7 @@ import { ElMessage, FormInstance } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 import { deleteSystemLog, getSystemLogList } from '@/api/modules/system'
 import type { SystemLog } from '@/api/interface/system'
-import CustomTable from '@/components/CustomTable/index.vue'
+import CustomTable from '@/components/custom-table/index.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 

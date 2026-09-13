@@ -19,7 +19,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/Login/index.vue'),
+    component: () => import('@/views/login/index.vue'),
     meta: {
       titleKey: 'route.login'
     }
@@ -84,7 +84,7 @@ const routes: RouteRecordRaw[] = [
     path: '/layout',
     redirect: HOME_URL, // 重定向主页
     name: 'layout',
-    component: () => import('@/Layout/index.vue'),
+    component: () => import('@/layout/index.vue'),
     children: [
       // -----非全屏页面动态引入-----
     ]
@@ -95,7 +95,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/403',
     name: '403',
-    component: () => import('@/components/ErrorMessage/403.vue'),
+    component: () => import('@/components/error-message/403.vue'),
     meta: {
       title: '403页面',
       titleKey: 'route.error403'
@@ -104,7 +104,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/404',
     name: '404',
-    component: () => import('@/components/ErrorMessage/404.vue'),
+    component: () => import('@/components/error-message/404.vue'),
     meta: {
       title: '404页面',
       titleKey: 'route.error404'
@@ -113,7 +113,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/500',
     name: '500',
-    component: () => import('@/components/ErrorMessage/500.vue'),
+    component: () => import('@/components/error-message/500.vue'),
     meta: {
       title: '500页面',
       titleKey: 'route.error500'
@@ -121,7 +121,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/:pathMatch(.*)*',
-    component: () => import('@/components/ErrorMessage/404.vue')
+    component: () => import('@/components/error-message/404.vue')
   }
 ]
 

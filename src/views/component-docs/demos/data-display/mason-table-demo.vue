@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import MasonTable from '@/components/Table/index.vue'
-import { TABLE_COLUMN_OPERATE } from '@/components/Table/constants'
-import { useMessage } from '@/components/Toast'
+import MasonTable from '@/components/table/index.vue'
+import { TABLE_COLUMN_OPERATE } from '@/components/table/constants'
+import { useMessage } from '@/components/toast'
 import DocExample from '../../components/doc-example.vue'
 
 const message = useMessage()
@@ -75,7 +75,7 @@ const handleDelete = (payload: { data: { name: string } }) => {
 
 const basicCode = `<script setup>
 import { ref } from 'vue'
-import MasonTable from '@/components/Table/index.vue'
+import MasonTable from '@/components/table/index.vue'
 
 const demoData = ref([
   { id: 1, name: '张三', role: '管理员', department: '技术部', status: '在职' },
@@ -105,8 +105,8 @@ const onSizeChange = (size) => console.log(size)
 </template>`
 
 const operateCode = `<script setup>
-import MasonTable from '@/components/Table/index.vue'
-import { TABLE_COLUMN_OPERATE } from '@/components/Table/constants'
+import MasonTable from '@/components/table/index.vue'
+import { TABLE_COLUMN_OPERATE } from '@/components/table/constants'
 
 const columns = [
   { prop: 'name', label: '姓名', minWidth: 100 },

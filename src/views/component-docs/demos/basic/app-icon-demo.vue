@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import AppIcon from '@/components/AppIcon/index.vue'
+import AppIcon from '@/components/app-icon/index.vue'
 import DocExample from '../../components/doc-example.vue'
 
 const iconSize = ref(28)

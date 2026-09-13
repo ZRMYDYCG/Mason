@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { ActivityItem } from '@/api/interface/dashboard'
-import AppIcon from '@/components/AppIcon/index.vue'
+import AppIcon from '@/components/app-icon/index.vue'
 
 const props = defineProps<{
   activities: ActivityItem[]

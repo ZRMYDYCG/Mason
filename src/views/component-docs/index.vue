@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import AppIcon from '@/components/AppIcon/index.vue'
-import LandingFooter from '@/views/Login/components/landing-footer.vue'
-import LandingHeader from '@/views/Login/components/landing-header.vue'
-import LandingStage from '@/views/Login/components/landing-stage.vue'
+import AppIcon from '@/components/app-icon/index.vue'
+import LandingFooter from '@/views/login/components/landing-footer.vue'
+import LandingHeader from '@/views/login/components/landing-header.vue'
+import LandingStage from '@/views/login/components/landing-stage.vue'
 
 import AppIconDemo from './demos/basic/app-icon-demo.vue'
 import LottieDemo from './demos/basic/lottie-demo.vue'
@@ -51,7 +51,7 @@ const componentDocs: ComponentDoc[] = [
     key: 'app-icon',
     name: 'AppIcon',
     group: '基础能力',
-    path: '@/components/AppIcon',
+    path: '@/components/app-icon',
     icon: 'sparkles',
     summary: '项目统一的 Lucide 图标入口，按 name 按需异步加载，避免业务侧直接散落引入图标包。',
     description:
@@ -67,7 +67,7 @@ const componentDocs: ComponentDoc[] = [
     key: 'lottie',
     name: 'Lottie',
     group: '基础能力',
-    path: '@/components/Lottie',
+    path: '@/components/lottie',
     icon: 'badge-play',
     summary: '封装 lottie-web，把 AE 导出的 JSON 动效挂到 DOM，并通过事件把动画实例交还给业务。',
     description:
@@ -84,14 +84,14 @@ const componentDocs: ComponentDoc[] = [
     key: 'table',
     name: 'MasonTable',
     group: '数据展示',
-    path: '@/components/Table',
+    path: '@/components/table',
     icon: 'table-2',
     summary: '基于 Element Plus Table 的业务封装：列配置驱动、统一分页，并内置详情 / 编辑 / 删除操作列事件。',
     description:
       'MasonTable 的设计原则是“不破坏原 el-table 能力，只补齐项目通用逻辑”。通过 columns 描述列结构，pagination 控制是否展示分页与总数；操作列可用内置 DETAIL / EDIT / DELETE 符号，既可绑定列级 action，也可监听组件事件。适合绝大多数后台列表页作为默认表格底座。',
     api: [
       { name: 'columns', desc: '列配置集合；操作列需 prop=TABLE_COLUMN_OPTS + operateList', type: 'Array', defaultValue: '[]' },
-      { name: 'TABLE_COLUMN_OPERATE', desc: '从 @/components/Table/constants 导出：DETAIL / EDIT / DELETE，用作 operateList key', type: 'export', defaultValue: '-' },
+      { name: 'TABLE_COLUMN_OPERATE', desc: '从 @/components/table/constants 导出：DETAIL / EDIT / DELETE，用作 operateList key', type: 'export', defaultValue: '-' },
       { name: 'pagination', desc: '分页配置，isShow 控制显隐，total 为总条数', type: 'object', defaultValue: '{ isShow: true, total: 0 }' },
       { name: 'expand', desc: '是否启用展开行', type: 'boolean', defaultValue: 'false' },
       { name: 'tableColumnOptions', desc: '透传给列的额外属性集合', type: 'object', defaultValue: '{}' },
@@ -104,7 +104,7 @@ const componentDocs: ComponentDoc[] = [
     key: 'custom-table',
     name: 'CustomTable',
     group: '数据展示',
-    path: '@/components/CustomTable',
+    path: '@/components/custom-table',
     icon: 'columns-3',
     summary: '在 MasonTable 之上叠加列设置与样式设置，适合用户需要自定义展示字段和表格观感的复杂列表。',
     description:
@@ -120,7 +120,7 @@ const componentDocs: ComponentDoc[] = [
     key: 'toast',
     name: 'Toast',
     group: '反馈与状态',
-    path: '@/components/Toast',
+    path: '@/components/toast',
     icon: 'message-circle',
     summary: '统一封装 Element Plus Message、MessageBox、Notification，提供 useMessage / useMessageBox / useNotify 三套调用入口。',
     description:
@@ -135,7 +135,7 @@ const componentDocs: ComponentDoc[] = [
     key: 'loading',
     name: 'FullLoading',
     group: '反馈与状态',
-    path: '@/components/Loading/full-loading.vue',
+    path: '@/components/loading/full-loading.vue',
     icon: 'loader-circle',
     summary: '全屏遮罩加载态，覆盖整页并阻断交互，适合应用冷启动、权限初始化或长任务等待。',
     description:
@@ -148,7 +148,7 @@ const componentDocs: ComponentDoc[] = [
     key: 'error-message',
     name: 'ErrorMessage',
     group: '反馈与状态',
-    path: '@/components/ErrorMessage',
+    path: '@/components/error-message',
     icon: 'triangle-alert',
     summary: '统一的 403 / 404 / 500 异常状态页，路由可直接挂载，保证错误场景视觉与返回操作一致。',
     description:
@@ -163,7 +163,7 @@ const componentDocs: ComponentDoc[] = [
     key: 'watermark',
     name: 'Watermark',
     group: '系统能力',
-    path: '@/components/Watermark',
+    path: '@/components/watermark',
     icon: 'waves',
     summary: '基于 Element Plus Watermark 的全局水印层，可配置文案、字号、颜色、旋转、间距与层级。',
     description:

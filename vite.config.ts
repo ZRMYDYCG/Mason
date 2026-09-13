@@ -229,10 +229,15 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
               }
               return 'vendor'
             }
-            if (id.includes('src/views') || id.includes('src/pages')) {
+            // mdx 静态引用了 views/document 组件；必须与 views 同 chunk，
+            // 否则会形成 index ↔ views 循环依赖，生产环境出现 `_export_sfc is not a function`（压缩后为 M）。
+            if (
+              id.includes('/src/views/') ||
+              id.includes('/src/pages/') ||
+              id.includes('/src/mdx/')
+            ) {
               return 'views'
             }
-            return 'src'
           }
         },
         treeshake: {

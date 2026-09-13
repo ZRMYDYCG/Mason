@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import Watermark from '@/components/Watermark/index.vue'
+import Watermark from '@/components/watermark/index.vue'
 import DocExample from '../../components/doc-example.vue'
 
 const visible = ref(true)
@@ -17,7 +17,7 @@ const zIndex = ref(8)
 const liveCode = computed(
   () => `<script setup>
 import { ref } from 'vue'
-import Watermark from '@/components/Watermark/index.vue'
+import Watermark from '@/components/watermark/index.vue'
 
 const visible = ref(${visible.value})
 const content = ref('${content.value.replace(/'/g, "\\'")}')

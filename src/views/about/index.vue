@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AppIcon from '@/components/AppIcon/index.vue'
-import LandingFooter from '@/views/Login/components/landing-footer.vue'
-import LandingHeader from '@/views/Login/components/landing-header.vue'
-import LandingStage from '@/views/Login/components/landing-stage.vue'
+import AppIcon from '@/components/app-icon/index.vue'
+import LandingFooter from '@/views/login/components/landing-footer.vue'
+import LandingHeader from '@/views/login/components/landing-header.vue'
+import LandingStage from '@/views/login/components/landing-stage.vue'
 
 const navLinks = [
   { label: '文档', href: '/docs' },
