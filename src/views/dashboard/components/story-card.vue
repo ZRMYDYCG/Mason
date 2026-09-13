@@ -32,8 +32,8 @@ const watchStory = () => {
   overflow: hidden;
   background-position: center;
   background-size: cover;
-  border-radius: var(--radius-2xl);
   border: var(--box-border);
+  border-radius: var(--radius-2xl);
   box-shadow: var(--box-shadow);
 }
 
@@ -54,7 +54,7 @@ const watchStory = () => {
   font-size: clamp(22px, 1.8vw, 28px);
   font-weight: 650;
   line-height: 1.25;
-  color: #fff;
+  color: #ffffff;
   letter-spacing: -0.01em;
 }
 
@@ -65,7 +65,7 @@ const watchStory = () => {
   padding: 0;
   font-size: 13px;
   font-weight: 550;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   background: none;
   border: none;
@@ -77,8 +77,8 @@ const watchStory = () => {
   justify-content: center;
   width: 36px;
   height: 36px;
-  color: #111;
-  background: #fff;
+  color: #111111;
+  background: #ffffff;
   border-radius: var(--radius-full);
 }
 </style>

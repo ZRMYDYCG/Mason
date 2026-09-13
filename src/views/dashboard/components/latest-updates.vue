@@ -126,7 +126,7 @@ const items = computed(() =>
 }
 
 .icon[data-tone='red'] {
-  color: #c44;
+  color: #cc4444;
   background: color-mix(in srgb, #ef5b5b 18%, transparent);
 }
 

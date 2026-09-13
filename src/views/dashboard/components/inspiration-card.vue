@@ -54,8 +54,8 @@ onBeforeUnmount(() => {
   overflow: hidden;
   background-position: center;
   background-size: cover;
-  border-radius: var(--radius-2xl);
   border: var(--box-border);
+  border-radius: var(--radius-2xl);
   box-shadow: var(--box-shadow);
 }
 
@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
   position: relative;
   z-index: 1;
   margin: 0;
-  color: #fff;
+  color: #ffffff;
 }
 
 .quote p {
@@ -108,6 +108,6 @@ onBeforeUnmount(() => {
 
 .dot.active {
   width: 18px;
-  background: #fff;
+  background: #ffffff;
 }
 </style>

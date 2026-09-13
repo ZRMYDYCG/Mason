@@ -46,9 +46,9 @@ const explore = () => {
   margin: 0 0 12px;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.14em;
   color: var(--text-tertiary);
   text-transform: uppercase;
+  letter-spacing: 0.14em;
 }
 
 .title {
@@ -108,7 +108,7 @@ const explore = () => {
   font-style: italic;
   font-weight: 500;
   line-height: 1.2;
-  color: #fff;
+  color: #ffffff;
   text-shadow: 0 8px 24px rgb(0 0 0 / 35%);
 }
 
