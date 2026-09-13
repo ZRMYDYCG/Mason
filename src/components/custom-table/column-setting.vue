@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { resolveComponent, h, nextTick, computed } from 'vue'
-import MasonTable from '../Table/index.vue'
+import MasonTable from '../table/index.vue'
 
 interface IColumnSettingProps {
   tableColumns: any[]

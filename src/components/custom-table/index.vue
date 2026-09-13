@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, useAttrs, computed, watch } from 'vue'
-import MasonTable from '../Table/index.vue'
+import MasonTable from '../table/index.vue'
 import MasonStyleSetting from './style-setting.vue'
 import MasonColumnSetting from './column-setting.vue'
 
