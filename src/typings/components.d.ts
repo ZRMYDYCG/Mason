@@ -69,11 +69,11 @@ declare module 'vue' {
     ElTreeSelect: typeof import('element-plus/es')['ElTreeSelect']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     ElWatermark: typeof import('element-plus/es')['ElWatermark']
-    FullLoading: typeof import('./../components/Loading/full-loading.vue')['default']
-    Lottie: typeof import('./../components/Lottie/index.vue')['default']
+    FullLoading: typeof import('./../components/loading/full-loading.vue')['default']
+    Lottie: typeof import('./../components/lottie/index.vue')['default']
     StyleSetting: typeof import('./../components/custom-table/style-setting.vue')['default']
-    Table: typeof import('./../components/Table/index.vue')['default']
-    Watermark: typeof import('./../components/Watermark/index.vue')['default']
+    Table: typeof import('./../components/table/index.vue')['default']
+    Watermark: typeof import('./../components/watermark/index.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

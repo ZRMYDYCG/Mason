@@ -1,19 +1,28 @@
 <script setup lang="ts">
 import 'vue-waterfall-plugin-next/dist/style.css'
+import 'viewerjs/dist/viewer.css'
 import { random, times } from 'lodash-es'
-import { reactive, ref, onMounted } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 import { LazyImg, Waterfall } from 'vue-waterfall-plugin-next'
+import { api as viewerApi } from 'v-viewer'
 import { getRandomImg } from '@/utils'
 import logo from '@/assets/images/logo.png'
 
-const waterFallRef = ref<HTMLElement>()
-const isMounted = ref(false)
+const PAGE_SIZE = 10
+const MAX_COUNT = 100
+const LOAD_OFFSET = 200
+
+type WaterfallItem = {
+  id: string
+  url: string
+}
+
+const loadMoreRef = ref<HTMLElement>()
 const loading = ref(true)
 const moreLoading = ref(false)
 
-onMounted(() => {
-  isMounted.value = true
-})
+let loadObserver: IntersectionObserver | null = null
+let scrollRoot: HTMLElement | null = null
 
 const generateUniqueID = () => {
   const timestamp = Date.now().toString(36)
@@ -21,13 +30,15 @@ const generateUniqueID = () => {
   return `${timestamp}-${randomness}`
 }
 
-const getList = (pageSize = 10) =>
+const getList = (pageSize = PAGE_SIZE): WaterfallItem[] =>
   times(pageSize, () => ({
     id: generateUniqueID(),
     url: getRandomImg(1, 'waterfall') as string
   }))
 
-const list = ref(getList(20))
+const list = ref<WaterfallItem[]>(getList(20))
+const hasMore = computed(() => list.value.length < MAX_COUNT)
+const previewImages = computed(() => list.value.map((item) => item.url))
 
 const options = reactive({
   rowKey: 'id',
@@ -55,7 +66,7 @@ const options = reactive({
   loadProps: {
     loading: logo,
     error: logo,
-    ratioCalculator: (width: number, height: number) => {
+    ratioCalculator: () => {
       const minRatio = random(3, 4, true)
       const maxRatio = random(3, 4, true)
       return minRatio / maxRatio
@@ -67,62 +78,161 @@ const options = reactive({
   align: 'center'
 })
 
-const afterRender = () => {
-  loading.value = false
+const getScrollRoot = () =>
+  (document.querySelector('.el-main') as HTMLElement | null) ||
+  (document.scrollingElement as HTMLElement | null)
+
+const handleLoadMore = async () => {
+  if (loading.value || moreLoading.value || !hasMore.value) return
+
+  moreLoading.value = true
+  await new Promise((resolve) => setTimeout(resolve, 400))
+  const remain = MAX_COUNT - list.value.length
+  list.value.push(...getList(Math.min(PAGE_SIZE, remain)))
+  moreLoading.value = false
+  await nextTick()
+  checkReachBottom()
 }
 
-const handleLoadMore = () => {
-  moreLoading.value = true
-  setTimeout(() => {
-    list.value.push(...getList())
-    moreLoading.value = false
-  }, 1000)
+const checkReachBottom = () => {
+  const scroller = scrollRoot || getScrollRoot()
+  if (!scroller || loading.value || moreLoading.value || !hasMore.value) return
+
+  const remain = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight
+  if (scroller.scrollHeight <= scroller.clientHeight + LOAD_OFFSET || remain <= LOAD_OFFSET) {
+    handleLoadMore()
+  }
 }
+
+const onScroll = () => {
+  checkReachBottom()
+}
+
+const openPreview = (index: number) => {
+  viewerApi({
+    images: previewImages.value,
+    options: {
+      initialViewIndex: index,
+      navbar: true,
+      toolbar: true,
+      title: false,
+      movable: true,
+      zoomable: true,
+      rotatable: true,
+      scalable: true,
+      transition: true,
+      fullscreen: true
+    }
+  })
+}
+
+const setupLoadObserver = async () => {
+  await nextTick()
+  const sentinel = loadMoreRef.value
+  if (!sentinel) return
+
+  scrollRoot = getScrollRoot()
+  loadObserver?.disconnect()
+  loadObserver = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        handleLoadMore()
+      }
+    },
+    {
+      root: scrollRoot,
+      rootMargin: `${LOAD_OFFSET}px 0px`,
+      threshold: 0
+    }
+  )
+  loadObserver.observe(sentinel)
+  checkReachBottom()
+}
+
+const afterRender = async () => {
+  loading.value = false
+  await setupLoadObserver()
+}
+
+onMounted(() => {
+  scrollRoot = getScrollRoot()
+  scrollRoot?.addEventListener('scroll', onScroll, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  scrollRoot?.removeEventListener('scroll', onScroll)
+  loadObserver?.disconnect()
+  loadObserver = null
+  scrollRoot = null
+})
 </script>
 
 <template>
-  <div class="h-full flex flex-col overflow-hidden p-4">
-    <div
-      ref="waterFallRef"
-      class="waterfall-scroller flex-auto overflow-y-auto"
-      v-loading="loading"
-    >
-      <Waterfall :list="list" v-bind="options" @after-render="afterRender">
-        <template #default="{ item }">
-          <LazyImg :url="item.url" class="w-full block" />
-        </template>
-      </Waterfall>
+  <div class="waterfall-page" v-loading="loading">
+    <Waterfall :list="list" v-bind="options" @after-render="afterRender">
+      <template #default="{ item, index }">
+        <button class="waterfall-item" type="button" @click="openPreview(index)">
+          <LazyImg :url="item.url" class="waterfall-item__img" />
+        </button>
+      </template>
+    </Waterfall>
 
-      <div v-if="!loading" class="flex justify-center mt-4 pb-4">
-        <el-button
-          v-if="list.length < 100"
-          type="primary"
-          :loading="moreLoading"
-          @click="handleLoadMore"
-        >
-          加载更多
-        </el-button>
-        <p v-else class="text-gray-400">没有更多了</p>
-      </div>
-      <el-backtop v-if="isMounted" target=".waterfall-scroller" :right="40" :bottom="40" />
+    <div ref="loadMoreRef" class="load-more-sentinel">
+      <p v-if="moreLoading" class="load-more-text">加载中...</p>
+      <p v-else-if="!loading && !hasMore" class="load-more-text">没有更多了</p>
+      <p v-else-if="!loading" class="load-more-text">下滑加载更多</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-.card-container {
-  .lazy__img[lazy='loading'] {
-    opacity: 0;
-    transition: opacity 2s;
-  }
+.waterfall-page {
+  min-height: 100%;
+  padding: 6px;
+}
 
-  .lazy__img[lazy='loaded'] {
-    opacity: 1;
-  }
+.waterfall-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm, 8px);
+}
 
-  .lazy__img[lazy='error'] {
-    opacity: 1;
-    transform: scale(1);
-  }
+.waterfall-item__img {
+  display: block;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.waterfall-item:hover .waterfall-item__img {
+  transform: scale(1.02);
+}
+
+.load-more-sentinel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+  padding: 20px 0 28px;
+}
+
+.load-more-text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-tertiary, #9ca3af);
+}
+
+.lazy__img[lazy='loading'] {
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.lazy__img[lazy='loaded'],
+.lazy__img[lazy='error'] {
+  opacity: 1;
 }
 </style>
