@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import MenuDialog from './components/menuDialog.vue'
-import { onMounted, ref, reactive, toRaw } from 'vue'
+import CustomTable from '@/components/CustomTable/index.vue'
+import { h, onMounted, ref, reactive, toRaw, resolveComponent } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { deleteMenu, getMenuList } from '@/api/modules/system'
 import { Menu } from '@/api/interface/system'
@@ -34,6 +35,113 @@ const enableOptions = [
     label: '关闭'
   }
 ]
+
+const renderBoolTag = (value: boolean, trueText = '开启', falseText = '关闭') => ({
+  setup() {
+    const ElTag = resolveComponent('ElTag')
+    return () =>
+      h(ElTag, { type: value ? 'success' : 'danger' }, () => (value ? trueText : falseText))
+  }
+})
+
+const columns = ref([
+  {
+    prop: 'meta.title',
+    label: '菜单名称',
+    width: 150,
+    isVisible: true,
+    showOverflowTooltip: true,
+    dataFormatConf: {
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: Menu }) => row.meta?.title
+    }
+  },
+  {
+    prop: 'name',
+    label: '菜单name',
+    width: 150,
+    isVisible: true,
+    showOverflowTooltip: true
+  },
+  { prop: 'sort', label: '顺序', width: 80, isVisible: true },
+  {
+    prop: 'meta.icon',
+    label: '菜单图标',
+    width: 100,
+    isVisible: true,
+    dataFormatConf: {
+      renderType: 'html',
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: Menu }) => ({
+        setup() {
+          return () =>
+            h(
+              'div',
+              { style: { display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+              row.meta?.icon ? [h(AppIcon, { name: row.meta.icon })] : []
+            )
+        }
+      })
+    }
+  },
+  {
+    prop: 'path',
+    label: '菜单路径',
+    width: 300,
+    isVisible: true,
+    showOverflowTooltip: true
+  },
+  {
+    prop: 'meta.isEnable',
+    label: '是否启用',
+    width: 100,
+    isVisible: true,
+    dataFormatConf: {
+      renderType: 'html',
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: Menu }) => renderBoolTag(!!row.meta?.isEnable)
+    }
+  },
+  {
+    prop: 'meta.isAffix',
+    label: '是否固定',
+    width: 100,
+    isVisible: true,
+    dataFormatConf: {
+      renderType: 'html',
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: Menu }) => renderBoolTag(!!row.meta?.isAffix)
+    }
+  },
+  {
+    prop: 'meta.isKeepAlive',
+    label: '是否缓存',
+    width: 100,
+    isVisible: true,
+    dataFormatConf: {
+      renderType: 'html',
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: Menu }) => renderBoolTag(!!row.meta?.isKeepAlive)
+    }
+  },
+  {
+    prop: 'meta.isLink',
+    label: '是否链接',
+    width: 100,
+    isVisible: true,
+    dataFormatConf: {
+      renderType: 'html',
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: Menu }) => renderBoolTag(!!row.meta?.isLink, '是', '否')
+    }
+  },
+  {
+    prop: 'TABLE_COLUMN_OPTS',
+    label: '操作',
+    fixed: 'right',
+    isVisible: true
+  }
+])
 
 async function onSearch() {
   const { data } = await getMenuList(toRaw(searchForm))
@@ -97,62 +205,39 @@ const handleEdit = (row: Menu) => {
           <AppIcon name="plus" class="btn-icon mr4" /><span>新增菜单</span>
         </el-button>
       </div>
-      <el-table class="table-content" :data="tableData" row-key="id" style="width: 100%">
-        <el-table-column prop="meta.title" label="菜单名称" show-overflow-tooltip width="150" />
-        <el-table-column prop="name" label="菜单name" show-overflow-tooltip width="150" />
-        <el-table-column prop="sort" label="顺序" width="80" />
-        <el-table-column prop="meta.icon" label="菜单图标" align="center" width="100">
-          <template #default="scope">
-            <div style="display: flex; align-items: center; justify-content: center">
-              <AppIcon v-if="scope.row.meta.icon" :name="scope.row.meta.icon" />
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column prop="path" label="菜单路径" show-overflow-tooltip width="300" />
-        <el-table-column prop="meta.isEnable" label="是否启用" width="100">
-          <template #default="{ row }">
-            <el-tag type="success" v-if="row.meta.isEnable">开启</el-tag>
-            <el-tag type="danger" v-else>关闭</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column prop="meta.isAffix" label="是否固定" width="100">
-          <template #default="{ row }">
-            <el-tag type="success" v-if="row.meta.isAffix">开启</el-tag>
-            <el-tag type="danger" v-else>关闭</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column prop="meta.isKeepAlive" label="是否缓存" width="100">
-          <template #default="{ row }">
-            <el-tag type="success" v-if="row.meta.isKeepAlive">开启</el-tag>
-            <el-tag type="danger" v-else>关闭</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column prop="meta.isLink" label="是否链接" width="100">
-          <template #default="{ row }">
-            <el-tag type="success" v-if="row.meta.isLink">是</el-tag>
-            <el-tag type="danger" v-else>否</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column fixed="right" prop="operation" label="操作" align="center">
-          <template #default="{ row }">
-            <el-button link type="primary" size="small" :disabled="isMockMode" @click="handleEdit(row)">
-              <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
-            </el-button>
-            <el-popconfirm
-              @confirm="handleDelete(row.id)"
-              confirm-button-text="确认"
-              cancel-button-text="否"
-              title="确认删除该菜单?"
-            >
-              <template #reference>
-                <el-button link type="primary" size="small" :disabled="isMockMode">
-                  <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
-                </el-button>
-              </template>
-            </el-popconfirm>
-          </template>
-        </el-table-column>
-      </el-table>
+      <CustomTable
+        class="table-content"
+        :columns="columns"
+        :data="tableData"
+        :is-show-setting="true"
+        :pagination="{ isShow: false }"
+        row-key="id"
+        border
+      >
+        <template #otherOperate="{ row }">
+          <el-button
+            link
+            type="primary"
+            size="small"
+            :disabled="isMockMode"
+            @click="handleEdit(row)"
+          >
+            <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
+          </el-button>
+          <el-popconfirm
+            @confirm="handleDelete(row.id)"
+            confirm-button-text="确认"
+            cancel-button-text="否"
+            title="确认删除该菜单?"
+          >
+            <template #reference>
+              <el-button link type="primary" size="small" :disabled="isMockMode">
+                <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
+              </el-button>
+            </template>
+          </el-popconfirm>
+        </template>
+      </CustomTable>
     </div>
     <MenuDialog ref="menuDialogRef" @refresh="onSearch" />
   </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import FullLoading from '@/components/Loading/full-loading.vue'
-import DocExample from '../../components/DocExample.vue'
+import DocExample from '../../components/doc-example.vue'
 
 const showLoading = ref(false)
 

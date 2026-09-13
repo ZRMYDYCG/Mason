@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import MasonTable from '@/components/Table/index.vue'
 import { TABLE_COLUMN_OPERATE } from '@/components/Table/constants'
 import { useMessage } from '@/components/Toast'
-import DocExample from '../../components/DocExample.vue'
+import DocExample from '../../components/doc-example.vue'
 
 const message = useMessage()
 

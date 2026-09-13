@@ -5,14 +5,14 @@ import LandingFooter from '@/views/Login/components/landing-footer.vue'
 import LandingHeader from '@/views/Login/components/landing-header.vue'
 import LandingStage from '@/views/Login/components/landing-stage.vue'
 
-import AppIconDemo from './demos/basic/AppIconDemo.vue'
-import LottieDemo from './demos/basic/LottieDemo.vue'
-import MasonTableDemo from './demos/data-display/MasonTableDemo.vue'
-import CustomTableDemo from './demos/data-display/CustomTableDemo.vue'
-import ToastDemo from './demos/feedback/ToastDemo.vue'
-import FullLoadingDemo from './demos/feedback/FullLoadingDemo.vue'
-import ErrorMessageDemo from './demos/feedback/ErrorMessageDemo.vue'
-import WatermarkDemo from './demos/system/WatermarkDemo.vue'
+import AppIconDemo from './demos/basic/app-icon-demo.vue'
+import LottieDemo from './demos/basic/lottie-demo.vue'
+import MasonTableDemo from './demos/data-display/mason-table-demo.vue'
+import CustomTableDemo from './demos/data-display/custom-table-demo.vue'
+import ToastDemo from './demos/feedback/toast-demo.vue'
+import FullLoadingDemo from './demos/feedback/full-loading-demo.vue'
+import ErrorMessageDemo from './demos/feedback/error-message-demo.vue'
+import WatermarkDemo from './demos/system/watermark-demo.vue'
 
 type ComponentDoc = {
   key: string

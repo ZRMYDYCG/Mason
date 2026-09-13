@@ -64,87 +64,47 @@
       </div>
 
       <div class="table-container">
-        <el-table class="table-content" :data="tableData" style="width: 100%">
-          <el-table-column prop="id" :label="t('systemLog.label.id')" width="80" />
-          <el-table-column prop="username" :label="t('systemLog.label.user')" width="160">
-            <template #default="{ row }">
-              {{ row.username || row.userId || '-' }}
-            </template>
-          </el-table-column>
-          <el-table-column prop="method" :label="t('systemLog.label.method')" width="110">
-            <template #default="{ row }">
-              <el-tag :type="getMethodTag(row.method)" size="small">{{ row.method }}</el-tag>
-            </template>
-          </el-table-column>
-          <el-table-column
-            prop="path"
-            :label="t('systemLog.label.path')"
-            min-width="200"
-            show-overflow-tooltip
-          />
-          <el-table-column prop="status" :label="t('systemLog.label.status')" width="110">
-            <template #default="{ row }">
-              <el-tag :type="row.status >= 400 ? 'danger' : 'success'" size="small">
-                {{ row.status }}
-              </el-tag>
-            </template>
-          </el-table-column>
-          <el-table-column prop="ip" :label="t('systemLog.label.ip')" width="140" />
-          <el-table-column
-            prop="duration"
-            :label="t('systemLog.label.duration')"
-            width="140"
-          />
-          <el-table-column prop="createdAt" :label="t('systemLog.label.time')" width="180" />
-          <el-table-column
-            prop="requestParams"
-            :label="t('systemLog.label.params')"
-            min-width="220"
-            show-overflow-tooltip
-          />
-          <el-table-column
-            fixed="right"
-            :label="t('systemLog.label.actions')"
-            width="120"
-            align="center"
-          >
-            <template #default="{ row }">
-              <el-popconfirm
-                @confirm="handleDelete(row.id)"
-                :confirm-button-text="t('systemLog.action.confirm')"
-                :cancel-button-text="t('systemLog.action.cancel')"
-                :title="t('systemLog.message.deleteConfirm')"
-              >
-                <template #reference>
-                  <el-button link type="primary" size="small">{{
-                    t('systemLog.action.delete')
-                  }}</el-button>
-                </template>
-              </el-popconfirm>
-            </template>
-          </el-table-column>
-        </el-table>
-        <el-pagination
-          class="table-pagination mt18"
-          :total="pagination.total"
-          :current-page="pagination.currentPage"
-          :page-size="pagination.pageSize"
-          :page-sizes="[10, 25, 50, 100]"
-          layout="total, sizes, prev, pager, next, jumper"
+        <CustomTable
+          class="table-content"
+          :columns="columns"
+          :data="tableData"
+          :is-show-setting="true"
+          :pagination="{
+            isShow: true,
+            total: pagination.total,
+            layout: 'total, sizes, prev, pager, next, jumper'
+          }"
+          border
+          @page-change="handleCurrentChange"
           @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
+        >
+          <template #otherOperate="{ row }">
+            <el-popconfirm
+              @confirm="handleDelete(row.id)"
+              :confirm-button-text="t('systemLog.action.confirm')"
+              :cancel-button-text="t('systemLog.action.cancel')"
+              :title="t('systemLog.message.deleteConfirm')"
+            >
+              <template #reference>
+                <el-button link type="primary" size="small">{{
+                  t('systemLog.action.delete')
+                }}</el-button>
+              </template>
+            </el-popconfirm>
+          </template>
+        </CustomTable>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue'
+import { computed, h, onMounted, reactive, ref, resolveComponent } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 import { deleteSystemLog, getSystemLogList } from '@/api/modules/system'
 import type { SystemLog } from '@/api/interface/system'
+import CustomTable from '@/components/CustomTable/index.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 
@@ -180,6 +140,82 @@ const getMethodTag = (method: string) => {
       return 'info'
   }
 }
+
+const columns = computed(() => [
+  { prop: 'id', label: t('systemLog.label.id'), width: 80, isVisible: true },
+  {
+    prop: 'username',
+    label: t('systemLog.label.user'),
+    width: 160,
+    isVisible: true,
+    dataFormatConf: {
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: SystemLog }) => row.username || row.userId || '-'
+    }
+  },
+  {
+    prop: 'method',
+    label: t('systemLog.label.method'),
+    width: 110,
+    isVisible: true,
+    dataFormatConf: {
+      renderType: 'html',
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: SystemLog }) => ({
+        setup() {
+          const ElTag = resolveComponent('ElTag')
+          return () =>
+            h(ElTag, { type: getMethodTag(row.method), size: 'small' }, () => row.method)
+        }
+      })
+    }
+  },
+  {
+    prop: 'path',
+    label: t('systemLog.label.path'),
+    minWidth: 200,
+    isVisible: true,
+    showOverflowTooltip: true
+  },
+  {
+    prop: 'status',
+    label: t('systemLog.label.status'),
+    width: 110,
+    isVisible: true,
+    dataFormatConf: {
+      renderType: 'html',
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: SystemLog }) => ({
+        setup() {
+          const ElTag = resolveComponent('ElTag')
+          return () =>
+            h(
+              ElTag,
+              { type: row.status >= 400 ? 'danger' : 'success', size: 'small' },
+              () => String(row.status)
+            )
+        }
+      })
+    }
+  },
+  { prop: 'ip', label: t('systemLog.label.ip'), width: 140, isVisible: true },
+  { prop: 'duration', label: t('systemLog.label.duration'), width: 140, isVisible: true },
+  { prop: 'createdAt', label: t('systemLog.label.time'), width: 180, isVisible: true },
+  {
+    prop: 'requestParams',
+    label: t('systemLog.label.params'),
+    minWidth: 220,
+    isVisible: true,
+    showOverflowTooltip: true
+  },
+  {
+    prop: 'TABLE_COLUMN_OPTS',
+    label: t('systemLog.label.actions'),
+    width: 120,
+    fixed: 'right',
+    isVisible: true
+  }
+])
 
 const onSearch = async (reset = false) => {
   if (reset) pagination.currentPage = 1
@@ -254,9 +290,5 @@ onMounted(() => {
 
 .table-content {
   flex: 1;
-}
-
-.table-pagination {
-  justify-content: right;
 }
 </style>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppIcon from '@/components/AppIcon/index.vue'
 import { useMessage, useMessageBox, useNotify } from '@/components/Toast'
-import DocExample from '../../components/DocExample.vue'
+import DocExample from '../../components/doc-example.vue'
 
 const message = useMessage()
 const box = useMessageBox()

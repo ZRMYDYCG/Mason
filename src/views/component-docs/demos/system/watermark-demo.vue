@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import Watermark from '@/components/Watermark/index.vue'
-import DocExample from '../../components/DocExample.vue'
+import DocExample from '../../components/doc-example.vue'
 
 const visible = ref(true)
 const content = ref('Mason • Admin')

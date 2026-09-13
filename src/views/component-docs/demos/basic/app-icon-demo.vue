@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import AppIcon from '@/components/AppIcon/index.vue'
-import DocExample from '../../components/DocExample.vue'
+import DocExample from '../../components/doc-example.vue'
 
 const iconSize = ref(28)
 const iconColor = ref('#3b82f6')

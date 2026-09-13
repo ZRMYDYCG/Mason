@@ -33,51 +33,38 @@
             <AppIcon name="plus" class="btn-icon mr4" /><span>新增用户</span>
           </el-button>
         </div>
-        <el-table class="table-content" :data="tableData" style="width: 100%">
-          <el-table-column prop="id" label="Id" width="50" />
-          <el-table-column prop="username" label="用户名" width="150" />
-          <el-table-column prop="name" label="昵称" width="150" />
-          <el-table-column prop="deptId" label="部门" width="150">
-            <template #default="{ row }">
-              {{ formatDeptName(row.deptId) }}
-            </template>
-          </el-table-column>
-          <el-table-column prop="email" label="邮箱" width="180" />
-          <el-table-column prop="phone" label="电话" width="120" />
-          <el-table-column prop="role" label="角色" width="150" />
-          <el-table-column prop="roleName" label="角色名称" width="150" />
-          <el-table-column prop="createdAt" label="创建时间" width="180" />
-          <el-table-column prop="remark" label="备注" width="180" />
-          <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
-            <template #default="{ row }">
-              <el-button link type="primary" size="small" @click="handleEdit(row)">
-                <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
-              </el-button>
-              <el-popconfirm
-                @confirm="handleDelete(row.id)"
-                confirm-button-text="确认"
-                cancel-button-text="否"
-                title="确认删除该用户?"
-              >
-                <template #reference>
-                  <el-button link type="primary" size="small">
-                    <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
-                  </el-button>
-                </template>
-              </el-popconfirm>
-            </template>
-          </el-table-column>
-        </el-table>
-        <el-pagination
-          class="table-pagination mt18"
-          :total="pagination.total"
-          :current-page="pagination.currentPage"
-          :page-size="pagination.pageSize"
-          :page-sizes="[10, 25, 50, 100]"
-          layout="total, sizes, prev, pager, next, jumper"
+        <CustomTable
+          class="table-content"
+          :columns="columns"
+          :data="tableData"
+          :is-show-setting="true"
+          :pagination="{
+            isShow: true,
+            total: pagination.total,
+            layout: 'total, sizes, prev, pager, next, jumper'
+          }"
+          border
+          @page-change="handleCurrentChange"
           @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
+        >
+          <template #otherOperate="{ row }">
+            <el-button link type="primary" size="small" @click="handleEdit(row)">
+              <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
+            </el-button>
+            <el-popconfirm
+              @confirm="handleDelete(row.id)"
+              confirm-button-text="确认"
+              cancel-button-text="否"
+              title="确认删除该用户?"
+            >
+              <template #reference>
+                <el-button link type="primary" size="small">
+                  <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
+                </el-button>
+              </template>
+            </el-popconfirm>
+          </template>
+        </CustomTable>
       </div>
     </div>
     <UserDialog ref="userDialogRef" @refresh="onSearch" />
@@ -86,6 +73,7 @@
 
 <script lang="ts" setup>
 import UserDialog from './components/userDialog.vue'
+import CustomTable from '@/components/CustomTable/index.vue'
 import { onMounted, ref, reactive, watch } from 'vue'
 import { ElMessage, FormInstance, ElTree } from 'element-plus'
 import { deleteUser, getDepartmentsAll, getUserList } from '@/api/modules/system'
@@ -135,6 +123,34 @@ const formatDeptName = (id: number) => {
   return obj?.name
 }
 
+const columns = ref([
+  { prop: 'id', label: 'Id', width: 50, isVisible: true },
+  { prop: 'username', label: '用户名', width: 150, isVisible: true },
+  { prop: 'name', label: '昵称', width: 150, isVisible: true },
+  {
+    prop: 'deptId',
+    label: '部门',
+    width: 150,
+    isVisible: true,
+    dataFormatConf: {
+      formatFunction: (value: number) => formatDeptName(value)
+    }
+  },
+  { prop: 'email', label: '邮箱', width: 180, isVisible: true },
+  { prop: 'phone', label: '电话', width: 120, isVisible: true },
+  { prop: 'role', label: '角色', width: 150, isVisible: true },
+  { prop: 'roleName', label: '角色名称', width: 150, isVisible: true },
+  { prop: 'createdAt', label: '创建时间', width: 180, isVisible: true },
+  { prop: 'remark', label: '备注', width: 180, isVisible: true },
+  {
+    prop: 'TABLE_COLUMN_OPTS',
+    label: '操作',
+    width: 160,
+    fixed: 'right',
+    isVisible: true
+  }
+])
+
 onMounted(() => {
   initTreeData()
   onSearch()
@@ -167,6 +183,7 @@ async function onSearch() {
 
 const handleSizeChange = async (val: number) => {
   pagination.pageSize = val
+  pagination.currentPage = 1
   await onSearch()
 }
 const handleCurrentChange = async (val: number) => {
@@ -237,10 +254,6 @@ const handleEdit = (row: User) => {
 
       .table-content {
         flex: 1;
-      }
-
-      .table-pagination {
-        justify-content: right;
       }
     }
   }

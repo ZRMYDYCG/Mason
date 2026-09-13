@@ -5,43 +5,35 @@
         <AppIcon name="plus" class="btn-icon mr4" /><span>新增部门</span>
       </el-button>
     </div>
-    <el-table
-      default-expand-all
+    <CustomTable
       class="table-content"
+      :columns="columns"
       :data="tableData"
+      :is-show-setting="true"
+      :pagination="{ isShow: false }"
       row-key="id"
-      style="width: 100%"
+      default-expand-all
+      border
+      :table-column-options="{ showOverflowTooltip: true }"
     >
-      <el-table-column prop="name" label="部门名称" show-overflow-tooltip />
-      <el-table-column prop="id" label="部门ID" show-overflow-tooltip />
-      <el-table-column prop="sort" label="顺序" />
-      <!-- <el-table-column prop="isEnable" label="是否启用">
-        <template #default="{ row }">
-          <el-tag type="success" v-if="row.isEnable">开启</el-tag>
-          <el-tag type="danger" v-else>关闭</el-tag>
-        </template>
-      </el-table-column> -->
-
-      <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
-        <template #default="{ row }">
-          <el-button link type="primary" size="small" @click="handleEdit(row)">
-            <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
-          </el-button>
-          <el-popconfirm
-            @confirm="handleDelete(row.id)"
-            confirm-button-text="确认"
-            cancel-button-text="否"
-            title="确认删除该部门?"
-          >
-            <template #reference>
-              <el-button link type="primary" size="small">
-                <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
-              </el-button>
-            </template>
-          </el-popconfirm>
-        </template>
-      </el-table-column>
-    </el-table>
+      <template #otherOperate="{ row }">
+        <el-button link type="primary" size="small" @click="handleEdit(row)">
+          <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
+        </el-button>
+        <el-popconfirm
+          @confirm="handleDelete(row.id)"
+          confirm-button-text="确认"
+          cancel-button-text="否"
+          title="确认删除该部门?"
+        >
+          <template #reference>
+            <el-button link type="primary" size="small">
+              <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
+            </el-button>
+          </template>
+        </el-popconfirm>
+      </template>
+    </CustomTable>
     <DepartmentDialog ref="deptDialogRef" @refresh="onSearch" />
   </div>
 </template>
@@ -51,13 +43,27 @@ import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Department } from '@/api/interface/system'
 import { deleteDept, getDepartmentsAll } from '@/api/modules/system'
-
+import CustomTable from '@/components/CustomTable/index.vue'
 import DepartmentDialog from './components/departmentDialog.vue'
+
 onMounted(() => {
   onSearch()
 })
 
 const tableData = ref<Department[]>([])
+
+const columns = ref([
+  { prop: 'name', label: '部门名称', isVisible: true, showOverflowTooltip: true },
+  { prop: 'id', label: '部门ID', isVisible: true, showOverflowTooltip: true },
+  { prop: 'sort', label: '顺序', isVisible: true },
+  {
+    prop: 'TABLE_COLUMN_OPTS',
+    label: '操作',
+    width: 160,
+    fixed: 'right',
+    isVisible: true
+  }
+])
 
 async function onSearch() {
   const { data } = await getDepartmentsAll()

@@ -5,7 +5,7 @@ import MasonStyleSetting from './style-setting.vue'
 import MasonColumnSetting from './column-setting.vue'
 
 interface IMasonCustomTableProps {
-  isShowSetting: boolean
+  isShowSetting?: boolean
 }
 
 withDefaults(defineProps<IMasonCustomTableProps>(), {

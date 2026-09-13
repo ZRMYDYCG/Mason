@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import Lottie from '@/components/Lottie/index.vue'
-import DocExample from '../../components/DocExample.vue'
+import DocExample from '../../components/doc-example.vue'
 
 const animRef = ref<any>(null)
 const isPlaying = ref(true)

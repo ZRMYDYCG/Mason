@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import Error403 from '@/components/ErrorMessage/403.vue'
 import Error404 from '@/components/ErrorMessage/404.vue'
 import Error500 from '@/components/ErrorMessage/500.vue'
-import DocExample from '../../components/DocExample.vue'
+import DocExample from '../../components/doc-example.vue'
 
 const activeTab = ref<'403' | '404' | '500'>('404')
 const errorTabs = ['403', '404', '500'] as const

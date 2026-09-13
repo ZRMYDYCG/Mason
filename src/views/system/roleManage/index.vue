@@ -28,48 +28,38 @@
           <AppIcon name="plus" class="btn-icon mr4" /><span>新增角色</span>
         </el-button>
       </div>
-      <el-table class="table-content" :data="tableData" style="width: 100%">
-        <el-table-column prop="id" label="Id" width="50" />
-        <el-table-column prop="role" label="角色" width="150" />
-        <el-table-column prop="roleName" label="角色名称" width="150" />
-        <el-table-column prop="isSuper" label="超级管理员" width="150">
-          <template #default="{ row }">
-            <el-tag type="success" v-if="row.isSuper === 1">是</el-tag>
-            <el-tag type="danger" v-else>否</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column prop="createdAt" label="创建时间" width="180" />
-        <el-table-column prop="remark" label="备注" />
-        <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
-          <template #default="{ row }">
-            <el-button link type="primary" size="small" @click="handleEdit(row)">
-              <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
-            </el-button>
-            <el-popconfirm
-              @confirm="handleDelete(row.id)"
-              confirm-button-text="确认"
-              cancel-button-text="否"
-              title="确认删除该角色?"
-            >
-              <template #reference>
-                <el-button link type="primary" size="small">
-                  <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
-                </el-button>
-              </template>
-            </el-popconfirm>
-          </template>
-        </el-table-column>
-      </el-table>
-      <el-pagination
-        class="table-pagination mt18"
-        :total="pagination.total"
-        :current-page="pagination.currentPage"
-        :page-size="pagination.pageSize"
-        :page-sizes="[10, 25, 50, 100]"
-        layout="total, sizes, prev, pager, next, jumper"
+      <CustomTable
+        class="table-content"
+        :columns="columns"
+        :data="tableData"
+        :is-show-setting="true"
+        :pagination="{
+          isShow: true,
+          total: pagination.total,
+          layout: 'total, sizes, prev, pager, next, jumper'
+        }"
+        border
+        @page-change="handleCurrentChange"
         @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      >
+        <template #otherOperate="{ row }">
+          <el-button link type="primary" size="small" @click="handleEdit(row)">
+            <AppIcon name="square-pen" class="btn-icon mr4" /> <span>编辑</span>
+          </el-button>
+          <el-popconfirm
+            @confirm="handleDelete(row.id)"
+            confirm-button-text="确认"
+            cancel-button-text="否"
+            title="确认删除该角色?"
+          >
+            <template #reference>
+              <el-button link type="primary" size="small">
+                <AppIcon name="trash-2" class="btn-icon mr4" /><span>删除</span>
+              </el-button>
+            </template>
+          </el-popconfirm>
+        </template>
+      </CustomTable>
     </div>
     <RoleDialog ref="roleDialogRef" @refresh="onSearch" />
   </div>
@@ -77,7 +67,8 @@
 
 <script setup lang="ts">
 import RoleDialog from './components/roleDialog.vue'
-import { onMounted, ref, reactive } from 'vue'
+import CustomTable from '@/components/CustomTable/index.vue'
+import { h, onMounted, ref, reactive, resolveComponent } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { deleteRole, getRoleList } from '@/api/modules/system'
 import { Role } from '@/api/interface/system'
@@ -109,6 +100,42 @@ const superOptions = [
   }
 ]
 
+const columns = ref([
+  { prop: 'id', label: 'Id', width: 50, isVisible: true },
+  { prop: 'role', label: '角色', width: 150, isVisible: true },
+  { prop: 'roleName', label: '角色名称', width: 150, isVisible: true },
+  {
+    prop: 'isSuper',
+    label: '超级管理员',
+    width: 150,
+    isVisible: true,
+    dataFormatConf: {
+      renderType: 'html',
+      withScopeRow: true,
+      formatFunction: ({ row }: { row: Role }) => ({
+        setup() {
+          const ElTag = resolveComponent('ElTag')
+          return () =>
+            h(
+              ElTag,
+              { type: row.isSuper === 1 ? 'success' : 'danger' },
+              () => (row.isSuper === 1 ? '是' : '否')
+            )
+        }
+      })
+    }
+  },
+  { prop: 'createdAt', label: '创建时间', width: 180, isVisible: true },
+  { prop: 'remark', label: '备注', isVisible: true },
+  {
+    prop: 'TABLE_COLUMN_OPTS',
+    label: '操作',
+    width: 160,
+    fixed: 'right',
+    isVisible: true
+  }
+])
+
 const pagination = reactive({
   total: 0,
   pageSize: 10,
@@ -129,6 +156,7 @@ async function onSearch() {
 
 const handleSizeChange = async (val: number) => {
   pagination.pageSize = val
+  pagination.currentPage = 1
   await onSearch()
 }
 const handleCurrentChange = async (val: number) => {
