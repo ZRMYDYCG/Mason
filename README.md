@@ -12,6 +12,10 @@
   <img src="https://img.shields.io/badge/version-1.0.9-blue?style=flat-square" />
 </p>
 
+<p align="center">
+  <img src="./src/assets/images/landing/hero-banner.jpg" alt="Mason Dashboard" width="100%" />
+</p>
+
 ## 预览
 
 在线预览（Mock）https://admin.dev.versakit.online/login
