@@ -62,7 +62,7 @@ defineProps({
 <template>
   <LayoutShell>
     <template #beforeAside>
-      <div class="dual-menu-left">
+      <div class="dual-menu-left" :style="{ color: menuTheme.textColor }">
         <Logo />
         <el-scrollbar>
           <ul class="item-wrapper">

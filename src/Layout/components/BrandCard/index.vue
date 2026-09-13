@@ -76,7 +76,8 @@ const openDocs = () => {
   background-size: cover;
 }
 
-html.dark .brand-card {
+html.dark .brand-card,
+:global(.layout.is-chrome-dark) .brand-card {
   border-color: var(--border-light);
   opacity: 0.92;
 }

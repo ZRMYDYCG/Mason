@@ -15,18 +15,22 @@ const showWorkTab = computed(() => settingStore.showWorkTab)
 const isAtmosphere = computed(() => headerChrome.value === HeaderChromeEnum.ATMOSPHERE)
 const isSoft = computed(() => headerChrome.value === HeaderChromeEnum.SOFT)
 const isClassicLeft = computed(() => menuType.value === MenuTypeEnum.LEFT)
+/** Dark menu style or system dark — chrome (header + aside) uses night-mode treatment */
+const isChromeDark = computed(
+  () => isSystemDark.value || menuTheme.value.theme === MenuThemeEnum.DARK
+)
 
 const topbarBg = computed(() => menuTheme.value.tabBarBackground)
-const topbarTextColor = computed(() => {
-  if (!isSystemDark.value && menuTheme.value.theme === MenuThemeEnum.DARK)
-    return 'var(--text-inverse)'
-  return menuTheme.value.textColor
-})
-const topbarTextSecondaryColor = computed(() => {
-  if (!isSystemDark.value && menuTheme.value.theme === MenuThemeEnum.DARK)
-    return 'rgb(255 255 255 / 72%)'
-  return menuTheme.value.systemNameColor
-})
+const topbarTextColor = computed(() =>
+  isChromeDark.value
+    ? 'var(--layout-chrome-dark-text-primary)'
+    : menuTheme.value.textColor
+)
+const topbarTextSecondaryColor = computed(() =>
+  isChromeDark.value
+    ? 'var(--layout-chrome-dark-text)'
+    : menuTheme.value.systemNameColor
+)
 const tabsActiveBg = computed(() => 'rgba(var(--color-primary-rgb), 0.14)')
 const tabsActiveText = computed(() => 'var(--color-primary)')
 </script>
@@ -37,6 +41,7 @@ const tabsActiveText = computed(() => 'var(--color-primary)')
     :class="{
       'is-chrome-atmosphere': isAtmosphere,
       'is-chrome-soft': isSoft,
+      'is-chrome-dark': isChromeDark,
       'is-layout-left': isClassicLeft,
       'is-layout-top': menuType === MenuTypeEnum.TOP,
       'is-layout-hybrid': menuType === MenuTypeEnum.TOP_LEFT || menuType === MenuTypeEnum.DUAL_MENU,
@@ -194,6 +199,30 @@ const tabsActiveText = computed(() => 'var(--color-primary)')
   z-index: 1;
   background-color: transparent;
   border-top: 1px solid var(--border-subtle);
+}
+
+/*
+ * Dark chrome (dark menu style or night mode): remap local semantics on header/aside only
+ * so children keep using --border-* / --fill-* but resolve like html.dark.
+ * Do NOT set these on .layout itself — that would darken the content pane.
+ */
+.layout.is-chrome-dark :deep(.el-aside),
+.layout.is-chrome-dark :deep(.dual-menu-left),
+.layout.is-chrome-dark .layout-chrome {
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-default: rgba(255, 255, 255, 0.15);
+  --border-default-hover: rgba(255, 255, 255, 0.2);
+  --fill-primary: rgba(255, 255, 255, 0.06);
+  --fill-primary-subtle: rgba(255, 255, 255, 0.03);
+  --fill-secondary: rgba(255, 255, 255, 0.12);
+  --fill-tertiary: rgba(255, 255, 255, 0.18);
+  --bg-surface: var(--layout-chrome-dark-bg);
+  --bg-surface-hover: #141414;
+  --text-primary: var(--layout-chrome-dark-text-primary);
+  --text-secondary: var(--layout-chrome-dark-text);
+  --text-tertiary: var(--layout-chrome-dark-text);
+  --shadow-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Classic left: crumbs stay compact; search owns the middle */
@@ -396,16 +425,15 @@ const tabsActiveText = computed(() => 'var(--color-primary)')
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 55%);
 }
 
-html.dark .layout.is-chrome-atmosphere .layout-chrome__media {
+.layout.is-chrome-dark.is-chrome-atmosphere .layout-chrome__media {
   opacity: 0.42;
 }
 
-html.dark .layout.is-chrome-atmosphere.is-layout-left .layout-chrome__tagline {
+.layout.is-chrome-dark.is-chrome-atmosphere.is-layout-left .layout-chrome__tagline {
   color: rgb(255 255 255 / 38%);
 }
 
-html.dark
-  .layout.is-chrome-atmosphere.is-layout-left
+.layout.is-chrome-dark.is-chrome-atmosphere.is-layout-left
   .layout-header__center
   :deep(.global-search-trigger) {
   background-color: rgb(15 15 15 / 55%);
@@ -413,8 +441,19 @@ html.dark
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
 }
 
-html.dark .layout.is-chrome-soft .layout-chrome {
+.layout.is-chrome-dark.is-chrome-atmosphere.is-layout-left
+  .layout-header__center
+  :deep(.global-search-trigger:hover) {
+  background-color: rgb(15 15 15 / 72%);
+  border-color: rgb(255 255 255 / 16%);
+}
+
+.layout.is-chrome-dark.is-chrome-soft .layout-chrome {
   background: var(--layout-topbar-bg, var(--bg-surface));
+}
+
+.layout.is-chrome-dark.is-chrome-soft .layout-header__center :deep(.global-search-trigger) {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
 }
 
 @media (prefers-reduced-transparency: reduce) {

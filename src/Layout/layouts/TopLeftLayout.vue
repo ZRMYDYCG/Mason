@@ -108,7 +108,7 @@ defineProps({
 .hybrid-aside {
   :deep(.aside.hybrid-rail) {
     width: 72px !important;
-    background: #171a22;
+    background: var(--layout-topbar-bg, var(--layout-chrome-dark-bg));
   }
 
   :deep(.el-scrollbar) {

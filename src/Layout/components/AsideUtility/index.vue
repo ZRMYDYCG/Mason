@@ -88,7 +88,8 @@ const openHelp = () => {
   margin: 4px 12px 8px;
 }
 
-html.dark .utility-item:hover {
+html.dark .utility-item:hover,
+:global(.layout.is-chrome-dark) .utility-item:hover {
   background-color: rgba(var(--color-primary-rgb), 0.16);
 }
 </style>

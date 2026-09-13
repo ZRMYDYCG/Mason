@@ -87,6 +87,13 @@ html.dark,
   --bg-overlay: rgba(var(--color-neutral-0-rgb), 0.85);
   --bg-inverse: var(--color-neutral-0);
 
+  /* Keep dark chrome tokens aliased to night-mode semantics (single palette) */
+  --layout-chrome-dark-bg: var(--bg-surface);
+  --layout-chrome-dark-text: var(--text-secondary);
+  --layout-chrome-dark-text-primary: var(--text-primary);
+  --layout-chrome-dark-text-active: var(--color-neutral-0);
+  --layout-chrome-dark-border: var(--border-default);
+
   /* ========== Border Colors ========== */
   --border-subtle: rgba(var(--color-neutral-0-rgb), 0.06);
   --border-light: rgba(var(--color-neutral-0-rgb), 0.1);

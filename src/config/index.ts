@@ -194,6 +194,21 @@ export const SettingThemeList = [
   }
 ]
 
+/** Dark chrome palette — shared by dark menu style and night mode (one set of colors) */
+export const DarkChromeTheme: MenuThemeType = {
+  theme: MenuThemeEnum.DARK,
+  background: 'var(--layout-chrome-dark-bg)',
+  systemNameColor: 'var(--layout-chrome-dark-text-primary)',
+  iconColor: 'var(--layout-chrome-dark-text)',
+  textColor: 'var(--layout-chrome-dark-text)',
+  textActiveColor: 'var(--layout-chrome-dark-text-active)',
+  iconActiveColor: 'var(--layout-chrome-dark-text-active)',
+  tabBarBackground: 'var(--layout-chrome-dark-bg)',
+  systemBackground: 'var(--bg-page)',
+  leftLineColor: 'var(--layout-chrome-dark-border)',
+  rightLineColor: 'var(--border-default)'
+}
+
 // 菜单样式
 export const ThemeList: MenuThemeType[] = [
   {
@@ -210,16 +225,8 @@ export const ThemeList: MenuThemeType[] = [
     rightLineColor: '#EDEEF0'
   },
   {
-    theme: MenuThemeEnum.DARK,
-    background: '#191A23',
-    systemNameColor: '#BABBBD',
-    iconColor: '#BABBBD',
-    textColor: '#BABBBD',
-    textActiveColor: '#FFFFFF',
-    iconActiveColor: '#FFFFFF',
-    tabBarBackground: '#191A23',
-    systemBackground: '#F8F8F8',
-    leftLineColor: '#3F4257',
+    ...DarkChromeTheme,
+    // Preview: light content pane next to dark chrome
     rightLineColor: '#EDEEF0'
   },
   {
@@ -237,22 +244,8 @@ export const ThemeList: MenuThemeType[] = [
   }
 ]
 
-// dark 模式下 菜单样式
-export const DarkMenuStyles: MenuThemeType[] = [
-  {
-    theme: MenuThemeEnum.DARK,
-    background: 'var(--bg-overlay)',
-    systemNameColor: 'var(--text-primary)',
-    iconColor: 'var(--text-secondary)',
-    textColor: 'var(--text-secondary)',
-    textActiveColor: 'var(--text-inverse)',
-    iconActiveColor: 'var(--text-inverse)',
-    tabBarBackground: 'var(--bg-surface)',
-    systemBackground: 'var(--bg-page)',
-    leftLineColor: 'var(--border-default)',
-    rightLineColor: 'var(--border-default)'
-  }
-]
+// dark 模式下菜单样式（与深色菜单风格共用同一套 chrome token）
+export const DarkMenuStyles: MenuThemeType[] = [DarkChromeTheme]
 
 // 系统主色
 export const SystemMainColor = [

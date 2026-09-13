@@ -123,6 +123,13 @@
   --bg-overlay: rgba(var(--color-neutral-950-rgb), 0.5);
   --bg-inverse: var(--color-neutral-900);
 
+  /* Dark layout chrome — shared by dark menu style (under light root) & night mode */
+  --layout-chrome-dark-bg: #0a0a0a;
+  --layout-chrome-dark-text: var(--color-neutral-300);
+  --layout-chrome-dark-text-primary: var(--color-neutral-100);
+  --layout-chrome-dark-text-active: var(--color-neutral-0);
+  --layout-chrome-dark-border: rgba(255, 255, 255, 0.15);
+
   /* ========== Border Colors ========== */
   --border-subtle: rgba(var(--color-neutral-900-rgb), 0.06);
   --border-light: rgba(var(--color-neutral-900-rgb), 0.1);

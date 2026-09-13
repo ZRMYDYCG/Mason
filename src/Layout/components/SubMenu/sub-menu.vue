@@ -97,14 +97,18 @@ const handleClickMenu = (subItem: Menu) => {
   height: 18px !important;
 }
 
-:global(html:not(.dark) .aside .el-menu-item:not(.is-active):hover),
-:global(html:not(.dark) .aside .el-sub-menu__title:hover) {
+:global(
+  html:not(.dark) .layout:not(.is-chrome-dark) .aside .el-menu-item:not(.is-active):hover
+),
+:global(html:not(.dark) .layout:not(.is-chrome-dark) .aside .el-sub-menu__title:hover) {
   color: var(--color-primary);
   background-color: rgba(var(--color-primary-rgb), 0.08);
 }
 
 :global(html.dark .aside .el-menu-item:not(.is-active):hover),
-:global(html.dark .aside .el-sub-menu__title:hover) {
+:global(html.dark .aside .el-sub-menu__title:hover),
+:global(.layout.is-chrome-dark .aside .el-menu-item:not(.is-active):hover),
+:global(.layout.is-chrome-dark .aside .el-sub-menu__title:hover) {
   color: var(--color-primary);
   background-color: rgba(var(--color-primary-rgb), 0.16);
 }
