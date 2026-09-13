@@ -17,8 +17,7 @@ const createDefaultUserInfo = (): UserState['userInfo'] => ({
   isSuper: 0
 })
 
-export const useUserStore = defineStore({
-  id: 'user',
+export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     token: '',
     expires: 0,

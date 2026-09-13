@@ -4,8 +4,7 @@ import { getAuthMenuListApi } from '@/api/modules/login'
 import { getAllBreadcrumbList, getFlatMenuList, getShowMenuList } from '@/utils'
 import { ElMessage } from 'element-plus'
 
-export const useAuthStore = defineStore({
-  id: 'auth',
+export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
     // 按钮权限列表
     authButtonList: {},

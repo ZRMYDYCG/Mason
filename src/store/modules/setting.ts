@@ -45,8 +45,7 @@ export interface SettingState {
   currentLanguage: 'zh' | 'en' // 当前语言
 }
 
-export const useSettingStore = defineStore({
-  id: 'setting',
+export const useSettingStore = defineStore('setting', {
   state: (): SettingState => ({
     menuType: MenuTypeEnum.LEFT,
     menuOpenWidth: defaultMenuWidth,
@@ -54,7 +53,7 @@ export const useSettingStore = defineStore({
     systemThemeMode: SystemThemeEnum.LIGHT,
     menuThemeType: MenuThemeEnum.DESIGN,
     boxBorderMode: true,
-    tabsStyle: TabsStyleEnum.CARD,
+    tabsStyle: TabsStyleEnum.PILL,
     headerChrome: HeaderChromeEnum.ATMOSPHERE,
     uniqueOpened: true,
     systemThemeColor: ElementPlusTheme.primary,

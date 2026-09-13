@@ -4,8 +4,7 @@ import piniaPersistConfig from '@/store/helper/persist'
 import router from '@/router'
 import { useKeepAliveStore } from '@/store/modules/keepAlive'
 
-export const useTabsStore = defineStore({
-  id: 'tabs',
+export const useTabsStore = defineStore('tabs', {
   state: (): TabsState => ({
     tabsMenuList: []
   }),

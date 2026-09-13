@@ -3,8 +3,7 @@ import { GlobalState } from '@/store/interface'
 import piniaPersistConfig from '@/store/helper/persist'
 import { DEFAULT_PRIMARY } from '@/config'
 
-export const useGlobalStore = defineStore({
-  id: 'global',
+export const useGlobalStore = defineStore('global', {
   state: (): GlobalState => ({
     isCollapse: false,
     isDark: false,
