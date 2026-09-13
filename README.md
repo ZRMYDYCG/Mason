@@ -2,8 +2,6 @@
   <img src="./src/assets/images/logo-wordmark.png" width="220" alt="Mason Logo" />
 </p>
 
-<h1 align="center">Mason Admin</h1>
-
 <p align="center">
   基于 <b>Vue 3</b>、<b>TypeScript</b>、<b>Element Plus</b> 的现代化中后台管理系统，配套 <b>NestJS</b> 后端，打通前后端开发流程，开箱即用。
 </p>
@@ -18,6 +16,7 @@
   <img src="https://img.shields.io/badge/version-1.0.9-blue?style=flat-square" />
 </p>
 
+<p align="center">
 | 资源 | 地址 |
 | --- | --- |
 | 文档 | [https://mason.versakit.online](https://mason.versakit.online) |
@@ -25,6 +24,7 @@
 | 源码 | [github.com/ZRMYDYCG/Mason](https://github.com/ZRMYDYCG/Mason) |
 
 预览账号：`Mason` / `123456`（超级管理员）、`Coder` / `123456`（普通用户）
+</p>
 
 ---
 
