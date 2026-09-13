@@ -36,9 +36,9 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/components',
     name: 'components',
-    component: () => import('@/views/components/index.vue'),
+    component: () => import('@/views/component-docs/index.vue'),
     meta: {
-      title: '组件',
+      title: '组件文档',
       isPublic: true
     }
   },

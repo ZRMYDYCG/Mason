@@ -4,7 +4,7 @@ import { onMounted, ref, reactive, toRaw } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { deleteMenu, getMenuList } from '@/api/modules/system'
 import { Menu } from '@/api/interface/system'
-import AllLucideIcon from '@/components/AllLucideIcon/index.vue'
+import AppIcon from '@/components/AppIcon/index.vue'
 
 const isMockMode = import.meta.env.VITE_MOCK === 'true'
 
@@ -104,7 +104,7 @@ const handleEdit = (row: Menu) => {
         <el-table-column prop="meta.icon" label="菜单图标" align="center" width="100">
           <template #default="scope">
             <div style="display: flex; align-items: center; justify-content: center">
-              <AllLucideIcon v-if="scope.row.meta.icon" :name="scope.row.meta.icon" />
+              <AppIcon v-if="scope.row.meta.icon" :name="scope.row.meta.icon" />
             </div>
           </template>
         </el-table-column>

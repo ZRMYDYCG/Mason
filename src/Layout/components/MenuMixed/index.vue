@@ -90,7 +90,7 @@ onMounted(() => {
             @click="handleMenuJump(item)"
             v-if="!item.meta.isHide"
           >
-            <AllLucideIcon v-if="item.meta.icon" :name="item.meta.icon" class="mr-2" />
+            <AppIcon v-if="item.meta.icon" :name="item.meta.icon" class="mr-2" />
             <span>{{ getTitle(item.meta) }}</span>
           </div>
         </template>

@@ -3,6 +3,7 @@
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
+import { TABLE_COLUMN_OPERATE } from './constants'
 
 defineOptions({
   name: 'MasonTable'
@@ -10,19 +11,13 @@ defineOptions({
 
 const PAGE_SIZES = [10, 20, 30, 40, 50]
 
-const TABLE_COLUMN_OPERATE = {
-  DETAIL: Symbol('detail'),
-  EDIT: Symbol('edit'),
-  DELETE: Symbol('delete')
-}
-
 interface TableColumnOptions {
   [key: string]: any
 }
 
 interface Pagination {
   isShow: boolean
-  total: number
+  total?: number
   [key: string]: any
 }
 
@@ -103,8 +98,8 @@ defineExpose({
     <el-table ref="elTableRef" v-bind="$attrs">
       <!--   S 表格展开行   -->
       <el-table-column v-if="expand" type="expand">
-        <template #default="{ $row }">
-          <slot name="expand" :row="$row"></slot>
+        <template #default="{ row }">
+          <slot name="expand" :row="row"></slot>
         </template>
       </el-table-column>
       <!--   E 表格展开行   -->

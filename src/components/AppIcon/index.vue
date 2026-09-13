@@ -62,6 +62,7 @@ const iconComponent = computed<Component>(() => {
 .app-icon {
   position: relative;
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   color: var(--app-icon-color);

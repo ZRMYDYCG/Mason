@@ -61,30 +61,14 @@ const navLinks = [
   { label: '关于', href: '/about' }
 ]
 
-const sidebarGroups = [
-  {
-    title: '开始使用',
-    icon: 'book-open-text',
-    items: ['介绍', '快速开始', '项目结构', '配置说明']
-  },
-  {
-    title: '核心功能',
-    icon: 'blocks',
-    items: ['路由管理', '状态管理', '权限控制', '国际化', '主题系统', '布局系统']
-  },
-  {
-    title: '组件',
-    icon: 'component',
-    items: ['基础组件', '业务组件', '表单组件', '数据展示', '反馈组件', '其他组件']
-  },
-  {
-    title: '开发指南',
-    icon: 'pen-tool',
-    items: ['最佳实践', '常见问题', '更新日志']
-  }
-]
-
-const pageToc = ['什么是 Mason ?', '设计理念', '技术栈', '核心特性', '适用场景', '快速开始']
+const groupIcons: Record<string, string> = {
+  开始使用: 'book-open-text',
+  前端: 'monitor',
+  后端: 'server',
+  架构: 'blocks',
+  工程约定: 'clipboard-list',
+  迭代记录: 'history'
+}
 
 const toTitle = (path: string) =>
   path
@@ -114,6 +98,24 @@ const docs = computed<DocItem[]>(() =>
 
 const activeDoc = computed(() => docs.value.find((doc) => doc.key === activeKey.value) || docs.value[0])
 
+const sidebarGroups = computed(() =>
+  docs.value.reduce<Array<{ title: string; icon: string; docs: DocItem[] }>>((groups, doc) => {
+    const title = doc.group || doc.category
+    const matched = groups.find((group) => group.title === title)
+    if (matched) {
+      matched.docs.push(doc)
+      return groups
+    }
+
+    groups.push({
+      title,
+      icon: groupIcons[title] || 'file-text',
+      docs: [doc]
+    })
+    return groups
+  }, [])
+)
+
 const mdxComponents = {}
 
 const useNow = () => {
@@ -137,15 +139,12 @@ const buildToc = async () => {
   })
 }
 
-const selectSidebarItem = (item: string) => {
-  const nextDoc = docs.value.find((doc) => doc.title === item)
-  if (nextDoc) activeKey.value = nextDoc.key
+const selectSidebarItem = (key: string) => {
+  activeKey.value = key
 }
 
-const scrollToHeading = (title: string) => {
-  const matched = toc.value.find((item) => item.title === title)
-  if (!matched) return
-  articleRef.value?.querySelector(`#${matched.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+const scrollToHeading = (id: string) => {
+  articleRef.value?.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 onMounted(() => {
@@ -190,15 +189,15 @@ watch(activeDoc, buildToc)
             <AppIcon name="chevron-down" :size="14" />
           </button>
           <button
-            v-for="item in group.items"
-            :key="item"
+            v-for="item in group.docs"
+            :key="item.key"
             type="button"
             class="side-link"
-            :class="{ active: item === activeDoc?.title || item === '介绍' }"
-            @click="selectSidebarItem(item)"
+            :class="{ active: item.key === activeDoc?.key }"
+            @click="selectSidebarItem(item.key)"
           >
             <AppIcon name="circle-dot" :size="12" />
-            {{ item }}
+            {{ item.title }}
           </button>
         </section>
 
@@ -210,7 +209,7 @@ watch(activeDoc, buildToc)
 
       <article class="docs-article">
         <div class="breadcrumb">
-          <span>开始使用</span>
+          <span>{{ activeDoc?.group || '开始使用' }}</span>
           <AppIcon name="chevron-right" :size="14" />
           <strong>{{ activeDoc?.title || '介绍' }}</strong>
         </div>
@@ -224,13 +223,13 @@ watch(activeDoc, buildToc)
       <aside class="page-toc">
         <h3>本页目录</h3>
         <button
-          v-for="item in pageToc"
-          :key="item"
+          v-for="item in toc"
+          :key="item.id"
           type="button"
-          :class="{ active: item === '什么是 Mason ?' }"
-          @click="scrollToHeading(item)"
+          :class="{ active: item.id === toc[0]?.id }"
+          @click="scrollToHeading(item.id)"
         >
-          {{ item }}
+          {{ item.title }}
         </button>
       </aside>
     </main>

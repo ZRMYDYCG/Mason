@@ -1,20 +1,41 @@
 <script setup lang="ts">
+import { Icon, addIcon } from '@iconify/vue'
+import iconVue from '@iconify-icons/logos/vue'
+import iconTypescript from '@iconify-icons/logos/typescript-icon'
+import iconVite from '@iconify-icons/logos/vitejs'
+import iconPinia from '@iconify-icons/logos/pinia'
+import iconElement from '@iconify-icons/logos/element'
+import iconTailwind from '@iconify-icons/logos/tailwindcss-icon'
+import iconEslint from '@iconify-icons/logos/eslint'
+import iconPrettier from '@iconify-icons/logos/prettier'
+
+addIcon('logos:vue', iconVue)
+addIcon('logos:typescript-icon', iconTypescript)
+addIcon('logos:vitejs', iconVite)
+addIcon('logos:pinia', iconPinia)
+addIcon('logos:element', iconElement)
+addIcon('logos:tailwindcss-icon', iconTailwind)
+addIcon('logos:eslint', iconEslint)
+addIcon('logos:prettier', iconPrettier)
+
 const stacks = [
-  { name: 'Vue.js', mark: 'V', tone: 'green' },
-  { name: 'TypeScript', mark: 'TS', tone: 'blue' },
-  { name: 'Vite', mark: '⚡', tone: 'purple' },
-  { name: 'Pinia', mark: '🍍', tone: 'yellow' },
-  { name: 'Element Plus', mark: 'E', tone: 'blue' },
-  { name: 'UnoCSS', mark: '⚡', tone: 'green' },
-  { name: 'ESLint', mark: '◇', tone: 'purple' },
-  { name: 'Prettier', mark: '▤', tone: 'neutral' }
+  { name: 'Vue.js', icon: 'logos:vue' },
+  { name: 'TypeScript', icon: 'logos:typescript-icon' },
+  { name: 'Vite', icon: 'logos:vitejs' },
+  { name: 'Pinia', icon: 'logos:pinia' },
+  { name: 'Element Plus', icon: 'logos:element' },
+  { name: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' },
+  { name: 'ESLint', icon: 'logos:eslint' },
+  { name: 'Prettier', icon: 'logos:prettier' }
 ]
 </script>
 
 <template>
   <div class="tech-stack">
-    <div v-for="item in stacks" :key="item.name" class="tech-item" :data-tone="item.tone">
-      <span>{{ item.mark }}</span>
+    <div v-for="item in stacks" :key="item.name" class="tech-item">
+      <span class="tech-logo">
+        <Icon :icon="item.icon" width="28" height="28" />
+      </span>
       <strong>{{ item.name }}</strong>
     </div>
   </div>
@@ -36,22 +57,19 @@ const stacks = [
   min-width: 0;
 }
 
-.tech-item span {
+.tech-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
-  font-size: 18px;
-  font-weight: 800;
-  background: var(--fill-primary-subtle);
+  width: 52px;
+  height: 52px;
+  background: color-mix(in srgb, var(--bg-surface) 88%, var(--fill-primary));
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--shadow-color) 30%, transparent);
+  border-radius: var(--radius-lg);
 }
 
 .tech-item strong {
-  max-width: 82px;
+  max-width: 88px;
   overflow: hidden;
   font-size: 12px;
   font-weight: 650;
@@ -59,26 +77,6 @@ const stacks = [
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.tech-item[data-tone='green'] span {
-  color: #2f9e44;
-}
-
-.tech-item[data-tone='blue'] span {
-  color: #246bfe;
-}
-
-.tech-item[data-tone='purple'] span {
-  color: #7157f8;
-}
-
-.tech-item[data-tone='yellow'] span {
-  color: #e2a300;
-}
-
-.tech-item[data-tone='neutral'] span {
-  color: var(--text-secondary);
 }
 
 @media (width <= 1100px) {

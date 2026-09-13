@@ -2,13 +2,13 @@
   <template v-for="subItem in menuList" :key="subItem.path">
     <el-sub-menu v-if="subItem.children?.length" :index="subItem.path" :popper-class="popperClass">
       <template #title>
-        <AllLucideIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="icon" />
+        <AppIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="icon" />
         <span class="sle">{{ getTitle(subItem.meta) }}</span>
       </template>
       <SubMenu :menu-list="subItem.children" :popper-class="popperClass" />
     </el-sub-menu>
     <el-menu-item v-else :index="subItem.path" @click="handleClickMenu(subItem)">
-      <AllLucideIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="icon" />
+      <AppIcon v-if="subItem.meta.icon" :name="subItem.meta.icon" class="icon" />
       <template #title>
         <div class="flex items-center gap-2">
           <span class="sle mr-2">{{ getTitle(subItem.meta) }}</span>

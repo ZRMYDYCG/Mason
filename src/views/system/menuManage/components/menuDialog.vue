@@ -5,7 +5,7 @@ import { addMenu, editMenu } from '@/api/modules/system'
 import { Menu } from '@/api/interface/system'
 import { useAuthStore } from '@/store/modules/auth'
 import { MenuOption, getTreeMenuOptions } from '@/utils'
-import AllLucideIcon from '@/components/AllLucideIcon/index.vue'
+import AppIcon from '@/components/AppIcon/index.vue'
 import LucideIconPickerDialog from './lucideIconPickerDialog.vue'
 const isEdit = ref(false)
 const dialogVisible = ref(false)
@@ -249,7 +249,7 @@ const handleConfirm = () => {
                   <div
                     style=" display: flex; align-items: center; justify-content: center;width: 40px"
                   >
-                    <AllLucideIcon :name="menuForm.icon" />
+                    <AppIcon :name="menuForm.icon" />
                   </div>
                 </template>
                 <template #append>
@@ -356,7 +356,7 @@ const handleConfirm = () => {
                   <div
                     style=" display: flex; align-items: center; justify-content: center;width: 40px"
                   >
-                    <AllLucideIcon :name="editMenuForm.icon" />
+                    <AppIcon :name="editMenuForm.icon" />
                   </div>
                 </template>
                 <template #append>

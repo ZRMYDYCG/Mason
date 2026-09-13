@@ -1,54 +1,15 @@
 /**
  * Theme Animation
  * 主题切换动画和过渡效果
- * 
+ *
  * 此文件包含：
- * - View Transition API 支持（主题切换动画）
  * - Vue 过渡动画类（fade、slide 等）
  * - Element Plus 组件动画（Dialog、Drawer）
  * - 全局主题过渡效果
- * 
+ *
  * 使用的 Design Token：
  * - primitives/motion.css: 动效时长和缓动曲线
- * - semantics/light.css 和 semantics/dark.css: View Transition 背景色
  */
-
-/* ========== View Transitions (Theme Switching) ========== */
-@supports (view-transition-name: none) {
-  html {
-    &::view-transition-old(*),
-    &::view-transition-new(*) {
-      mix-blend-mode: normal;
-      animation: none;
-    }
-
-    &::view-transition-old(root),
-    &::view-transition-new(root) {
-      will-change: clip-path;
-    }
-
-    &::view-transition-old(root) {
-      z-index: 1;
-      background-color: var(--vt-bg-old, transparent);
-    }
-
-    &::view-transition-new(root) {
-      z-index: 9999;
-      background-color: var(--vt-bg-new, transparent);
-      animation: clip-reveal var(--duration-slow) var(--ease-out);
-    }
-  }
-
-  @keyframes clip-reveal {
-    from {
-      clip-path: circle(0% at 50% 50%);
-    }
-
-    to {
-      clip-path: circle(150% at 50% 50%);
-    }
-  }
-}
 
 /* ========== Global Theme Transition ========== */
 

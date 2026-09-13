@@ -1,26 +1,20 @@
 <script setup lang="ts">
-import AppIcon from '@/components/AppIcon/index.vue'
-
 const features = [
   {
     title: '开箱即用',
-    desc: '内置丰富的业务组件，快速搭建管理系统。',
-    icon: 'zap'
+    desc: '内置常用业务组件与页面能力，便于快速搭建管理系统。'
   },
   {
     title: '灵活可定制',
-    desc: '支持多种布局方式与主题配置，满足不同项目需求。',
-    icon: 'sliders-horizontal'
+    desc: '支持多种布局与主题配置，适配不同项目需求。'
   },
   {
-    title: '开发者友好',
-    desc: '清晰的目录结构与完善的文档，降低学习成本。',
-    icon: 'code-xml'
+    title: '结构清晰',
+    desc: '目录分层明确，配套文档齐全，降低上手成本。'
   },
   {
-    title: '持续迭代',
-    desc: '保持活跃维护，与社区共同成长。',
-    icon: 'settings'
+    title: '持续维护',
+    desc: '按实际使用反馈迭代功能、约定与文档。'
   }
 ]
 </script>
@@ -28,9 +22,6 @@ const features = [
 <template>
   <div class="feature-grid">
     <article v-for="item in features" :key="item.title" class="feature-card">
-      <span class="feature-icon">
-        <AppIcon :name="item.icon" :size="22" />
-      </span>
       <h3>{{ item.title }}</h3>
       <p>{{ item.desc }}</p>
     </article>
@@ -46,24 +37,11 @@ const features = [
 }
 
 .feature-card {
-  min-height: 164px;
+  min-height: 120px;
   padding: 20px 18px;
   background: color-mix(in srgb, var(--bg-surface) 86%, var(--fill-primary));
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  box-shadow: 0 18px 38px color-mix(in srgb, var(--shadow-color) 35%, transparent);
-}
-
-.feature-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 18px;
-  color: var(--color-primary);
-  background: color-mix(in srgb, var(--color-primary) 9%, transparent);
-  border-radius: var(--radius-md);
 }
 
 .feature-card h3 {

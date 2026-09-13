@@ -87,7 +87,7 @@ defineProps({
                     'item-content'
                   ]"
                 >
-                  <AllLucideIcon v-if="menu?.meta.icon" :name="menu.meta.icon" />
+                  <AppIcon v-if="menu?.meta.icon" :name="menu.meta.icon" />
                   <div>{{ getTitle(menu.meta) }}</div>
                 </div>
               </el-tooltip>

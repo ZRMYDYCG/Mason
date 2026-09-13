@@ -128,8 +128,4 @@ html.dark,
   /* ========== Focus Ring ========== */
   --focus-ring: 0 0 0 3px rgba(var(--color-primary-500-rgb), 0.35);
   --focus-ring-color: var(--color-primary-400);
-
-  /* ========== View Transition ========== */
-  --vt-bg-old: var(--bg-page);
-  --vt-bg-new: var(--bg-page);
 }

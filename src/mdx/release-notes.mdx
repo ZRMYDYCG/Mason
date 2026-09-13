@@ -2,29 +2,32 @@ import DocCallout from '@/views/document/components/doc-callout.vue'
 
 export const meta = {
   title: '文档中心迭代记录',
-  description: '记录 Mason 文档中心从页面雏形到 MDX 能力完善的关键变化。',
+  description: '文档中心能力变更记录。',
   category: 'Iteration Logs',
+  group: '开始使用',
   updatedAt: '2026-09-13',
-  readingTime: '4 min read',
+  readingTime: '3 min read',
   owner: 'Mason',
   order: 2
 }
 
 # 文档中心迭代记录
 
-这一页用来沉淀文档模块自身的演进。每一次新增能力、调整目录或变更写作约定，都可以记录在这里。
+记录文档模块自身的变更：新增能力、目录调整、写作约定。
 
-<DocCallout title="建议写法" tone="info">
-  迭代文档保持短、准、可追踪：说明背景、改动范围、影响页面和后续事项。
+<DocCallout title="写法要求" tone="info">
+  说明背景、改动范围、影响页面与后续事项。保持短、准、可追踪。
 </DocCallout>
 
 ## v1.2 文档中心
 
-- 新增 `/docs` 文档页面
-- 接入 `.mdx` 文档渲染
+- 新增 `/docs` 文档页
+- 接入 `.mdx` 渲染
 - 支持在 MDX 中使用 Vue 组件
-- 增加文档列表、阅读正文和右侧信息栏
+- 增加文档列表、正文与右侧信息栏
 
 ## 下一步
 
-可以继续接入文档搜索、标题目录自动提取和文档详情路由。
+- 文档搜索
+- 标题目录自动提取
+- 文档详情独立路由

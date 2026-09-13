@@ -145,8 +145,8 @@ let menus: RawMenu[] = [
     component: '/document/index'
   },
   {
-    ...makeMenu(35, 'components', '组件展示', '/components', 0, 'component', 10),
-    component: '/components/index'
+    ...makeMenu(35, 'components', '组件文档', '/components', 0, 'component', 10),
+    component: '/component-docs/index'
   },
   {
     ...makeMenu(36, 'changelog', '更新日志', '/changelog', 0, 'history', 11),
