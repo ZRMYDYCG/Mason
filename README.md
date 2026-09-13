@@ -12,35 +12,12 @@
   <img src="https://img.shields.io/badge/version-1.0.9-blue?style=flat-square" />
 </p>
 
+## 预览
 
 文档 https://mason.versakit.online](https://mason.versakit.online
 
 在线预览（Mock）http://admin.dev.versakit.online/login](http://admin.dev.versakit.online/login
 
-
-## 技术栈
-
-| 层 | 技术 |
-| --- | --- |
-| 前端 | Vue 3 · Vite 6 · TypeScript · Element Plus · Pinia · Vue Router · Tailwind CSS 4 · PostCSS |
-| 后端 | NestJS · Prisma · MySQL · Redis · JWT（RSA）· CASL |
-| 工程化 | ESLint 9 · Prettier · Stylelint · Lefthook · Commitlint · Commitizen · Plop · Vitest |
-
----
-
-## 功能概览
-
-- **RBAC 权限**：账号 / 角色 / 菜单 / 部门，前后端分离鉴权，细粒度到菜单与按钮
-- **布局与主题**：多标签页、可折叠侧边栏、亮色 / 暗色主题、动态路由与多级菜单
-- **业务能力**：登录加密、七天登录、操作日志、个人中心、内嵌页面、页面重载
-- **可视化**：数据大屏（vue-echarts）、`useEcharts` 封装
-- **组件与工具**：表格 / 表单、富文本、流程图、图片裁剪、水印、Toast / Dialog 等
-- **国际化**：vue-i18n（简体中文 / English）
-- **代码生成**：基于 Plop 的组件 / 视图 / Store 模板
-
-更多说明见 [在线文档](https://mason.versakit.online)。
-
----
 
 ## 快速开始
 
