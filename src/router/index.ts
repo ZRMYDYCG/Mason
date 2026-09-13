@@ -34,6 +34,15 @@ const routes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/components',
+    name: 'components',
+    component: () => import('@/views/components/index.vue'),
+    meta: {
+      title: '组件',
+      isPublic: true
+    }
+  },
+  {
     path: '/layout',
     redirect: HOME_URL, // 重定向主页
     name: 'layout',
