@@ -3,10 +3,6 @@
 </p>
 
 <p align="center">
-  基于 <b>Vue 3</b>、<b>TypeScript</b>、<b>Element Plus</b> 的现代化中后台管理系统，配套 <b>NestJS</b> 后端，打通前后端开发流程，开箱即用。
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/Vue-3.4-42b883?style=flat-square&logo=vue.js" />
   <img src="https://img.shields.io/badge/TypeScript-5+-3178C6?style=flat-square&logo=typescript" />
   <img src="https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white" />
