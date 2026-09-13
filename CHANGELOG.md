@@ -102,42 +102,6 @@ All notable changes to Mason are documented here.
 
 This changelog is generated from the project commit history and organized by release scope.
 
-## [Unreleased] - 2026-09-13
-
-### Added
-
-- Added public landing pages and assets, including header, hero, tech stack, detail, open-source and footer sections.
-- Added MDX support for project documentation, including MDX compilation, Vue component rendering and documentation routes.
-- Added documentation center pages, sample MDX content and reusable documentation components.
-- Added component documentation page and public route for project component examples.
-- Added dashboard modules and visual assets, with updated mock data for the dashboard API.
-- Added `AsideUtility` and `BrandCard` to improve layout utility and brand display.
-- Added table-style icon selection with pagination and copy support.
-- Added `VITE_MOCK` environment switch for development and production mock data.
-
-### Changed
-
-- Migrated dual-menu layout into a hybrid layout experience.
-- Updated logo implementation to use wordmark image assets.
-- Replaced SVG logos with PNG assets and refreshed favicon links.
-- Improved layout spacing and dimensions for `AsideUtility`, `Logo` and `SubMenu`.
-- Improved card style mode switching across dashboard cards.
-- Improved submenu and icon component alignment.
-- Refined ThemeDrawer visual hierarchy and settings layout.
-- Enhanced README content, project description, resource links and quick-start guidance.
-
-### Fixed
-
-- Fixed numeric conversion issues in visualization components.
-- Fixed loop count comparison in count-up rendering.
-
-### Chores
-
-- Upgraded TypeScript and related development dependencies.
-- Updated Stylelint and editor recommendations.
-- Removed obsolete signaling server implementation.
-- Migrated the backend architecture toward the Nest-based main iteration branch.
-
 ## [1.0.9] - 2025-06-11
 
 ### Added
