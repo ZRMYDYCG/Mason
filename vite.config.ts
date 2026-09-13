@@ -29,8 +29,11 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
   const viteEnv = loadEnv(mode, process.cwd())
   const isProduction = mode === 'production'
   const isBuild = command === 'build'
-
-  console.log(isBuild)
+  // Vercel / CI 构建跳过重型本地调试插件，避免 imagemin 压图卡住部署
+  const isCi = process.env.VERCEL === '1' || process.env.CI === 'true'
+  const enableImagemin = isProduction && !isCi && viteEnv.VITE_IMAGEMIN !== 'false'
+  const enableInspect = !isBuild && !isCi
+  const enableVisualizer = isBuild && viteEnv.VITE_REPORT === 'true'
 
   return {
     base: viteEnv.VITE_BASE_URL || '/',
@@ -113,10 +116,11 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
         }
       }),
       vueJsx(),
-      codeInspectorPlugin({
-        bundler: 'vite',
-        editor: 'code'
-      }),
+      !isBuild &&
+        codeInspectorPlugin({
+          bundler: 'vite',
+          editor: 'code'
+        }),
       AutoImport({
         imports: [
           'vue',
@@ -153,15 +157,15 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
           }
         }
       }),
-      // 构建分析
-      visualizer({
-        open: false,
-        gzipSize: true,
-        brotliSize: true
-      }),
+      enableVisualizer &&
+        visualizer({
+          open: false,
+          gzipSize: true,
+          brotliSize: true
+        }),
       // Gzip/Brotli压缩
       viteCompression({
-        verbose: true,
+        verbose: false,
         disable: !isProduction,
         threshold: 10240,
         algorithm: 'gzip',
@@ -169,21 +173,22 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
       }),
       // CommonJS转换（兼容旧包）
       viteCommonjs(),
-      // 检查插件中间状态
-      inspect(),
+      enableInspect && inspect(),
       tailwindcss(),
-      viteImagemin({
-        gifsicle: { optimizationLevel: 7 },
-        optipng: { optimizationLevel: 7 },
-        webp: { quality: 75 }
-      }),
+      enableImagemin &&
+        viteImagemin({
+          gifsicle: { optimizationLevel: 3 },
+          optipng: { optimizationLevel: 3 },
+          mozjpeg: { quality: 75 },
+          webp: { quality: 75 }
+        }),
       // 配置 SVG 图标插件
       createSvgIconsPlugin({
         // SVG 图标目录
         iconDirs: [fileURLToPath(new URL('./src/assets/svg', import.meta.url))], // 生成的 symbol ID 格式
         symbolId: 'icon-[dir]-[name]'
       })
-    ],
+    ].filter(Boolean),
     optimizeDeps: {
       include: ['vue', 'vue-router', 'pinia', 'element-plus', 'axios'],
       exclude: ['vue-demi'],
