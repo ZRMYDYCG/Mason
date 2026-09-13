@@ -42,20 +42,18 @@ const previewImages = computed(() => list.value.map((item) => item.url))
 
 const options = reactive({
   rowKey: 'id',
-  width: 310,
+  // 仅作超大屏未命中 breakpoints 时的兜底；正常由 rowPerView 均分容器宽度
+  width: 240,
   breakpoints: {
-    1200: {
-      rowPerView: 4
-    },
-    800: {
-      rowPerView: 3
-    },
-    500: {
-      rowPerView: 2
-    }
+    // 插件规则：wrapperWidth <= key 时生效；需覆盖超宽屏，否则会回退固定 width 并两侧留白
+    5000: { rowPerView: 6 },
+    1600: { rowPerView: 5 },
+    1200: { rowPerView: 4 },
+    800: { rowPerView: 3 },
+    500: { rowPerView: 2 }
   },
-  gutter: 15,
-  hasAroundGutter: true,
+  gutter: 12,
+  hasAroundGutter: false,
   posDuration: 600,
   animationPrefix: 'animate__animated',
   animationEffect: 'fadeIn',
@@ -75,7 +73,7 @@ const options = reactive({
   lazyload: true,
   crossOrigin: true,
   delay: 300,
-  align: 'center'
+  align: 'left'
 })
 
 const getScrollRoot = () =>
@@ -187,8 +185,10 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .waterfall-page {
+  /* 抵消 el-main 默认 padding 后，保留一点内边距 */
   min-height: 100%;
-  padding: 6px;
+  padding: 10px;
+  margin: -10px;
 }
 
 .waterfall-item {

@@ -24,9 +24,10 @@ mockXHR(import.meta.env.VITE_MOCK === 'true')
 
 async function bootstrap() {
   const app = createApp(App)
+  // pinia 必须先于 router / 业务模块注册，避免生产分包提前执行 useStore 时 activePinia 为空
+  app.use(pinia)
   app.use(router)
   app.use(ElementPlus)
-  app.use(pinia)
   app.use(I18n)
 
   // 注册全局指令

@@ -4,8 +4,6 @@ import piniaPersistConfig from '@/store/helper/persist'
 import router from '@/router'
 import { useKeepAliveStore } from '@/store/modules/keepAlive'
 
-const keepAliveStore = useKeepAliveStore()
-
 export const useTabsStore = defineStore({
   id: 'tabs',
   state: (): TabsState => ({
@@ -15,6 +13,7 @@ export const useTabsStore = defineStore({
   actions: {
     // 添加tab
     async addTab(tabItem: TabsMenuProps) {
+      const keepAliveStore = useKeepAliveStore()
       if (this.tabsMenuList.every((item) => item.path !== tabItem.path)) {
         this.tabsMenuList.push(tabItem)
       }
@@ -25,6 +24,7 @@ export const useTabsStore = defineStore({
     },
     // 移除tab
     async removeTab(tabPath: string, isCurrent: boolean = true) {
+      const keepAliveStore = useKeepAliveStore()
       if (isCurrent) {
         this.tabsMenuList.forEach((item, index) => {
           if (item.path !== tabPath) return
@@ -43,6 +43,7 @@ export const useTabsStore = defineStore({
       this.tabsMenuList = this.tabsMenuList.filter((item) => item.path !== tabPath)
     },
     async closeTabsOnSide(tabPath: string, type: 'left' | 'right') {
+      const keepAliveStore = useKeepAliveStore()
       const currentIndex = this.tabsMenuList.findIndex((item) => item.path === tabPath)
       if (currentIndex !== -1) {
         const range =
@@ -57,6 +58,7 @@ export const useTabsStore = defineStore({
     },
     // 关闭多个tab
     async closeMultipleTab(tabPath?: string) {
+      const keepAliveStore = useKeepAliveStore()
       this.tabsMenuList = this.tabsMenuList.filter((item) => {
         return item.path === tabPath || !item.close
       })
