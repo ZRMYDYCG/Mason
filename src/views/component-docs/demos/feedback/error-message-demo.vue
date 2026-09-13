@@ -110,7 +110,7 @@ const routeCode = `// router 配置
 }
 
 .tab-btn.active {
-  color: #fff;
+  color: #ffffff;
   background: var(--color-primary);
   border-color: var(--color-primary);
 }

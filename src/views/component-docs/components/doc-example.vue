@@ -94,8 +94,8 @@ const copyCode = async (code: string) => {
 }
 
 .doc-example__code-wrap {
-  border-top: 1px solid var(--border-subtle);
   background: #0f1317;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .doc-example__toolbar {
@@ -121,7 +121,7 @@ const copyCode = async (code: string) => {
 
 .tool-btn:hover {
   color: #e8eef4;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgb(255 255 255 / 6%);
 }
 
 pre {

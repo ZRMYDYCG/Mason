@@ -336,9 +336,9 @@ const scrollToSection = (id: string) => {
 <style scoped>
 .component-docs-site {
   min-height: 100vh;
+  font-family: var(--font-family-sans);
   color: var(--text-primary);
   background: var(--bg-surface);
-  font-family: var(--font-family-sans);
 }
 
 .component-hero {
@@ -365,9 +365,9 @@ const scrollToSection = (id: string) => {
   margin: 0;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.14em;
   color: var(--text-tertiary);
   text-transform: uppercase;
+  letter-spacing: 0.14em;
 }
 
 .section-kicker {
@@ -407,14 +407,13 @@ const scrollToSection = (id: string) => {
   height: 40px;
   padding: 0 10px 0 14px;
   margin-top: 4px;
-  color: var(--text-tertiary);
   font-size: 13px;
+  color: var(--text-tertiary);
   background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   box-shadow: 0 12px 32px color-mix(in srgb, var(--shadow-color) 60%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 }
 
 .search-box kbd {
@@ -538,8 +537,8 @@ const scrollToSection = (id: string) => {
 }
 
 .breadcrumb strong {
-  color: var(--color-primary);
   font-weight: 650;
+  color: var(--color-primary);
 }
 
 .doc-section {

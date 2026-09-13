@@ -213,7 +213,7 @@ const setSpeed = (val) => {
 }
 
 .tab-btn.active {
-  color: #fff;
+  color: #ffffff;
   background: var(--color-primary);
   border-color: var(--color-primary);
 }
@@ -250,7 +250,7 @@ const setSpeed = (val) => {
 
 .demo-btn:hover,
 .demo-btn.active {
-  color: #fff;
+  color: #ffffff;
   background: var(--color-primary);
   border-color: var(--color-primary);
 }

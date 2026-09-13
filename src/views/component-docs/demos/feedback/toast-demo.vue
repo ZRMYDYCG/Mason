@@ -193,25 +193,25 @@ notify.error('服务连接超时')`
 
 .demo-btn.info {
   color: #3b82f6;
-  background: rgba(59, 130, 246, 0.08);
+  background: rgb(59 130 246 / 8%);
   border-color: #3b82f6;
 }
 
 .demo-btn.success {
   color: #10b981;
-  background: rgba(16, 185, 129, 0.08);
+  background: rgb(16 185 129 / 8%);
   border-color: #10b981;
 }
 
 .demo-btn.warning {
   color: #f59e0b;
-  background: rgba(245, 158, 11, 0.08);
+  background: rgb(245 158 11 / 8%);
   border-color: #f59e0b;
 }
 
 .demo-btn.error {
   color: #ef4444;
-  background: rgba(239, 68, 68, 0.08);
+  background: rgb(239 68 68 / 8%);
   border-color: #ef4444;
 }
 </style>

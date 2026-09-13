@@ -303,7 +303,7 @@ const fallbackCode = `<!-- 无效图标名：自动回退到 CircleHelp -->
 }
 
 .demo-btn-primary {
-  color: #fff;
+  color: #ffffff;
   background: var(--color-primary);
 }
 
@@ -314,7 +314,7 @@ const fallbackCode = `<!-- 无效图标名：自动回退到 CircleHelp -->
 }
 
 .demo-btn-danger {
-  color: #fff;
+  color: #ffffff;
   background: #ef4444;
 }
 

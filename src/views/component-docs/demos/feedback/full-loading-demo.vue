@@ -72,7 +72,7 @@ const toggleLoading = () => {
   padding: 0 16px;
   font-size: 14px;
   font-weight: 600;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   background: var(--color-primary);
   border: 0;
