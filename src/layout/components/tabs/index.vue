@@ -7,7 +7,7 @@
           :key="item.path"
           class="tab-item"
           :class="{ 'is-active': item.path === activePath, 'is-closable': item.close }"
-          :ref="(el) => setTabRef(el, item.path)"
+          :ref="(el: any) => setTabRef(el, item.path)"
           @click="clickTab(item.path)"
         >
           <span class="tab-title" :title="item.title">{{ item.title }}</span>
